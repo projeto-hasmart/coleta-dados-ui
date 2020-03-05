@@ -4,25 +4,28 @@ import { Rotas } from '@enums';
 import { AuthenticationGuard } from 'sesa-sd-controle-acesso';
 
 const routes: Routes = [
-	// {
-	// 	path: '',
-	// 	canActivate: [AuthenticationGuard],
-	// 	children: [
-	// 		{
-	// 			path: '',
-	// 			loadChildren: ''
-	// 		},
-	// 		{
-	// 			path: 'formulario',
-	// 			loadChildren: ''
-	// 		}
-	// 	]
-	// },
-	// {
-	// 	path: '**',
-	// 	redirectTo: Rotas.EXEMPLO.listagem,
-	// 	pathMatch: 'full'
-	// }
+	{
+		path: 'pagina',
+		children: [
+			{
+				path: '',
+				loadChildren:
+					'./pages/pagina/pagina-listagem/pagina-listagem.module#PaginaListagemModule',
+				canActivate: [AuthenticationGuard]
+			},
+			{
+				path: 'formulario',
+				loadChildren:
+					'./pages/pagina/pagina-formulario/pagina-formulario.module#PaginaFormularioModule',
+				canActivate: [AuthenticationGuard]
+			}
+		]
+	},
+	{
+		path: '**',
+		redirectTo: Rotas.PAGINA.listagem,
+		pathMatch: 'full'
+	}
 ];
 
 @NgModule({

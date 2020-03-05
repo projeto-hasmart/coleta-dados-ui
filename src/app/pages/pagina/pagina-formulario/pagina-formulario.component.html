@@ -1,0 +1,33 @@
+<sesa-sd-container>
+  <sesa-sd-titulo>
+    <i class="material-icons alinhar-a-esquerda">
+      {{ ehEdicao ? "create" : "add" }}
+    </i>
+    <span class="alinhar-a-esquerda">
+      Cadastro de pagina
+    </span>
+  </sesa-sd-titulo>
+
+  <form [formGroup]="formulario">
+    <mat-card>
+      <mat-grid-list cols="5" rowHeight="4rem" gutterSize="0.5rem">
+<mat-grid-tile>
+<mat-form-field>
+<input id="id" type="text" matInput placeholder="" formControlName="" autocomplete="off"/> 
+</mat-form-field>
+</mat-grid-tile>
+</mat-grid-list>
+
+    </mat-card>
+
+    <div class="button-bar">
+      <button id="idBotaoCancelar" type="button" class="btn-secundario" mat-stroked-button color="warn" (click)="clickCancelar()">
+        <mat-icon fontSet="fas" fontIcon="fa-window-close"></mat-icon> CANCELAR
+      </button>
+      <button id="idBotaoSalvar" [disabled]="!formulario.valid" type="button" class="btn-principal" (click)="clickSalvar()" mat-flat-button
+        color="primary">
+        <mat-icon fontSet="fas" fontIcon="fa-check-square"></mat-icon> SALVAR
+      </button>
+    </div>
+  </form>
+</sesa-sd-container>
