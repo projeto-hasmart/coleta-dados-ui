@@ -1,16 +1,3 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~sesa-sd-commons/assets/sass/tema_padrao.css';
 @import '~sesa-sd-commons/assets/sass/tema_primeng.css';
-@import '~sesa-sd-commons/assets/sass/variaveis.scss';
-
-@font-face {
-	font-family: $font-principal;
-	font-style: normal;
-	font-weight: 400;
-	src: local('Roboto'), local('Roboto-Regular'),
-		url('./assets/fonts/Roboto-Regular.ttf') format('truetype');
-}
-
-.container-page {
-	margin-top: 70px;
-}

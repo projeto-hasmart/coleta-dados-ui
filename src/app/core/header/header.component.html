@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <!--
+    Abrir MENU!
+  -->
+  <button mat-icon-button (click)="menuOn = !menuOn">
+    <mat-icon aria-label="Example icon-button with a heart icon">menu</mat-icon>
+  </button>
+
+  <div class="logo">
+    <img class="descktop" src="https://www.ceara.gov.br/wp-content/themes/ceara2017/assets/images/logo-ceara.svg" />
+  </div>
+
+</mat-toolbar>
+
+<p-sidebar [(visible)]="menuOn" [baseZIndex]="10000" [showCloseIcon]=false>
+  <p-panelMenu [model]="menus" [multiple]="false"></p-panelMenu>
+</p-sidebar>
