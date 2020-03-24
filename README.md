@@ -1,4 +1,2 @@
-# HASmart
-
-Criar documentação do projeto!
+# Digitando...
 

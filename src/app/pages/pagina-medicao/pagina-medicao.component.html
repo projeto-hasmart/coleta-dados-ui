@@ -1,0 +1,80 @@
+<section class="content-header">
+    <label id="medicaoPressaoTitleLabel">Medição de Pressão Arterial</label>
+    <label id="medicaoPressaoTitleLabel2">Realize a medição, preencha os campos com os resultados e confirme utilizando a leitura biométrica</label>
+    <div>
+        <!-- [(ngModel)]="modelName" multiple vertical="false"-->
+        <mat-button-toggle-group id="cpfrgtoggle">
+            <mat-button-toggle value="cpf" id="togglebutton">
+                CPF
+            </mat-button-toggle>
+            <mat-button-toggle value="rg" id="togglebutton">
+                RG
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox">
+        <button type="submit" class="searchButton" id="searchButton">
+                <i class="fa fa-search"></i>
+              </button>
+
+    </div>
+</section>
+<section class="content">
+    <div class="box box-default collapsed-box" id="infoBox">
+        <div class="box-header with-border">
+            <h3 class="box-title" id="labelInformacoes">Informações</h3>
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+            </div>
+            <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="box box-solid box-default" id="infoBoxPessoal">
+                <label id="pessoaisLabel">Pessoais</label>
+                <label id="nomeLabel">NOME</label>
+                <label id="nomeResult">{{nome}}</label>
+                <label id="enderecoLabel">ENDEREÇO</label>
+                <label id="enderecoResult">{{endereco}}</label>
+                <label id="cidadeLabel">CIDADE</label>
+                <label id="cidadeResult">{{cidade}}</label>
+                <label id="telefoneLabel">TELEFONE</label>
+                <label id="telefoneResult">{{telefone}}</label>
+                <label id="dataNascimentoLabel">DATA DE NASCIMENTO</label>
+                <label id="dataNascimentoResult">{{dataNascimento}}</label>
+                <label id="complementoLabel">COMPLEMENTO</label>
+                <label id="complementoResult">{{complemento}}</label>
+                <label id="estadoLabel">ESTADO</label>
+                <label id="estadoResult">{{estado}}</label>
+                <label id="cpfLabel">CPF</label>
+                <label id="cpfResult">{{cpf}}</label>
+                <label id="rgLabel">RG</label>
+                <label id="rgResult">{{rg}}</label>
+                <label id="generoLabel">GÊNERO</label>
+                <label id="generoResult">{{genero}}</label>
+            </div>
+            <div class="box box-solid box-default" id="infoBoxEstaticas">
+                <label id="estaticasLabel">Estáticas</label>
+                <label id="alturaLabel">ALTURA</label>
+                <label id="alturaResult">{{altura}}</label>
+                <label id="antiHipertensivoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
+                <label id="antiHipertensivoResult">{{antiHipertensivo}}</label>
+                <label id="diabetesLabel">DIABETES</label>
+                <label id="diabetesResult">{{diabetes}}</label>
+                <label id="avcLabel">HISTÓRICO DE AVC</label>
+                <label id="avcResult">{{avc}}</label>
+                <label id="fumanteLabel">FUMANTE</label>
+                <label id="fumanteResult">{{fumante}}</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="box box-solid box-default" id="medicaoBox">
+        <label id="medicaoTitleLabel">Medição</label>
+        <label id="camposObrigatoriosLabel">*Campos obrigatórios</label>
+        <input type="text" class="form-control input-sm" placeholder="Pressão Sistólica*" id="sistolicaInput">
+        <input type="text" class="form-control input-sm" placeholder="Pressão Diastólica*" id="diastolicaInput">
+        <input type="text" class="form-control input-sm" placeholder="Peso" id="pesoInput">
+    </div>
+    <button mat-button id="novaMedicaoButton"><label id="novaMedicaoButtonLabel">SUBMETER MEDIÇÃO</label></button>
+</section>

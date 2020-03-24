@@ -1,35 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Rotas } from '@enums';
-import { AuthenticationGuard } from 'sesa-sd-controle-acesso';
+
 
 const routes: Routes = [
-	{
-		path: 'pagina',
-		children: [
-			{
-				path: '',
-				loadChildren:
-					'./pages/pagina/pagina-listagem/pagina-listagem.module#PaginaListagemModule',
-				canActivate: [AuthenticationGuard]
-			},
-			{
-				path: 'formulario',
-				loadChildren:
-					'./pages/pagina/pagina-formulario/pagina-formulario.module#PaginaFormularioModule',
-				canActivate: [AuthenticationGuard]
-			}
-		]
-	},
-	{
-		path: '**',
-		redirectTo: Rotas.PAGINA.listagem,
-		pathMatch: 'full'
-	}
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: '', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) }
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { useHash: true })],
-	exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

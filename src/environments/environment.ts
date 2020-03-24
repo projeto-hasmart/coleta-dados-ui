@@ -3,11 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-	production: false,
-	apiUrl: 'http://devdigital.saude.ce.gov.br/api/',
-	urlAuth: 'http://devdigital.saude.ce.gov.br/auth/api/',
-	USUARIO: { login: 'admin', senha: 'Saude@123' },
-	DESENVOLVIMENTO: true
+  production: false
 };
 
 /*

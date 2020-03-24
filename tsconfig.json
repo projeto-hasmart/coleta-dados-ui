@@ -1,29 +1,26 @@
 {
-	"compileOnSave": false,
-	"compilerOptions": {
-		"baseUrl": "./",
-		"paths": {
-			"@dtos": ["src/app/core/dtos/index"],
-			"@entities": ["src/app/core/entities/index"],
-			"@enums": ["src/app/core/enums/index"],
-			"@helpers": ["src/app/core/helpers/index"],
-			"@resolvers": ["src/app/core/resolvers/index"],
-			"@services": ["src/app/core/services/index"]
-		},
-		"outDir": "./dist/out-tsc",
-		"sourceMap": true,
-		"declaration": false,
-		"downlevelIteration": true,
-		"experimentalDecorators": true,
-		"module": "esnext",
-		"moduleResolution": "node",
-		"importHelpers": true,
-		"target": "es2015",
-		"typeRoots": ["node_modules/@types"],
-		"lib": ["es2018", "dom"]
-	},
-	"angularCompilerOptions": {
-		"fullTemplateTypeCheck": true,
-		"strictInjectionParameters": true
-	}
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
 }

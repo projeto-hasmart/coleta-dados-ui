@@ -1,0 +1,45 @@
+<head>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+  </style>
+  <script src="../../../assets/dist/js/password.js"></script>
+</head>
+
+<div class="login-box">
+  <div class="login-logo"></div>
+  <!-- /.login-logo -->
+
+  <div class="login-box-body">
+      <div class="form-group">
+        <input class="form-control" placeholder="E-mail" type="email">
+      </div>
+      <div class="form-group has-feedback">
+        <input class="form-control" placeholder="Senha" type="password" id="pass">
+        <span class="glyphicon glyphicon-lock form-control-feedback olho" id="olho"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Manter-me conectado
+            </label>
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button [routerLink]="'/inicio'" class="btn">Entrar</button>
+        </div>
+        <!-- /.col -->
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <a href="#" class="linkLogin">Esqueceu sua senha?</a><br>
+        </div>
+        <!-- /.col -->
+      </div>
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->

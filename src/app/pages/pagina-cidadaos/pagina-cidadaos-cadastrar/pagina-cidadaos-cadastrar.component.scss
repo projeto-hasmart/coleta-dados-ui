@@ -1,0 +1,391 @@
+#titleLabel {
+    position: absolute;
+    width: 289px;
+    height: 60px;
+    left: 52px;
+    top: 77px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 60px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+#subtitleLabel {
+    position: absolute;
+    width: 428px;
+    height: 19px;
+    left: 52px;
+    top: 140px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+#boxInformacoes {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    position: absolute;
+    width: 1128px;
+    height: 415px;
+    left: 282px;
+    top: 177px;
+    background: #F5F5F5;
+    border-radius: 4px;
+}
+
+#informacoesPessoais {
+    position: static;
+    width: 223px;
+    height: 30px;
+    left: 10px;
+    top: 10px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: flex-start;
+    margin: 0px 10px;
+}
+
+#obrigatorio {
+    position: absolute;
+    width: 142px;
+    height: 16px;
+    left: 10px;
+    top: 50px;
+    /* Subtitle 2 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#genero {
+    position: absolute;
+    width: 59px;
+    height: 19px;
+    left: 478px;
+    top: calc(50% - 19px/2 + 67px);
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: #000000;
+}
+
+#inputNome {
+    position: absolute;
+    left: 10px;
+    right: 0%;
+    top: 88px;
+    bottom: 0%;
+    background: #FFFFFF;
+    width: 406px;
+    height: 56px;
+    font-family: 'Roboto';
+}
+
+#inputRua {
+    position: absolute;
+    left: 10px;
+    right: 0%;
+    top: 175px;
+    bottom: 0%;
+    background: #FFFFFF;
+    width: 406px;
+    height: 56px;
+    font-family: 'Roboto';
+}
+
+#inputCidade {
+    position: absolute;
+    left: 10px;
+    right: 0%;
+    top: 262px;
+    bottom: 0%;
+    background: #FFFFFF;
+    width: 168px;
+    height: 56px;
+    font-family: 'Roboto';
+}
+
+#inputEstado {
+    position: absolute;
+    left: 248px;
+    right: 0%;
+    top: 262px;
+    bottom: 0%;
+    background: #FFFFFF;
+    width: 168px;
+    height: 56px;
+    font-family: 'Roboto';
+}
+
+#inputTelefone {
+    position: absolute;
+    left: 10px;
+    right: 0%;
+    top: 349px;
+    bottom: 0%;
+    background: #FFFFFF;
+    width: 406px;
+    height: 56px;
+    font-family: 'Roboto';
+}
+
+#inputNascimento {
+    position: absolute;
+    left: 477px;
+    right: 0%;
+    top: 88px;
+    bottom: 0%;
+    background: #FFFFFF;
+    width: 250px;
+    height: 56px;
+    font-family: 'Roboto';
+}
+
+#inputComplemento {
+    position: absolute;
+    left: 477px;
+    right: 0%;
+    top: 175px;
+    bottom: 0%;
+    background: #FFFFFF;
+    width: 250px;
+    height: 56px;
+    font-family: 'Roboto';
+}
+
+#inputCpf {
+    position: absolute;
+    left: 790px;
+    right: 0%;
+    top: 88px;
+    bottom: 0%;
+    background: #FFFFFF;
+    width: 328px;
+    height: 56px;
+    font-family: 'Roboto';
+}
+
+#inputRg {
+    position: absolute;
+    left: 790px;
+    right: 0%;
+    top: 175px;
+    bottom: 0%;
+    background: #FFFFFF;
+    width: 328px;
+    height: 56px;
+    font-family: 'Roboto';
+}
+
+#masculinoButton {
+    position: absolute;
+    top: 295px;
+    left: 478px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: rgba(0, 0, 0, 0.6);
+}
+
+#femininoButton {
+    position: absolute;
+    top: 295px;
+    left: 618px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: rgba(0, 0, 0, 0.6);
+}
+
+#naoDizerButton {
+    position: absolute;
+    top: 295px;
+    left: 750px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: rgba(0, 0, 0, 0.6);
+}
+
+#outroButton {
+    position: absolute;
+    top: 295px;
+    left: 932px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: rgba(0, 0, 0, 0.6);
+}
+
+#boxEstaticas {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    position: absolute;
+    width: 1129px;
+    height: 208px;
+    left: 282px;
+    top: 612px;
+    background: #F5F5F5;
+    border-radius: 4px;
+}
+
+#informacoesEstaticasLabel {
+    position: absolute;
+    width: 466px;
+    height: 30px;
+    left: 10px;
+    top: 10px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+#inputAltura {
+    position: absolute;
+    left: 10px;
+    top: 55px;
+    width: 328px;
+    height: 56px;
+    font-family: Roboto;
+}
+
+#diabetesDrop {
+    position: absolute;
+    left: 369px;
+    top: 55px;
+    width: 328px;
+    height: 56px;
+    background-color: white;
+}
+
+#fumanteDrop {
+    position: absolute;
+    left: 728px;
+    top: 55px;
+    width: 328px;
+    height: 56px;
+    background-color: white;
+}
+
+#usoPrevioLabel {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    position: absolute;
+    width: 293px;
+    height: 40px;
+    left: 10px;
+    top: 71px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: flex-start;
+    margin: 62px 0px;
+}
+
+#avcToggleLabel {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    position: absolute;
+    width: 192px;
+    height: 40px;
+    left: 365px;
+    top: 071px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: flex-start;
+    margin: 62px 0px;
+}
+
+#cadastraButton {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 16px;
+    position: absolute;
+    width: 155px;
+    height: 34px;
+    left: 1260px;
+    top: 840px;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+#cadastraButtonLabel {
+    position: absolute;
+    width: 123px;
+    height: 14px;
+    left: 16px;
+    bottom: 0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: center;
+    margin: 10px 0px;
+}
