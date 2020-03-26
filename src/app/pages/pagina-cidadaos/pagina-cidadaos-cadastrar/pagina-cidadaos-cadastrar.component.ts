@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 
 interface Diabetes {
   value: string;

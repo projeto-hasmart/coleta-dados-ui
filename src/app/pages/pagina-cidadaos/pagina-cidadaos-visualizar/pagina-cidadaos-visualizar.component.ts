@@ -8,7 +8,14 @@ export interface PeriodicElement {
   weight: number;
   symbol: string;
 }
-
+interface Diabetes {
+  value: string;
+  viewValue: string;
+}
+interface Fumante {
+  value: string;
+  viewValue: string;
+}
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
@@ -42,6 +49,16 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   diabetes = 'Não';
   avc = 'Não';
   fumante = 'Não';
+  color = 'green';
+  diabetess: Diabetes[] = [
+    {value: 'tipo-1', viewValue: 'Tipo 1'},
+    {value: 'tipo-2', viewValue: 'Tipo 2'},
+    {value: 'tipo-3', viewValue: 'Tipo 3'}
+  ];
+  fumantes: Fumante[] = [
+    {value: 'naofumante', viewValue: 'Não fumante'},
+    {value: 'fumante', viewValue: 'Fumante'}
+  ];
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;

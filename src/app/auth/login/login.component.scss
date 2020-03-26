@@ -1,95 +1,129 @@
-.login-box-body{
-  text-align: center;
-
-  width: 368px;
-  height: auto;
-  padding: 20px;
-
-  background: #FFFFFF;
-  box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.14);
-  border-radius: 4px;
+#loginButton {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 140px;
+    position: relative;
+    width: 326px;
+    height: 34px;
+    right: 5px;
+    top: 130px;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: center;
+    margin: 0px 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #FFFFFF;
 }
 
-.form-control{
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 19px;
-
-  width: 328px;
-  height: 56px;
-
-  margin-bottom: 5%;
-  background: #FFFFFF;
-  border: 1px solid #DFDFDF;
-  box-sizing: border-box;
-  border-radius: 3px;
+#entrarLabel {
+    position: relative;
+    width: 46px;
+    height: 14px;
+    left: 0px;
+    bottom: 10px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: center;
+    margin: 10px 0px;
 }
 
-.form-group input:focus, .form-group input:active{
-  border: 2px solid #747474;
+#material-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 368px;
+    height: 301px;
+    background: #FFFFFF;
+    /* 9dp */
+    box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.14);
+    border-radius: 4px;
 }
 
-.olho{
-  cursor: pointer;
+#senhaLabel {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 54px;
+    bottom: 17px;
+    height: 56px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    box-sizing: border-box;
+    border-radius: 3px;
 }
 
-.checkbox{
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 19px;
-
-  align-items: center;
-  text-align: right;
-
-  color:#747474;
-
-  align-self: center;
-  margin: 10px 0px;
+#emailLabel {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0px;
+    bottom: 17px;
+    height: 56px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    box-sizing: border-box;
+    border-radius: 3px;
 }
 
-.btn{
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-
-  text-transform: uppercase;
-
-  color: #FFFFFF;
-
-  background: #245E33;
-
-  width: 326px;
-  height: 34px;
-  margin-top: 7%;
-  margin-bottom: 5%;
-  padding: 10px 140px;
-
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
+#forgotPassword {
+    position: relative;
+    width: 154px;
+    height: 19px;
+    left: 90px;
+    top: 129px;
+    /* Subtitle 1 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /* Ênfase Média */
+    color: rgba(0, 0, 0, 0.6);
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+    margin: 0px 10px;
 }
 
-a.linkLogin:link, a.linkLogin:visited{
-
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 19px;
-
-  text-align: center;
-
-  color: rgba(73, 71, 71, 0.6);
-
-  align-self: center;
-  margin-bottom: 10px;
-}
-
-.borda{
-  border: 1px solid #245E33;
+#checkboxRemember {
+    position: relative;
+    width: 157px;
+    height: 19px;
+    left: 133px;
+    top: 108px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-align: right;
+    /* Ênfase Média */
+    color: rgba(0, 0, 0, 0.6);
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+    margin: 10px 0px;
 }

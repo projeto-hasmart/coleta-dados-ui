@@ -3,56 +3,70 @@
     <label id="subtitleLabel">Preencha as informações abaixo para cadastrar um cidadão</label>
 </section>
 <section class="content">
-    <div class="box box-solid box-default" id="boxInformacoes">
-        <label id="informacoesPessoais">Informações pessoais</label>
-        <label id="obrigatorio">* Campos obrigatórios</label>
-        <input type="text" class="form-control input-sm" placeholder="Nome Completo*" id="inputNome">
-        <input type="text" class="form-control input-sm" placeholder="Rua e número*" id="inputRua">
-        <input type="text" class="form-control input-sm" placeholder="Cidade*" id="inputCidade">
-        <input type="text" class="form-control input-sm" placeholder="Estado*" id="inputEstado">
-        <input type="text" class="form-control input-sm" placeholder="Telefone*" id="inputTelefone">
-        <input type="text" class="form-control input-sm" placeholder="Data de Nascimento*" id="inputNascimento">
-        <input type="text" class="form-control input-sm" placeholder="Complemento*" id="inputComplemento">
-        <input type="text" class="form-control input-sm" placeholder="CPF*" id="inputCpf">
-        <input type="text" class="form-control input-sm" placeholder="RG*" id="inputRg">
+    <form>
+        <div class="box box-solid box-default" id="boxInformacoes">
+            <!--class="box box-solid box-default" id="boxInformacoes"-->
+            <label id="informacoesPessoais">Informações pessoais</label>
+            <label id="obrigatorio">* Campos obrigatórios</label>
+            <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
+                <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                    <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome">
+                    <input type="text" class="input-control" placeholder="Rua e número*" id="inputRua">
+                    <input type="text" class="input-control" placeholder="Cidade*" id="inputCidade">
+                    <input type="text" class="input-control" placeholder="Estado*" id="inputEstado">
+                    <input type="text" class="input-control" placeholder="Telefone*" id="inputTelefone">
+                </div>
+                <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                    <input type="text" class="input-control" placeholder="Data de Nascimento*" id="inputNascimento">
+                    <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento">
+                </div>
+                <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                    <input type="text" class="input-control" placeholder="CPF*" id="inputCpf">
+                    <input type="text" class="input-control" placeholder="RG*" id="inputRg">
+                </div>
+                <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)" id="generoDiv">
+                    <label id="genero">Gênero*</label>
+                    <mat-radio-button class="input-control" value="masculino">Masculino</mat-radio-button>
+                    <mat-radio-button class="input-control" value="feminino">Feminino</mat-radio-button>
+                    <mat-radio-button class="input-control" value="naoDizer">Prefire não dizer</mat-radio-button>
+                    <mat-radio-button class="input-control" value="outro">Outro...</mat-radio-button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form>
+        <div class="box box-solid box-default" id="boxEstaticas">
+            <label id="informacoesEstaticasLabel">Informações Estáticas de Hipertensão Arterial</label>
+            <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
+                <input type="text" class="form-control input-sm" placeholder="Altura" id="inputAltura" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                <mat-form-field id="diabetesDrop" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                    <mat-label>Diabetes</mat-label>
+                    <mat-select style="width: 248px; height: 56px;">
+                        <mat-option *ngFor="let diabetes of diabetess" [value]="diabetes.value">
+                            {{diabetes.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field id="fumanteDrop" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                    <mat-label>Fumante</mat-label>
+                    <mat-select style="width: 248px; height: 56px;">
+                        <mat-option *ngFor="let fumante of fumantes" [value]="fumante.value">
+                            {{fumante.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-        <label id="genero">Gênero*</label>
-        <mat-radio-button class="example-margin" value="masculino" id="masculinoButton">Masculino</mat-radio-button>
-        <mat-radio-button class="example-margin" value="feminino" id="femininoButton">Feminino</mat-radio-button>
-        <mat-radio-button class="example-margin" value="naoDizer" id="naoDizerButton">Prefire não dizer
-        </mat-radio-button>
-        <mat-radio-button class="example-margin" value="outro" id="outroButton">Outro...</mat-radio-button>
-    </div>
 
-    <div class="box box-solid box-default" id="boxEstaticas">
-        <label id="informacoesEstaticasLabel">Informações Estáticas de Hipertensão Arterial</label>
-        <input type="text" class="form-control input-sm" placeholder="Altura" id="inputAltura">
-        <mat-form-field id="diabetesDrop">
-            <mat-label>Diabetes</mat-label>
-            <mat-select>
-                <mat-option *ngFor="let diabetes of diabetess" [value]="diabetes.value">
-                    {{diabetes.viewValue}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field id="fumanteDrop">
-            <mat-label>Fumante</mat-label>
-            <mat-select>
-                <mat-option *ngFor="let fumante of fumantes" [value]="fumante.value">
-                    {{fumante.viewValue}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+                <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" id="usoPrevioLabel" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                    Uso prévio de anti-hipertensivo
+                </mat-slide-toggle>
 
-
-        <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" id="usoPrevioLabel">
-            Uso prévio de anti-hipertensivo
-        </mat-slide-toggle>
-
-        <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" id="avcToggleLabel">
-            Histórico de AVC
-        </mat-slide-toggle>
-    </div>
+                <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" id="avcToggleLabel" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                    Histórico de AVC
+                </mat-slide-toggle>
+            </div>
+        </div>
+    </form>
     <button mat-button id="cadastraButton">
         <label id="cadastraButtonLabel">CADASTRAR CIDADÃO</label></button>
 </section>

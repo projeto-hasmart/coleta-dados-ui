@@ -18,6 +18,9 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -41,7 +44,10 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatButtonModule,
     MatRadioModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatMenuModule
   ]
 })
 export class PagesModule {

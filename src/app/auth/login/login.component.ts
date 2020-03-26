@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 declare var $;
 
 @Component({
@@ -21,8 +21,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         increaseArea: '20%' /* optional */
       });
     });
-
-
   }
 
   ngOnDestroy(): void {

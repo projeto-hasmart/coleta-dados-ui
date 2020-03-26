@@ -1,45 +1,36 @@
 <head>
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-  </style>
-  <script src="../../../assets/dist/js/password.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
-<div class="login-box">
-  <div class="login-logo"></div>
-  <!-- /.login-logo -->
+<!-- /.login-logo -->
+<mat-card id="material-card">
+  <mat-card-content>
+    <div class="form-group has-feedback">
+      <input class="form-control" placeholder="Email" type="email" id="emailLabel">
+      <!-- <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
+    </div>
+    <div class="form-group has-feedback">
+      <input class="form-control" placeholder="Senha" type="password" id="senhaLabel">
+      <!-- <span class="glyphicon glyphicon-lock form-control-feedback"></span> -->
+    </div>
+    <div class="col-xs-8">
+      <div>
+        <mat-checkbox color="primary" id='checkboxRemember'>Manter-me conectado</mat-checkbox>
+      </div>
+    </div>
+    <!-- /.col -->
+    <button [routerLink]="'/inicio'" class="mat-button" id="loginButton" >
+      ENTRAR
+    </button>
+    <!-- /.col -->
+  </mat-card-content>
 
-  <div class="login-box-body">
-      <div class="form-group">
-        <input class="form-control" placeholder="E-mail" type="email">
-      </div>
-      <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Senha" type="password" id="pass">
-        <span class="glyphicon glyphicon-lock form-control-feedback olho" id="olho"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"> Manter-me conectado
-            </label>
-          </div>
-        </div>
-        <!-- /.col -->
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <button [routerLink]="'/inicio'" class="btn">Entrar</button>
-        </div>
-        <!-- /.col -->
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <a href="#" class="linkLogin">Esqueceu sua senha?</a><br>
-        </div>
-        <!-- /.col -->
-      </div>
-  </div>
-  <!-- /.login-box-body -->
-</div>
+  <mat-card-footer>
+    <!-- /.social-auth-links -->
+    <a href="#" id="forgotPassword">Esqueceu sua senha?</a><br>
+  </mat-card-footer>
+</mat-card>
+
+<!-- /.login-box-body -->
+
 <!-- /.login-box -->
