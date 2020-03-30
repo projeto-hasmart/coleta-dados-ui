@@ -1,34 +1,43 @@
 <section class="content-header">
-    <label id="medicaoPressaoTitleLabel">Medição de Pressão Arterial</label>
-    <label id="medicaoPressaoTitleLabel2">Realize a medição, preencha os campos com os resultados e confirme utilizando a leitura biométrica</label>
-    <div id="busca">
-        <!-- [(ngModel)]="modelName" multiple vertical="false"-->
-        <mat-button-toggle-group id="cpfrgtoggle">
-            <mat-button-toggle value="cpf" id="togglebutton">
-                CPF
-            </mat-button-toggle>
-            <mat-button-toggle value="rg" id="togglebutton">
-                RG
-            </mat-button-toggle>
-        </mat-button-toggle-group>
-
-        <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox">
-        <button type="submit" class="searchButton" id="searchButton">
-                <i class="fa fa-search"></i>
-              </button>
-
+    <div>
+        <label id="medicaoPressaoTitleLabel">Medição de Pressão Arterial</label>
+        <label id="medicaoPressaoTitleLabel2">Realize a medição, preencha os campos com os resultados e confirme utilizando a leitura biométrica</label>
     </div>
 </section>
-<div class="container">
-    <section class="content">
+<section class="content">
+    <div class="container">
+
         <a routerLink="/cidadaos/visualizar">
             <button mat-button id="retornoCidadaoButton"><label id="retornoCidadaoButtonLabel">RETORNAR AO PERFIL DO CIDADÃO</label></button></a>
         <div class="box box-default collapsed-box" id="infoBox">
             <div class="box-header with-border">
-                <h3 class="box-title" id="labelInformacoes">Informações</h3>
+                <h3 class="box-title" id="labelInformacoes">Informações Pessoais</h3>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                 </div>
+                <div>
+
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" id="dropdownMenuTop">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+
+                    <button mat-icon-button id="editButtonTop"><mat-icon aria-hidden="false">edit</mat-icon></button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+              <mat-icon>dialpad</mat-icon>
+              <span>Redial</span>
+            </button>
+                        <button mat-menu-item disabled>
+              <mat-icon>voicemail</mat-icon>
+              <span>Check voice mail</span>
+            </button>
+                        <button mat-menu-item>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Disable alerts</span>
+            </button>
+                    </mat-menu>
+                </div>
+
                 <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
@@ -90,27 +99,30 @@
         </div>
 
         <div class="box box-solid box-default" id="medicaoBox">
-            <label id="medicaoTitleLabel">Registros desta seção
-          <mat-icon aria-hidden="false" class="pull-right">edit</mat-icon>
-        <mat-icon class="pull-right">delete</mat-icon>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="pull pull-right">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+            <div>
+
+                <label id="medicaoTitleLabel">Registros desta seção
+            </label><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" id="dropdownMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+
+                <button mat-icon-button id="deleteButton"><mat-icon>delete</mat-icon></button>
+                <button mat-icon-button id="editButton"><mat-icon aria-hidden="false">edit</mat-icon></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
             <mat-icon>dialpad</mat-icon>
             <span>Redial</span>
           </button>
-            <button mat-menu-item disabled>
+                    <button mat-menu-item disabled>
             <mat-icon>voicemail</mat-icon>
             <span>Check voice mail</span>
           </button>
-            <button mat-menu-item>
+                    <button mat-menu-item>
             <mat-icon>notifications_off</mat-icon>
             <span>Disable alerts</span>
           </button>
-        </mat-menu>
-        </label>
+                </mat-menu>
+            </div>
             <div id="tabela">
                 <!-- TABELA-->
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -157,6 +169,7 @@
                 </table>
             </div>
         </div>
+        <button mat-button id="finalizarButton"><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button>
 
-    </section>
-</div>
+    </div>
+</section>

@@ -56,8 +56,7 @@ table {
 }
 
 #tabela {
-    position: relative;
-    top: 35px;
+    left: 69px;
 }
 
 #tabelaBox {
@@ -1338,6 +1337,14 @@ input {
     border: 2px solid white;
 }
 
+.input-control {
+    font-size: 14px;
+}
+
+#estaticas {
+    font-size: 14px;
+}
+
 // form {
 //     position: relative;
 // }
@@ -1367,6 +1374,10 @@ input {
     background: red($color: #000000);
 }
 
+.modal-content {
+    background-color: #F5F5F5;
+}
+
 #titleModal {
     font-family: Poppins;
     font-style: normal;
@@ -1387,4 +1398,40 @@ input {
     line-height: 19px;
     /* identical to box height */
     color: rgba(0, 0, 0, 0.7);
+}
+
+#dropdownMenuTop {
+    float: right;
+    margin-right: 10px;
+    top: -10px;
+}
+
+#editButtonTop {
+    float: right;
+    margin-right: 10px;
+    background: none;
+    border-radius: 45px;
+    top: -10px;
+}
+
+#dropdownMenu {
+    float: right;
+    margin-right: 10px;
+    top: -35px;
+}
+
+#editButton {
+    float: right;
+    margin-right: 10px;
+    top: -35px;
+    background: none;
+    border-radius: 45px;
+}
+
+#deleteButton {
+    float: right;
+    margin-right: 10px;
+    top: -35px;
+    background: none;
+    border-radius: 45px;
 }

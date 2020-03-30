@@ -1,95 +1,86 @@
 #menuLateral {
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-
-  background: #f4f7f4;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: #F4F7F4;
+    height: 100%;
 }
+
 #logolateral {
-  position: absolute;
-  left: 38.18%;
-  right: 37.78%;
-  top: 14.5%;
-
-  /* Cor Marca 1 */
+    position: absolute;
+    left: 38.18%;
+    right: 37.78%;
+    top: 14.5%;
+    /* Cor Marca 1 */
 }
+
 #inicio {
-  position: absolute;
-  width: 54px;
-  height: 30px;
-  padding-left: 0px;
-  top: 249px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  /* Preto */
-
-  color: #1a1919;
+    position: absolute;
+    width: 54px;
+    height: 30px;
+    padding-left: 0px;
+    top: 249px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    /* Preto */
+    color: #1a1919;
 }
+
 #cidadaos {
-  position: absolute;
-  width: 98px;
-  height: 30px;
-  padding-left: 0px;
-  top: 312px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: #234323;
+    position: absolute;
+    width: 98px;
+    height: 30px;
+    padding-left: 0px;
+    top: 312px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #234323;
 }
+
 #medicao {
-  position: absolute;
-  width: 87px;
-  height: 30px;
-  padding-left: 0px;
-  top: 372px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: #234323;
+    position: absolute;
+    width: 87px;
+    height: 30px;
+    padding-left: 0px;
+    top: 372px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #234323;
 }
+
 #dispensacao {
-  position: absolute;
-  width: 131px;
-  height: 30px;
-  padding-left: 0px;
-  top: 432px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: #234323;
+    position: absolute;
+    width: 131px;
+    height: 30px;
+    padding-left: 0px;
+    top: 432px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #234323;
 }
