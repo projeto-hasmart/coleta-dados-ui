@@ -28,8 +28,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./pagina-cidadaos-visualizar.component.scss']
 })
 export class PaginaCidadaosVisualizarComponent implements OnInit {
+
+  isCollapsed = true;
   constructor() { }
-  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
   /* declarando um nome pro property binding do nome dinâmico */

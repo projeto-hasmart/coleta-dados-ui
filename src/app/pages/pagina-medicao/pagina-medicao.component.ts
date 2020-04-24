@@ -9,10 +9,7 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-
+  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'}
 ];
 
 @Component({
@@ -38,7 +35,8 @@ export class PaginaMedicaoComponent implements OnInit {
   avc = 'Não';
   fumante = 'Não';
 
-  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
+  peso: number;
+  displayedColumns: string[] = ['select',  'sistolica', 'diastolica'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
 
@@ -64,7 +62,13 @@ export class PaginaMedicaoComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 
+  onKey(event: any) { // without type info
+    this.peso += event.target.value;
+  }
 
+  excluirAfericao() {
+
+  }
   constructor() { }
 
   ngOnInit() {

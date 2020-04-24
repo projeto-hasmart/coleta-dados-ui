@@ -1,8 +1,8 @@
 <section class="content-header">
-    <div>
-        <h3 id="labelNome">{{nome}}</h3>
-        <h4 id="labelCpf">{{cpf}}</h4>
-        <label id="labelVisualize">Visualize e busque cidadãos cadastrados no sistema</label>
+    <div id="divtitle">
+        <label id="labelNome">{{nome}}</label>
+        <div id="divcpf"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{cpf}}</label></div>
+        <label id="labelVisualize">Visualize autorizações e dados de {{nome}}, ou inicie processos de medição ou dispensação</label>
     </div>
 </section>
 <section class="content">
@@ -31,116 +31,128 @@
         </div>
         <div class="box box-default collapsed-box" id="infoBox">
             <div class="box-header with-border">
-                <h3 class="box-title" id="labelInformacoes">Informações
+                <h3 class="box-title" id="labelInformacoes" *ngIf="isCollapsed">Informações do cidadão
                 </h3>
+                <h3 class="box-title" id="labelInformacoes" *ngIf="!isCollapsed">Informações
+                </h3>
+                <div class="box-tools pull-right">
 
+                    <button mat-icon-button data-toggle="modal" data-target="#editarCidadao" *ngIf="!isCollapsed"><mat-icon aria-hidden="false">edit</mat-icon></button>
+                    <button class="btn btn-box-tool" data-widget="collapse" (click)="isCollapsed = !isCollapsed"><i class="fa fa-angle-down"></i></button>
+                </div>
+            </div>
+            <!--MODAL MEDIÇÃO-->
+            <div class="modal fade" id="verMedicao">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
 
-                <!-- The Modal -->
-                <div class="modal fade" id="editarCidadao">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="titleModal">ATUALIZAR INFORMAÇÕES DO CIDADÃO</h4>
+                            <label class="modal-title" id="secondTitleModal">Você está atualizando informações de {{nome}}</label>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
 
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="titleModal">ATUALIZAR INFORMAÇÕES DO CIDADÃO</h4>
-                                <label class="modal-title" id="secondTitleModal">Você está atualizando informações de {{nome}}</label>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <label id="informacoesPessoais">Informações pessoais</label>
-                                <label id="obrigatorio">* Campos obrigatórios</label>
-                                <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
-                                    <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                                        <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome">
-                                        <input type="text" class="input-control" placeholder="Rua e número*" id="inputRua">
-                                        <input type="text" class="input-control" placeholder="Cidade*" id="inputCidade">
-                                        <input type="text" class="input-control" placeholder="Estado*" id="inputEstado">
-                                        <input type="text" class="input-control" placeholder="Telefone*" id="inputTelefone">
-                                    </div>
-                                    <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                                        <input type="text" class="input-control" placeholder="Data de Nascimento*" id="inputNascimento">
-                                        <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento">
-                                    </div>
-                                    <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                                        <input type="text" class="input-control" placeholder="CPF*" id="inputCpf">
-                                        <input type="text" class="input-control" placeholder="RG*" id="inputRg">
-                                    </div>
-                                    <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)" id="generoDiv">
-                                        <label id="genero">Gênero*</label>
-                                        <mat-radio-button class="input-control" value="masculino">Masculino</mat-radio-button>
-                                        <mat-radio-button class="input-control" value="feminino">Feminino</mat-radio-button>
-                                        <mat-radio-button class="input-control" value="naoDizer">Prefire não dizer</mat-radio-button>
-                                        <mat-radio-button class="input-control" value="outro">Outro...</mat-radio-button>
-                                    </div>
-                                </div>
-                                <label id="informacoesEstaticasLabel">Informações Estáticas de Hipertensão Arterial</label>
-                                <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10" id='estaticas'>
-                                    <input type="text" class="form-control input-sm" placeholder="Altura" id="inputAltura" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                                    <mat-form-field id="diabetesDrop" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                                        <mat-label>Diabetes</mat-label>
-                                        <mat-select style="width: 248px; height: 56px;">
-                                            <mat-option *ngFor="let diabetes of diabetess" [value]="diabetes.value">
-                                                {{diabetes.viewValue}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                    <mat-form-field id="fumanteDrop" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                                        <mat-label>Fumante</mat-label>
-                                        <mat-select style="width: 248px; height: 56px;">
-                                            <mat-option *ngFor="let fumante of fumantes" [value]="fumante.value">
-                                                {{fumante.viewValue}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-
-
-                                    <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" id="usoPrevioLabel" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                                        Uso prévio de anti-hipertensivo
-                                    </mat-slide-toggle>
-
-                                    <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" id="avcToggleLabel" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                                        Histórico de AVC
-                                    </mat-slide-toggle>
-                                </div>
-
-
-                            </div>
-
-
-
+                        <!-- Modal body -->
+                        <div class="modal-body">
                         </div>
                     </div>
                 </div>
-
-                <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                </div>
-                <div>
-
-                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" id="dropdownMenuTop">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-
-                    <button mat-icon-button id="editButtonTop" data-toggle="modal" data-target="#editarCidadao"><mat-icon aria-hidden="false">edit</mat-icon></button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
-    </button>
-                        <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voice mail</span>
-    </button>
-                        <button mat-menu-item>
-      <mat-icon>notifications_off</mat-icon>
-      <span>Disable alerts</span>
-    </button>
-                    </mat-menu>
-                </div>
-                <!-- /.box-tools -->
             </div>
+            <!--MODAL DISPENSAÇÃO-->
+            <div class="modal fade" id="verDispensacao">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="titleModal">ATUALIZAR INFORMAÇÕES DO CIDADÃO</h4>
+                            <label class="modal-title" id="secondTitleModal">Você está atualizando informações de {{nome}}</label>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--MODAL EDIT-->
+            <div class="modal fade" id="editarCidadao">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="titleModal">ATUALIZAR INFORMAÇÕES DO CIDADÃO</h4>
+                            <label class="modal-title" id="secondTitleModal">Você está atualizando informações de {{nome}}</label>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <label id="informacoesPessoais">Informações pessoais</label>
+                            <label id="obrigatorio">* Campos obrigatórios</label>
+                            <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
+                                <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                                    <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome">
+                                    <input type="text" class="input-control" placeholder="Rua e número*" id="inputRua">
+                                    <input type="text" class="input-control" placeholder="Cidade*" id="inputCidade">
+                                    <input type="text" class="input-control" placeholder="Estado*" id="inputEstado">
+                                    <input type="text" class="input-control" placeholder="Telefone*" id="inputTelefone">
+                                </div>
+                                <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                                    <input type="text" class="input-control" placeholder="Data de Nascimento*" id="inputNascimento">
+                                    <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento">
+                                </div>
+                                <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                                    <input type="text" class="input-control" placeholder="CPF*" id="inputCpf">
+                                    <input type="text" class="input-control" placeholder="RG*" id="inputRg">
+                                </div>
+                                <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)" id="generoDiv">
+                                    <label id="genero">Gênero*</label>
+                                    <mat-radio-button class="input-control" value="masculino">Masculino</mat-radio-button>
+                                    <mat-radio-button class="input-control" value="feminino">Feminino</mat-radio-button>
+                                    <mat-radio-button class="input-control" value="naoDizer">Prefire não dizer</mat-radio-button>
+                                    <mat-radio-button class="input-control" value="outro">Outro...</mat-radio-button>
+                                </div>
+                            </div>
+                            <label id="informacoesEstaticasLabel">Informações Estáticas de Hipertensão Arterial</label>
+                            <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10" id='estaticas'>
+                                <input type="text" class="form-control input-sm" placeholder="Altura" id="inputAltura" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                                <mat-form-field id="diabetesDrop" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                                    <mat-label>Diabetes</mat-label>
+                                    <mat-select style="width: 248px; height: 56px;">
+                                        <mat-option *ngFor="let diabetes of diabetess" [value]="diabetes.value">
+                                            {{diabetes.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field id="fumanteDrop" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                                    <mat-label>Fumante</mat-label>
+                                    <mat-select style="width: 248px; height: 56px;">
+                                        <mat-option *ngFor="let fumante of fumantes" [value]="fumante.value">
+                                            {{fumante.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+
+                                <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" id="usoPrevioLabel" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                                    Uso prévio de anti-hipertensivo
+                                </mat-slide-toggle>
+
+                                <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" id="avcToggleLabel" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                                    Histórico de AVC
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /.box-tools -->
+
             <!-- /.box-header -->
             <div class="box-body">
                 <div class="box box-solid box-default" id="infoBoxPessoal">
@@ -202,27 +214,8 @@
         <div class="box box-solid box-default" id="medicaoBox">
             <div>
 
-                <label id="medicaoTitleLabel">Registros desta seção
-        </label><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" id="dropdownMenu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-
-                <button mat-icon-button id="deleteButton"><mat-icon>delete</mat-icon></button>
-                <button mat-icon-button id="editButton"><mat-icon aria-hidden="false">edit</mat-icon></button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Redial</span>
-      </button>
-                    <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voice mail</span>
-      </button>
-                    <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>Disable alerts</span>
-      </button>
-                </mat-menu>
+                <label id="medicaoTitleLabel">Registros
+        </label>
             </div>
             <div id="tabela">
                 <!-- TABELA-->
@@ -241,27 +234,29 @@
                     </ng-container>
 
                     <!-- Position Column -->
-                    <ng-container matColumnDef="position">
-                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <ng-container matColumnDef="data">
+                        <th mat-header-cell *matHeaderCellDef> Data </th>
                         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
                     </ng-container>
 
                     <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <ng-container matColumnDef="servico">
+                        <th mat-header-cell *matHeaderCellDef> Serviço </th>
                         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                     </ng-container>
 
                     <!-- Weight Column -->
-                    <ng-container matColumnDef="weight">
-                        <th mat-header-cell *matHeaderCellDef> Weight </th>
+                    <ng-container matColumnDef="responsavel">
+                        <th mat-header-cell *matHeaderCellDef> Responsável </th>
                         <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
                     </ng-container>
 
                     <!-- Symbol Column -->
-                    <ng-container matColumnDef="symbol">
-                        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                    <ng-container matColumnDef="info" stickyEnd>
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-icon>info</mat-icon>
+                        </td>
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

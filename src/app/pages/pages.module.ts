@@ -21,6 +21,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import { PaginaMedicaoSucessoComponent } from './pagina-medicao/pagina-medicao-sucesso/pagina-medicao-sucesso.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {MatMenuModule} from '@angular/material/menu';
     PaginaMedicaoComponent,
     PaginaDispensacaoComponent,
     PaginaCidadaosCadastrarComponent,
-    PaginaCidadaosVisualizarComponent
+    PaginaCidadaosVisualizarComponent,
+    PaginaMedicaoSucessoComponent
   ],
   imports: [
     CommonModule,
