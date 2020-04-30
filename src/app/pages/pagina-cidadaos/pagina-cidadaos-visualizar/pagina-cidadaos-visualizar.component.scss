@@ -1468,3 +1468,118 @@ input {
 .mat-table-sticky:first-child {
     border-right: 1px solid #e0e0e0;
 }
+
+#dataRealizacaoLabel {
+    width: 40%;
+    height: 14px;
+    margin-left: 5%;
+    margin-top: 15px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#dataRealizacaoResult {
+    margin-left: 5%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: #000000;
+}
+
+#servicoLabel {
+    width: 30%;
+    height: 14px;
+    margin-left: 5%;
+    margin-top: 15px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#servicoResult {
+    margin-left: 5%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: #000000;
+}
+
+#responsavelLabel {
+    margin-left: 60%;
+    width: 30%;
+    height: 14px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#responsavelResult {
+    margin-left: 60%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: #000000;
+}
+
+#codigoDispLabel {
+    width: 30%;
+    height: 14px;
+    left: 60%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#codigoDispResult {
+    left: 60%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: #000000;
+}
+
+#infoButton {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    left: 90%;
+}

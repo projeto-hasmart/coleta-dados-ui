@@ -8,7 +8,7 @@ declare var $;
   styleUrls: ['./side-nav.component.scss']
 })
 export class SideNavComponent implements OnInit {
-
+  ativo = true;
   constructor() {
   }
 

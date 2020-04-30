@@ -106,8 +106,6 @@
 
 #checkboxRemember {
     position: relative;
-    width: 157px;
-    height: 19px;
     left: 133px;
     top: 108px;
     font-family: Roboto;
@@ -116,14 +114,13 @@
     font-size: 16px;
     line-height: 19px;
     /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-align: right;
     /* Ênfase Média */
     color: rgba(0, 0, 0, 0.6);
+    margin: 0 10px;
     /* Inside Auto Layout */
-    flex: none;
-    order: 1;
-    align-self: center;
-    margin: 10px 0px;
+}
+
+mat-checkbox {
+    width: 20px;
+    height: 20px;
 }

@@ -1,0 +1,1115 @@
+#medicaoPressaoTitleLabel {
+    position: absolute;
+    width: 566px;
+    height: 60px;
+    left: 52px;
+    top: 77px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 60px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+#medicaoPressaoTitleLabel2 {
+    position: absolute;
+    width: 755px;
+    height: 19px;
+    left: 52px;
+    top: 140px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+//cpfrgtoggle
+#cpfrgtoggle {
+    display: flex;
+    margin-left: 385px;
+    margin-top: 181px;
+    border: 1px solid #dfdfdf;
+    width: 96px;
+    @media (max-width: 768px) {
+        margin-left: 30px;
+    }
+}
+
+#togglebutton {
+    background-color: white;
+    color: black;
+}
+
+// search bar
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+#searchBox {
+    display: flex;
+    margin-left: 10px;
+    margin-top: 181px;
+    background: #ffffff;
+    border: 1px solid white;
+    box-sizing: border-box;
+    border-radius: 3px;
+    height: 50px;
+    width: 328px;
+    font-family: "Roboto";
+}
+
+#searchboxtoggle {
+    @media (max-width: 768px) {
+        margin-left: 30px;
+    }
+}
+
+.searchTerm {
+    width: 100%;
+    border: 3px solid #00b4cc;
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9dbfaf;
+}
+
+.searchTerm:focus {
+    color: #00b4cc;
+}
+
+.searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid white;
+    background: white;
+    text-align: center;
+    color: grey;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    position: relative;
+    font-size: 20px;
+    left: -10px;
+    top: 181px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    height: 50px;
+}
+
+#infoBox {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 95%;
+    left: 0px;
+    top: 125px;
+    background: #F2F2F2;
+    border-radius: 4px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+    margin: 0px 40px;
+}
+
+#labelInformacoes {
+    position: absolute;
+    width: 692px;
+    height: 30px;
+    left: 10px;
+    top: 10px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+#infoBoxPessoal {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    min-height: 213px;
+    height: wrap-content;
+    margin-right: 10px;
+    margin-left: 10px;
+    top: 0px;
+    background: #FFFFFF;
+    border-radius: 3px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: flex-start;
+    margin: 0px 10px;
+}
+
+#pessoaisLabel {
+    position: static;
+    width: 130px;
+    height: 21px;
+    left: 10px;
+    top: 10px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: flex-start;
+    margin: 0px 10px;
+}
+
+#nomeLabel {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#nomeResult {
+    margin-left: 10px;
+    width: 100%;
+    top: 55px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+    box-sizing: border-box;
+}
+
+#enderecoLabel {
+    margin-left: 10px;
+    width: 100%;
+    top: 84px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#enderecoResult {
+    margin-left: 10px;
+    width: 100%;
+    top: 98px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+    box-sizing: border-box;
+}
+
+#cidadeLabel {
+    margin-left: 10px;
+    width: 100%;
+    top: 127px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#cidadeResult {
+    margin-left: 10px;
+    width: 100%;
+    top: 141px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+}
+
+#telefoneLabel {
+    margin-left: 10px;
+    width: 100%;
+    top: 170px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#telefoneResult {
+    margin-left: 10px;
+    width: 100%;
+    top: 184px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+}
+
+#dataNascimentoLabel {
+    margin-left: 134px;
+    width: 100%;
+    margin-top: 10px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#dataNascimentoResult {
+    margin-left: 134px;
+    width: 100%;
+    top: 55px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+    color: #000000;
+}
+
+#complementoLabel {
+    margin-left: 134px;
+    width: 100%;
+    top: 84px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#complementoResult {
+    margin-left: 134px;
+    width: 100%;
+    top: 98px;
+    /* Body 1 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+    color: #000000;
+}
+
+#estadoLabel {
+    margin-left: 134px;
+    width: 100%;
+    top: 127px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#estadoResult {
+    margin-left: 134px;
+    width: 100%;
+    top: 141px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#cpfLabel {
+    margin-left: 134px;
+    width: 100%;
+    margin-top: 10px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#cpfResult {
+    margin-left: 134px;
+    width: 100%;
+    top: 55px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#rgLabel {
+    margin-left: 134px;
+    width: 100%;
+    top: 84px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#rgResult {
+    margin-left: 134px;
+    width: 100%;
+    top: 98px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#generoLabel {
+    margin-left: 134px;
+    width: 100%;
+    top: 127px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#generoResult {
+    margin-left: 134px;
+    width: 100%;
+    top: 141px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#infoBoxEstaticas {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    min-height: 127px;
+    height: wrap-content;
+    margin-right: 10px;
+    top: 10px;
+    background: #FFFFFF;
+    border-radius: 3px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: flex-start;
+    margin: 0px 10px;
+}
+
+#estaticasLabel {
+    position: static;
+    width: 130px;
+    height: 21px;
+    left: 10px;
+    top: 10px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: flex-start;
+    margin: 0px 10px;
+}
+
+#alturaLabel {
+    margin-left: 10px;
+    margin-top: 10px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#alturaResult {
+    margin-left: 10px;
+    top: 55px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+#antiHipertensivoLabel {
+    margin-left: 10px;
+    top: 84px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+}
+
+#antiHipertensivoResult {
+    margin-left: 10px;
+    top: 98px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+#diabetesLabel {
+    margin-left: 134px;
+    margin-top: 10px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#diabetesResult {
+    margin-left: 134px;
+    top: 55px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#avcLabel {
+    margin-left: 134px;
+    top: 84px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#avcResult {
+    margin-left: 134px;
+    top: 98px;
+    /* Body 1 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#fumanteLabel {
+    margin-left: 134px;
+    margin-top: 10px;
+    /* Overline */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.6;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#fumanteResult {
+    margin-left: 134px;
+    top: 55px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+    @media (max-width: 1600px) {
+        margin-left: 10px;
+    }
+}
+
+#medicaoBox {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 95%;
+    height: wrap-content;
+    left: 30px;
+    top: 150px;
+    background: #F5F5F5;
+    border-radius: 4px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 2;
+    align-self: center;
+    margin: 0px 10px;
+}
+
+#medicaoTitleLabel {
+    width: 262px;
+    height: 21px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+    align-items: center;
+    color: #000000;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    display: inline-block;
+    margin-left: -30px;
+    margin-top: 5px;
+}
+
+#retornoCidadaoButton {
+    display: flex;
+    padding: 10px 16px;
+    width: 227px;
+    height: 34px;
+    left: 83%;
+    top: 100px;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    @media (max-width: 1200px) {
+        left: 70%;
+    }
+    @media (max-width: 1024px) {
+        left: 55%;
+    }
+}
+
+#retornoCidadaoButtonLabel {
+    position: absolute;
+    width: 118px;
+    height: 14px;
+    left: 16px;
+    bottom: 0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: center;
+    margin: 10px 0px;
+}
+
+table {
+    width: 100%;
+}
+
+#tabela {
+    left: 69px;
+    margin-top: 15px;
+}
+
+#editIcon {
+    left: 80px;
+}
+
+#deleteIcon {
+    left: 90%;
+}
+
+.container {
+    width: 100%;
+}
+
+#busca {
+    position: fixed;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    @media (max-width: 1400px) {
+        left: 5%;
+    }
+    @media (max-width: 1024px) {
+        left: 0%;
+    }
+}
+
+#deleteButton {
+    margin-right: 10px;
+    background: none;
+    border-radius: 45px;
+    left: 95%;
+    top: -10px;
+}
+
+#titlesTables {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#numero {
+    width: 24px;
+    height: 24px;
+    border-radius: 18px;
+    background-color: #C4C4C4;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    display: inline-block
+}
+
+#finalizarButton {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 16px;
+    width: 155px;
+    height: 34px;
+    left: 88%;
+    top: 170px;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    @media (max-width: 1024px) {
+        left: 55%;
+    }
+    @media (max-width: 1200px) {
+        left: 70%;
+    }
+}
+
+#finalizarButtonBlocked {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 16px;
+    width: 155px;
+    height: 34px;
+    left: 88%;
+    top: 170px;
+    /* 700 */
+    background: #E0E0E0;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    @media (max-width: 1024px) {
+        left: 55%;
+    }
+    @media (max-width: 1200px) {
+        left: 70%;
+    }
+}
+
+#novaAfericao {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 10px;
+    position: static;
+    width: 158px;
+    height: 34px;
+    left: 0px;
+    top: 110px;
+    background: #FFFFFF;
+    border-radius: 0px 0px 4px 4px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 3;
+    align-self: flex-start;
+    margin: 0px 0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+#afericaobuttonlabel {
+    width: 99px;
+    height: 19px;
+    margin-left: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: #000000;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+}
+
+#iconplus {
+    margin-bottom: 5px;
+}
+
+#pesoinput {
+    height: 56px;
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 4px;
+    border: 0px solid;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: rgba(0, 0, 0, 0.6);
+}
+
+#modalText {
+    position: static;
+    left: 0%;
+    right: 0%;
+    top: 50%;
+    bottom: 0%;
+    /* Body 1 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(0, 0, 0, 0.6);
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    margin: 0px 8px;
+}
+
+#simbutton {
+    display: inline-block;
+    flex-direction: row;
+    height: 36px;
+    width: 57px;
+    padding: 10px 16px;
+    left: 52%;
+    top: 0%;
+    bottom: 0%;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+    margin: 16px 0px;
+}
+
+#simlabel {
+    margin-bottom: 20px;
+    width: 25px;
+    height: 16px;
+    left: 16px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+}
+
+#naobutton {
+    display: inline-block;
+    flex-direction: row;
+    height: 36px;
+    width: 57px;
+    padding: 10px 16px;
+    left: 45%;
+    top: 0%;
+    bottom: 0%;
+    /* 700 */
+    background: #FFFFFF;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: center;
+    margin: 16px 0px;
+}
+
+#naolabel {
+    margin-bottom: 20px;
+    width: 29px;
+    height: 16px;
+    left: 16px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    /* 700 */
+    color: #245E33;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+}
+
+#titleModal {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    color: #000000;
+}
+
+#dispensacaoId {
+    width: 90%;
+    height: 128px;
+    margin-left: 5%;
+    top: 85px;
+    background: #F2F2F2;
+    border-radius: 10px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 72px;
+    line-height: 108px;
+    color: black;
+    text-align: center;
+}
+
+#passoum {
+    margin-top: 10px;
+}
+
+#passodois {
+    margin-top: 30px;
+}
+
+#passotres {
+    margin-top: 30px;
+}

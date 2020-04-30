@@ -1,3 +1,5 @@
+import { element } from 'protractor';
+
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -29,13 +31,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class PaginaCidadaosVisualizarComponent implements OnInit {
 
+  dispensacao = 1234567;
   isCollapsed = true;
   constructor() { }
   displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
   /* declarando um nome pro property binding do nome dinâmico */
-  nome = 'Mateus Palácio';
+  nome = 'Mateus Palácio testando outro component';
   cpf = '07183864127';
   data = '17/03/2020';
   rg = '20075719122';
@@ -82,6 +85,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
+
 
   ngOnInit() {
   }
