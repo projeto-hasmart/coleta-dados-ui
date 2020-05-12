@@ -1044,7 +1044,6 @@ th.mat-header-cell {
     line-height: 30px;
     /* identical to box height */
     display: flex;
-    align-items: center;
     color: #000000;
     /* Inside Auto Layout */
     flex: none;
@@ -1470,10 +1469,7 @@ input {
 }
 
 #dataRealizacaoLabel {
-    width: 40%;
     height: 14px;
-    margin-left: 5%;
-    margin-top: 15px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -1483,10 +1479,12 @@ input {
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 #dataRealizacaoResult {
-    margin-left: 5%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -1494,13 +1492,13 @@ input {
     line-height: 19px;
     /* identical to box height */
     color: #000000;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 #servicoLabel {
-    width: 30%;
     height: 14px;
-    margin-left: 5%;
-    margin-top: 15px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -1510,10 +1508,13 @@ input {
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-flow: column wrap;
 }
 
 #servicoResult {
-    margin-left: 5%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -1521,10 +1522,13 @@ input {
     line-height: 19px;
     /* identical to box height */
     color: #000000;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-flow: column wrap;
 }
 
 #responsavelLabel {
-    margin-left: 60%;
     width: 30%;
     height: 14px;
     font-family: Roboto;
@@ -1536,10 +1540,13 @@ input {
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-flow: column wrap;
 }
 
 #responsavelResult {
-    margin-left: 60%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -1547,12 +1554,15 @@ input {
     line-height: 19px;
     /* identical to box height */
     color: #000000;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-flow: column wrap;
 }
 
 #codigoDispLabel {
     width: 30%;
     height: 14px;
-    left: 60%;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -1562,10 +1572,13 @@ input {
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-flow: column wrap;
 }
 
 #codigoDispResult {
-    left: 60%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -1573,6 +1586,10 @@ input {
     line-height: 19px;
     /* identical to box height */
     color: #000000;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-flow: column wrap;
 }
 
 #infoButton {

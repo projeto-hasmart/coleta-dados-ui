@@ -45,7 +45,6 @@
             <div class="modal fade" id="verMedicao">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title" id="titleModal">VISUALIZAR MEDIÇÃO</h4>
@@ -54,6 +53,79 @@
 
                         <!-- Modal body -->
                         <div class="modal-body">
+                            <label id="informacoesPessoais">Informações</label>
+                            <div class="container" style="width: 96%; margin-left: 2%;">
+
+                                <!-- class='row'-->
+                                <div class='row' style="background-color: white; border-radius: 20px;">
+                                    <div class="col-md-6" style="margin-top: 2%;">
+                                        <label id="dataRealizacaoLabel">DATA DE REALIZAÇÃO</label>
+                                        <label id="dataRealizacaoResult">{{data}}</label>
+                                        <label id="servicoLabel">SERVIÇO</label>
+                                        <label id="servicoResult">{{nome}}</label>
+                                    </div>
+                                    <div class="col-md-6" style="margin-top: 2%;">
+                                        <label id="responsavelLabel">RESPONSÁVEL</label>
+                                        <label id="responsavelResult">{{nome}}</label>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <label id="informacoesPessoais">Aferições</label>
+                            <label id="informacoesPessoais" style="font-size: 14px;">Pressão Arterial</label>
+                            <div id="tabela" style="width: 96%; margin-left: 2%;">
+                                <!-- TABELA-->
+                                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                                    <!-- Checkbox Column -->
+                                    <ng-container matColumnDef="select">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                                            </mat-checkbox>
+                                        </th>
+                                        <td mat-cell *matCellDef="let row">
+                                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                            </mat-checkbox>
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- Position Column -->
+                                    <ng-container matColumnDef="data">
+                                        <th mat-header-cell *matHeaderCellDef> Data </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                                    </ng-container>
+
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="servico">
+                                        <th mat-header-cell *matHeaderCellDef> Serviço </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                    </ng-container>
+
+                                    <!-- Weight Column -->
+                                    <ng-container matColumnDef="responsavel">
+                                        <th mat-header-cell *matHeaderCellDef> Responsável </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                                    </ng-container>
+
+                                    <!-- Symbol Column -->
+                                    <ng-container matColumnDef="info" stickyEnd>
+                                        <th mat-header-cell *matHeaderCellDef></th>
+                                        <td mat-cell *matCellDef="let element">
+
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                                    </tr>
+                                </table>
+                            </div>
+                            <div>
+                                <label id="informacoesPessoais">Peso</label>
+
+                                <input type="text" class="input-control" placeholder="Peso" id="inputNascimento" style="margin-left: 2%; width: 96%;">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,34 +137,85 @@
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title" id="titleModal">ATUALIZAR INFORMAÇÕES DO CIDADÃO</h4>
-                            <label class="modal-title" id="secondTitleModal">Você está atualizando informações de {{nome}}</label>
+                            <h4 class="modal-title" id="titleModal">VISUALIZAR DISPENSAÇÃO</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
                         <!-- Modal body -->
                         <div class="modal-body">
                             <label id="informacoesPessoais">Informações</label>
-                            <div>
-                                <div class="box box-solid box-default">
-                                    <div>
+                            <div class="container" style="width: 96%; margin-left: 2%;">
+
+                                <!-- class='row'-->
+                                <div class='row' style="background-color: white; border-radius: 20px;">
+                                    <div class="col-md-6" style="margin-top: 2%;">
                                         <label id="dataRealizacaoLabel">DATA DE REALIZAÇÃO</label>
                                         <label id="dataRealizacaoResult">{{data}}</label>
-                                        <label id="responsavelLabel">RESPONSÁVEL</label>
-                                        <label id="responsavelResult">{{nome}}</label>
-                                    </div>
-                                    <div>
-
                                         <label id="servicoLabel">SERVIÇO</label>
                                         <label id="servicoResult">{{nome}}</label>
+                                    </div>
+                                    <div class="col-md-6" style="margin-top: 2%;">
+                                        <label id="responsavelLabel">RESPONSÁVEL</label>
+                                        <label id="responsavelResult">{{nome}}</label>
                                         <label id="codigoDispLabel">CÓDIGO</label>
                                         <label id="codigoDispResult">{{nome}}</label>
                                     </div>
                                 </div>
-                                <div>
-                                    <input type="text" class="input-control" placeholder="Data de Nascimento*" id="inputNascimento">
-                                    <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento">
-                                </div>
+
+                            </div>
+                            <label id="informacoesPessoais">Aferições</label>
+                            <label id="informacoesPessoais" style="font-size: 14px;">Pressão Arterial</label>
+                            <div id="tabela" style="width: 96%; margin-left: 2%;">
+                                <!-- TABELA-->
+                                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                                    <!-- Checkbox Column -->
+                                    <ng-container matColumnDef="select">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                                            </mat-checkbox>
+                                        </th>
+                                        <td mat-cell *matCellDef="let row">
+                                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                            </mat-checkbox>
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- Position Column -->
+                                    <ng-container matColumnDef="data">
+                                        <th mat-header-cell *matHeaderCellDef> Data </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                                    </ng-container>
+
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="servico">
+                                        <th mat-header-cell *matHeaderCellDef> Serviço </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                    </ng-container>
+
+                                    <!-- Weight Column -->
+                                    <ng-container matColumnDef="responsavel">
+                                        <th mat-header-cell *matHeaderCellDef> Responsável </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                                    </ng-container>
+
+                                    <!-- Symbol Column -->
+                                    <ng-container matColumnDef="info" stickyEnd>
+                                        <th mat-header-cell *matHeaderCellDef></th>
+                                        <td mat-cell *matCellDef="let element">
+
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                                    </tr>
+                                </table>
+                            </div>
+                            <div>
+                                <label id="informacoesPessoais">Peso</label>
+
+                                <input type="text" class="input-control" placeholder="Peso" id="inputNascimento" style="margin-left: 2%; width: 96%;">
                             </div>
                         </div>
                     </div>
