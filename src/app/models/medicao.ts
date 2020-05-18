@@ -1,4 +1,10 @@
+import { Afericao } from './afericao';
+
 export interface Medicao {
-  diastolica: number;
-  sistolica: number;
+  cidadaoId:	number;
+  estabelecimentoId:	number;
+  afericoes: Array<Afericao>;
+  peso:	number;
+  dataHora:	Date;
+  id:	number;
 }
