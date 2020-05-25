@@ -22,6 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { PaginaMedicaoSucessoComponent } from './pagina-medicao/pagina-medicao-sucesso/pagina-medicao-sucesso.component';
+import { PaginaMedicamentosComponent } from './pagina-medicamentos/pagina-medicamentos.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { PaginaMedicaoSucessoComponent } from './pagina-medicao/pagina-medicao-s
     PaginaDispensacaoComponent,
     PaginaCidadaosCadastrarComponent,
     PaginaCidadaosVisualizarComponent,
-    PaginaMedicaoSucessoComponent
+    PaginaMedicaoSucessoComponent,
+    PaginaMedicamentosComponent
   ],
   imports: [
     CommonModule,

@@ -7,9 +7,6 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <nav>
-            <div class='pull-left image' id="logolateral">
-
-            </div>
 
             <!-- Sidebar user panel -->
             <!-- <div class="user-panel">
@@ -35,48 +32,61 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
 
             <ul class="sidebar-menu" data-widget="tree">
-
-                <li id="inicio">
+                <li>
+                    <a class="sidebar-toggle" data-toggle="push-menu" href="#" role="button" *ngIf="ativo" (click)="ativo = !ativo">
+                        <img src="assets/dist/img/logo.png" class="img-circle" style="margin-left: 100%;">
+                        <span class="sr-only">Toggle navigation</span>
+                        <!-- <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span> -->
+                    </a>
+                    <a class="sidebar-toggle" data-toggle="push-menu" href="#" role="button" *ngIf="!ativo" style="margin-left: -15px;" (click)="ativo = !ativo">
+                        <img src="assets/dist/img/logo.png" class="img-circle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <!-- <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span> -->
+                    </a>
+                </li>
+                <li style="margin-top: 35%;">
                     <a routerLink="/inicio">
                         <img src="assets/dist/img/home.png">&nbsp;&nbsp;
                         <span>Início</span>
                     </a>
                 </li>
-                <li id='cidadaos'>
+                <li>
                     <a routerLink="/cidadaos">
                         <img src="assets/dist/img/user.png">&nbsp;&nbsp;
                         <span>Cidadãos</span>
                     </a>
                 </li>
-                <li id='medicao'>
+                <li>
                     <a routerLink="/medicao">
                         <img src="assets/dist/img/green_heart.png">&nbsp;&nbsp;
                         <span>Medição</span>
                     </a>
                 </li>
-                <li id='dispensacao'>
+                <li>
                     <a routerLink="/dispensacao">
                         <img src="assets/dist/img/green_check.png">&nbsp;&nbsp;
                         <span>Dispensação</span>
                     </a>
                 </li>
                 <li>
-                    <a class="sidebar-toggle" data-toggle="push-menu" href="#" role="button" *ngIf="ativo" (click)="ativo = !ativo">
-                        <img src="assets/dist/img/logo.png" class="img-circle" style="margin-left: 30%;">
-                        <span class="sr-only">Toggle navigation</span>
-                        <!-- <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span> -->
-                    </a>
-                    <a class="sidebar-toggle" data-toggle="push-menu" href="#" role="button" *ngIf="!ativo" style="margin-left: -15px;" (click)="ativo = !ativo">
-                        <img src="assets/dist/img/logo.png" class="img-circle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <!-- <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> -->
+                    <a routerLink="/medicamentos">
+                        <img src="assets/dist/img/green_check.png">&nbsp;&nbsp;
+                        <span>Medicamentos</span>
                     </a>
                 </li>
+
+
+
             </ul>
+            <div id="suporteDiv">
+                <a routerLink="/inicio">
+                    <button id="suporteButton" *ngIf="ativo" (click)="ativo = !ativo">SUPORTE</button>
+                </a>
+            </div>
         </nav>
     </section>
     <!-- /.sidebar -->

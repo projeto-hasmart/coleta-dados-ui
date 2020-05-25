@@ -8,6 +8,7 @@ import { PaginaCidadaosComponent } from './pagina-cidadaos/pagina-cidadaos.compo
 import { PaginaCidadaosCadastrarComponent } from './pagina-cidadaos/pagina-cidadaos-cadastrar/pagina-cidadaos-cadastrar.component';
 import { PaginaCidadaosVisualizarComponent } from './pagina-cidadaos/pagina-cidadaos-visualizar/pagina-cidadaos-visualizar.component';
 import { PaginaMedicaoSucessoComponent } from './pagina-medicao/pagina-medicao-sucesso/pagina-medicao-sucesso.component';
+import { PaginaMedicamentosComponent } from './pagina-medicamentos/pagina-medicamentos.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
         {path: 'cidadaos/visualizar', component: PaginaCidadaosVisualizarComponent},
       { path: 'dispensacao', component: PaginaDispensacaoComponent },
       { path: 'medicao', component: PaginaMedicaoComponent},
-      {path: 'medicao/sucesso', component: PaginaMedicaoSucessoComponent}
+      {path: 'medicao/sucesso', component: PaginaMedicaoSucessoComponent},
+      {path: 'medicamentos', component: PaginaMedicamentosComponent}
     ]
   }
 ];

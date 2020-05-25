@@ -17,5 +17,7 @@ export class SideNavComponent implements OnInit {
       $('.sidebar-menu').tree();
     });
   }
-
+  refresh(): void {
+    window.location.reload();
+}
 }

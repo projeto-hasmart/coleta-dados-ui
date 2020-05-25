@@ -8,79 +8,48 @@
     height: 100%;
 }
 
-#logolateral {
-    position: absolute;
-    left: 38.18%;
-    right: 37.78%;
-    top: 14.5%;
-    /* Cor Marca 1 */
+li {
+    margin-left: 2px;
+    margin-top: 8px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #234323;
 }
 
-#inicio {
+li,
+a,
+span,
+.sidebar-menu :hover {
+    background-color: transparent;
+    color: #234323
+}
+
+#suporteDiv {
     position: absolute;
-    width: 54px;
-    height: 30px;
-    padding-left: 0px;
-    top: 249px;
+    bottom: 25px;
+    left: 20%;
+    width: 40%;
+}
+
+#suporteButton {
+    background-color: #37804B;
+    width: 129px;
+    box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
+    border-radius: 25px;
     font-family: Poppins;
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 15px;
+    line-height: 22px;
     /* identical to box height */
-    display: flex;
-    align-items: center;
-    /* Preto */
-    color: #1a1919;
-}
-
-#cidadaos {
-    position: absolute;
-    width: 98px;
-    height: 30px;
-    padding-left: 0px;
-    top: 312px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 30px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #234323;
-}
-
-#medicao {
-    position: absolute;
-    width: 87px;
-    height: 30px;
-    padding-left: 0px;
-    top: 372px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 30px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #234323;
-}
-
-#dispensacao {
-    position: absolute;
-    width: 131px;
-    height: 30px;
-    padding-left: 0px;
-    top: 432px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 30px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #234323;
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    align-self: center;
+    left: 8px;
 }
