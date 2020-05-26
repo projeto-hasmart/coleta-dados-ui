@@ -101,7 +101,6 @@ body {
     position: absolute;
     width: 315px;
     height: 60px;
-    left: 92px;
     top: 77px;
     font-family: Poppins;
     font-style: normal;
@@ -118,7 +117,6 @@ body {
     position: absolute;
     width: 218px;
     height: 19px;
-    left: 92px;
     top: 150px;
     font-family: Roboto;
     font-style: normal;
@@ -138,7 +136,6 @@ body {
     position: relative;
     width: 115px;
     height: 30px;
-    left: 69px;
     top: 67px;
     font-family: Poppins;
     font-style: normal;
@@ -150,13 +147,16 @@ body {
     color: #000000;
 }
 
+mat-card {
+    display: inline-block;
+}
+
 #mdc-card1 {
-    width: 218px;
+    width: 80%;
     height: 119px;
-    left: 19px;
     top: 97px;
     /* a700 */
-    display: flex;
+    display: inline-block;
     background: #009728;
     box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
     border-radius: 10px;
@@ -207,12 +207,11 @@ body {
 }
 
 #mdc-card2 {
-    width: 218px;
+    width: 80%;
     height: 119px;
-    left: 19px;
     top: 97px;
     /* a700 */
-    display: flex;
+    display: inline-block;
     background: #009728;
     box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
     border-radius: 10px;
@@ -263,12 +262,11 @@ body {
 }
 
 #mdc-card3 {
-    width: 218px;
+    width: 80%;
     height: 119px;
-    left: 19px;
     top: 97px;
     /* a700 */
-    display: flex;
+    display: inline-block;
     background: #009728;
     box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
     border-radius: 10px;
@@ -319,12 +317,11 @@ body {
 }
 
 #mdc-card4 {
-    width: 218px;
+    width: 80%;
     height: 119px;
-    left: 19px;
     top: 97px;
     /* a700 */
-    display: flex;
+    display: inline-block;
     background: #009728;
     box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
     border-radius: 10px;
@@ -374,183 +371,11 @@ body {
     top: 20px;
 }
 
-
-/*ações*/
-
-#acoesRapidas {
-    position: relative;
-    width: 149px;
-    height: 30px;
-    left: 69px;
-    top: 136px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-}
-
-
-/*medição*/
-
-#novaMedicaoDiv {
-    display: flex;
-    padding: 10px 20px;
-    width: 370px;
-    height: 56px;
-    left: 19px;
-    top: 156px;
-    background: #bee3c8;
-    border-radius: 10px;
-    @media (max-width: 768px) {
-        margin-top: 30px;
-    }
-}
-
-#novaMedicao {
-    width: 227px;
-    height: 36px;
-    left: 0px;
-    top: 0px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 36px;
-    /* identical to box height */
-    /* 800 */
-    color: #1b4f29;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    align-self: flex-start;
-    margin: 0px 0px;
-}
-
-#realizarMedicao {
-    display: flex;
-    flex-direction: row;
-    padding: 10px 16px;
-    position: relative;
-    width: 88px;
-    height: 34px;
-    left: 15px;
-    background: #ffffff;
-    /* Button Shadow */
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 1;
-    align-self: center;
-    margin: 15px 0px;
-}
-
-#realizarMedicaoLabel {
-    position: relative;
-    width: 56px;
-    height: 14px;
-    bottom: 12px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    text-transform: uppercase;
-    color: #45a15e;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    align-self: center;
-    margin: 10px 0px;
-}
-
-
-/*dispensação*/
-
-#novaDispensacaoDiv {
-    display: flex;
-    padding: 10px 20px;
-    width: 370px;
-    height: 56px;
-    left: 19px;
-    top: 156px;
-    background: #bee3c8;
-    border-radius: 10px;
-    @media (max-width: 768px) {
-        margin-top: 30px;
-    }
-}
-
-#novaDispensacao {
-    width: 227px;
-    height: 36px;
-    left: 0px;
-    top: 0px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 36px;
-    /* identical to box height */
-    /* 800 */
-    color: #1b4f29;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    align-self: flex-start;
-    margin: 0px 0px;
-}
-
-#realizarDispensacao {
-    display: flex;
-    flex-direction: row;
-    padding: 10px 16px;
-    position: relative;
-    width: 88px;
-    height: 34px;
-    left: 15px;
-    background: #ffffff;
-    /* Button Shadow */
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 1;
-    align-self: center;
-    margin: 15px 0px;
-}
-
-#realizarDispensacaoLabel {
-    position: relative;
-    width: 56px;
-    height: 14px;
-    bottom: 12px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    text-transform: uppercase;
-    color: #45a15e;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    align-self: center;
-    margin: 10px 0px;
-}
-
 #autorizacoesProximas {
     position: relative;
     width: 229px;
     height: 30px;
-    left: 69px;
-    top: 202px;
+    top: 140px;
     font-family: Poppins;
     font-style: normal;
     font-weight: 500;
@@ -568,7 +393,7 @@ table {
 
 #tabela {
     left: 69px;
-    padding-top: 230px;
+    padding-top: 160px;
 }
 
 .container {

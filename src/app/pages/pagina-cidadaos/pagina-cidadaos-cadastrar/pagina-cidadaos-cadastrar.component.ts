@@ -17,9 +17,17 @@ interface Fumante {
 })
 
 export class PaginaCidadaosCadastrarComponent implements OnInit {
-  color = 'green';
+  checked: true;
+  disabled: false;
 
   constructor() { }
+  genero: string;
+  generos: string[] = [
+    'Masculino',
+    'Feminino',
+    'Outro',
+    'Prefiro não dizer...'
+  ];
   diabetess: Diabetes[] = [
     {value: 'tipo-1', viewValue: 'Tipo 1'},
     {value: 'tipo-2', viewValue: 'Tipo 2'},

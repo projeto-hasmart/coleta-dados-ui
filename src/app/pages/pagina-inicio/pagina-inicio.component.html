@@ -29,65 +29,51 @@
 </section>
 <!-- Main content -->
 <section class="content">
-    <div class="container">
-        <div id='estatisticas' fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">Estatísticas</div>
-        <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
-
-            <mat-card id="mdc-card1" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                <mat-card-content>
-                    <label id='mdc-card1number'>29</label>
-                    <label id='mdc-card1name'>Cidadãos registrados</label>
-                    <img src="assets/dist/img/white_user.png" id="mdc-card1img">
-                </mat-card-content>
-            </mat-card>
-            <mat-card id="mdc-card2" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                <mat-card-content>
-                    <label id='mdc-card2number'>15</label>
-                    <label id='mdc-card2name'>Medições</label>
-                    <img src="assets/dist/img/white_heart.png" id="mdc-card2img">
-                </mat-card-content>
-            </mat-card>
-            <mat-card id="mdc-card3" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                <mat-card-content>
-                    <label id='mdc-card3number'>7</label>
-                    <label id='mdc-card3name'>Dispensações</label>
-                    <img src="assets/dist/img/white_check.png" id="mdc-card3img">
-                </mat-card-content>
-            </mat-card>
-            <mat-card id="mdc-card4" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                <mat-card-content>
-                    <label id='mdc-card4number'>22</label>
-                    <label id='mdc-card4name'>Atendimentos</label>
-                    <img src="assets/dist/img/white_check.png" id="mdc-card4img">
-                </mat-card-content>
-            </mat-card>
+    <div>
+        <div id='estatisticas'>Estatísticas</div>
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-card id="mdc-card1">
+                    <mat-card-content>
+                        <label id='mdc-card1number'>29</label>
+                        <label id='mdc-card1name'>Cidadãos registrados</label>
+                        <img src="assets/dist/img/white_user.png" id="mdc-card1img">
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-sm-3">
+                <mat-card id="mdc-card2">
+                    <mat-card-content>
+                        <label id='mdc-card2number'>15</label>
+                        <label id='mdc-card2name'>Medições</label>
+                        <img src="assets/dist/img/white_heart.png" id="mdc-card2img">
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-sm-3">
+                <mat-card id="mdc-card3">
+                    <mat-card-content>
+                        <label id='mdc-card3number'>7</label>
+                        <label id='mdc-card3name'>Dispensações</label>
+                        <img src="assets/dist/img/white_check.png" id="mdc-card3img">
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-sm-3">
+                <mat-card id="mdc-card4">
+                    <mat-card-content>
+                        <label id='mdc-card4number'>22</label>
+                        <label id='mdc-card4name'>Atendimentos</label>
+                        <img src="assets/dist/img/white_check.png" id="mdc-card4img">
+                    </mat-card-content>
+                </mat-card>
+            </div>
         </div>
-        <div id="acoesRapidas" fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">Ações rápidas</div>
-        <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
 
-            <!-- AÇÕES -->
-            <mat-card id="novaMedicaoDiv" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                <label id="novaMedicao">Nova Medição</label>
-                <!-- NOVA MEDIÇÃO -->
-                <button mat-button id="realizarMedicao">
-        <label id="realizarMedicaoLabel">REALIZAR</label>
-      </button>
-            </mat-card>
-            <mat-card id="novaDispensacaoDiv" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                <label id="novaDispensacao">Nova Dispensação</label>
-                <!-- NOVA DISPENSAÇÃO -->
-                <button mat-button id="realizarDispensacao">
-        <label id="realizarDispensacaoLabel">REALIZAR</label>
-      </button>
-            </mat-card>
-
-        </div>
-        <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
-            <div id='autorizacoesProximas' fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">Autorizações próximas</div>
-        </div>
+        <div id='autorizacoesProximas'>Autorizações próximas</div>
         <div id="tabela">
             <!-- TABELA-->
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 
                 <!-- Checkbox Column -->
                 <ng-container matColumnDef="select">
