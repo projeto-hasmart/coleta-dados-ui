@@ -19,16 +19,18 @@ li {
     /* identical to box height */
     display: flex;
     align-items: center;
-    color: #234323;
+    color: grey;
 }
 
-li,
-a,
-span,
-.sidebar-menu,
-.sidebar :hover {
+li :hover,
+span :hover,
+.main-sidebar li :hover {
+    background-color: #BEE3C8;
+    color: #37804B;
+}
+
+a :hover {
     background-color: transparent;
-    color: #234323
 }
 
 #suporteDiv {
@@ -53,4 +55,29 @@ span,
     /* Inside Auto Layout */
     align-self: center;
     left: 8px;
+}
+
+#suporteButtonPequeno {
+    background-color: #37804B;
+    border: none;
+    border-radius: 45px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    /* identical to box height */
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    align-self: center;
+    left: 8px;
+}
+
+.active-list-item span {
+    color: #234323 !important;
+}
+
+li span {
+    margin-left: 10%;
+    width: 100px;
 }

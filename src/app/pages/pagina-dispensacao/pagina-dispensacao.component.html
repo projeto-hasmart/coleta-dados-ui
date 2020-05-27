@@ -9,11 +9,12 @@
 
         <a routerLink="/cidadaos/visualizar">
             <button mat-button id="retornoCidadaoButton"><label id="retornoCidadaoButtonLabel">RETORNAR AO PERFIL DO CIDADÃO</label></button></a>
-        <div class="box box-default collapsed-box" id="infoBox">
+
+        <div class="box box-default" id="infoBox">
             <div class="box-header with-border">
-                <h3 class="box-title" id="labelInformacoes">Informações Pessoais</h3>
-                <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-down"></i></button>
+                <h3 id="labelInformacoes">Informações Pessoais</h3>
+                <div>
+                    <button data-widget="collapse" data-target="#infoBox"><i class="fa fa-angle-down"></i></button>
                 </div>
                 <!-- /.box-tools -->
             </div>
@@ -112,11 +113,11 @@
                 </div>
             </div>
         </div>
-        <div class="box box-default collapsed-box" id="medicaoBox">
+        <div class="box box-default" id="medicaoBox">
             <div class="box-header">
                 <h3 class="box-title" id="labelInformacoes">Aferições</h3>
                 <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-down"></i></button>
+                    <button class="btn btn-box-tool" data-widget="collapse" data-target="#medicaoBox"><i class="fa fa-angle-down"></i></button>
                 </div>
             </div>
             <div class="box-body">

@@ -7,28 +7,28 @@
         <h3 id="labelBemvindo">Bom dia, Maria!</h3>
         <label id="labelBemvindoo">Bem-vindo de volta ao sistema</label>
     </div>
-    <div id="searchboxtoggle" class="container">
-        <!-- [(ngModel)]="modelName" multiple vertical="false"-->
-        <div class='row'>
-            <mat-button-toggle-group id="cpfrgtoggle">
-                <mat-button-toggle value="cpf" id="togglebutton">
-                    CPF
-                </mat-button-toggle>
-                <mat-button-toggle value="rg" id="togglebutton">
-                    RG
-                </mat-button-toggle>
-            </mat-button-toggle-group>
 
-            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox">
-            <button type="submit" class="searchButton" id="searchButton">
-      <i class="fa fa-search"></i>
-    </button>
-
-        </div>
-    </div>
 </section>
 <!-- Main content -->
 <section class="content">
+    <div id="searchboxtoggle">
+        <!-- [(ngModel)]="modelName" multiple vertical="false"-->
+
+        <mat-button-toggle-group id="cpfrgtoggle">
+            <mat-button-toggle value="cpf" id="togglebutton">
+                CPF
+            </mat-button-toggle>
+            <mat-button-toggle value="rg" id="togglebutton">
+                RG
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+        <div class="search-bar">
+            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox">
+            <button type="submit" class="searchButton" id="searchButton" placeholder="">
+  <i class="fa fa-search"></i> </button>
+        </div>
+
+    </div>
     <div>
         <div id='estatisticas'>Estatísticas</div>
         <div class="row">

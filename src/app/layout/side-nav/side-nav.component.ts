@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 declare var $;
 
@@ -9,8 +10,7 @@ declare var $;
 })
 export class SideNavComponent implements OnInit {
   ativo = true;
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     $(document).ready(() => {

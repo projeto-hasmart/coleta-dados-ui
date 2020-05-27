@@ -142,15 +142,6 @@
     height: 50px;
 }
 
-table {
-    width: 100%;
-}
-
-#tabela {
-    left: 322px;
-    margin-top: 20px;
-}
-
 #busca {
     position: fixed;
     top: 25%;
@@ -162,4 +153,13 @@ table {
     @media (max-width: 1024px) {
         left: 45%;
     }
+}
+
+table {
+    width: 100%;
+}
+
+#tabela {
+    left: 322px;
+    margin-top: 20px;
 }

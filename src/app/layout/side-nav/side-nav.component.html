@@ -21,33 +21,53 @@
             <ul class="sidebar-menu" data-widget="tree">
 
                 <li style="margin-top: 35%;">
-                    <a routerLink="/inicio">
-                        <img src="assets/dist/img/home.png">&nbsp;&nbsp;
+                    <a routerLink="/inicio" routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
+                        <img src="assets/dist/img/home.png">
+                        <span>Início</span>
+                    </a>
+                    <a routerLink="/inicio" routerLinkActive="active-list-item" style="width: 230px; margin-left: -7px;" *ngIf="!ativo">
+                        <img src="assets/dist/img/home.png">
                         <span>Início</span>
                     </a>
                 </li>
                 <li>
-                    <a routerLink="/cidadaos">
-                        <img src="assets/dist/img/user.png">&nbsp;&nbsp;
+                    <a routerLink="/cidadaos" routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
+                        <img src="assets/dist/img/user.png">
+                        <span>Cidadãos</span>
+                    </a>
+                    <a routerLink="/cidadaos" routerLinkActive="active-list-item" style="width: 230px; margin-left: -7px;" *ngIf="!ativo">
+                        <img src="assets/dist/img/user.png">
                         <span>Cidadãos</span>
                     </a>
                 </li>
                 <li>
-                    <a routerLink="/medicao">
-                        <img src="assets/dist/img/green_heart.png">&nbsp;&nbsp;
+                    <a routerLink="/medicao" routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
+                        <img src="assets/dist/img/green_heart.png">
+                        <span>Medição</span>
+                    </a>
+                    <a routerLink="/medicao" routerLinkActive="active-list-item" style="width: 230px; margin-left: -7px;" *ngIf="!ativo">
+                        <img src="assets/dist/img/green_heart.png">
                         <span>Medição</span>
                     </a>
                 </li>
                 <li>
-                    <a routerLink="/dispensacao">
-                        <img src="assets/dist/img/green_check.png">&nbsp;&nbsp;
+                    <a routerLink="/dispensacao" routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
+                        <img src="assets/dist/img/green_check.png">
+                        <span>Dispensação</span>
+                    </a>
+                    <a routerLink="/dispensacao" routerLinkActive="active-list-item" style="width: 230px; margin-left: -7px;" *ngIf="!ativo">
+                        <img src="assets/dist/img/green_check.png">
                         <span>Dispensação</span>
                     </a>
                 </li>
                 <li>
-                    <a routerLink="/medicamentos">
-                        <img src="assets/dist/img/green_check.png">&nbsp;&nbsp;
-                        <span>Medicamentos</span>
+                    <a routerLink="/medicamentos" routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
+                        <img src="assets/dist/img/medicamentos.png" style="margin-left: 2%;">
+                        <span style="margin-left: 12%;">Medicamentos</span>
+                    </a>
+                    <a routerLink="/medicamentos" routerLinkActive="active-list-item" style="width: 230px; margin-left: -5px;" *ngIf="!ativo">
+                        <img src="assets/dist/img/medicamentos.png" style="margin-left: 2%;">
+                        <span style="margin-left: 12%;">Medicamentos</span>
                     </a>
                 </li>
 
@@ -56,7 +76,8 @@
             </ul>
             <div id="suporteDiv">
                 <a routerLink="/inicio">
-                    <button id="suporteButton" *ngIf="ativo" (click)="ativo = !ativo">SUPORTE</button>
+                    <button id="suporteButton" *ngIf="ativo" (click)="ativo = !ativo">SUPORTE<img src="assets/dist/img/help.png" style="padding-left: 10px;"></button>
+                    <button id="suporteButtonPequeno" *ngIf="!ativo" (click)="ativo = !ativo"><img src="assets/dist/img/help.png" ></button>
                 </a>
             </div>
         </nav>

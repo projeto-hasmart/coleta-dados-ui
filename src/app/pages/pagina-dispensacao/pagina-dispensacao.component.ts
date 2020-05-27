@@ -37,6 +37,7 @@ dispensacaoId = 1234567890;
   diabetes = 'Não';
   avc = 'Não';
   fumante = 'Não';
+  panelOpenState = false;
 
   peso: number;
   displayedColumns: string[] = ['select',  'sistolica', 'diastolica'];
