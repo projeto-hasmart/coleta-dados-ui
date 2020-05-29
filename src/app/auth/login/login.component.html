@@ -11,12 +11,12 @@
                 <!-- <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
             </div>
             <div class="form-group has-feedback">
-                <input class="form-control" placeholder="Senha" type="password" id="senhaLabel">
-                <!--                 <i class="fa fa-eye"></i>
- --></div>
+                <input class="form-control" placeholder="Senha" [type]="hide ? 'password' : 'text'" id="senhaLabel">
+                <span style="position:absolute; right:8px;top:15px;" *ngIf="!showPw"><mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></span>
+            </div>
 
             <div id='checkboxRemember' style="margin-left: 10px;">
-                <mat-checkbox><label id="checkboxLabel">Manter-me conectado</label></mat-checkbox>
+                <mat-checkbox [(ngModel)]="showPw"><label id="checkboxLabel">Manter-me conectado</label></mat-checkbox>
             </div>
             <!-- /.col -->
             <button [routerLink]="'/inicio'" class="mat-button" id="loginButton">ENTRAR</button>

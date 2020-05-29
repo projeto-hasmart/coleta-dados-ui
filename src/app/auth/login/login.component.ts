@@ -8,7 +8,8 @@ declare var $;
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-
+  hide = true;
+  showPw = false;
   constructor() {
   }
 
@@ -26,5 +27,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     $('body').removeClass('hold-transition login-page');
   }
+
 
 }
