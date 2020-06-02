@@ -12,7 +12,9 @@
 </section>
 <section class="content">
     <!-- [(ngModel)]="modelName" multiple vertical="false"-->
-    <div id="busca">
+    <div id="searchboxtoggle" class="row">
+        <!-- [(ngModel)]="modelName" multiple vertical="false"-->
+
         <mat-button-toggle-group id="cpfrgtoggle">
             <mat-button-toggle value="cpf" id="togglebutton">
                 CPF
@@ -21,22 +23,21 @@
                 RG
             </mat-button-toggle>
         </mat-button-toggle-group>
-
-        <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox">
-        <button type="submit" class="searchButton" id="searchButton">
-          <i class="fa fa-search"></i>
-        </button>
-    </div>
-    <div>
+        <div class="search-bar">
+            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox">
+            <button type="submit" class="searchButton" id="searchButton" placeholder="">
+<i class="fa fa-search"></i> </button>
+        </div>
         <a routerLink="/cidadaos/cadastrar">
             <button mat-button id="novoCidadaoButton" class="pull-right">
 
-          <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
-          <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
+        <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
+        <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
 
-        </button>
+      </button>
         </a>
     </div>
+
 
     <div id="tabela">
         <!-- TABELA-->
