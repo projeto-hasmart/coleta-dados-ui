@@ -43,7 +43,6 @@ a :hover {
 #suporteButton {
     background-color: #37804B;
     width: 129px;
-    box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
     border-radius: 25px;
     font-family: Poppins;
     font-style: normal;
@@ -55,10 +54,12 @@ a :hover {
     /* Inside Auto Layout */
     align-self: center;
     left: 8px;
+    outline: none;
+    border: none;
 }
 
 #suporteButtonPequeno {
-    background-color: #37804B;
+    background-color: none;
     border: none;
     border-radius: 45px;
     font-family: Poppins;
@@ -67,7 +68,7 @@ a :hover {
     font-size: 15px;
     line-height: 22px;
     /* identical to box height */
-    color: #FFFFFF;
+    color: #37804B;
     /* Inside Auto Layout */
     align-self: center;
     left: 8px;
@@ -80,4 +81,8 @@ a :hover {
 li span {
     margin-left: 10%;
     width: 100px;
+}
+
+.sidebar-toggle {
+    width: 180px;
 }

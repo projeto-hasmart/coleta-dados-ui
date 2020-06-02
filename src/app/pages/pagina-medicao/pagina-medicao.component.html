@@ -3,13 +3,14 @@
         <label id="medicaoPressaoTitleLabel">Medição de Pressão Arterial</label>
         <label id="medicaoPressaoTitleLabel2">Realize a medição, preencha os campos com os resultados e confirme utilizando a leitura biométrica</label>
     </div>
+
 </section>
 <section class="content">
     <div class="container">
 
-        <a routerLink="/cidadaos/visualizar">
-            <button mat-button id="retornoCidadaoButton"><label id="retornoCidadaoButtonLabel">RETORNAR AO PERFIL DO CIDADÃO</label></button></a>
-        <div class="box box-default collapsed-box" id="infoBox">
+        <a routerLink="/cidadaos/visualizar" class="pull-right">
+            <button mat-button id="retornoCidadaoButton" class="pull-right"><label id="retornoCidadaoButtonLabel">RETORNAR AO PERFIL DO CIDADÃO</label></button></a>
+        <div class="box box-default" id="infoBox">
             <div class="box-header with-border">
                 <h3 class="box-title" id="labelInformacoes">Informações Pessoais</h3>
                 <div class="box-tools pull-right">
@@ -19,7 +20,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <div class="box box-solid box-default" id="infoBoxPessoal">
+                <div class="box  box-default" id="infoBoxPessoal">
                     <label id="pessoaisLabel">Pessoais</label>
                     <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
                         <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
@@ -50,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="box box-solid box-default" id="infoBoxEstaticas">
+                <div class="box box-default" id="infoBoxEstaticas">
 
                     <label id="estaticasLabel">Estáticas</label>
                     <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
@@ -93,7 +94,7 @@
                 </div>
             </div>
         </div>
-        <div class="box box-default collapsed-box" id="medicaoBox">
+        <div class="box box-default" id="medicaoBox">
             <div class="box-header">
                 <h3 class="box-title" id="labelInformacoes">Aferições</h3>
                 <div class="box-tools pull-right">
@@ -105,11 +106,11 @@
                     <div id="titlesTables">
                         <label id="numero">1</label>
                         <label id="medicaoTitleLabel">Realize a aferição do braço direito</label>
-                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right" style="margin-top: 70px;"><mat-icon>delete</mat-icon></button>
                     </div>
                     <div id="tabela">
                         <!-- TABELA-->
-                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 
                             <!-- Checkbox Column -->
                             <ng-container matColumnDef="select">
@@ -145,11 +146,11 @@
                     <div id="titlesTables">
                         <label id="numero">2</label>
                         <label id="medicaoTitleLabel">Realize a aferição do braço esquerdo</label>
-                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right" style="margin-top: 280px;"><mat-icon>delete</mat-icon></button>
                     </div>
                     <div id="tabela">
                         <!-- TABELA-->
-                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 
                             <!-- Checkbox Column -->
                             <ng-container matColumnDef="select">
@@ -185,7 +186,7 @@
                     <div id="titlesTables">
                         <label id="numero">3</label>
                         <label id="medicaoTitleLabel">Realize a aferição do peso</label>
-                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right" style="margin-top: 480px;"><mat-icon>delete</mat-icon></button>
                     </div>
                     <input type="text" class="input-control" placeholder="Peso" id="pesoinput" ng-model="peso" (keyup)="onKey($event)">
 

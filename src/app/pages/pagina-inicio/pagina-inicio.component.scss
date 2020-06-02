@@ -3,6 +3,11 @@ body {
     color: white;
 }
 
+.content,
+.content-header {
+    margin-left: 2%;
+}
+
 //cpfrgtoggle
 #cpfrgtoggle {
     border: 1px solid #dfdfdf;
@@ -144,7 +149,7 @@ mat-card {
 }
 
 #mdc-card1 {
-    width: 80%;
+    width: 90%;
     height: 119px;
     top: 97px;
     /* a700 */
@@ -199,7 +204,7 @@ mat-card {
 }
 
 #mdc-card2 {
-    width: 80%;
+    width: 90%;
     height: 119px;
     top: 97px;
     /* a700 */
@@ -254,7 +259,7 @@ mat-card {
 }
 
 #mdc-card3 {
-    width: 80%;
+    width: 90%;
     height: 119px;
     top: 97px;
     /* a700 */
@@ -309,7 +314,7 @@ mat-card {
 }
 
 #mdc-card4 {
-    width: 80%;
+    width: 90%;
     height: 119px;
     top: 97px;
     /* a700 */
@@ -380,7 +385,7 @@ mat-card {
 }
 
 table {
-    width: 100%;
+    width: 98%;
 }
 
 #tabela {

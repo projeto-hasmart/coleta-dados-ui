@@ -40,6 +40,7 @@ export class PaginaMedicaoComponent implements OnInit {
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
 
+
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -69,7 +70,8 @@ export class PaginaMedicaoComponent implements OnInit {
   excluirAfericao() {
 
   }
-  constructor() { }
+  constructor() {
+ }
 
   ngOnInit() {
   }

@@ -35,23 +35,18 @@
 }
 
 #novoCidadaoButton {
+    position: absolute;
     display: flex;
     padding: 10px 16px;
     width: 143px;
     height: 34px;
-    left: 80%;
+    right: 2.5%;
     margin-top: 80px;
     /* 700 */
     background: #245E33;
     /* Button Shadow */
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
-    @media (max-width: 1400px) {
-        left: 70%;
-    }
-    @media (max-width: 1024px) {
-        left: 55%;
-    }
 }
 
 #novoCidadaoImg {
@@ -156,10 +151,15 @@
 }
 
 table {
-    width: 100%;
+    width: 98%;
 }
 
 #tabela {
     left: 322px;
     margin-top: 20px;
+}
+
+.content,
+.content-head {
+    margin-left: 2.5%;
 }

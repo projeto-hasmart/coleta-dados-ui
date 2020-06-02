@@ -32,82 +32,17 @@
     color: rgba(0, 0, 0, 0.6);
 }
 
-//cpfrgtoggle
-#cpfrgtoggle {
-    display: flex;
-    margin-left: 385px;
-    margin-top: 181px;
-    border: 1px solid #dfdfdf;
-    width: 96px;
-    @media (max-width: 768px) {
-        margin-left: 30px;
-    }
-}
-
-#togglebutton {
-    background-color: white;
-    color: black;
-}
-
-// search bar
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-#searchBox {
-    display: flex;
-    margin-left: 10px;
-    margin-top: 181px;
-    background: #ffffff;
-    border: 1px solid white;
-    box-sizing: border-box;
-    border-radius: 3px;
-    height: 50px;
-    width: 328px;
-    font-family: "Roboto";
-}
-
-#searchboxtoggle {
-    @media (max-width: 768px) {
-        margin-left: 30px;
-    }
-}
-
-.searchTerm {
-    width: 100%;
-    border: 3px solid #00b4cc;
-    border-right: none;
-    padding: 5px;
-    height: 20px;
-    border-radius: 5px 0 0 5px;
+.box-default {
     outline: none;
-    color: #9dbfaf;
-}
-
-.searchTerm:focus {
-    color: #00b4cc;
-}
-
-.searchButton {
-    width: 40px;
-    height: 36px;
-    border: 1px solid white;
-    background: white;
-    text-align: center;
-    color: grey;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    position: relative;
-    font-size: 20px;
-    left: -10px;
-    top: 181px;
-    box-sizing: border-box;
-    border-radius: 3px;
-    height: 50px;
+    box-shadow: none;
+    border: none;
 }
 
 #infoBox {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 95%;
+    width: 98%;
     left: 0px;
     top: 125px;
     background: #F2F2F2;
@@ -116,7 +51,7 @@
     flex: none;
     order: 1;
     align-self: center;
-    margin: 0px 40px;
+    margin: 0px 20px;
 }
 
 #labelInformacoes {
@@ -143,8 +78,6 @@
     width: 100%;
     min-height: 213px;
     height: wrap-content;
-    margin-right: 10px;
-    margin-left: 10px;
     top: 0px;
     background: #FFFFFF;
     border-radius: 3px;
@@ -152,7 +85,6 @@
     flex: none;
     order: 0;
     align-self: flex-start;
-    margin: 0px 10px;
 }
 
 #pessoaisLabel {
@@ -532,7 +464,6 @@
     width: 100%;
     min-height: 127px;
     height: wrap-content;
-    margin-right: 10px;
     top: 10px;
     background: #FFFFFF;
     border-radius: 3px;
@@ -540,7 +471,6 @@
     flex: none;
     order: 1;
     align-self: flex-start;
-    margin: 0px 10px;
 }
 
 #estaticasLabel {
@@ -743,9 +673,8 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 95%;
+    width: 98%;
     height: wrap-content;
-    left: 30px;
     top: 150px;
     background: #F5F5F5;
     border-radius: 4px;
@@ -753,7 +682,7 @@
     flex: none;
     order: 2;
     align-self: center;
-    margin: 0px 10px;
+    margin: 0px 20px;
 }
 
 #medicaoTitleLabel {
@@ -771,28 +700,22 @@
     flex: none;
     order: 1;
     display: inline-block;
-    margin-left: -30px;
+    margin-left: 10px;
     margin-top: 5px;
 }
 
 #retornoCidadaoButton {
-    display: flex;
     padding: 10px 16px;
+    position: absolute;
+    right: 2.5%;
     width: 227px;
     height: 34px;
-    left: 83%;
     top: 100px;
     /* 700 */
     background: #245E33;
     /* Button Shadow */
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
-    @media (max-width: 1200px) {
-        left: 70%;
-    }
-    @media (max-width: 1024px) {
-        left: 55%;
-    }
 }
 
 #retornoCidadaoButtonLabel {
@@ -818,11 +741,15 @@
 
 table {
     width: 100%;
+    outline: none;
+    border: none;
 }
 
 #tabela {
     left: 69px;
     margin-top: 15px;
+    outline: none;
+    border: none;
 }
 
 #editIcon {
@@ -850,10 +777,10 @@ table {
 }
 
 #deleteButton {
-    margin-right: 10px;
+    position: absolute;
     background: none;
     border-radius: 45px;
-    left: 95%;
+    right: 1%;
     top: -10px;
 }
 
@@ -885,19 +812,14 @@ table {
     padding: 10px 16px;
     width: 155px;
     height: 34px;
-    left: 88%;
-    top: 170px;
+    position: absolute;
+    right: 2.5%;
+    margin-top: 190px;
     /* 700 */
     background: #245E33;
     /* Button Shadow */
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
-    @media (max-width: 1024px) {
-        left: 55%;
-    }
-    @media (max-width: 1200px) {
-        left: 70%;
-    }
 }
 
 #finalizarButtonBlocked {
@@ -906,19 +828,14 @@ table {
     padding: 10px 16px;
     width: 155px;
     height: 34px;
-    left: 88%;
-    top: 170px;
+    position: absolute;
+    right: 2.5%;
+    margin-top: 190px;
     /* 700 */
     background: #E0E0E0;
     /* Button Shadow */
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
-    @media (max-width: 1024px) {
-        left: 55%;
-    }
-    @media (max-width: 1200px) {
-        left: 70%;
-    }
 }
 
 #novaAfericao {
@@ -942,12 +859,15 @@ table {
     font-weight: normal;
     font-size: 16px;
     line-height: 19px;
+    outline: none;
+    border: none;
 }
 
 #afericaobuttonlabel {
     width: 99px;
     height: 19px;
     margin-left: 10px;
+    margin-top: 5px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -959,6 +879,8 @@ table {
     flex: none;
     order: 1;
     align-self: center;
+    outline: none;
+    border: none;
 }
 
 #iconplus {
@@ -976,6 +898,7 @@ table {
     font-weight: normal;
     font-size: 16px;
     line-height: 19px;
+    padding: 18.5px;
     /* identical to box height */
     color: rgba(0, 0, 0, 0.6);
 }
@@ -1096,4 +1019,8 @@ table {
 
 #passotres {
     margin-top: 30px;
+}
+
+.modal-sm {
+    top: 30%;
 }

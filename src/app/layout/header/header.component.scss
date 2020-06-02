@@ -26,6 +26,10 @@ a :hover,
     margin-right: 30px;
 }
 
+.navbar-custom-menu {
+    margin-right: 2.5%;
+}
+
 #role {
     font-family: Roboto;
     font-family: Roboto;
@@ -33,9 +37,8 @@ a :hover,
     font-weight: normal;
     font-size: 12px;
     line-height: 14px;
-    display: flex;
-    align-items: center;
     color: rgba(35, 67, 35, 0.5);
+    display: inline-block;
 }
 
 .hidden-xs {
@@ -56,10 +59,8 @@ a :hover,
     background: #F4F7F4;
     border-radius: 10px;
     /* Inside Auto Layout */
-    flex: none;
-    order: 1;
-    align-self: center;
     height: 44px;
+    display: inline-block;
 }
 
 mat-icon {
