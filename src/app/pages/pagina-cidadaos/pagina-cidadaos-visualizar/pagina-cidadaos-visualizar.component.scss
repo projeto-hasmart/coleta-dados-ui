@@ -2,13 +2,19 @@
     display: inline-block;
 }
 
+.box-default {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
 #labelNome {
     /* Cidadãos */
     display: inline-block;
     width: fit-content;
     height: 60px;
-    margin-left: 40px;
     margin-top: 10px;
+    margin-left: 10px;
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
@@ -55,8 +61,8 @@
     display: inline-block;
     width: fit-content;
     height: 19px;
-    margin-left: 40px;
     top: 10px;
+    margin-left: 10px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -69,11 +75,7 @@
 }
 
 table {
-    width: 100%;
-}
-
-#tabela {
-    left: 69px;
+    width: 98%;
 }
 
 #tabelaBox {
@@ -129,23 +131,18 @@ table {
 }
 
 #medicaoCard {
-    display: flex;
-    flex-direction: row;
     padding: 15px;
-    min-width: 523px;
     width: 100%;
     height: 185px;
-    left: 10px;
+    left: 1%;
     margin-top: 15px;
     background: #BEE3C8;
     border-radius: 3px;
 }
 
 #cardTitle {
-    position: absolute;
     width: 117px;
     height: 35px;
-    left: 125px;
     top: 15px;
     font-family: Roboto;
     font-style: normal;
@@ -157,16 +154,14 @@ table {
 
 #cardImg {
     position: absolute;
-    left: 22px;
-    top: 57px;
+    margin-left: 20%;
+    margin-top: 20%;
     /* 700 */
 }
 
 #ultimaMedicao {
-    position: absolute;
     width: 205px;
     height: 19px;
-    left: 0125px;
     top: 44px;
     font-family: Roboto;
     font-style: normal;
@@ -178,26 +173,16 @@ table {
 }
 
 #medicaoButton {
-    display: flex;
-    flex-direction: row;
+    position: relative;
     padding: 10px 16px;
-    position: absolute;
     width: 172px;
     height: 34px;
-    left: 336px;
-    top: 136px;
-    right: 15px;
-    bottom: 15px;
     /* 700 */
     background: #245E33;
     /* Button Shadow */
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
     /* Inside Auto Layout */
-    flex: none;
-    order: 2;
-    align-self: flex-end;
-    margin: 0px 10px;
 }
 
 #medicaoButtonLabel {
@@ -222,10 +207,8 @@ table {
 }
 
 #autorizacaoMedicao {
-    position: absolute;
     width: 400px;
     height: 38px;
-    left: 0115px;
     top: 73px;
     font-family: Roboto;
     font-style: normal;
@@ -234,55 +217,26 @@ table {
     line-height: 19px;
     color: #1F472A;
     /* Inside Auto Layout */
-    flex: none;
-    order: 1;
-    align-self: flex-start;
-    margin: 0px 10px;
 }
 
 #dispensacaoCard {
-    display: flex;
-    flex-direction: row;
     padding: 15px;
-    min-width: 523px;
     width: 100%;
     height: 185px;
-    margin-left: 25%;
     margin-top: 15px;
     background: #BEE3C8;
     border-radius: 3px;
-    @media (max-width: 1900px) {
-        margin-left: 20%;
-    }
-    @media (max-width: 1800px) {
-        margin-left: 15%;
-    }
-    @media (max-width: 1650px) {
-        margin-left: 10px;
-    }
 }
 
 #dispensacaoButton {
-    display: flex;
-    flex-direction: row;
-    padding: 10px 16px;
-    position: absolute;
+    position: relative;
     width: 172px;
     height: 34px;
-    left: 336px;
-    top: 136px;
-    right: 15px;
-    bottom: 15px;
     /* 700 */
     background: #245E33;
     /* Button Shadow */
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 2;
-    align-self: flex-end;
-    margin: 0px 10px;
 }
 
 #dispensacaoButtonLabel {
@@ -310,7 +264,7 @@ table {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 95%;
+    width: 98%;
     min-height: 253px;
     height: wrap-content;
     left: 0px;
@@ -320,23 +274,18 @@ table {
     /* Inside Auto Layout */
     flex: none;
     order: 0;
-    margin: 0px 40px;
 }
 
 #infoBox {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 95%;
+    width: 98%;
     left: 0px;
     top: 75px;
     background: #F2F2F2;
     border-radius: 4px;
     /* Inside Auto Layout */
-    flex: none;
-    order: 1;
-    align-self: center;
-    margin: 0px 40px;
 }
 
 #labelInformacoes {
@@ -364,15 +313,10 @@ table {
     min-height: 213px;
     height: wrap-content;
     margin-right: 10px;
-    margin-left: 10px;
     top: 0px;
     background: #FFFFFF;
     border-radius: 3px;
     /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    align-self: flex-start;
-    margin: 0px 10px;
 }
 
 #pessoaisLabel {
@@ -752,15 +696,10 @@ table {
     width: 100%;
     min-height: 127px;
     height: wrap-content;
-    margin-right: 10px;
     top: 10px;
     background: #FFFFFF;
     border-radius: 3px;
     /* Inside Auto Layout */
-    flex: none;
-    order: 1;
-    align-self: flex-start;
-    margin: 0px 10px;
 }
 
 #estaticasLabel {
@@ -963,25 +902,19 @@ table {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 95%;
+    width: 98%;
     min-height: 235px;
     height: wrap-content;
-    left: 30px;
     top: 100px;
     background: #F5F5F5;
     border-radius: 4px;
     /* Inside Auto Layout */
-    flex: none;
-    order: 2;
-    align-self: center;
-    margin: 0px 10px;
 }
 
 #medicaoTitleLabel {
     position: static;
     width: 100%;
     height: 30px;
-    left: 10px;
     top: 10px;
     font-family: Poppins;
     font-style: normal;
@@ -1000,7 +933,8 @@ table {
 }
 
 table {
-    width: 100%;
+    width: 99%;
+    margin-left: 10px;
 }
 
 .mat-table {
@@ -1373,17 +1307,6 @@ input {
     font-size: 14px;
 }
 
-// form {
-//     position: relative;
-// }
-// .container {
-//     flex-direction: column;
-//     float: left;
-//     width: 100%;
-// }
-// .col {
-//     float: left;
-// }
 @media (max-width: 768px) {
     .input-control {
         margin-left: 10px;

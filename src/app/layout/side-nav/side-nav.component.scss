@@ -1,5 +1,5 @@
 #menuLateral {
-    position: absolute;
+    position: fixed;
     left: 0%;
     right: 0%;
     top: 0%;
@@ -80,7 +80,7 @@ a :hover {
 
 li span {
     margin-left: 10%;
-    width: 100px;
+    width: 150px;
 }
 
 .sidebar-toggle {

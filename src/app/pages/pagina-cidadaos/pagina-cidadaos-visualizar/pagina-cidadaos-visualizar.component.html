@@ -7,29 +7,43 @@
 </section>
 <section class="content">
     <div class="container">
-        <div class="box box-solid box-default" id="box">
+        <div class="box box-default" id="box">
             <label id="autorizacoesLabel">Autorizações</label>
-            <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
-                <mat-card id="medicaoCard" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                    <img src="assets/dist/img/logo_maior.png" id="cardImg">
-                    <mat-card-title id="cardTitle">Medição</mat-card-title>
-                    <label id="ultimaMedicao">Última medição: {{data}}</label>
-                    <label id="autorizacaoMedicao">O paciente está autorizado a realizar uma medição de pressão arterial neste período.</label>
-                    <a routerLink="/medicao"><button mat-button id="medicaoButton">
-                <label id="medicaoButtonLabel">REALIZAR MEDIÇÃO</label></button></a>
-                </mat-card>
-
-                <mat-card id="dispensacaoCard" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                    <img src="assets/dist/img/check_maior.png" id="cardImg">
-                    <mat-card-title id="cardTitle">Dispensação</mat-card-title>
-                    <label id="ultimaMedicao">Última medição: {{data}}</label>
-                    <label id="autorizacaoMedicao">O paciente está autorizado a obter uma dispensação neste período.</label>
-                    <a routerLink="/dispensacao"> <button mat-button id="dispensacaoButton">
+            <div class="row">
+                <div class='col-sm-6'>
+                    <mat-card id="medicaoCard">
+                        <div class='row'>
+                            <div class="col-sm-3">
+                                <img src="assets/dist/img/logo_maior.png" id="cardImg">
+                            </div>
+                            <div class="col-sm-9">
+                                <mat-card-title id="cardTitle">Medição</mat-card-title>
+                                <label id="ultimaMedicao">Última medição: {{data}}</label>
+                                <label id="autorizacaoMedicao">O paciente está autorizado a realizar uma medição de pressão arterial neste período.</label>
+                                <a href="/medicao"><button mat-button id="medicaoButton" class="pull-right">
+                <label id="medicaoButtonLabel">REALIZAR MEDIÇÃO</label></button></a></div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class='col-sm-6'>
+                    <mat-card id="dispensacaoCard">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <img src="assets/dist/img/check_maior.png" id="cardImg">
+                            </div>
+                            <div class="col-sm-9">
+                                <mat-card-title id="cardTitle">Dispensação</mat-card-title>
+                                <label id="ultimaMedicao">Última medição: {{data}}</label>
+                                <label id="autorizacaoMedicao">O paciente está autorizado a obter uma dispensação neste período.</label>
+                                <a href="/dispensacao"> <button mat-button id="dispensacaoButton" class="pull-right">
                 <label id="dispensacaoButtonLabel">REALIZAR DISPENSAÇÃO</label></button></a>
-                </mat-card>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
             </div>
         </div>
-        <div class="box box-default collapsed-box" id="infoBox">
+        <div class="box box-default" id="infoBox">
             <div class="box-header with-border">
                 <h3 class="box-title" id="labelInformacoes" *ngIf="isCollapsed">Informações do cidadão
                 </h3>
@@ -74,9 +88,9 @@
                             </div>
                             <label id="informacoesPessoais">Aferições</label>
                             <label id="informacoesPessoais" style="font-size: 14px;">Pressão Arterial</label>
-                            <div id="tabela" style="width: 96%; margin-left: 2%;">
+                            <div id="tabela" style="width: 98%;">
                                 <!-- TABELA-->
-                                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 
                                     <!-- Checkbox Column -->
                                     <ng-container matColumnDef="select">
@@ -355,7 +369,7 @@
             </div>
         </div>
 
-        <div class="box box-solid box-default" id="medicaoBox">
+        <div class="box box-default" id="medicaoBox">
             <div>
 
                 <label id="medicaoTitleLabel">Registros
@@ -363,7 +377,7 @@
             </div>
             <div id="tabela">
                 <!-- TABELA-->
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 
                     <!-- Checkbox Column -->
                     <ng-container matColumnDef="select">

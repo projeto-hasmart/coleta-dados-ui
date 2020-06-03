@@ -30,7 +30,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./pagina-cidadaos-visualizar.component.scss']
 })
 export class PaginaCidadaosVisualizarComponent implements OnInit {
-
+  checked = false;
+  disabled = false;
   dispensacao = 1234567;
   isCollapsed = true;
   constructor() { }
