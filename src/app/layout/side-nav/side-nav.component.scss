@@ -19,7 +19,7 @@ li {
     /* identical to box height */
     display: flex;
     align-items: center;
-    color: grey;
+    color: #BBD3C1;
 }
 
 li :hover,
@@ -75,7 +75,11 @@ a :hover {
 }
 
 .active-list-item span {
-    color: #234323 !important;
+    color: #000000 !important;
+}
+
+.active-list-item img {
+    background-color: #234323 !important;
 }
 
 li span {

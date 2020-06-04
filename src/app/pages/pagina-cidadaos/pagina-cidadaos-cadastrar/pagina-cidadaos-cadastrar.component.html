@@ -7,7 +7,7 @@
         <div class="box box-solid box-default" id="boxInformacoes">
             <!--class="box box-solid box-default" id="boxInformacoes"-->
             <label id="informacoesPessoais">Informações pessoais</label>
-            <label id="obrigatorio">* Campos obrigatórios</label>
+            <label id="obrigatorio">*Campos obrigatórios</label>
             <div class="row">
                 <div class="col-sm-4">
                     <input type="text" placeholder="Nome Completo*" id="inputNome">
@@ -28,13 +28,13 @@
                     <div class="row" id="genero" style="margin-top: 1.5%;">
                         <label>Gênero*</label>
                     </div>
-                    <div class='row' id="genero" style="margin-top: 0.5%;">
+                    <div class='row' id="genero" style="margin-top: 0.5%; margin-left: -0.25%;">
                         <mat-radio-group>
                             <mat-radio-button class="example-radio-button" *ngFor="let gender of generos" [value]="genero">{{gender}}</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div class='row'>
-                        <input type='text' placeholder="Outro..." id="inputRg" style="width: 85%; margin-top: 1%;">
+                        <input type='text' placeholder="Outro..." id="inputCpf" style="width: 97%; margin-top: 1%;">
                     </div>
                 </div>
 
