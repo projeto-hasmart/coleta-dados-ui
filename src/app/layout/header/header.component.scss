@@ -41,7 +41,7 @@ a :hover,
     display: inline-block;
 }
 
-.hidden-xs {
+.hidden-md {
     font-family: Poppins;
     font-style: normal;
     font-weight: 500;
@@ -61,6 +61,7 @@ a :hover,
     /* Inside Auto Layout */
     height: 44px;
     display: inline-block;
+    width: 194px;
 }
 
 mat-icon {

@@ -12,7 +12,7 @@
             </div>
             <div class="form-group has-feedback">
                 <input class="form-control" placeholder="Senha" [type]="hide ? 'password' : 'text'" id="senhaLabel">
-                <span style="position:absolute; right:8px;top:15px;" *ngIf="!showPw"><mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></span>
+                <span style="position:absolute; right:8px;top:15px;"><mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></span>
             </div>
 
             <div id='checkboxRemember' style="margin-left: 10px;">

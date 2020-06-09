@@ -2,7 +2,6 @@
     position: absolute;
     width: 566px;
     height: 60px;
-    left: 52px;
     top: 77px;
     font-family: Poppins;
     font-style: normal;
@@ -19,7 +18,6 @@
     position: absolute;
     width: 715px;
     height: 19px;
-    left: 52px;
     top: 140px;
     font-family: Roboto;
     font-style: normal;
@@ -32,6 +30,14 @@
     color: rgba(0, 0, 0, 0.6);
 }
 
+.content-header {
+    margin-left: 2%;
+}
+
+.content {
+    margin-left: 1%;
+}
+
 .box-default {
     outline: none;
     box-shadow: none;
@@ -42,8 +48,7 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 98%;
-    left: 0px;
+    width: 99%;
     top: 125px;
     background: #F2F2F2;
     border-radius: 4px;
@@ -51,7 +56,6 @@
     flex: none;
     order: 1;
     align-self: center;
-    margin: 0px 20px;
 }
 
 #labelInformacoes {
@@ -235,7 +239,6 @@
 }
 
 #dataNascimentoLabel {
-    margin-left: 134px;
     width: 100%;
     margin-top: 10px;
     /* Overline */
@@ -246,16 +249,12 @@
     line-height: 14px;
     /* identical to box height */
     display: flex;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
 }
 
 #dataNascimentoResult {
-    margin-left: 134px;
     width: 100%;
     top: 55px;
     font-family: Roboto;
@@ -265,14 +264,10 @@
     line-height: 19px;
     /* identical to box height */
     display: flex;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
     color: #000000;
 }
 
 #complementoLabel {
-    margin-left: 134px;
     width: 100%;
     top: 84px;
     /* Overline */
@@ -283,16 +278,12 @@
     line-height: 14px;
     /* identical to box height */
     display: flex;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
 }
 
 #complementoResult {
-    margin-left: 134px;
     width: 100%;
     top: 98px;
     /* Body 1 */
@@ -303,14 +294,10 @@
     line-height: 19px;
     /* identical to box height */
     display: flex;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
     color: #000000;
 }
 
 #estadoLabel {
-    margin-left: 134px;
     width: 100%;
     top: 127px;
     /* Overline */
@@ -321,16 +308,12 @@
     line-height: 14px;
     /* identical to box height */
     display: flex;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
 }
 
 #estadoResult {
-    margin-left: 134px;
     width: 100%;
     top: 141px;
     font-family: Roboto;
@@ -341,13 +324,9 @@
     /* identical to box height */
     display: flex;
     color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #cpfLabel {
-    margin-left: 134px;
     width: 100%;
     margin-top: 10px;
     /* Overline */
@@ -361,13 +340,9 @@
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #cpfResult {
-    margin-left: 134px;
     width: 100%;
     top: 55px;
     font-family: Roboto;
@@ -378,13 +353,9 @@
     /* identical to box height */
     display: flex;
     color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #rgLabel {
-    margin-left: 134px;
     width: 100%;
     top: 84px;
     /* Overline */
@@ -398,13 +369,9 @@
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #rgResult {
-    margin-left: 134px;
     width: 100%;
     top: 98px;
     font-family: Roboto;
@@ -415,13 +382,9 @@
     /* identical to box height */
     display: flex;
     color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #generoLabel {
-    margin-left: 134px;
     width: 100%;
     top: 127px;
     /* Overline */
@@ -435,13 +398,9 @@
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #generoResult {
-    margin-left: 134px;
     width: 100%;
     top: 141px;
     font-family: Roboto;
@@ -452,9 +411,6 @@
     /* identical to box height */
     display: flex;
     color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #infoBoxEstaticas {
@@ -558,7 +514,6 @@
 }
 
 #diabetesLabel {
-    margin-left: 134px;
     margin-top: 10px;
     /* Overline */
     font-family: Roboto;
@@ -572,13 +527,9 @@
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #diabetesResult {
-    margin-left: 134px;
     top: 55px;
     font-family: Roboto;
     font-style: normal;
@@ -589,13 +540,9 @@
     display: flex;
     align-items: center;
     color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #avcLabel {
-    margin-left: 134px;
     top: 84px;
     /* Overline */
     font-family: Roboto;
@@ -609,13 +556,9 @@
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #avcResult {
-    margin-left: 134px;
     top: 98px;
     /* Body 1 */
     font-family: Roboto;
@@ -627,13 +570,9 @@
     display: flex;
     align-items: center;
     color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #fumanteLabel {
-    margin-left: 134px;
     margin-top: 10px;
     /* Overline */
     font-family: Roboto;
@@ -647,13 +586,9 @@
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #fumanteResult {
-    margin-left: 134px;
     top: 55px;
     font-family: Roboto;
     font-style: normal;
@@ -664,16 +599,13 @@
     display: flex;
     align-items: center;
     color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #medicaoBox {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 98%;
+    width: 99%;
     height: wrap-content;
     top: 150px;
     background: #F5F5F5;
@@ -682,7 +614,6 @@
     flex: none;
     order: 2;
     align-self: center;
-    margin: 0px 20px;
 }
 
 #medicaoTitleLabel {

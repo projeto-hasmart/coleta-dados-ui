@@ -22,8 +22,8 @@
             <div class="box-body">
                 <div class="box box-default" id="infoBoxPessoal">
                     <label id="pessoaisLabel">Pessoais</label>
-                    <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                    <div class="row">
+                        <div class="col-sm-4">
                             <label id="nomeLabel">NOME</label>
                             <label id="nomeResult">{{nome}}</label>
                             <label id="enderecoLabel">ENDEREÇO</label>
@@ -33,7 +33,7 @@
                             <label id="telefoneLabel">TELEFONE</label>
                             <label id="telefoneResult">{{telefone}}</label>
                         </div>
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                        <div class="col-sm-4">
                             <label id="dataNascimentoLabel">DATA DE NASCIMENTO</label>
                             <label id="dataNascimentoResult">{{dataNascimento}}</label>
                             <label id="complementoLabel">COMPLEMENTO</label>
@@ -41,7 +41,7 @@
                             <label id="estadoLabel">ESTADO</label>
                             <label id="estadoResult">{{estado}}</label>
                         </div>
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                        <div class="col-sm-4">
                             <label id="cpfLabel">CPF</label>
                             <label id="cpfResult">{{cpf}}</label>
                             <label id="rgLabel">RG</label>
@@ -54,20 +54,20 @@
                 <div class="box box-default" id="infoBoxEstaticas">
 
                     <label id="estaticasLabel">Estáticas</label>
-                    <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                    <div class="row">
+                        <div class="col-sm-4">
                             <label id="alturaLabel">ALTURA</label>
                             <label id="alturaResult">{{altura}}</label>
                             <label id="antiHipertensivoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
                             <label id="antiHipertensivoResult">{{antiHipertensivo}}</label>
                         </div>
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                        <div class="col-sm-4">
                             <label id="diabetesLabel">DIABETES</label>
                             <label id="diabetesResult">{{diabetes}}</label>
                             <label id="avcLabel">HISTÓRICO DE AVC</label>
                             <label id="avcResult">{{avc}}</label>
                         </div>
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                        <div class="col-sm-4">
                             <label id="fumanteLabel">FUMANTE</label>
                             <label id="fumanteResult">{{fumante}}</label>
                         </div>
