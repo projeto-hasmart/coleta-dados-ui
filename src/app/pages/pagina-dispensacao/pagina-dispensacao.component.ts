@@ -43,22 +43,36 @@ dispensacaoId = 1234567890;
   displayedColumns: string[] = ['select',  'sistolica', 'diastolica'];
   dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
+  selections = new SelectionModel<PeriodicElement>(true, []);
+
   addNew() {
     this.ELEMENT_DATA.push({position: 2, name: 'Mateus', weight: 75, symbol: 'm'});
     console.log(this.ELEMENT_DATA);
   }
+  /** Whether the number of selected elements matches the total number of rows. */
+
+
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
-
+  isAllSelecteds() {
+    const numSelected = this.selections.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
         this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+  masterToggles() {
+    this.isAllSelecteds() ?
+        this.selections.clear() :
+        this.dataSource.data.forEach(row => this.selections.select(row));
   }
 
   /** The label for the checkbox on the passed row */
@@ -67,6 +81,12 @@ dispensacaoId = 1234567890;
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+  checkboxLabels(row?: PeriodicElement): string {
+    if (!row) {
+      return `${this.isAllSelecteds() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selections.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 
   onKey(event: any) { // without type info
