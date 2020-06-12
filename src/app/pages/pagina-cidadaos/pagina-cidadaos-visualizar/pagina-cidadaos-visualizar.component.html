@@ -45,13 +45,13 @@
         </div>
         <div class="box box-default" id="infoBox">
             <div class="box-header with-border">
-                <h3 class="box-title" id="labelInformacoes" *ngIf="isCollapsed">Informações do cidadão
+                <h3 class="box-title" id="labelInformacoes" *ngIf="!isCollapsed">Informações do Cidadão
                 </h3>
-                <h3 class="box-title" id="labelInformacoes" *ngIf="!isCollapsed">Informações
+                <h3 class="box-title" id="labelInformacoes" *ngIf="isCollapsed">Informações
                 </h3>
                 <div class="box-tools pull-right">
 
-                    <button mat-icon-button data-toggle="modal" data-target="#editarCidadao" *ngIf="!isCollapsed"><mat-icon aria-hidden="false">edit</mat-icon></button>
+                    <button mat-icon-button data-toggle="modal" data-target="#editarCidadao" *ngIf="isCollapsed"><mat-icon aria-hidden="false">edit</mat-icon></button>
                     <button class="btn btn-box-tool" data-widget="collapse" (click)="isCollapsed = !isCollapsed"><i class="fa fa-angle-down"></i></button>
                 </div>
             </div>
@@ -61,24 +61,24 @@
                     <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title" id="titleModal">VISUALIZAR MEDIÇÃO</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="titleModal">VISUALIZAR MEDIÇÃO <button type="button" class="close pull-right" data-dismiss="modal" style="top: 15px; right: 5px">&times;</button></h4>
+
                         </div>
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <label id="informacoesPessoais">Informações</label>
-                            <div class="container" style="width: 96%; margin-left: 2%;">
+                            <label id="informacoesPessoais" style="top: -15px;">Informações</label>
+                            <div class="container" style="width: 97.5%; margin-left: 1%;">
 
                                 <!-- class='row'-->
-                                <div class='row' style="background-color: white; border-radius: 20px;">
-                                    <div class="col-md-6" style="margin-top: 2%;">
+                                <div class='row' style="background-color: white; border-radius: 4px;">
+                                    <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
                                         <label id="dataRealizacaoLabel">DATA DE REALIZAÇÃO</label>
                                         <label id="dataRealizacaoResult">{{data}}</label>
                                         <label id="servicoLabel">SERVIÇO</label>
                                         <label id="servicoResult">{{nome}}</label>
                                     </div>
-                                    <div class="col-md-6" style="margin-top: 2%;">
+                                    <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
                                         <label id="responsavelLabel">RESPONSÁVEL</label>
                                         <label id="responsavelResult">{{nome}}</label>
 
@@ -138,7 +138,7 @@
                             <div>
                                 <label id="informacoesPessoais">Peso</label>
 
-                                <input type="text" class="input-control" placeholder="Peso" id="inputNascimento" style="margin-left: 2%; width: 96%;">
+                                <input type="text" class="input-control" placeholder="Peso" id="inputNascimento" style="margin-left: 1%; width: 97.5%; margin-top: 10px; margin-bottom: 10px;">
                             </div>
                         </div>
                     </div>
@@ -151,24 +151,24 @@
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title" id="titleModal">VISUALIZAR DISPENSAÇÃO</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="titleModal">VISUALIZAR DISPENSAÇÃO<button type="button" class="close pull-right" data-dismiss="modal">&times;</button></h4>
+
                         </div>
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <label id="informacoesPessoais">Informações</label>
-                            <div class="container" style="width: 96%; margin-left: 2%;">
+                            <label id="informacoesPessoais" style="top: -15px">Informações</label>
+                            <div class="container" style="width: 97.5%; margin-left: 1%;">
 
                                 <!-- class='row'-->
-                                <div class='row' style="background-color: white; border-radius: 20px;">
-                                    <div class="col-md-6" style="margin-top: 2%;">
+                                <div class='row' style="background-color: white; border-radius: 4px;">
+                                    <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
                                         <label id="dataRealizacaoLabel">DATA DE REALIZAÇÃO</label>
                                         <label id="dataRealizacaoResult">{{data}}</label>
                                         <label id="servicoLabel">SERVIÇO</label>
                                         <label id="servicoResult">{{nome}}</label>
                                     </div>
-                                    <div class="col-md-6" style="margin-top: 2%;">
+                                    <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
                                         <label id="responsavelLabel">RESPONSÁVEL</label>
                                         <label id="responsavelResult">{{nome}}</label>
                                         <label id="codigoDispLabel">CÓDIGO</label>
@@ -179,9 +179,9 @@
                             </div>
                             <label id="informacoesPessoais">Aferições</label>
                             <label id="informacoesPessoais" style="font-size: 14px;">Pressão Arterial</label>
-                            <div id="tabela" style="width: 96%; margin-left: 2%;">
+                            <div id="tabela" style="width: 98%;">
                                 <!-- TABELA-->
-                                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 
                                     <!-- Checkbox Column -->
                                     <ng-container matColumnDef="select">
@@ -229,7 +229,7 @@
                             <div>
                                 <label id="informacoesPessoais">Peso</label>
 
-                                <input type="text" class="input-control" placeholder="Peso" id="inputNascimento" style="margin-left: 2%; width: 96%;">
+                                <input type="text" class="input-control" placeholder="Peso" id="inputNascimento" style="margin-left: 1%; width: 97.5%; margin-top: 10px; margin-bottom: 10px;">
                             </div>
                         </div>
                     </div>
@@ -313,7 +313,7 @@
 
             <!-- /.box-header -->
             <div class="box-body">
-                <div class="box box-solid box-default" id="infoBoxPessoal">
+                <div class="box box-default" id="infoBoxPessoal">
                     <label id="pessoaisLabel">Pessoais</label>
                     <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
                         <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
@@ -344,7 +344,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="box box-solid box-default" id="infoBoxEstaticas">
+                <div class="box box-default" id="infoBoxEstaticas">
 
                     <label id="estaticasLabel">Estáticas</label>
                     <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
@@ -377,7 +377,7 @@
             </div>
             <div id="tabela">
                 <!-- TABELA-->
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
 
                     <!-- Checkbox Column -->
                     <ng-container matColumnDef="select">

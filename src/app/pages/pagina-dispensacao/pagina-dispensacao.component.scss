@@ -914,6 +914,13 @@ table {
     line-height: 30px;
     /* identical to box height */
     color: #000000;
+    outline: none;
+    border: none;
+}
+
+.modal-header {
+    border: none;
+    outline: none;
 }
 
 #dispensacaoId {
@@ -930,6 +937,8 @@ table {
     line-height: 108px;
     color: black;
     text-align: center;
+    padding: 15px;
+    margin-bottom: 25px;
 }
 
 #passoum {

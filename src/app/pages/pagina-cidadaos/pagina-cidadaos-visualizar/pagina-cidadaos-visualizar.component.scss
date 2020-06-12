@@ -2,6 +2,22 @@
     display: inline-block;
 }
 
+.content-header {
+    margin-left: 2%;
+}
+
+.content {
+    margin-left: 1%;
+}
+
+.content-header {
+    top: 5%;
+}
+
+.container {
+    width: 100%;
+}
+
 .box-default {
     outline: none;
     box-shadow: none;
@@ -14,7 +30,6 @@
     width: fit-content;
     height: 60px;
     margin-top: 10px;
-    margin-left: 10px;
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
@@ -62,7 +77,6 @@
     width: fit-content;
     height: 19px;
     top: 10px;
-    margin-left: 10px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -75,7 +89,8 @@
 }
 
 table {
-    width: 98%;
+    width: 97.5%;
+    margin-bottom: 10px;
 }
 
 #tabelaBox {
@@ -264,7 +279,7 @@ table {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 98%;
+    width: 99%;
     min-height: 253px;
     height: wrap-content;
     left: 0px;
@@ -280,7 +295,7 @@ table {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 98%;
+    width: 99%;
     left: 0px;
     top: 75px;
     background: #F2F2F2;
@@ -902,7 +917,7 @@ table {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 98%;
+    width: 99%;
     min-height: 235px;
     height: wrap-content;
     top: 100px;
@@ -961,15 +976,10 @@ th.mat-header-cell {
     left: 5%;
 }
 
-.container {
-    width: 100%;
-}
-
 #informacoesPessoais {
     position: relative;
     width: 223px;
     height: 30px;
-    left: 10px;
     top: 0px;
     font-family: Poppins;
     font-style: normal;
@@ -1335,6 +1345,7 @@ input {
     font-weight: 600;
     font-size: 20px;
     line-height: 30px;
+    margin-left: 1%;
     /* identical to box height */
     text-transform: uppercase;
     font-feature-settings: 'case' on;
