@@ -1,80 +1,200 @@
 <section class="content-header">
-    <label id="medicaoPressaoTitleLabel">Medição de Pressão Arterial</label>
-    <label id="medicaoPressaoTitleLabel2">Realize a medição, preencha os campos com os resultados e confirme utilizando a leitura biométrica</label>
     <div>
-        <!-- [(ngModel)]="modelName" multiple vertical="false"-->
-        <mat-button-toggle-group id="cpfrgtoggle">
-            <mat-button-toggle value="cpf" id="togglebutton">
-                CPF
-            </mat-button-toggle>
-            <mat-button-toggle value="rg" id="togglebutton">
-                RG
-            </mat-button-toggle>
-        </mat-button-toggle-group>
-
-        <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox">
-        <button type="submit" class="searchButton" id="searchButton">
-                <i class="fa fa-search"></i>
-              </button>
-
+        <label id="medicaoPressaoTitleLabel">Medição de Pressão Arterial</label>
+        <label id="medicaoPressaoTitleLabel2">Realize a medição, preencha os campos com os resultados e confirme utilizando a leitura biométrica</label>
     </div>
+
 </section>
 <section class="content">
-    <div class="box box-default collapsed-box" id="infoBox">
-        <div class="box-header with-border">
-            <h3 class="box-title" id="labelInformacoes">Informações</h3>
-            <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-            </div>
-            <!-- /.box-tools -->
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-            <div class="box box-solid box-default" id="infoBoxPessoal">
-                <label id="pessoaisLabel">Pessoais</label>
-                <label id="nomeLabel">NOME</label>
-                <label id="nomeResult">{{nome}}</label>
-                <label id="enderecoLabel">ENDEREÇO</label>
-                <label id="enderecoResult">{{endereco}}</label>
-                <label id="cidadeLabel">CIDADE</label>
-                <label id="cidadeResult">{{cidade}}</label>
-                <label id="telefoneLabel">TELEFONE</label>
-                <label id="telefoneResult">{{telefone}}</label>
-                <label id="dataNascimentoLabel">DATA DE NASCIMENTO</label>
-                <label id="dataNascimentoResult">{{dataNascimento}}</label>
-                <label id="complementoLabel">COMPLEMENTO</label>
-                <label id="complementoResult">{{complemento}}</label>
-                <label id="estadoLabel">ESTADO</label>
-                <label id="estadoResult">{{estado}}</label>
-                <label id="cpfLabel">CPF</label>
-                <label id="cpfResult">{{cpf}}</label>
-                <label id="rgLabel">RG</label>
-                <label id="rgResult">{{rg}}</label>
-                <label id="generoLabel">GÊNERO</label>
-                <label id="generoResult">{{genero}}</label>
-            </div>
-            <div class="box box-solid box-default" id="infoBoxEstaticas">
-                <label id="estaticasLabel">Estáticas</label>
-                <label id="alturaLabel">ALTURA</label>
-                <label id="alturaResult">{{altura}}</label>
-                <label id="antiHipertensivoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
-                <label id="antiHipertensivoResult">{{antiHipertensivo}}</label>
-                <label id="diabetesLabel">DIABETES</label>
-                <label id="diabetesResult">{{diabetes}}</label>
-                <label id="avcLabel">HISTÓRICO DE AVC</label>
-                <label id="avcResult">{{avc}}</label>
-                <label id="fumanteLabel">FUMANTE</label>
-                <label id="fumanteResult">{{fumante}}</label>
-            </div>
-        </div>
-    </div>
+    <div class="container">
 
-    <div class="box box-solid box-default" id="medicaoBox">
-        <label id="medicaoTitleLabel">Medição</label>
-        <label id="camposObrigatoriosLabel">*Campos obrigatórios</label>
-        <input type="text" class="form-control input-sm" placeholder="Pressão Sistólica*" id="sistolicaInput">
-        <input type="text" class="form-control input-sm" placeholder="Pressão Diastólica*" id="diastolicaInput">
-        <input type="text" class="form-control input-sm" placeholder="Peso" id="pesoInput">
+        <a href="/cidadaos/visualizar" class="pull-right">
+            <button mat-button id="retornoCidadaoButton" class="pull-right"><label id="retornoCidadaoButtonLabel">RETORNAR AO PERFIL DO CIDADÃO</label></button></a>
+        <div class="box box-default" id="infoBox">
+            <div class="box-header with-border">
+                <h3 class="box-title" id="labelInformacoes">Informações Pessoais</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-down"></i></button>
+                </div>
+                <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="box  box-default" id="infoBoxPessoal">
+                    <label id="pessoaisLabel">Pessoais</label>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label id="nomeLabel">NOME</label>
+                            <label id="nomeResult">{{nome}}</label>
+                            <label id="enderecoLabel">ENDEREÇO</label>
+                            <label id="enderecoResult">{{endereco}}</label>
+                            <label id="cidadeLabel">CIDADE</label>
+                            <label id="cidadeResult">{{cidade}}</label>
+                            <label id="telefoneLabel">TELEFONE</label>
+                            <label id="telefoneResult">{{telefone}}</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label id="dataNascimentoLabel">DATA DE NASCIMENTO</label>
+                            <label id="dataNascimentoResult">{{dataNascimento}}</label>
+                            <label id="complementoLabel">COMPLEMENTO</label>
+                            <label id="complementoResult">{{complemento}}</label>
+                            <label id="estadoLabel">ESTADO</label>
+                            <label id="estadoResult">{{estado}}</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label id="cpfLabel">CPF</label>
+                            <label id="cpfResult">{{cpf}}</label>
+                            <label id="rgLabel">RG</label>
+                            <label id="rgResult">{{rg}}</label>
+                            <label id="generoLabel">GÊNERO</label>
+                            <label id="generoResult">{{genero}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-default" id="infoBoxEstaticas">
+
+                    <label id="estaticasLabel">Estáticas</label>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label id="alturaLabel">ALTURA</label>
+                            <label id="alturaResult">{{altura}}</label>
+                            <label id="antiHipertensivoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
+                            <label id="antiHipertensivoResult">{{antiHipertensivo}}</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label id="diabetesLabel">DIABETES</label>
+                            <label id="diabetesResult">{{diabetes}}</label>
+                            <label id="avcLabel">HISTÓRICO DE AVC</label>
+                            <label id="avcResult">{{avc}}</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label id="fumanteLabel">FUMANTE</label>
+                            <label id="fumanteResult">{{fumante}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- The Modal -->
+        <div class="modal fade" id="excluirmedicao">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="titleModal">Excluir Aferição</h4>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <label id="modalText">Tem certeza que deseja excluir este aferição?</label>
+                        <button mat-button id="naobutton" data-dismiss="modal"><label id="naolabel">NÃO</label></button>
+                        <button mat-button id="simbutton" (click)="excluirAfericao()" data-dismiss="modal"><label id="simlabel">SIM</label></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box box-default" id="medicaoBox">
+            <div class="box-header">
+                <h3 class="box-title" id="labelInformacoes">Aferições</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-down"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div id="passoum">
+                    <div id="titlesTables">
+                        <label id="numero">1</label>
+                        <label id="medicaoTitleLabel">Realize a aferição do braço direito</label>
+                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right" style="margin-top: 70px;"><mat-icon>delete</mat-icon></button>
+                    </div>
+                    <div id="tabela">
+                        <!-- TABELA-->
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+                            <!-- Checkbox Column -->
+                            <ng-container matColumnDef="select">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                                    </mat-checkbox>
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+
+                            <!-- sistolica Column -->
+                            <ng-container matColumnDef="sistolica">
+                                <th mat-header-cell *matHeaderCellDef> Pressão Sistólica </th>
+                                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                            </ng-container>
+
+                            <!-- diastolica Column -->
+                            <ng-container matColumnDef="diastolica">
+                                <th mat-header-cell *matHeaderCellDef> Pressão diastólica </th>
+                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                            </tr>
+                        </table>
+                        <button id="novaAfericao"><mat-icon id="iconplus">add</mat-icon><label id="afericaobuttonlabel">Nova aferição</label></button>
+                    </div>
+                </div>
+                <div id="passodois">
+                    <div id="titlesTables">
+                        <label id="numero">2</label>
+                        <label id="medicaoTitleLabel">Realize a aferição do braço esquerdo</label>
+                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right" style="margin-top: 280px;"><mat-icon>delete</mat-icon></button>
+                    </div>
+                    <div id="tabela">
+                        <!-- TABELA-->
+                        <table mat-table [dataSource]="dataSourced" class="mat-elevation-z1">
+
+                            <!-- Checkbox Column -->
+                            <ng-container matColumnDef="select">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <mat-checkbox (change)="$event ? masterToggles() : null" [checked]="selections.hasValue() && isAllSelecteds()" [indeterminate]="selections.hasValue() && !isAllSelecteds()" [aria-label]="checkboxLabels()">
+                                    </mat-checkbox>
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selections.toggle(row) : null" [checked]="selections.isSelected(row)" [aria-label]="checkboxLabels(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+
+                            <!-- sistolica Column -->
+                            <ng-container matColumnDef="sistolica">
+                                <th mat-header-cell *matHeaderCellDef> Pressão Sistólica </th>
+                                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                            </ng-container>
+
+                            <!-- diastolica Column -->
+                            <ng-container matColumnDef="diastolica">
+                                <th mat-header-cell *matHeaderCellDef> Pressão diastólica </th>
+                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                            </tr>
+                        </table>
+                        <button id="novaAfericao"><mat-icon id="iconplus">add</mat-icon><label id="afericaobuttonlabel">Nova aferição</label></button>
+                    </div>
+                </div>
+                <div id="passotres">
+                    <div id="titlesTables">
+                        <label id="numero">3</label>
+                        <label id="medicaoTitleLabel">Realize a aferição do peso</label>
+                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right" style="margin-top: 480px;"><mat-icon>delete</mat-icon></button>
+                    </div>
+                    <input type="text" class="input-control" placeholder="Peso" id="pesoinput" ng-model="peso" (keyup)="onKey($event)">
+
+                </div>
+            </div>
+        </div>
+        <a routerLink="/medicao/sucesso">
+            <button mat-button id="finalizarButton" *ngIf=peso><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button></a>
+        <button mat-button id="finalizarButtonBlocked" *ngIf=!peso><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button>
     </div>
-    <button mat-button id="novaMedicaoButton"><label id="novaMedicaoButtonLabel">SUBMETER MEDIÇÃO</label></button>
 </section>

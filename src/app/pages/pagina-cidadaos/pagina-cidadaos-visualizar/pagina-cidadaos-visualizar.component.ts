@@ -1,3 +1,5 @@
+import { element } from 'protractor';
+
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -8,7 +10,14 @@ export interface PeriodicElement {
   weight: number;
   symbol: string;
 }
-
+interface Diabetes {
+  value: string;
+  viewValue: string;
+}
+interface Fumante {
+  value: string;
+  viewValue: string;
+}
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
@@ -21,12 +30,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./pagina-cidadaos-visualizar.component.scss']
 })
 export class PaginaCidadaosVisualizarComponent implements OnInit {
+  checked = false;
+  disabled = false;
+  dispensacao = 1234567;
+  isCollapsed = true;
   constructor() { }
-  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
   /* declarando um nome pro property binding do nome dinâmico */
-  nome = 'Mateus Palácio';
+  nome = 'Mateus Palácio testando outro component';
   cpf = '07183864127';
   data = '17/03/2020';
   rg = '20075719122';
@@ -42,6 +55,16 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   diabetes = 'Não';
   avc = 'Não';
   fumante = 'Não';
+  color = 'green';
+  diabetess: Diabetes[] = [
+    {value: 'tipo-1', viewValue: 'Tipo 1'},
+    {value: 'tipo-2', viewValue: 'Tipo 2'},
+    {value: 'tipo-3', viewValue: 'Tipo 3'}
+  ];
+  fumantes: Fumante[] = [
+    {value: 'naofumante', viewValue: 'Não fumante'},
+    {value: 'fumante', viewValue: 'Fumante'}
+  ];
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -63,6 +86,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
+
 
   ngOnInit() {
   }

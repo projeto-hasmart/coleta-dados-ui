@@ -1,0 +1,32 @@
+#title {
+    margin-top: 3%;
+    margin-left: 2%;
+    h1 {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 60px;
+        /* identical to box height */
+        display: flex;
+        align-items: center;
+        color: #000000;
+    }
+    h4 {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        /* identical to box height */
+        display: flex;
+        align-items: center;
+        color: rgba(0, 0, 0, 0.6);
+    }
+}
+
+mat-table {
+    width: 50%;
+    margin-left: 25%;
+    background-color: #F2F2F2;
+}

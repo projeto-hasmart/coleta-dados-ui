@@ -1,190 +1,170 @@
-#labelCidadaos{
-  /* Cidadãos */
-
-
-  position: relative;
-  width: 576px;
-  height: 60px;
-  left: 30px;
-  top: 57px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 40px;
-  line-height: 60px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: #000000;
+#labelCidadaos {
+    position: absolute;
+    width: 576px;
+    height: 60px;
+    top: 77px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 60px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
 }
-#labelVisualize{
-    /* Visualize e busque cidadãos cadastrados no sistema */
 
-    position: relative;
+#labelVisualize {
+    position: absolute;
     width: 706px;
     height: 19px;
-    left: 30px;
-    top: 40px;
-
+    top: 150px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 19px;
     /* identical to box height */
-
     display: flex;
     align-items: center;
-
     color: rgba(0, 0, 0, 0.6);
 }
-#novoCidadaoButton{
-  display: flex;
-flex-direction: row;
-padding: 8px 15px;
 
-position: absolute;
-width: 143px;
-height: 30px;
-left: 1057px;
-top: 182px;
-
-/* 700 */
-
-background: #245E33;
-/* Button Dropshadow */
-
-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
-border-radius: 4px;
-}
-#novoCidadaoImg{
-  position: relative;
-  bottom:11px;
-
-/* Inside Auto Layout */
-
-margin: 8px 0px;
-}
-#novoCidadaoLabel{
-  position: relative;
-width: 87px;
-height: 14px;
-left: 8px;
-bottom: 11px;
-
-font-family: Roboto;
-font-style: normal;
-font-weight: 500;
-font-size: 12px;
-line-height: 14px;
-/* identical to box height */
-
-text-transform: uppercase;
-
-color: #FFFFFF;
-
-
-/* Inside Auto Layout */
-
-flex: none;
-order: 1;
-align-self: center;
-margin: 8px 0px;
-}
-#cpfrgtoggle {
+#novoCidadaoButton {
     position: absolute;
-    left: 320px;
-    top: 181px;
+    display: flex;
+    padding: 10px 16px;
+    width: 143px;
+    height: 34px;
+    right: 2.5%;
+    margin-top: -45px;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
 
+#novoCidadaoImg {
+    position: relative;
+    bottom: 11px;
+    /* Inside Auto Layout */
+    margin: 8px 0px;
+}
+
+#novoCidadaoLabel {
+    position: relative;
+    width: 87px;
+    height: 14px;
+    left: 8px;
+    bottom: 11px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+    margin: 8px 0px;
+}
+
+.content,
+.content-header {
+    margin-left: 2%;
+}
+
+.content {
+    margin-top: 8%;
+}
+
+//cpfrgtoggle
+#cpfrgtoggle {
     border: 1px solid #dfdfdf;
-  }
-  #togglebutton {
+    width: 96px;
+    margin-right: 16px;
+    display: inline-block;
+    top: 20px;
+}
+
+#togglebutton {
     background-color: white;
     color: black;
-  }
-  // search bar
-  #searchBox {
-    position: absolute;
-    left: 416px;
-    top: 181px;
+    display: inline-block;
+}
+
+.search-bar {
+    display: inline-block;
+}
+
+// search bar
+#searchBox {
     background: #ffffff;
-    border: 1px solid white;
+    border: 1px solid #DFDFDF;
     box-sizing: border-box;
     border-radius: 3px;
     height: 50px;
     width: 328px;
     font-family: "Roboto";
-  }
-  .search {
-    width: 100%;
-    position: relative;
-    display: flex;
-  }
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.6);
+}
 
-  .searchTerm {
+#searchboxtoggle {
+    @media (max-width: 768px) {
+        margin-left: 5%;
+    }
+    @media (max-width: 1050px) {
+        margin-left: 15%;
+    }
+    @media (max-width: 1300px) {
+        margin-left: 15%;
+    }
+    @media (max-width: 1500px) {
+        margin-left: 25%;
+    }
+    margin-left: 35%;
+}
+
+.searchTerm {
     width: 100%;
-    border: 3px solid #00b4cc;
     border-right: none;
     padding: 5px;
     height: 20px;
-    border-radius: 5px 0 0 5px;
-    outline: none;
     color: #9dbfaf;
-  }
+}
 
-  .searchTerm:focus {
-    color: #00b4cc;
-  }
+.searchTerm :focus {
+    border: 1px solid #828282;
+}
 
-  .searchButton {
+.searchButton {
     width: 40px;
-    height: 36px;
-    border: 1px solid white;
-    background: white;
+    height: 40px;
+    border: none;
+    border-style: none;
+    background: none;
     text-align: center;
     color: grey;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
-  }
-  #searchButton {
-    position: absolute;
-    left: 739px;
-    top: 181px;
     box-sizing: border-box;
     border-radius: 3px;
     height: 50px;
-  }
-  table {
-    width: 100%;
+    margin-top: 1px;
+    margin-left: -40px;
+}
 
-  }
-  #tabela{
+table {
+    width: 98%;
+}
+
+#tabela {
     left: 322px;
-    padding-top: 111px;
-  }
-  // #id{
-  //   display: flex;
-  //   flex-direction: column;
-  //   padding: 10px;
-
-  //   position: static;
-  //   width: 1128px;
-  //   height: 253px;
-  //   left: 0px;
-  //   top: 0px;
-
-  //   background: #F2F2F2;
-  //   border-radius: 4px;
-
-  //   /* Inside Auto Layout */
-
-  //   flex: none;
-  //   order: 0;
-  //   align-self: center;
-  //   margin: 0px 40px;
-
-  // }
+    margin-top: 20px;
+}

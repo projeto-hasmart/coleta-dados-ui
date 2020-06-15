@@ -1,95 +1,88 @@
 #menuLateral {
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-
-  background: #f4f7f4;
+    position: fixed;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: #F4F7F4;
+    height: 100%;
 }
-#logolateral {
-  position: absolute;
-  left: 38.18%;
-  right: 37.78%;
-  top: 14.5%;
 
-  /* Cor Marca 1 */
+li {
+    margin-left: 2px;
+    margin-top: 8px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #BBD3C1;
 }
-#inicio {
-  position: absolute;
-  width: 54px;
-  height: 30px;
-  padding-left: 0px;
-  top: 249px;
 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  /* Preto */
-
-  color: #1a1919;
+li :hover,
+span :hover,
+.main-sidebar li :hover {
+    background-color: #BEE3C8;
+    color: #37804B;
 }
-#cidadaos {
-  position: absolute;
-  width: 98px;
-  height: 30px;
-  padding-left: 0px;
-  top: 312px;
 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: #234323;
+a :hover {
+    background-color: transparent;
 }
-#medicao {
-  position: absolute;
-  width: 87px;
-  height: 30px;
-  padding-left: 0px;
-  top: 372px;
 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: #234323;
+#suporteDiv {
+    position: absolute;
+    bottom: 25px;
+    left: 20%;
+    width: 40%;
 }
-#dispensacao {
-  position: absolute;
-  width: 131px;
-  height: 30px;
-  padding-left: 0px;
-  top: 432px;
 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
+#suporteButton {
+    background-color: #37804B;
+    width: 129px;
+    border-radius: 25px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    /* identical to box height */
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    align-self: center;
+    left: 8px;
+    outline: none;
+    border: none;
+}
 
-  display: flex;
-  align-items: center;
+#suporteButtonPequeno {
+    background-color: none;
+    border: none;
+    border-radius: 45px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    /* identical to box height */
+    color: #37804B;
+    /* Inside Auto Layout */
+    align-self: center;
+    left: 8px;
+}
 
-  color: #234323;
+.active-list-item span {
+    color: #000000 !important;
+}
+
+li span {
+    margin-left: 10%;
+    width: 150px;
+}
+
+.sidebar-toggle {
+    width: 180px;
 }

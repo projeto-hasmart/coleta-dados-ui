@@ -1,76 +1,96 @@
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <!-- Left side column. contains the sidebar -->
 <aside class="main-sidebar" id='menuLateral'>
-  <!-- sidebar: style can be found in sidebar.less -->
-  <section class="sidebar">
-    <nav>
-    <div class='pull-left image' id="logolateral">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <nav>
 
-    </div>
 
-    <!-- Sidebar user panel -->
-    <!-- <div class="user-panel">
-      <div class="pull-left image">
-        <img alt="User Image" class="img-circle" src="assets/dist/img/user2-160x160.jpg">
-      </div>
-      <div class="pull-left info">
-        <p>Alexander Pierce</p>
-        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-      </div>
-    </div> -->
-    <!-- search form -->
-    <!-- <form action="#" class="sidebar-form" method="get">
-      <div class="input-group">
-        <input class="form-control" name="q" placeholder="Search..." type="text">
-        <span class="input-group-btn">
-                <button class="btn btn-flat" id="search-btn" name="search" type="submit"><i class="fa fa-search"></i>
-                </button>
-              </span>
-      </div>
-    </form> -->
-    <!-- /.search form -->
-    <!-- sidebar menu: : style can be found in sidebar.less -->
 
-    <ul class="sidebar-menu" data-widget="tree">
+            <ul class="sidebar-menu" data-widget="tree">
+                <li style="margin-left: 0px;">
+                    <a class="sidebar-toggle center-block" data-toggle="push-menu" href="#" role="button" style=" width: 230px; margin-left: 0px;" *ngIf="ativo" (click)="ativo = !ativo">
+                        <img src="assets/dist/img/logo.png" class="img-circle  center-block">
+                        <span class="sr-only center-block" style="width: 230px; margin-left: -5px;">Toggle navigation</span>
 
-      <li id="inicio">
-        <a routerLink="/inicio">
-          <img src="assets/dist/img/home.png">&nbsp;&nbsp;
-          <span>Início</span>
-        </a>
-      </li>
-      <li id='cidadaos'>
-        <a routerLink="/cidadaos">
-          <img src="assets/dist/img/user.png">&nbsp;&nbsp;
-          <span>Cidadãos</span>
-        </a>
-      </li>
-      <li id='medicao'>
-        <a routerLink="/medicao">
-          <img src="assets/dist/img/green_heart.png">&nbsp;&nbsp;
-          <span>Medição</span>
-        </a>
-      </li>
-      <li id='dispensacao'>
-        <a routerLink="/dispensacao">
-          <img src="assets/dist/img/green_check.png">&nbsp;&nbsp;
-          <span>Dispensação</span>
-        </a>
-      </li>
-      <li>
-        <a class="sidebar-toggle" data-toggle="push-menu" href="#" role="button">
-          <img src="assets/dist/img/logo.png" class="img-circle">
-          <span class="sr-only">Toggle navigation</span>
-          <!-- <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span> -->
-        </a>
-      </li>
-    </ul>
-  </nav>
-  </section>
-  <!-- /.sidebar -->
+                    </a>
+                    <a class="sidebar-toggle" data-toggle="push-menu" href="#" role="button" style="margin-left: -15px;" *ngIf="!ativo" (click)="ativo = !ativo">
+                        <img src="assets/dist/img/logo.png" class="img-circle">
+                        <span class="sr-only" style="margin-left: -5px;">Toggle navigation</span>
+                    </a>
+                </li>
+                <li style="margin-top: 35%;">
+                    <a routerLink="/inicio" routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
+                        <img src="assets/dist/img/home.svg">
+                        <span>Início</span>
+                    </a>
+                    <a routerLink="/inicio" routerLinkActive="active-list-item" style="width: 230px; margin-left: -7px;" *ngIf="!ativo">
+                        <img src="assets/dist/img/home.svg">
+                        <span>Início</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/cidadaos" routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
+                        <img src="assets/dist/img/available_user.png">
+                        <span style="width: 230px;">Cidadãos</span>
+                    </a>
+                    <a routerLink="/cidadaos" routerLinkActive="active-list-item" style="width: 230px; margin-left: -7px;" *ngIf="!ativo">
+                        <img src="assets/dist/img/available_user.png">
+                        <span>Cidadãos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/medicao" routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
+                        <img src="assets/dist/img/available_heart.png">
+                        <span style="width: 230px;">Medição</span>
+                    </a>
+                    <a href="/medicao" class="active-list-item" style="width: 230px;" *ngIf="(ativo && medicao)">
+                        <img src="assets/dist/img/available_heart.png">
+                        <span>Medição</span>
+                    </a>
+                    <a href="/medicao" routerLinkActive="active-list-item" style="width: 230px; margin-left: -7px;" *ngIf="!ativo">
+                        <img src="assets/dist/img/available_heart.png">
+                        <span>Medição</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dispensacao" routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
+                        <img src="assets/dist/img/available_check.png">
+                        <span style="width: 230px;">Dispensação</span>
+                    </a>
+                    <a href="/dispensacao" class="active-list-item" style="width: 230px;" *ngIf="ativo && dispensacao">
+                        <img src="assets/dist/img/available_check.png">
+                        <span>Dispensação</span>
+                    </a>
+                    <a href="/dispensacao" routerLinkActive="active-list-item" style="width: 230px; margin-left: -7px;" *ngIf="!ativo">
+                        <img src="assets/dist/img/available_check.png">
+                        <span>Dispensação</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/medicamentos" routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
+                        <img src="assets/dist/img/available_medicine.png">
+                        <span style="width: 230px; ">Medicamentos</span>
+                    </a>
+                    <a routerLink="/medicamentos" routerLinkActive="active-list-item" style="width: 230px; margin-left: -5px;" *ngIf="!ativo">
+                        <img src="assets/dist/img/available_medicine.png" style="margin-left: -4px;">
+                        <span>Medicamentos</span>
+                    </a>
+                </li>
+
+
+
+            </ul>
+            <div id="suporteDiv">
+                <a routerLink="/inicio">
+                    <button id="suporteButton" *ngIf="ativo" (click)="ativo = !ativo">SUPORTE<img src="assets/dist/img/help.png" style="padding-left: 10px;"></button>
+                    <button id="suporteButtonPequeno" *ngIf="!ativo" (click)="ativo = !ativo"><img src="assets/dist/img/green_help.png" ></button>
+                </a>
+            </div>
+        </nav>
+    </section>
+    <!-- /.sidebar -->
 </aside>

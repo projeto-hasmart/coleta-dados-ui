@@ -1,0 +1,69 @@
+.main-header {
+    font-family: Poppins;
+}
+
+#dropdownIcon {
+    background-color: #F4F7F4;
+    border: none;
+    height: 44px;
+    width: 49px;
+    margin-top: 16px;
+}
+
+li :hover,
+a :hover,
+.dropdown-toggle :hover,
+#dropdownIcon :hover,
+.navbar-nav :hover {
+    background: none;
+}
+
+.user-menu :hover {
+    background: none;
+}
+
+.notifications-menu {
+    margin-right: 30px;
+}
+
+.navbar-custom-menu {
+    margin-right: 2.5%;
+}
+
+#role {
+    font-family: Roboto;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(35, 67, 35, 0.5);
+    display: inline-block;
+}
+
+.hidden-md {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin-top: -5px;
+}
+
+.user-menu {
+    margin-top: 16px;
+    background: #F4F7F4;
+    border-radius: 10px;
+    /* Inside Auto Layout */
+    height: 44px;
+    display: inline-block;
+    width: 194px;
+}
+
+mat-icon {
+    margin-top: -5px;
+}

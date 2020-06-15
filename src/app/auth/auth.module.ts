@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import {AuthRoutingModule} from './auth-routing.module';
 import {AuthComponent} from './auth/auth.component';
@@ -8,6 +9,7 @@ import {RegisterComponent} from './register/register.component';
 import {MatCardModule} from '@angular/material/card';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -18,7 +20,9 @@ import {MatButtonModule} from '@angular/material/button';
     AuthRoutingModule,
     MatCheckboxModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    FormsModule
   ]
 })
 export class AuthModule {

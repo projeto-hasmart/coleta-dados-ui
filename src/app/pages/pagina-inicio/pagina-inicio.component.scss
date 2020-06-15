@@ -1,598 +1,399 @@
 body {
-  background-color: white;
-  color: white;
+    background-color: white;
+    color: white;
 }
+
+.content,
+.content-header {
+    margin-left: 2%;
+}
+
 //cpfrgtoggle
 #cpfrgtoggle {
-  position: absolute;
-  left: 285px;
-  top: 181px;
+    border: 1px solid #dfdfdf;
+    width: 96px;
+    margin-right: 16px;
+    display: inline-block;
+    top: 20px;
+}
 
-  border: 1px solid #dfdfdf;
-}
 #togglebutton {
-  background-color: white;
-  color: black;
+    background-color: white;
+    color: black;
+    display: inline-block;
 }
+
+.search-bar {
+    display: inline-block;
+}
+
 // search bar
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 #searchBox {
-  position: absolute;
-  left: 381px;
-  top: 181px;
-  background: #ffffff;
-  border: 1px solid white;
-  box-sizing: border-box;
-  border-radius: 3px;
-  height: 50px;
-  width: 328px;
-  font-family: "Roboto";
+    background: #ffffff;
+    border: 1px solid #DFDFDF;
+    box-sizing: border-box;
+    border-radius: 3px;
+    height: 50px;
+    width: 328px;
+    font-family: "Roboto";
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.6);
 }
-.search {
-  width: 100%;
-  position: relative;
-  display: flex;
+
+#searchboxtoggle {
+    @media (max-width: 768px) {
+        margin-left: 5%;
+        margin-top: 18%;
+    }
+    @media (max-width: 1050px) {
+        margin-left: 15%;
+        margin-top: 22%;
+    }
+    @media (max-width: 1300px) {
+        margin-left: 15%;
+        margin-top: 12%;
+    }
+    @media (max-width: 1500px) {
+        margin-left: 25%;
+        margin-top: 12%;
+    }
+    margin-left: 35%;
+    margin-top: 8%;
 }
 
 .searchTerm {
-  width: 100%;
-  border: 3px solid #00b4cc;
-  border-right: none;
-  padding: 5px;
-  height: 20px;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  color: #9dbfaf;
+    width: 100%;
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    color: #9dbfaf;
 }
 
-.searchTerm:focus {
-  color: #00b4cc;
+.searchTerm :focus {
+    border: 1px solid #828282;
 }
 
 .searchButton {
-  width: 40px;
-  height: 36px;
-  border: 1px solid white;
-  background: white;
-  text-align: center;
-  color: grey;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 20px;
-}
-#searchButton {
-  position: absolute;
-  left: 709px;
-  top: 181px;
-  box-sizing: border-box;
-  border-radius: 3px;
-  height: 50px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-style: none;
+    background: none;
+    text-align: center;
+    color: grey;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    height: 50px;
+    margin-top: 1px;
+    margin-left: -40px;
 }
 
-/*Resize the wrap to see the search bar change!*/
-.wrap {
-  width: 30%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+
 /*bem-vindo*/
+
 #labelBemvindo {
-  position: absolute;
-  width: 315px;
-  height: 60px;
-  left: 92px;
-  top: 77px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 40px;
-  line-height: 60px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: #000000;
+    position: absolute;
+    width: 315px;
+    height: 60px;
+    top: 77px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 60px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
 }
+
 #labelBemvindoo {
-  position: absolute;
-  width: 218px;
-  height: 19px;
-  left: 92px;
-  top: 150px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 19px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    width: 218px;
+    height: 19px;
+    top: 150px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.6);
 }
+
+
 /*estatisticas e cards dos menus*/
+
 #estatisticas {
-  position: absolute;
-  width: 115px;
-  height: 30px;
-  left: 292px;
-  top: 247px;
+    position: relative;
+    width: 115px;
+    height: 30px;
+    top: 67px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+}
 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: #000000;
+mat-card {
+    display: inline-block;
 }
 
 #mdc-card1 {
-  position: absolute;
-  width: 218px;
-  height: 119px;
-  left: 292px;
-  top: 297px;
-
-  /* a700 */
-
-  background: #009728;
-  box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
-  border-radius: 10px;
+    width: 90%;
+    height: 119px;
+    top: 97px;
+    /* a700 */
+    display: inline-block;
+    background: #009728;
+    box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
+    border-radius: 10px;
+    @media (max-width: 768px) {
+        margin-top: 30px;
+    }
 }
+
 #mdc-card1number {
-  position: absolute;
-  width: 57px;
-  height: 72px;
-  left: 10px;
-  top: 10px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 72px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  color: #ffffff;
+    position: absolute;
+    width: 57px;
+    height: 72px;
+    left: 10px;
+    top: 10px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 72px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
 }
+
 #mdc-card1name {
-  position: absolute;
-  width: 198px;
-  height: 27px;
-  left: 10px;
-  top: 82px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 27px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    width: 198px;
+    height: 27px;
+    left: 10px;
+    top: 82px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9);
 }
-#mdc-card1img{
-  position: absolute;
-right: 20px;
-top: 20px;
 
+#mdc-card1img {
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
+
 #mdc-card2 {
-  position: absolute;
-  width: 218px;
-  height: 119px;
-  left: 589px;
-  top: 297px;
-
-  /* a700 */
-
-  background: #009728;
-  box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
-  border-radius: 10px;
+    width: 90%;
+    height: 119px;
+    top: 97px;
+    /* a700 */
+    display: inline-block;
+    background: #009728;
+    box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
+    border-radius: 10px;
+    @media (max-width: 768px) {
+        margin-top: 30px;
+    }
 }
+
 #mdc-card2number {
-  position: absolute;
-  width: 48px;
-  height: 72px;
-  left: 14px;
-  top: 10px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 72px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  color: #ffffff;
+    position: absolute;
+    width: 48px;
+    height: 72px;
+    left: 14px;
+    top: 10px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 72px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
 }
+
 #mdc-card2name {
-  position: absolute;
-  width: 87px;
-  height: 27px;
-  left: 10px;
-  top: 82px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 27px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    width: 87px;
+    height: 27px;
+    left: 10px;
+    top: 82px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9);
 }
-#mdc-card2img{
-  position: absolute;
-right: 20px;
-top: 20px;
 
+#mdc-card2img {
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
+
 #mdc-card3 {
-  position: absolute;
-  width: 218px;
-  height: 119px;
-  left: 886px;
-  top: 297px;
-
-  /* a700 */
-
-  background: #009728;
-  box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
-  border-radius: 10px;
+    width: 90%;
+    height: 119px;
+    top: 97px;
+    /* a700 */
+    display: inline-block;
+    background: #009728;
+    box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
+    border-radius: 10px;
+    @media (max-width: 768px) {
+        margin-top: 30px;
+    }
 }
+
 #mdc-card3number {
-  position: absolute;
-  width: 25px;
-  height: 72px;
-  left: 26px;
-  top: 10px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 72px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  color: #ffffff;
+    position: absolute;
+    width: 25px;
+    height: 72px;
+    left: 26px;
+    top: 10px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 72px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
 }
+
 #mdc-card3name {
-  position: absolute;
-  width: 127px;
-  height: 27px;
-  left: 10px;
-  top: 82px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 27px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    width: 127px;
+    height: 27px;
+    left: 10px;
+    top: 82px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9);
 }
-#mdc-card3img{
-  position: absolute;
-right: 20px;
-top: 20px;
 
+#mdc-card3img {
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
+
 #mdc-card4 {
-  position: absolute;
-  width: 218px;
-  height: 119px;
-  left: 1183px;
-  top: 297px;
-
-  /* a700 */
-
-  background: #009728;
-  box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
-  border-radius: 10px;
+    width: 90%;
+    height: 119px;
+    top: 97px;
+    /* a700 */
+    display: inline-block;
+    background: #009728;
+    box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
+    border-radius: 10px;
+    @media (max-width: 768px) {
+        margin-top: 30px;
+    }
 }
+
 #mdc-card4number {
-  position: absolute;
-  width: 55px;
-  height: 72px;
-  left: 11px;
-  top: 10px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 72px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  color: #ffffff;
+    position: absolute;
+    width: 55px;
+    height: 72px;
+    left: 11px;
+    top: 10px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 72px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
 }
+
 #mdc-card4name {
-  position: absolute;
-  width: 127px;
-  height: 27px;
-  left: 10px;
-  top: 82px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 27px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: rgba(255, 255, 255, 0.9);
-}
-#mdc-card4img{
-  position: absolute;
-right: 20px;
-top: 20px;
-
-}
-/*ações*/
-#acoesRapidas {
-  position: absolute;
-  width: 149px;
-  height: 30px;
-  left: 292px;
-  top: 456px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: #000000;
-}
-/*medição*/
-#novaMedicaoDiv {
-  display: flex;
-  flex-direction: row;
-  padding: 10px 20px;
-
-  position: absolute;
-  width: 316px;
-  height: 56px;
-  left: 292px;
-  top: 506px;
-
-  background: #bee3c8;
-  border-radius: 10px;
+    position: absolute;
+    width: 127px;
+    height: 27px;
+    left: 10px;
+    top: 82px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-#novaMedicao {
-  position: static;
-  width: 173px;
-  height: 36px;
-  left: 0px;
-  top: 0px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 36px;
-  /* identical to box height */
-
-  /* 800 */
-
-  color: #1b4f29;
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 0;
-  align-self: flex-start;
-  margin: 0px 0px;
-}
-
-#realizarMedicao {
-  display: flex;
-  flex-direction: row;
-  padding: 10px 16px;
-
-  position: relative;
-  width: 88px;
-  height: 34px;
-  left: 15px;
-
-  background: #ffffff;
-  /* Button Shadow */
-
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 1;
-  align-self: center;
-  margin: 15px 0px;
-}
-#realizarMedicaoLabel {
-  position: relative;
-  width: 56px;
-  height: 14px;
-  right: 5px;
-  bottom: 12px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 14px;
-  /* identical to box height */
-
-  text-transform: uppercase;
-
-  color: #45a15e;
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 0;
-  align-self: center;
-  margin: 10px 0px;
-}
-/*dispensação*/
-#novaDispensacaoDiv {
-  display: flex;
-  flex-direction: row;
-  padding: 10px 20px;
-
-  position: absolute;
-  width: 370px;
-  height: 56px;
-  left: 670px;
-  top: 506px;
-
-  background: #bee3c8;
-  border-radius: 10px;
-}
-#novaDispensacao {
-  position: static;
-  width: 227px;
-  height: 36px;
-  left: 0px;
-  top: 0px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 36px;
-  /* identical to box height */
-
-  /* 800 */
-
-  color: #1b4f29;
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 0;
-  align-self: flex-start;
-  margin: 0px 0px;
-}
-#realizarDispensacao {
-  display: flex;
-  flex-direction: row;
-  padding: 10px 16px;
-
-  position: relative;
-  width: 88px;
-  height: 34px;
-  left: 15px;
-
-  background: #ffffff;
-  /* Button Shadow */
-
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 1;
-  align-self: center;
-  margin: 15px 0px;
-}
-#realizarDispensacaoLabel {
-  position: relative;
-  width: 56px;
-  height: 14px;
-  right: 5px;
-  bottom: 12px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 14px;
-  /* identical to box height */
-
-  text-transform: uppercase;
-
-  color: #45a15e;
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 0;
-  align-self: center;
-  margin: 10px 0px;
+#mdc-card4img {
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
 
 #autorizacoesProximas {
-  position: absolute;
-  width: 229px;
-  height: 30px;
-  left: 292px;
-  top: 602px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-
-  color: #000000;
+    position: relative;
+    width: 229px;
+    height: 30px;
+    top: 140px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #000000;
 }
 
 table {
-  width: 100%;
-
+    width: 98%;
 }
-#tabela{
-  left: 292px;
-  padding-top: 660px;
+
+#tabela {
+    left: 69px;
+    padding-top: 160px;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
 }

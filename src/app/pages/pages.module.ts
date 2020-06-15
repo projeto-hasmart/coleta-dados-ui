@@ -18,6 +18,12 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import { PaginaMedicaoSucessoComponent } from './pagina-medicao/pagina-medicao-sucesso/pagina-medicao-sucesso.component';
+import { PaginaMedicamentosComponent } from './pagina-medicamentos/pagina-medicamentos.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -28,7 +34,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     PaginaMedicaoComponent,
     PaginaDispensacaoComponent,
     PaginaCidadaosCadastrarComponent,
-    PaginaCidadaosVisualizarComponent
+    PaginaCidadaosVisualizarComponent,
+    PaginaMedicaoSucessoComponent,
+    PaginaMedicamentosComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +49,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatButtonModule,
     MatRadioModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatMenuModule,
+    MatExpansionModule
   ]
 })
 export class PagesModule {
