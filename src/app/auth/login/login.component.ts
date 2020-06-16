@@ -1,5 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ApiService } from 'src/app/services/api.service';
+import { Cidadao } from 'src/app/models/cidadao';
+import { Observable } from 'rxjs';
 declare var $;
 
 @Component({
@@ -10,7 +13,11 @@ declare var $;
 export class LoginComponent implements OnInit, OnDestroy {
   hide = true;
   showPw = false;
-  constructor() {
+  cidadaos: any[];
+  cidadaos$: Observable<any[]>;
+  apiService: ApiService;
+  constructor(apiService: ApiService) {
+    this.apiService = apiService;
   }
 
   ngOnInit() {
@@ -22,6 +29,14 @@ export class LoginComponent implements OnInit, OnDestroy {
         increaseArea: '20%'
       });
     }); */
+    this.apiService.getAllCidadaos().subscribe((cidadaos: Cidadao[]) => {
+      this.cidadaos = cidadaos;
+      console.log(cidadaos);
+    });
+    console.log(this.cidadaos);
+
+    this.cidadaos$ = this.apiService.getAllCidadaos();
+    console.log(this.cidadaos$);
   }
 
   ngOnDestroy(): void {
