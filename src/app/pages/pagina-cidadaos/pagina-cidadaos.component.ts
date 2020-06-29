@@ -1,6 +1,9 @@
+import { Cidadao } from './../../models/cidadao';
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { ApiService } from 'src/app/services/api.service';
+import { Observable } from 'rxjs';
 
 export interface PeriodicElement {
   name: string;
@@ -28,9 +31,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./pagina-cidadaos.component.scss']
 })
 export class PaginaCidadaosComponent implements OnInit {
+  cidadaos: Cidadao[];
+  apiService: ApiService;
+  cidadaos$: Observable<any[]>;
   displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  dataSource = new MatTableDataSource<Cidadao>(this.cidadaos);
+  selection = new SelectionModel<Cidadao>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -47,15 +53,30 @@ export class PaginaCidadaosComponent implements OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
+  checkboxLabel(row?: Cidadao): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id}`;
   }
-  constructor() { }
+  constructor(apiService: ApiService) {
+    this.apiService = apiService;
+  }
 
   ngOnInit() {
+    this.getCidadaos();
+  }
+
+  getCidadaos(): void {
+    this.apiService.getAllCidadaos().subscribe(cidadaos => {
+      this.cidadaos = cidadaos as Cidadao[];
+      console.log(cidadaos);
+      console.log(this.cidadaos);
+    });
+
+
+    this.cidadaos$ = this.apiService.getAllCidadaos();
+    console.log(this.cidadaos$);
   }
 
 }
