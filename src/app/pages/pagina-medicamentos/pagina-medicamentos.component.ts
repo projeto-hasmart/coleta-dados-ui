@@ -6,7 +6,17 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {name: 'Hydrogen', symbol: 'H'}
+  {name: 'Anlodipino Besilato', symbol: 'Comprimido 5mg'},
+  {name: 'Losartana Potássica', symbol: 'Comprimido 50mg'},
+  {name: 'Atenolol', symbol: 'Comprimido 50mg'},
+  {name: 'Carvedilol', symbol: 'Comprimidos 6,25mg'},
+  {name: 'Carvedilol', symbol: 'Comprimidos 25mg'},
+  {name: 'Propanolol Cloridato', symbol: 'Comprimido 40mg'},
+  {name: 'Enalapril Maleato', symbol: 'Comprimido 20mg'},
+  {name: 'Espironolactona', symbol: 'Comprimido 25mg'},
+  {name: 'Furosemida', symbol: 'Comprimido 40mg'},
+  {name: 'Hidroclorotiazida', symbol: 'Comprimido 25mg'},
+  {name: 'Metildopa', symbol: 'Comprimido 250mg'}
 ];
 
 @Component({

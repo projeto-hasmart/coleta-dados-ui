@@ -77,6 +77,23 @@
             </div>
         </div>
     </form>
-    <button mat-button id="cadastraButton" class="pull-right">
+    <button mat-button id="cadastraButton" data-toggle="modal" data-target="#okcidadao" class="pull-right">
         <label id="cadastraButtonLabel">CADASTRAR CIDADÃO</label></button>
+    <div class="modal fade" id="okcidadao">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="titleModal">Sucesso!</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <label id="modalText">Cidadão com CPF 123.456.789-10 cadastro com sucesso!</label>
+                    <button mat-button id="okbutton" data-dismiss="modal"><label id="oklabel">OK</label></button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
