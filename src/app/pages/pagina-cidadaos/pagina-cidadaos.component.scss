@@ -115,17 +115,8 @@
 }
 
 #searchboxtoggle {
-    @media (max-width: 768px) {
-        margin-left: 5%;
-    }
-    @media (max-width: 1050px) {
-        margin-left: 15%;
-    }
-    @media (max-width: 1300px) {
-        margin-left: 15%;
-    }
-    @media (max-width: 1500px) {
-        margin-left: 25%;
+    @media (max-width: 1400px) {
+        margin-top: 5%;
     }
     margin-left: 35%;
 }

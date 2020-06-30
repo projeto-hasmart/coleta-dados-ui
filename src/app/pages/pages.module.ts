@@ -24,6 +24,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { PaginaMedicaoSucessoComponent } from './pagina-medicao/pagina-medicao-sucesso/pagina-medicao-sucesso.component';
 import { PaginaMedicamentosComponent } from './pagina-medicamentos/pagina-medicamentos.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     FlexLayoutModule,
     MatIconModule,
     MatMenuModule,
-    MatExpansionModule
+    MatExpansionModule,
+    FormsModule
   ]
 })
 export class PagesModule {

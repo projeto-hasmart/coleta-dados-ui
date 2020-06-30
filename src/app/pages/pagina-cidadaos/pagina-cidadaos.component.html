@@ -24,8 +24,8 @@
             </mat-button-toggle>
         </mat-button-toggle-group>
         <div class="search-bar">
-            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox">
-            <button type="submit" class="searchButton" id="searchButton" placeholder="">
+            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox" [(ngModel)]="buscado" required>
+            <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="goToView()">
 <i class="fa fa-search"></i> </button>
         </div>
         <a routerLink="/cidadaos/cadastrar">
@@ -38,7 +38,7 @@
         </a>
     </div>
 
-    <!-- 
+    <!--
     <div id="tabela">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 

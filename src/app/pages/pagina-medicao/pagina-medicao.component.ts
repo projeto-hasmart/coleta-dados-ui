@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Cidadao } from 'src/app/models/cidadao';
+import { ApiService } from 'src/app/services/api.service';
+import { CidadaoServiceService } from 'src/app/services/cidadao/cidadao-service.service';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
+import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -34,7 +41,13 @@ export class PaginaMedicaoComponent implements OnInit {
   diabetes = 'Não';
   avc = 'Não';
   fumante = 'Não';
-
+  oNossoCidadao: Cidadao;
+  apiService: ApiService;
+  cz: CidadaoServiceService;
+  mz: MedicaoServiceService;
+  dz: DispensacaoServiceService;
+  cidadao$: Observable<Cidadao>;
+  router: Router;
   peso: number;
   displayedColumns: string[] = ['select',  'sistolica', 'diastolica'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -86,10 +99,32 @@ export class PaginaMedicaoComponent implements OnInit {
   excluirAfericao() {
 
   }
-  constructor() {
- }
 
-  ngOnInit() {
-  }
+  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
+    this.cz = cz;
+    this.mz = mz;
+    this.dz = dz;
+    this.apiService = apiService;
+   }
+
+ updateCz(cidadaoEditado: Cidadao) {
+  this.apiService.updateCidadao(cidadaoEditado);
+}
+
+ngOnInit() {
+  if (this.cz.selecionadoId === undefined) {
+    this.router.navigate(['/cidadaos']);
+  } else {
+  this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
+    this.oNossoCidadao = cidadao as Cidadao;
+    console.log(cidadao);
+    console.log(this.oNossoCidadao);
+  });
+  this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
+}
+}
+goToView() {
+this.cz.selecionaCidadao(this.oNossoCidadao.cpf);
+}
 
 }

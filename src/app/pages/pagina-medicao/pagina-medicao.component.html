@@ -10,7 +10,7 @@
 
         <a href="/cidadaos/visualizar" class="pull-right">
             <button mat-button id="retornoCidadaoButton" class="pull-right"><label id="retornoCidadaoButtonLabel">RETORNAR AO PERFIL DO CIDADÃO</label></button></a>
-        <div class="box box-default" id="infoBox">
+        <div class="box box-default" id="infoBox" *ngIf="cidadao$ | async">
             <div class="box-header with-border">
                 <h3 class="box-title" id="labelInformacoes">Informações Pessoais</h3>
                 <div class="box-tools pull-right">
@@ -25,29 +25,29 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <label id="nomeLabel">NOME</label>
-                            <label id="nomeResult">{{nome}}</label>
+                            <label id="nomeResult">{{oNossoCidadao.nome}}</label>
                             <label id="enderecoLabel">ENDEREÇO</label>
-                            <label id="enderecoResult">{{endereco}}</label>
+                            <label id="enderecoResult">{{oNossoCidadao.dadosPessoais.endereco.rua}}, {{oNossoCidadao.dadosPessoais.endereco.numero}}</label>
                             <label id="cidadeLabel">CIDADE</label>
-                            <label id="cidadeResult">{{cidade}}</label>
+                            <label id="cidadeResult">{{oNossoCidadao.dadosPessoais.endereco.cidade}}</label>
                             <label id="telefoneLabel">TELEFONE</label>
-                            <label id="telefoneResult">{{telefone}}</label>
+                            <label id="telefoneResult">{{oNossoCidadao.dadosPessoais.telefone}}</label>
                         </div>
                         <div class="col-sm-4">
                             <label id="dataNascimentoLabel">DATA DE NASCIMENTO</label>
-                            <label id="dataNascimentoResult">{{dataNascimento}}</label>
+                            <label id="dataNascimentoResult">{{oNossoCidadao.dataNascimento}}</label>
                             <label id="complementoLabel">COMPLEMENTO</label>
-                            <label id="complementoResult">{{complemento}}</label>
+                            <label id="complementoResult">{{oNossoCidadao.dadosPessoais.endereco.complemento}}</label>
                             <label id="estadoLabel">ESTADO</label>
-                            <label id="estadoResult">{{estado}}</label>
+                            <label id="estadoResult">{{oNossoCidadao.dadosPessoais.endereco.estado}}</label>
                         </div>
                         <div class="col-sm-4">
                             <label id="cpfLabel">CPF</label>
-                            <label id="cpfResult">{{cpf}}</label>
+                            <label id="cpfResult">{{oNossoCidadao.cpf}}</label>
                             <label id="rgLabel">RG</label>
-                            <label id="rgResult">{{rg}}</label>
+                            <label id="rgResult">{{oNossoCidadao.rg}}</label>
                             <label id="generoLabel">GÊNERO</label>
-                            <label id="generoResult">{{genero}}</label>
+                            <label id="generoResult">{{oNossoCidadao.dadosPessoais.genero}}</label>
                         </div>
                     </div>
                 </div>
@@ -57,19 +57,19 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <label id="alturaLabel">ALTURA</label>
-                            <label id="alturaResult">{{altura}}</label>
+                            <label id="alturaResult">{{oNossoCidadao.indicadorRiscoHAS.altura}}</label>
                             <label id="antiHipertensivoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
-                            <label id="antiHipertensivoResult">{{antiHipertensivo}}</label>
+                            <label id="antiHipertensivoResult">{{oNossoCidadao.indicadorRiscoHAS.antiHipertensivos}}</label>
                         </div>
                         <div class="col-sm-4">
                             <label id="diabetesLabel">DIABETES</label>
-                            <label id="diabetesResult">{{diabetes}}</label>
+                            <label id="diabetesResult">{{oNossoCidadao.indicadorRiscoHAS.diabetico}}</label>
                             <label id="avcLabel">HISTÓRICO DE AVC</label>
-                            <label id="avcResult">{{avc}}</label>
+                            <label id="avcResult">{{oNossoCidadao.indicadorRiscoHAS.historicoAvc}}</label>
                         </div>
                         <div class="col-sm-4">
                             <label id="fumanteLabel">FUMANTE</label>
-                            <label id="fumanteResult">{{fumante}}</label>
+                            <label id="fumanteResult">{{oNossoCidadao.indicadorRiscoHAS.fumante}}</label>
                         </div>
                     </div>
                 </div>

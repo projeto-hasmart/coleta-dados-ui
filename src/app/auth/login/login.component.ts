@@ -13,7 +13,7 @@ declare var $;
 export class LoginComponent implements OnInit, OnDestroy {
   hide = true;
   showPw = false;
-  cidadaos: any[];
+  cidadaos: Cidadao[];
   cidadaos$: Observable<any[]>;
   apiService: ApiService;
   constructor(apiService: ApiService) {
@@ -32,11 +32,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.apiService.getAllCidadaos().subscribe((cidadaos: Cidadao[]) => {
       this.cidadaos = cidadaos;
       console.log(cidadaos);
+      console.log(this.cidadaos);
     });
-    console.log(this.cidadaos);
 
-    this.cidadaos$ = this.apiService.getAllCidadaos();
-    console.log(this.cidadaos$);
   }
 
   ngOnDestroy(): void {

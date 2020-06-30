@@ -30,13 +30,19 @@ export class ApiService {
   }
 
   // API: GET /cidadaos/:id
-  public getCidadaoById(cidadaoId: number) {
-    // will use this.http.get()
+  public getCidadaoById(cidadaoId: number): Observable<Cidadao> {
+    return this.httpClient.get<Cidadao>('api/hasmart/api/Cidadaos/' + cidadaoId)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
   }
 
   // API: PUT /cidadaos/:id
-  public updateCidadao(cidadao: Cidadao) {
-    // will use this.http.put()
+  public updateCidadao(cidadao: Cidadao): Observable<any> {
+    return this.httpClient.put(('api/hasmart/api/Cidadaos/' + cidadao.id), cidadao)
+      .pipe(
+      retry(2),
+      catchError(this.handleError));
   }
 
   // DELETE /todos/:id
