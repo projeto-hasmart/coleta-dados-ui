@@ -1,3 +1,5 @@
+import { Medicao } from './../../models/medicao';
+import { Afericao } from './../../models/afericao';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -8,16 +10,11 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { randomFill } from 'crypto';
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'}
-];
+
+const ELEMENT_DATA: Afericao[] = [];
+const ELEMENTS_DATA: Afericao[] = [];
 
 @Component({
   selector: 'app-pagina-medicao',
@@ -25,35 +22,22 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./pagina-medicao.component.scss']
 })
 export class PaginaMedicaoComponent implements OnInit {
-  nome = 'Mateus Palácio';
-  cpf = '07183864127';
-  data = '17/03/2020';
-  rg = '20075719122';
-  endereco = 'Rua Paulo Coelho, 175';
-  complemento = 'Casa 32';
-  cidade = 'Forte Grande';
-  telefone = '(12) 3456-7890';
-  dataNascimento = '30/02/1990';
-  estado = 'Ceará';
-  genero = 'Masculino';
-  altura = '168 cm';
-  antiHipertensivo = 'Não';
-  diabetes = 'Não';
-  avc = 'Não';
-  fumante = 'Não';
   oNossoCidadao: Cidadao;
   apiService: ApiService;
+  finalData: Array<Afericao> = [];
   cz: CidadaoServiceService;
   mz: MedicaoServiceService;
   dz: DispensacaoServiceService;
   cidadao$: Observable<Cidadao>;
+  novaAfericao: Afericao;
+  medido: Medicao;
   router: Router;
   peso: number;
   displayedColumns: string[] = ['select',  'sistolica', 'diastolica'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  dataSourced = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
-  selections = new SelectionModel<PeriodicElement>(true, []);
+  dataSource = new MatTableDataSource<Afericao>(ELEMENT_DATA);
+  dataSourced = new MatTableDataSource<Afericao>(ELEMENTS_DATA);
+  selection = new SelectionModel<Afericao>(true, []);
+  selections = new SelectionModel<Afericao>(true, []);
 
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -64,7 +48,7 @@ export class PaginaMedicaoComponent implements OnInit {
   }
   isAllSelecteds() {
     const numSelected = this.selections.selected.length;
-    const numRows = this.dataSource.data.length;
+    const numRows = this.dataSourced.data.length;
     return numSelected === numRows;
   }
   /** Selects all rows if they are not all selected; otherwise clear selection. */
@@ -76,28 +60,30 @@ export class PaginaMedicaoComponent implements OnInit {
   masterToggles() {
     this.isAllSelecteds() ?
         this.selections.clear() :
-        this.dataSource.data.forEach(row => this.selections.select(row));
+        this.dataSourced.data.forEach(row => this.selections.select(row));
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
+  checkboxLabel(row?: Afericao): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
-  checkboxLabels(row?: PeriodicElement): string {
+  checkboxLabels(row?: Afericao): string {
     if (!row) {
       return `${this.isAllSelecteds() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selections.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    return `${this.selections.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
   onKey(event: any) { // without type info
     this.peso += event.target.value;
   }
 
-  excluirAfericao() {
-
+  excluirAfericao(row) {
+    const index = this.dataSource.data.indexOf(row.id);
+    this.dataSource.data.splice(index, 1);
+    this.dataSource._updateChangeSubscription();
   }
 
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
@@ -125,6 +111,53 @@ ngOnInit() {
 }
 goToView() {
 this.cz.selecionaCidadao(this.oNossoCidadao.cpf);
+}
+addRow() {
+  this.novaAfericao = {
+    sistolica: 1,
+    diastolica: 1,
+    medicaoId: 1,
+    id: 1
+  };
+  ELEMENT_DATA.push(this.novaAfericao);
+  this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+  console.log('dew it');
+  console.log(this.novaAfericao);
+  console.log('datasource é isso aqui bb: ' + this.dataSource.data.map.call);
+}
+addRowd() {
+  this.novaAfericao = {
+    sistolica: 1,
+    diastolica: 1,
+    medicaoId: 1,
+    id: 1
+  };
+  ELEMENTS_DATA.push(this.novaAfericao);
+  this.dataSourced = new MatTableDataSource(ELEMENTS_DATA);
+  console.log('dew it');
+  console.log(this.novaAfericao);
+  console.log('datasource é isso aqui bb: ' + this.dataSourced.data.map.call);
+}
+
+novaMedicao() {
+  for ( const data of ELEMENT_DATA) {
+    this.finalData.push(data);
+  }
+  for ( const data of ELEMENTS_DATA) {
+    this.finalData.push(data);
+  }
+
+  this.medido = {
+    cidadaoId: this.oNossoCidadao.id,
+    estabelecimentoId: 1,
+    afericoes: this.finalData,
+    peso:	this.peso,
+    dataHora:	new Date(),
+    id:	1,
+  };
+
+  this.mz.createMedicao(this.medido);
+  console.log(this.medido);
 }
 
 }

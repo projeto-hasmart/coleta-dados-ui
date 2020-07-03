@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
+import { Medicao } from 'src/app/models/medicao';
 
 export interface PeriodicElement {
   name: string;
@@ -30,6 +31,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'}
 ];
+const MEDICAO: Medicao[] = [];
 
 @Component({
   selector: 'app-pagina-cidadaos-visualizar',
@@ -48,6 +50,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   dz: DispensacaoServiceService;
   cidadao$: Observable<Cidadao>;
   router: Router;
+  weight;
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
     this.cz = cz;
     this.mz = mz;
@@ -103,6 +106,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
       this.oNossoCidadao = cidadao as Cidadao;
       console.log(cidadao);
       console.log(this.oNossoCidadao);
+      this.weight =  this.oNossoCidadao.medicoes[this.oNossoCidadao.medicoes.length - 1].peso;
     });
     this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
   }

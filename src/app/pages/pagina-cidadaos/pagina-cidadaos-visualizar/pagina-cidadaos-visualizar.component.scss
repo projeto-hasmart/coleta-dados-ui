@@ -155,6 +155,16 @@ table {
     border-radius: 3px;
 }
 
+#medicaoCardNao {
+    padding: 15px;
+    width: 100%;
+    height: 185px;
+    left: 1%;
+    margin-top: 15px;
+    background: #E3BEBE;
+    border-radius: 3px;
+}
+
 #cardTitle {
     width: 117px;
     height: 35px;
@@ -165,6 +175,18 @@ table {
     font-size: 30px;
     line-height: 35px;
     color: #24422B;
+}
+
+#cardTitleNao {
+    width: 117px;
+    height: 35px;
+    top: 15px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+    color: #422424;
 }
 
 #cardImg {
@@ -185,6 +207,19 @@ table {
     line-height: 19px;
     /* identical to box height */
     color: rgba(57, 105, 68, 0.8);
+}
+
+#ultimaMedicaoNao {
+    width: 205px;
+    height: 19px;
+    top: 44px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: rgba(105, 57, 57, 0.8);
 }
 
 #medicaoButton {
@@ -234,12 +269,34 @@ table {
     /* Inside Auto Layout */
 }
 
+#autorizacaoMedicaoNao {
+    width: 400px;
+    height: 38px;
+    top: 73px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #471F1F;
+    /* Inside Auto Layout */
+}
+
 #dispensacaoCard {
     padding: 15px;
     width: 100%;
     height: 185px;
     margin-top: 15px;
     background: #BEE3C8;
+    border-radius: 3px;
+}
+
+#dispensacaoCardNao {
+    padding: 15px;
+    width: 100%;
+    height: 185px;
+    margin-top: 15px;
+    background: #E3BEBE;
     border-radius: 3px;
 }
 
