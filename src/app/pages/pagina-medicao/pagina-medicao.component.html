@@ -57,19 +57,25 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <label id="alturaLabel">ALTURA</label>
-                            <label id="alturaResult">{{oNossoCidadao.indicadorRiscoHAS.altura}}</label>
+                            <label id="alturaResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
                             <label id="antiHipertensivoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
-                            <label id="antiHipertensivoResult">{{oNossoCidadao.indicadorRiscoHAS.antiHipertensivos}}</label>
+                            <label id="antiHipertensivoResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Não</label>
+                            <label id="antiHipertensivoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Sim</label>
                         </div>
                         <div class="col-sm-4">
                             <label id="diabetesLabel">DIABETES</label>
-                            <label id="diabetesResult">{{oNossoCidadao.indicadorRiscoHAS.diabetico}}</label>
+                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
+                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
+                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
                             <label id="avcLabel">HISTÓRICO DE AVC</label>
-                            <label id="avcResult">{{oNossoCidadao.indicadorRiscoHAS.historicoAvc}}</label>
+                            <label id="avcResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc">Sim</label>
+                            <label id="avcResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.historicoAvc">Não</label>
                         </div>
                         <div class="col-sm-4">
                             <label id="fumanteLabel">FUMANTE</label>
-                            <label id="fumanteResult">{{oNossoCidadao.indicadorRiscoHAS.fumante}}</label>
+                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
+                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
+                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
                         </div>
                     </div>
                 </div>
@@ -106,7 +112,7 @@
                     <div id="titlesTables">
                         <label id="numero">1</label>
                         <label id="medicaoTitleLabel">Realize a aferição do braço direito</label>
-                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right" style="margin-top: 70px;"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="float-right"><mat-icon>delete</mat-icon></button>
                     </div>
                     <div id="tabela">
                         <!-- TABELA-->
@@ -147,7 +153,7 @@
                     <div id="titlesTables">
                         <label id="numero">2</label>
                         <label id="medicaoTitleLabel">Realize a aferição do braço esquerdo</label>
-                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right" style="margin-top: 280px;"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="float-right"><mat-icon>delete</mat-icon></button>
                     </div>
                     <div id="tabela">
                         <!-- TABELA-->
@@ -188,7 +194,7 @@
                     <div id="titlesTables">
                         <label id="numero">3</label>
                         <label id="medicaoTitleLabel">Realize a aferição do peso</label>
-                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right" style="margin-top: 480px;"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right"><mat-icon>delete</mat-icon></button>
                     </div>
                     <input type="text" class="input-control" placeholder="Peso" id="pesoinput" ng-model="peso" (keyup)="onKey($event)">
 

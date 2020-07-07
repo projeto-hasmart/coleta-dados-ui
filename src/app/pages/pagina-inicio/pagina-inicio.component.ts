@@ -1,3 +1,4 @@
+import { CidadaoServiceService } from './../../services/cidadao/cidadao-service.service';
 import { Cidadao } from './../../models/cidadao';
 import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
@@ -34,7 +35,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class PaginaInicio implements OnInit {
   cidadaos: Cidadao[];
   apiService: ApiService;
+  buscado: string;
   cidadaos$: Observable<any[]>;
+  cidadaoService: CidadaoServiceService;
   displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
@@ -60,8 +63,9 @@ export class PaginaInicio implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
-  constructor(apiService: ApiService) {
+  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService) {
     this.apiService = apiService;
+    this.cidadaoService = cidadaoService;
   }
 
   ngOnInit() {
@@ -78,4 +82,9 @@ export class PaginaInicio implements OnInit {
     this.cidadaos$ = this.apiService.getAllCidadaos();
     console.log(this.cidadaos$);
   }
+
+  goToView() {
+    this.cidadaoService.selecionaCidadao(this.buscado);
+  }
+
 }

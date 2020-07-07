@@ -23,9 +23,9 @@
             </mat-button-toggle>
         </mat-button-toggle-group>
         <div class="search-bar">
-            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox">
-            <button type="submit" class="searchButton" id="searchButton" placeholder="">
-  <i class="fa fa-search"></i> </button>
+            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox" [(ngModel)]="buscado" required>
+            <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="goToView()">
+<i class="fa fa-search"></i> </button>
         </div>
         <a routerLink="/cidadaos/cadastrar">
             <button mat-button id="novoCidadaoButton" class="pull-right">
@@ -42,7 +42,7 @@
             <div class="col-sm-3">
                 <mat-card id="mdc-card1">
                     <mat-card-content>
-                        <label id='mdc-card1number'>29</label>
+                        <label id='mdc-card1number'>{{cidadaos.length}}</label>
                         <label id='mdc-card1name'>Cidadãos registrados</label>
                         <img src="assets/dist/img/white_user.png" id="mdc-card1img">
                     </mat-card-content>

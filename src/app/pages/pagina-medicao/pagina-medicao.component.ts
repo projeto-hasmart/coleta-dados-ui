@@ -152,8 +152,7 @@ novaMedicao() {
     estabelecimentoId: 1,
     afericoes: this.finalData,
     peso:	this.peso,
-    dataHora:	new Date(),
-    id:	1,
+    dataHora:	new Date()
   };
 
   this.mz.createMedicao(this.medido);

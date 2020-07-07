@@ -18,7 +18,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <mat-card-title id="cardTitle">Medição</mat-card-title>
-                                <label id="ultimaMedicao">Última medição: {{oNossoCidadao.dataProximaMedicao}}</label>
+                                <label id="ultimaMedicao">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
                                 <label id="autorizacaoMedicao">O paciente está autorizado a realizar uma medição de pressão arterial neste período.</label>
                                 <a><button mat-button id="medicaoButton" class="pull-right" (click)="goToView()">
                 <label id="medicaoButtonLabel">REALIZAR MEDIÇÃO</label></button></a></div>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <mat-card-title id="cardTitleNao">Medição</mat-card-title>
-                                <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataProximaMedicao}}</label>
+                                <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
                                 <label id="autorizacaoMedicaoNao">O paciente não está autorizado a realizar uma medição de pressão arterial neste período.</label>
                                 <label id="autorizacaoMedicaoNao">Próxima medição está autorizada para {{oNossoCidadao.dataProximaMedicao}}</label>
                             </div>
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <mat-card-title id="cardTitle">Dispensação</mat-card-title>
-                                <label id="ultimaMedicao">Última medição: {{oNossoCidadao.dataProximaDispensacao}}</label>
+                                <label id="ultimaMedicao">Última medição: {{oNossoCidadao.dataUltimaDispensacao}}</label>
                                 <label id="autorizacaoMedicao">O paciente está autorizado a obter uma dispensação neste período.</label>
                                 <a href="/dispensacao"> <button mat-button id="dispensacaoButton" class="pull-right" (click)="goToView()">
                 <label id="dispensacaoButtonLabel">REALIZAR DISPENSAÇÃO</label></button></a>
@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <mat-card-title id="cardTitleNao">Dispensação</mat-card-title>
-                                <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataProximaDispensacao}}</label>
+                                <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataUltimaDispensacao}}</label>
                                 <label id="autorizacaoMedicaoNao">O paciente não está autorizado a obter uma dispensação neste período.</label>
                                 <label id="autorizacaoMedicaoNao">Próxima dispensação está autorizada para {{oNossoCidadao.dataProximaDispensacao}}</label>
                             </div>
@@ -378,19 +378,29 @@
                     <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
                         <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
                             <label id="alturaLabel">ALTURA</label>
-                            <label id="alturaResult">{{oNossoCidadao.indicadorRiscoHAS.altura}}</label>
+                            <label id="alturaResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
                             <label id="antiHipertensivoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
-                            <label id="antiHipertensivoResult">{{oNossoCidadao.indicadorRiscoHAS.antiHipertensivos}}</label>
+                            <label id="antiHipertensivoResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Não</label>
+                            <label id="antiHipertensivoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Sim</label>
+
                         </div>
                         <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
                             <label id="diabetesLabel">DIABETES</label>
-                            <label id="diabetesResult">{{oNossoCidadao.indicadorRiscoHAS.diabetico}}</label>
+                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
+                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
+                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
+
                             <label id="avcLabel">HISTÓRICO DE AVC</label>
-                            <label id="avcResult">{{oNossoCidadao.indicadorRiscoHAS.historicoAvc}}</label>
+                            <label id="avcResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc">Sim</label>
+                            <label id="avcResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.historicoAvc">Não</label>
+
                         </div>
                         <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
                             <label id="fumanteLabel">FUMANTE</label>
-                            <label id="fumanteResult">{{oNossoCidadao.indicadorRiscoHAS.fumante}}</label>
+                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
+                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
+                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
+
                         </div>
                     </div>
                 </div>

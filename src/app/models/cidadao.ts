@@ -15,8 +15,10 @@ export interface Cidadao {
   dispensacoes: Array<Dispensacao>;
   podeRealizarMedicao: boolean;
   dataProximaMedicao: string;
+  dataUltimaMedicao: string;
   podeRealizarDispensacao: boolean;
   dataProximaDispensacao: string;
+  dataUltimaDispensacao: string;
   id: number;
 }
 /* {
