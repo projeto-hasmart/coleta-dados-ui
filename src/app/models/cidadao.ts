@@ -7,16 +7,18 @@ export interface Cidadao {
   nome: string;
   cpf: string;
   rg: string;
-  dataNascimento: Date;
-  dataCadastro: Date;
+  dataNascimento: string;
+  dataCadastro: string;
   dadosPessoais: DadosPessoais;
   indicadorRiscoHAS: IndicadorRiscoHAS;
   medicoes: Array<Medicao>;
   dispensacoes: Array<Dispensacao>;
   podeRealizarMedicao: boolean;
-  dataProximaMedicao: Date;
+  dataProximaMedicao: string;
+  dataUltimaMedicao: string;
   podeRealizarDispensacao: boolean;
-  dataProximaDispensacao: Date;
+  dataProximaDispensacao: string;
+  dataUltimaDispensacao: string;
   id: number;
 }
 /* {

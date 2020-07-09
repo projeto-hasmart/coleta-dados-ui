@@ -5,6 +5,11 @@ import { AppComponent } from './app.component';
 
 import { LayoutModule } from './layout/layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ApiService } from './services/api.service';
+import { CidadaoServiceService } from './services/cidadao/cidadao-service.service';
+import { DispensacaoServiceService } from './services/dispensacao/dispensacao-service.service';
+import { MedicaoServiceService } from './services/medicao/medicao-service.service';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,9 +19,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    CidadaoServiceService,
+    DispensacaoServiceService,
+    MedicaoServiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

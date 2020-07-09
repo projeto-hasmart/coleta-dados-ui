@@ -1,22 +1,21 @@
-import { Router } from '@angular/router';
+import { Cidadao } from './../models/cidadao';
 import { Injectable } from '@angular/core';
-import { Cidadao } from 'src/app/models/cidadao';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
-export class CidadaoServiceService {
-  selecionadoId: number;
+export class ApiService {
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
   cidadaos: Array<Cidadao>;
-  constructor(private httpClient: HttpClient, private router: Router) {
-   }
-
+  constructor(private httpClient: HttpClient) { }
   // API: GET /cidadaos
   getAllCidadaos(): Observable<Cidadao[]> {
     return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos')
@@ -24,27 +23,32 @@ export class CidadaoServiceService {
         retry(2),
         catchError(this.handleError));
   }
-  getCidadaos(): void {
 
-
-  }
-  selecionaCidadao(digitado: string) {
-    this.getAllCidadaos().subscribe(cidadaos => {
-      this.cidadaos = cidadaos as Cidadao[];
-      console.log(cidadaos);
-      console.log(this.cidadaos);
-      for (const cidadao of this.cidadaos) {
-        if (cidadao.cpf.includes(digitado) || cidadao.rg.includes(digitado)) {
-          this.selecionadoId = cidadao.id;
-          this.router.navigate(['/cidadaos/visualizar']);
-        } else {
-          console.log('nope');
-        }
-      }
-    });
-
+  // API: POST /HaSmart/api/cidadaos
+  public createCidadao(cidadao: Cidadao) {
+    // will use this.http.post()
   }
 
+  // API: GET /cidadaos/:id
+  public getCidadaoById(cidadaoId: number): Observable<Cidadao> {
+    return this.httpClient.get<Cidadao>('api/hasmart/api/Cidadaos/' + cidadaoId)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
+  // API: PUT /cidadaos/:id
+  public updateCidadao(cidadao: Cidadao): Observable<any> {
+    return this.httpClient.put(('api/hasmart/api/Cidadaos/' + cidadao.id), cidadao)
+      .pipe(
+      retry(2),
+      catchError(this.handleError));
+  }
+
+  // DELETE /todos/:id
+  public deleteTodoById(todoId: number) {
+    // will use this.http.delete()
+  }
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

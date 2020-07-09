@@ -1,8 +1,16 @@
+import { MedicaoServiceService } from './../../../services/medicao/medicao-service.service';
+import { Observable } from 'rxjs';
+import { ApiService } from './../../../services/api.service';
+import { Cidadao } from './../../../models/cidadao';
+import { CidadaoServiceService } from './../../../services/cidadao/cidadao-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { element } from 'protractor';
 
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
+import { Medicao } from 'src/app/models/medicao';
 
 export interface PeriodicElement {
   name: string;
@@ -23,6 +31,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'}
 ];
+const MEDICAO: Medicao[] = [];
 
 @Component({
   selector: 'app-pagina-cidadaos-visualizar',
@@ -34,27 +43,25 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   disabled = false;
   dispensacao = 1234567;
   isCollapsed = true;
-  constructor() { }
+  oNossoCidadao: Cidadao;
+  apiService: ApiService;
+  cz: CidadaoServiceService;
+  mz: MedicaoServiceService;
+  dz: DispensacaoServiceService;
+  cidadao$: Observable<Cidadao>;
+  router: Router;
+  weight;
+  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
+    this.cz = cz;
+    this.mz = mz;
+    this.dz = dz;
+    this.apiService = apiService;
+   }
   displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
   /* declarando um nome pro property binding do nome dinâmico */
-  nome = 'Mateus Palácio testando outro component';
-  cpf = '07183864127';
-  data = '17/03/2020';
-  rg = '20075719122';
-  endereco = 'Rua Paulo Coelho, 175';
-  complemento = 'Casa 32';
-  cidade = 'Forte Grande';
-  telefone = '(12) 3456-7890';
-  dataNascimento = '30/02/1990';
-  estado = 'Ceará';
-  genero = 'Masculino';
-  altura = '168 cm';
-  antiHipertensivo = 'Não';
-  diabetes = 'Não';
-  avc = 'Não';
-  fumante = 'Não';
+
   color = 'green';
   diabetess: Diabetes[] = [
     {value: 'tipo-1', viewValue: 'Tipo 1'},
@@ -87,8 +94,25 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 
+  updateCz(cidadaoEditado: Cidadao) {
+    this.apiService.updateCidadao(cidadaoEditado);
+  }
 
   ngOnInit() {
+    if (this.cz.selecionadoId === undefined) {
+      this.router.navigate(['/cidadaos']);
+    } else {
+    this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
+      this.oNossoCidadao = cidadao as Cidadao;
+      console.log(cidadao);
+      console.log(this.oNossoCidadao);
+      this.weight =  this.oNossoCidadao.medicoes[this.oNossoCidadao.medicoes.length - 1].peso;
+    });
+    this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
   }
+}
+goToView() {
+  this.mz.selecionaCidadao(this.oNossoCidadao.cpf);
+}
 
 }

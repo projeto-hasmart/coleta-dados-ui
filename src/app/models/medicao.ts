@@ -6,5 +6,4 @@ export interface Medicao {
   afericoes: Array<Afericao>;
   peso:	number;
   dataHora:	Date;
-  id:	number;
 }

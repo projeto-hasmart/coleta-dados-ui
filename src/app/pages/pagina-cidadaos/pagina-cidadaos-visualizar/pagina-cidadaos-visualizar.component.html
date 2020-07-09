@@ -1,8 +1,8 @@
 <section class="content-header">
     <div id="divtitle">
-        <label id="labelNome">{{nome}}</label>
-        <div id="divcpf"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{cpf}}</label></div>
-        <label id="labelVisualize">Visualize autorizações e dados de {{nome}}, ou inicie processos de medição ou dispensação</label>
+        <label id="labelNome">{{oNossoCidadao.nome}}</label>
+        <div id="divcpf"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{oNossoCidadao.cpf}}</label></div>
+        <label id="labelVisualize">Visualize autorizações e dados de {{oNossoCidadao.nome}}, ou inicie processos de medição ou dispensação</label>
     </div>
 </section>
 <section class="content">
@@ -11,32 +11,58 @@
             <label id="autorizacoesLabel">Autorizações</label>
             <div class="row">
                 <div class='col-sm-6'>
-                    <mat-card id="medicaoCard">
+                    <mat-card id="medicaoCard" *ngIf="oNossoCidadao.podeRealizarMedicao">
                         <div class='row'>
                             <div class="col-sm-3">
                                 <img src="assets/dist/img/logo_maior.png" id="cardImg">
                             </div>
                             <div class="col-sm-9">
                                 <mat-card-title id="cardTitle">Medição</mat-card-title>
-                                <label id="ultimaMedicao">Última medição: {{data}}</label>
+                                <label id="ultimaMedicao">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
                                 <label id="autorizacaoMedicao">O paciente está autorizado a realizar uma medição de pressão arterial neste período.</label>
-                                <a href="/medicao"><button mat-button id="medicaoButton" class="pull-right">
+                                <a><button mat-button id="medicaoButton" class="pull-right" (click)="goToView()">
                 <label id="medicaoButtonLabel">REALIZAR MEDIÇÃO</label></button></a></div>
+                        </div>
+                    </mat-card>
+                    <mat-card id="medicaoCardNao" *ngIf="!oNossoCidadao.podeRealizarMedicao">
+                        <div class='row'>
+                            <div class="col-sm-3">
+                                <img src="assets/dist/img/red_heart.png" id="cardImg">
+                            </div>
+                            <div class="col-sm-9">
+                                <mat-card-title id="cardTitleNao">Medição</mat-card-title>
+                                <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                                <label id="autorizacaoMedicaoNao">O paciente não está autorizado a realizar uma medição de pressão arterial neste período.</label>
+                                <label id="autorizacaoMedicaoNao">Próxima medição está autorizada para {{oNossoCidadao.dataProximaMedicao}}</label>
+                            </div>
                         </div>
                     </mat-card>
                 </div>
                 <div class='col-sm-6'>
-                    <mat-card id="dispensacaoCard">
+                    <mat-card id="dispensacaoCard" *ngIf="oNossoCidadao.podeRealizarDispensacao">
                         <div class="row">
                             <div class="col-sm-3">
                                 <img src="assets/dist/img/check_maior.png" id="cardImg">
                             </div>
                             <div class="col-sm-9">
                                 <mat-card-title id="cardTitle">Dispensação</mat-card-title>
-                                <label id="ultimaMedicao">Última medição: {{data}}</label>
+                                <label id="ultimaMedicao">Última medição: {{oNossoCidadao.dataUltimaDispensacao}}</label>
                                 <label id="autorizacaoMedicao">O paciente está autorizado a obter uma dispensação neste período.</label>
-                                <a href="/dispensacao"> <button mat-button id="dispensacaoButton" class="pull-right">
+                                <a href="/dispensacao"> <button mat-button id="dispensacaoButton" class="pull-right" (click)="goToView()">
                 <label id="dispensacaoButtonLabel">REALIZAR DISPENSAÇÃO</label></button></a>
+                            </div>
+                        </div>
+                    </mat-card>
+                    <mat-card id="dispensacaoCardNao" *ngIf="!oNossoCidadao.podeRealizarDispensacao">
+                        <div class='row'>
+                            <div class="col-sm-3">
+                                <img src="assets/dist/img/check_maior.png" id="cardImg">
+                            </div>
+                            <div class="col-sm-9">
+                                <mat-card-title id="cardTitleNao">Dispensação</mat-card-title>
+                                <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataUltimaDispensacao}}</label>
+                                <label id="autorizacaoMedicaoNao">O paciente não está autorizado a obter uma dispensação neste período.</label>
+                                <label id="autorizacaoMedicaoNao">Próxima dispensação está autorizada para {{oNossoCidadao.dataProximaDispensacao}}</label>
                             </div>
                         </div>
                     </mat-card>
@@ -45,9 +71,7 @@
         </div>
         <div class="box box-default" id="infoBox">
             <div class="box-header with-border">
-                <h3 class="box-title" id="labelInformacoes" *ngIf="!isCollapsed">Informações do Cidadão
-                </h3>
-                <h3 class="box-title" id="labelInformacoes" *ngIf="isCollapsed">Informações
+                <h3 class="box-title" id="labelInformacoes">Informações
                 </h3>
                 <div class="box-tools pull-right">
 
@@ -74,13 +98,13 @@
                                 <div class='row' style="background-color: white; border-radius: 4px;">
                                     <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
                                         <label id="dataRealizacaoLabel">DATA DE REALIZAÇÃO</label>
-                                        <label id="dataRealizacaoResult">{{data}}</label>
+                                        <label id="dataRealizacaoResult">{{oNossoCidadao.dataProximaMedicao}}</label>
                                         <label id="servicoLabel">SERVIÇO</label>
-                                        <label id="servicoResult">{{nome}}</label>
+                                        <label id="servicoResult">{{oNossoCidadao.nome}}</label>
                                     </div>
                                     <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
                                         <label id="responsavelLabel">RESPONSÁVEL</label>
-                                        <label id="responsavelResult">{{nome}}</label>
+                                        <label id="responsavelResult">{{oNossoCidadao.nome}}</label>
 
                                     </div>
                                 </div>
@@ -138,7 +162,7 @@
                             <div>
                                 <label id="informacoesPessoais">Peso</label>
 
-                                <input type="text" class="input-control" placeholder="Peso" id="inputNascimento" style="margin-left: 1%; width: 97.5%; margin-top: 10px; margin-bottom: 10px;">
+                                <input type="text" class="input-control" [(ngModel)]="weight" id="inputNascimento" style="margin-left: 1%; width: 97.5%; margin-top: 10px; margin-bottom: 10px;">
                             </div>
                         </div>
                     </div>
@@ -164,15 +188,15 @@
                                 <div class='row' style="background-color: white; border-radius: 4px;">
                                     <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
                                         <label id="dataRealizacaoLabel">DATA DE REALIZAÇÃO</label>
-                                        <label id="dataRealizacaoResult">{{data}}</label>
+                                        <label id="dataRealizacaoResult">{{oNossoCidadao.dataProximaDispensacao}}</label>
                                         <label id="servicoLabel">SERVIÇO</label>
-                                        <label id="servicoResult">{{nome}}</label>
+                                        <label id="servicoResult">{{oNossoCidadao.nome}}</label>
                                     </div>
                                     <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
                                         <label id="responsavelLabel">RESPONSÁVEL</label>
-                                        <label id="responsavelResult">{{nome}}</label>
+                                        <label id="responsavelResult">{{oNossoCidadao.nome}}</label>
                                         <label id="codigoDispLabel">CÓDIGO</label>
-                                        <label id="codigoDispResult">{{nome}}</label>
+                                        <label id="codigoDispResult">{{oNossoCidadao.nome}}</label>
                                     </div>
                                 </div>
 
@@ -243,7 +267,7 @@
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title" id="titleModal">ATUALIZAR INFORMAÇÕES DO CIDADÃO</h4>
-                            <label class="modal-title" id="secondTitleModal">Você está atualizando informações de {{nome}}</label>
+                            <label class="modal-title" id="secondTitleModal">Você está atualizando informações de {{oNossoCidadao.nome}}</label>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
@@ -253,19 +277,19 @@
                             <label id="obrigatorio">* Campos obrigatórios</label>
                             <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
                                 <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                                    <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome">
-                                    <input type="text" class="input-control" placeholder="Rua e número*" id="inputRua">
-                                    <input type="text" class="input-control" placeholder="Cidade*" id="inputCidade">
-                                    <input type="text" class="input-control" placeholder="Estado*" id="inputEstado">
-                                    <input type="text" class="input-control" placeholder="Telefone*" id="inputTelefone">
+                                    <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="oNossoCidadao.nome">
+                                    <input type="text" class="input-control" placeholder="Rua e número*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.rua">
+                                    <input type="text" class="input-control" placeholder="Cidade*" id="inputCidade" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cidade">
+                                    <input type="text" class="input-control" placeholder="Estado*" id="inputEstado" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.estado">
+                                    <input type="text" class="input-control" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="oNossoCidadao.dadosPessoais.telefone">
                                 </div>
                                 <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                                    <input type="text" class="input-control" placeholder="Data de Nascimento*" id="inputNascimento">
-                                    <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento">
+                                    <input type="text" class="input-control" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="oNossoCidadao.dataNascimento">
+                                    <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.complemento">
                                 </div>
                                 <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                                    <input type="text" class="input-control" placeholder="CPF*" id="inputCpf">
-                                    <input type="text" class="input-control" placeholder="RG*" id="inputRg">
+                                    <input type="text" class="input-control" placeholder="CPF*" id="inputCpf" [(ngModel)]="oNossoCidadao.cpf">
+                                    <input type="text" class="input-control" placeholder="RG*" id="inputRg" [(ngModel)]="oNossoCidadao.rg">
                                 </div>
                                 <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)" id="generoDiv">
                                     <label id="genero">Gênero*</label>
@@ -277,7 +301,7 @@
                             </div>
                             <label id="informacoesEstaticasLabel">Informações Estáticas de Hipertensão Arterial</label>
                             <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10" id='estaticas'>
-                                <input type="text" class="form-control input-sm" placeholder="Altura" id="inputAltura" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                                <input type="text" class="form-control input-sm" placeholder="Altura" id="inputAltura" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)" [(ngModel)]="oNossoCidadao.indicadorRiscoHAS.altura">
                                 <mat-form-field id="diabetesDrop" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
                                     <mat-label>Diabetes</mat-label>
                                     <mat-select style="width: 248px; height: 56px;">
@@ -296,14 +320,18 @@
                                 </mat-form-field>
 
 
-                                <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" id="usoPrevioLabel" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                                <mat-slide-toggle class="example-margin" [color]="color" [checked]="oNossoCidadao.indicadorRiscoHAS.antiHipertensivos" [disabled]="oNossoCidadao.indicadorRiscoHAS.antiHipertensivos" id="usoPrevioLabel" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)"
+                                    fxFlex.gt-md="0 1 calc(25%-10px)">
                                     Uso prévio de anti-hipertensivo
                                 </mat-slide-toggle>
 
-                                <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled" id="avcToggleLabel" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+                                <mat-slide-toggle class="example-margin" [color]="color" [checked]="oNossoCidadao.indicadorRiscoHAS.historicoAvc" [disabled]="oNossoCidadao.indicadorRiscoHAS.historicoAvc" id="avcToggleLabel" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)"
+                                    fxFlex.gt-md="0 1 calc(25%-10px)">
                                     Histórico de AVC
                                 </mat-slide-toggle>
                             </div>
+                            <button mat-button id="naobutton" data-dismiss="modal"><label id="naolabel">NÃO</label></button>
+                            <button mat-button id="simbutton" (click)="updateCz()" data-dismiss="modal"><label id="simlabel">SIM</label></button>
                         </div>
                     </div>
                 </div>
@@ -313,34 +341,34 @@
 
             <!-- /.box-header -->
             <div class="box-body">
-                <div class="box box-default" id="infoBoxPessoal">
+                <div class="box box-default" id="infoBoxPessoal" *ngIf="cidadao$ | async">
                     <label id="pessoaisLabel">Pessoais</label>
                     <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
                         <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
                             <label id="nomeLabel">NOME</label>
-                            <label id="nomeResult">{{nome}}</label>
+                            <label id="nomeResult">{{oNossoCidadao.nome}}</label>
                             <label id="enderecoLabel">ENDEREÇO</label>
-                            <label id="enderecoResult">{{endereco}}</label>
+                            <label id="enderecoResult">{{oNossoCidadao.dadosPessoais.endereco.rua}}, {{oNossoCidadao.dadosPessoais.endereco.numero}}</label>
                             <label id="cidadeLabel">CIDADE</label>
-                            <label id="cidadeResult">{{cidade}}</label>
+                            <label id="cidadeResult">{{oNossoCidadao.dadosPessoais.endereco.cidade}}</label>
                             <label id="telefoneLabel">TELEFONE</label>
-                            <label id="telefoneResult">{{telefone}}</label>
+                            <label id="telefoneResult">{{oNossoCidadao.dadosPessoais.telefone}}</label>
                         </div>
                         <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
                             <label id="dataNascimentoLabel">DATA DE NASCIMENTO</label>
-                            <label id="dataNascimentoResult">{{dataNascimento}}</label>
+                            <label id="dataNascimentoResult">{{oNossoCidadao.dataNascimento}}</label>
                             <label id="complementoLabel">COMPLEMENTO</label>
-                            <label id="complementoResult">{{complemento}}</label>
+                            <label id="complementoResult">{{oNossoCidadao.dadosPessoais.endereco.complemento}}</label>
                             <label id="estadoLabel">ESTADO</label>
-                            <label id="estadoResult">{{estado}}</label>
+                            <label id="estadoResult">{{oNossoCidadao.dadosPessoais.endereco.estado}}</label>
                         </div>
                         <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
                             <label id="cpfLabel">CPF</label>
-                            <label id="cpfResult">{{cpf}}</label>
+                            <label id="cpfResult">{{oNossoCidadao.cpf}}</label>
                             <label id="rgLabel">RG</label>
-                            <label id="rgResult">{{rg}}</label>
+                            <label id="rgResult">{{oNossoCidadao.rg}}</label>
                             <label id="generoLabel">GÊNERO</label>
-                            <label id="generoResult">{{genero}}</label>
+                            <label id="generoResult">{{oNossoCidadao.dadosPessoais.genero}}</label>
                         </div>
                     </div>
                 </div>
@@ -350,19 +378,29 @@
                     <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
                         <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
                             <label id="alturaLabel">ALTURA</label>
-                            <label id="alturaResult">{{altura}}</label>
+                            <label id="alturaResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
                             <label id="antiHipertensivoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
-                            <label id="antiHipertensivoResult">{{antiHipertensivo}}</label>
+                            <label id="antiHipertensivoResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Não</label>
+                            <label id="antiHipertensivoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Sim</label>
+
                         </div>
                         <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
                             <label id="diabetesLabel">DIABETES</label>
-                            <label id="diabetesResult">{{diabetes}}</label>
+                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
+                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
+                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
+
                             <label id="avcLabel">HISTÓRICO DE AVC</label>
-                            <label id="avcResult">{{avc}}</label>
+                            <label id="avcResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc">Sim</label>
+                            <label id="avcResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.historicoAvc">Não</label>
+
                         </div>
                         <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
                             <label id="fumanteLabel">FUMANTE</label>
-                            <label id="fumanteResult">{{fumante}}</label>
+                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
+                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
+                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
+
                         </div>
                     </div>
                 </div>
