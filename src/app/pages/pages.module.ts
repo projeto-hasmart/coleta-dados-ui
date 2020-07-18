@@ -25,6 +25,7 @@ import { PaginaMedicaoSucessoComponent } from './pagina-medicao/pagina-medicao-s
 import { PaginaMedicamentosComponent } from './pagina-medicamentos/pagina-medicamentos.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatMenuModule,
     MatExpansionModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule {

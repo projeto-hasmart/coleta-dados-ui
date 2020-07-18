@@ -74,8 +74,6 @@ export class PaginaCidadaosComponent implements OnInit {
   getCidadaos(): void {
     this.apiService.getAllCidadaos().subscribe(cidadaos => {
       this.cidadaos = cidadaos as Cidadao[];
-      console.log(cidadaos);
-      console.log(this.cidadaos);
     });
 
   }

@@ -4,20 +4,13 @@ import { ApiService } from './../../../services/api.service';
 import { Cidadao } from './../../../models/cidadao';
 import { CidadaoServiceService } from './../../../services/cidadao/cidadao-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { element } from 'protractor';
-
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
 import { Medicao } from 'src/app/models/medicao';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+
 interface Diabetes {
   value: string;
   viewValue: string;
@@ -26,10 +19,9 @@ interface Fumante {
   value: string;
   viewValue: string;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'}
+const ELEMENT_DATA: any[] = [
+];
+let ELEMENTS_DATA: any[] = [
 ];
 const MEDICAO: Medicao[] = [];
 
@@ -49,6 +41,8 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   mz: MedicaoServiceService;
   dz: DispensacaoServiceService;
   cidadao$: Observable<Cidadao>;
+  ultimaMedicao: string;
+  responsavel: string;
   router: Router;
   weight;
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
@@ -58,8 +52,9 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     this.apiService = apiService;
    }
   displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+  dataSourceMedi = new MatTableDataSource<any>(ELEMENTS_DATA);
+  selection = new SelectionModel<any>(true, []);
   /* declarando um nome pro property binding do nome dinâmico */
 
   color = 'green';
@@ -87,7 +82,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
+  checkboxLabel(row?: any): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
@@ -104,15 +99,47 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     } else {
     this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
       this.oNossoCidadao = cidadao as Cidadao;
-      console.log(cidadao);
-      console.log(this.oNossoCidadao);
-      this.weight =  this.oNossoCidadao.medicoes[this.oNossoCidadao.medicoes.length - 1].peso;
+      this.getMedicoes();
     });
     this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
   }
 }
+compare( a, b ) {
+  if ( a.dataHora < b.dataHora ) {
+    return -1;
+  }
+  if ( a.dataHora > b.dataHora ) {
+    return 1;
+  }
+  return 0;
+}
+getMedicoes() {
+  for (const med of this.oNossoCidadao.medicoes) {
+    ELEMENT_DATA.push(med);
+  }
+  // for (const disp of this.oNossoCidadao.dispensacoes) {
+  //   ELEMENT_DATA.push(disp);
+  // }
+
+  ELEMENT_DATA.sort( this.compare );
+
+}
 goToView() {
   this.mz.selecionaCidadao(this.oNossoCidadao.cpf);
 }
+medicaoDe(dataHora: string) {
+  for (const med of ELEMENT_DATA) {
+    if (med.dataHora === dataHora) {
+      ELEMENTS_DATA = [];
+      this.ultimaMedicao = dataHora;
+      this.responsavel = med.estabelecimentoId;
+      this.weight = med.peso;
+      for (const af of med.afericoes) {
+        ELEMENTS_DATA.push(af);
+        this.dataSourceMedi = new MatTableDataSource(ELEMENTS_DATA);
 
+      }
+    }
+  }
+}
 }

@@ -3,7 +3,6 @@ export interface IndicadorRiscoHAS {
   diabetico: number;
   fumante: number;
   antiHipertensivos: boolean;
-  doencaCardiovascular:	boolean;
   historicoAvc:	boolean;
 }
 

@@ -1,9 +1,10 @@
 import { Afericao } from './afericao';
 
 export interface Medicao {
-  cidadaoId:	number;
-  estabelecimentoId:	number;
-  afericoes: Array<Afericao>;
+  afericoes: Afericao[];
   peso:	number;
-  dataHora:	Date;
+  dataHora?: string;
+  estabelecimentoId?: number;
+  cidadaoId?: number;
+  id?: number;
 }

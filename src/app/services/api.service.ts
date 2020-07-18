@@ -25,8 +25,11 @@ export class ApiService {
   }
 
   // API: POST /HaSmart/api/cidadaos
-  public createCidadao(cidadao: Cidadao) {
-    // will use this.http.post()
+  public createCidadao(cidadao: Cidadao): Observable<Cidadao> {
+    return this.httpClient.post<Cidadao>(('api/hasmart/api/Cidadaos'), cidadao)
+    .pipe(
+      retry(2),
+      catchError(this.handleError));
   }
 
   // API: GET /cidadaos/:id
@@ -59,6 +62,7 @@ export class ApiService {
       errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
     }
     console.log(errorMessage);
+    console.log(error);
     return throwError(errorMessage);
   }
 }

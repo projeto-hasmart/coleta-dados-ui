@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
-import { randomFill } from 'crypto';
 
 
 const ELEMENT_DATA: Afericao[] = [];
@@ -24,7 +23,7 @@ const ELEMENTS_DATA: Afericao[] = [];
 export class PaginaMedicaoComponent implements OnInit {
   oNossoCidadao: Cidadao;
   apiService: ApiService;
-  finalData: Array<Afericao> = [];
+  finalData: Afericao[] = [];
   cz: CidadaoServiceService;
   mz: MedicaoServiceService;
   dz: DispensacaoServiceService;
@@ -76,9 +75,9 @@ export class PaginaMedicaoComponent implements OnInit {
     }
     return `${this.selections.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
-  onKey(event: any) { // without type info
-    this.peso += event.target.value;
-  }
+  // onKey(event: any) { // without type info
+  //   this.peso += event.target.value;
+  // }
 
   excluirAfericao(row) {
     const index = this.dataSource.data.indexOf(row.id);
@@ -114,49 +113,32 @@ this.cz.selecionaCidadao(this.oNossoCidadao.cpf);
 }
 addRow() {
   this.novaAfericao = {
-    sistolica: 1,
-    diastolica: 1,
-    medicaoId: 1,
-    id: 1
   };
   ELEMENT_DATA.push(this.novaAfericao);
   this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-  console.log('dew it');
-  console.log(this.novaAfericao);
-  console.log('datasource é isso aqui bb: ' + this.dataSource.data.map.call);
 }
 addRowd() {
   this.novaAfericao = {
-    sistolica: 1,
-    diastolica: 1,
-    medicaoId: 1,
-    id: 1
   };
   ELEMENTS_DATA.push(this.novaAfericao);
   this.dataSourced = new MatTableDataSource(ELEMENTS_DATA);
-  console.log('dew it');
-  console.log(this.novaAfericao);
-  console.log('datasource é isso aqui bb: ' + this.dataSourced.data.map.call);
 }
 
 novaMedicao() {
-  for ( const data of ELEMENT_DATA) {
+  for ( const data of ELEMENT_DATA) { // pode estar colocando 1 como valor da medicao
     this.finalData.push(data);
   }
   for ( const data of ELEMENTS_DATA) {
     this.finalData.push(data);
   }
-
   this.medido = {
-    cidadaoId: this.oNossoCidadao.id,
-    estabelecimentoId: 1,
     afericoes: this.finalData,
-    peso:	this.peso,
-    dataHora:	new Date()
+    peso:	this.peso
   };
 
-  this.mz.createMedicao(this.medido);
-  console.log(this.medido);
+
+  this.mz.createMedicao(this.medido, this.oNossoCidadao.id).subscribe();
+  console.log(this.mz.createMedicao(this.medido, this.oNossoCidadao.id).subscribe());
 }
 
 }

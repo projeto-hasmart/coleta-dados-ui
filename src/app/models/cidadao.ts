@@ -8,18 +8,18 @@ export interface Cidadao {
   cpf: string;
   rg: string;
   dataNascimento: string;
-  dataCadastro: string;
+  dataCadastro?: string;
   dadosPessoais: DadosPessoais;
   indicadorRiscoHAS: IndicadorRiscoHAS;
-  medicoes: Array<Medicao>;
-  dispensacoes: Array<Dispensacao>;
-  podeRealizarMedicao: boolean;
-  dataProximaMedicao: string;
-  dataUltimaMedicao: string;
-  podeRealizarDispensacao: boolean;
-  dataProximaDispensacao: string;
-  dataUltimaDispensacao: string;
-  id: number;
+  medicoes?: any[];
+  dispensacoes?: Array<Dispensacao>;
+  podeRealizarMedicao?: boolean;
+  dataProximaMedicao?: string;
+  dataUltimaMedicao?: string;
+  podeRealizarDispensacao?: boolean;
+  dataProximaDispensacao?: string;
+  dataUltimaDispensacao?: string;
+  id?: number;
 }
 /* {
   "nome": "string",
