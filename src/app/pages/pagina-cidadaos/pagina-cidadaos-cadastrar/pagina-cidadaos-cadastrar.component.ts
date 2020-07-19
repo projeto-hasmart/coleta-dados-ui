@@ -59,7 +59,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     'Masculino',
     'Feminino',
     'Outro',
-    'Prefiro não dizer...'
+    'Prefere não dizer'
   ];
   diabetess: Diabetes[] = [
     {value: 1, viewValue: 'Não'},

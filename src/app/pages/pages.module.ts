@@ -26,7 +26,7 @@ import { PaginaMedicamentosComponent } from './pagina-medicamentos/pagina-medica
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { Global } from 'src/app/models/globalConstants';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PaginaCidadaosVisualizarComponent,
     PaginaMedicaoSucessoComponent,
     PaginaMedicamentosComponent
-  ],
+    ],
   imports: [
     CommonModule,
     PagesRoutingModule,
@@ -58,6 +58,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatExpansionModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    Global
   ]
 })
 export class PagesModule {

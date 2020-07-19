@@ -19,7 +19,7 @@ interface Fumante {
   value: string;
   viewValue: string;
 }
-const ELEMENT_DATA: any[] = [
+let ELEMENT_DATA: any[] = [
 ];
 let ELEMENTS_DATA: any[] = [
 ];
@@ -44,6 +44,8 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   ultimaMedicao: string;
   responsavel: string;
   router: Router;
+  buscado: string;
+
   weight;
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
     this.cz = cz;
@@ -97,11 +99,13 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     if (this.cz.selecionadoId === undefined) {
       this.router.navigate(['/cidadaos']);
     } else {
-    this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
+      localStorage.setItem('citizen', this.cz.selecionadoId.toString());
+      console.log(localStorage.getItem('citizen'));
+      this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
       this.oNossoCidadao = cidadao as Cidadao;
       this.getMedicoes();
     });
-    this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
+      this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
   }
 }
 compare( a, b ) {
@@ -114,6 +118,7 @@ compare( a, b ) {
   return 0;
 }
 getMedicoes() {
+  ELEMENT_DATA = [];
   for (const med of this.oNossoCidadao.medicoes) {
     ELEMENT_DATA.push(med);
   }
@@ -126,6 +131,10 @@ getMedicoes() {
 }
 goToView() {
   this.mz.selecionaCidadao(this.oNossoCidadao.cpf);
+}
+searchToView() {
+  this.cz.selecionaCidadao(this.buscado);
+
 }
 medicaoDe(dataHora: string) {
   for (const med of ELEMENT_DATA) {

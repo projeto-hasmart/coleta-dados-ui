@@ -44,9 +44,9 @@
         <label id="informacoesEstaticasLabel">Informações Estáticas de Hipertensão Arterial</label>
         <div class='row'>
             <div class="col-sm-4">
-                <input type="number" class="form-control input-sm" placeholder="Altura" id="inputAltura" [(ngModel)]="altura" name="altura" #inputAltura="ngModel" required>
+                <input type="number" class="form-control input-sm" placeholder="Altura*" id="inputAltura" [(ngModel)]="altura" name="altura" #inputAltura="ngModel" required>
                 <mat-slide-toggle class="example-margin" [checked]="checked" [disabled]="disabled" id="usoPrevioLabel" [(ngModel)]="antiHipertensivos" name="antiHipertensivos" #usoPrevioLabel="ngModel" required>
-                    Uso prévio de anti-hipertensivo
+                    Uso prévio de anti-hipertensivo*
                 </mat-slide-toggle>
             </div>
             <div class="col-sm-4">
@@ -59,7 +59,7 @@
                     </mat-select>
                 </mat-form-field>
                 <mat-slide-toggle class="example-margin" [checked]="checked" [disabled]="disabled" id="avcToggleLabel" [(ngModel)]="historicoAvc" name="historicoAvc" #avcToggleLabel="ngModel" required>
-                    Histórico de AVC
+                    Histórico de AVC*
                 </mat-slide-toggle>
             </div>
             <div class='col-sm-4'>

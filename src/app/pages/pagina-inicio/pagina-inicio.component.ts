@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
+import { Global } from 'src/app/models/globalConstants';
 
 export interface PeriodicElement {
   name: string;
@@ -41,6 +42,8 @@ export class PaginaInicio implements OnInit {
   displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
+  totalMedicoes: number;
+  idk: Global;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -63,13 +66,15 @@ export class PaginaInicio implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
-  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService) {
+  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, idk: Global) {
     this.apiService = apiService;
     this.cidadaoService = cidadaoService;
+    this.idk = idk;
   }
 
   ngOnInit() {
     this.getCidadaos();
+    this.calculaMedicoes();
   }
 
   getCidadaos(): void {
@@ -83,7 +88,17 @@ export class PaginaInicio implements OnInit {
     console.log(this.cidadaos$);
   }
 
+  calculaMedicoes() {
+    for (const cit of this.cidadaos) {
+      for (const med of cit.medicoes) {
+        for (const af of med.afericoes) {
+          this.totalMedicoes++;
+        }
+      }
+    }
+  }
   goToView() {
+    this.idk.buscado = this.buscado;
     this.cidadaoService.selecionaCidadao(this.buscado);
   }
 

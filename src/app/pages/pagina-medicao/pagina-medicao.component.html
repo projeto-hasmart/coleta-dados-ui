@@ -95,7 +95,25 @@
                     <div class="modal-body">
                         <label id="modalText">Tem certeza que deseja excluir este aferição?</label>
                         <button mat-button id="naobutton" data-dismiss="modal"><label id="naolabel">NÃO</label></button>
-                        <button mat-button id="simbutton" (click)="excluirAfericao()" data-dismiss="modal"><label id="simlabel">SIM</label></button>
+                        <button mat-button id="simbutton" (click)="removeSelectedRows()" data-dismiss="modal"><label id="simlabel">SIM</label></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="excluirmedicaoES">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="titleModal">Excluir Aferição</h4>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <label id="modalText">Tem certeza que deseja excluir este aferição?</label>
+                        <button mat-button id="naobutton" data-dismiss="modal"><label id="naolabel">NÃO</label></button>
+                        <button mat-button id="simbutton" (click)="removeSelectedMows()" data-dismiss="modal"><label id="simlabel">SIM</label></button>
                     </div>
                 </div>
             </div>
@@ -153,7 +171,7 @@
                     <div id="titlesTables">
                         <label id="numero">2</label>
                         <label id="medicaoTitleLabel">Realize a aferição do braço esquerdo</label>
-                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="float-right"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicaoES" class="float-right"><mat-icon>delete</mat-icon></button>
                     </div>
                     <div id="tabela">
                         <!-- TABELA-->
@@ -194,7 +212,7 @@
                     <div id="titlesTables">
                         <label id="numero">3</label>
                         <label id="medicaoTitleLabel">Realize a aferição do peso</label>
-                        <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right"><mat-icon>delete</mat-icon></button>
+                        <!-- <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right"><mat-icon>delete</mat-icon></button> -->
                     </div>
                     <input type="number" class="input-control" placeholder="Peso" id="pesoinput" [(ngModel)]="peso">
                     <!--(keyup)="onKey($event)"-->

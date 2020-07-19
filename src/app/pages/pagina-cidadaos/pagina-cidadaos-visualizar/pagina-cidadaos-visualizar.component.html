@@ -4,6 +4,22 @@
         <div id="divcpf"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{oNossoCidadao.cpf}}</label></div>
         <label id="labelVisualize">Visualize autorizações e dados de {{oNossoCidadao.nome}}, ou inicie processos de medição ou dispensação</label>
     </div>
+    <!-- <div id="searchboxtoggle" class="row">
+
+        <mat-button-toggle-group id="cpfrgtoggle">
+            <mat-button-toggle value="cpf" id="togglebutton">
+                CPF
+            </mat-button-toggle>
+            <mat-button-toggle value="rg" id="togglebutton">
+                RG
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+        <div class="search-bar">
+            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." (keydown.enter)="searchToView()" id="searchBox" [(ngModel)]="buscado">
+            <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="searchToView()">
+<i class="fa fa-search"></i> </button>
+        </div>
+    </div> -->
 </section>
 <section class="content">
     <div class="container">
@@ -46,7 +62,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <mat-card-title id="cardTitle">Dispensação</mat-card-title>
-                                <label id="ultimaMedicao">Última medição: {{oNossoCidadao.dataUltimaDispensacao}}</label>
+                                <label id="ultimaMedicao">Última dispensação: {{oNossoCidadao.dataUltimaDispensacao}}</label>
                                 <label id="autorizacaoMedicao">O paciente está autorizado a obter uma dispensação neste período.</label>
                                 <a href="/dispensacao"> <button mat-button id="dispensacaoButton" class="pull-right" (click)="goToView()">
                 <label id="dispensacaoButtonLabel">REALIZAR DISPENSAÇÃO</label></button></a>
@@ -56,11 +72,11 @@
                     <mat-card id="dispensacaoCardNao" *ngIf="!oNossoCidadao.podeRealizarDispensacao">
                         <div class='row'>
                             <div class="col-sm-3">
-                                <img src="assets/dist/img/check_maior.png" id="cardImg">
+                                <img src="assets/dist/img/red_check.png" id="cardImg">
                             </div>
                             <div class="col-sm-9">
                                 <mat-card-title id="cardTitleNao">Dispensação</mat-card-title>
-                                <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataUltimaDispensacao}}</label>
+                                <label id="ultimaMedicaoNao">Última dispensação: {{oNossoCidadao.dataUltimaDispensacao}}</label>
                                 <label id="autorizacaoMedicaoNao">O paciente não está autorizado a obter uma dispensação neste período.</label>
                                 <label id="autorizacaoMedicaoNao">Próxima dispensação está autorizada para {{oNossoCidadao.dataProximaDispensacao}}</label>
                             </div>

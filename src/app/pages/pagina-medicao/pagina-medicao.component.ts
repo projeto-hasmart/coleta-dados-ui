@@ -32,6 +32,9 @@ export class PaginaMedicaoComponent implements OnInit {
   medido: Medicao;
   router: Router;
   peso: number;
+  data = Object.assign( ELEMENT_DATA);
+  datum = Object.assign( ELEMENTS_DATA);
+
   displayedColumns: string[] = ['select',  'sistolica', 'diastolica'];
   dataSource = new MatTableDataSource<Afericao>(ELEMENT_DATA);
   dataSourced = new MatTableDataSource<Afericao>(ELEMENTS_DATA);
@@ -123,7 +126,26 @@ addRowd() {
   ELEMENTS_DATA.push(this.novaAfericao);
   this.dataSourced = new MatTableDataSource(ELEMENTS_DATA);
 }
+removeSelectedRows() {
 
+  this.selection.selected.forEach(item => {
+    const index: number = this.data.findIndex(d => d === item);
+    console.log(this.data.findIndex(d => d === item));
+    this.data.splice(index, 1);
+    this.dataSource = new MatTableDataSource<Afericao>(this.data);
+  });
+  this.selection = new SelectionModel<Afericao>(true, []);
+}
+removeSelectedMows() {
+
+  this.selections.selected.forEach(item => {
+    const index: number = this.datum.findIndex(d => d === item);
+    console.log(this.datum.findIndex(d => d === item));
+    this.datum.splice(index, 1);
+    this.dataSourced = new MatTableDataSource<Afericao>(this.datum);
+  });
+  this.selections = new SelectionModel<Afericao>(true, []);
+}
 novaMedicao() {
   for ( const data of ELEMENT_DATA) { // pode estar colocando 1 como valor da medicao
     this.finalData.push(data);

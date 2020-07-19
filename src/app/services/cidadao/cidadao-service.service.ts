@@ -31,8 +31,6 @@ export class CidadaoServiceService {
   selecionaCidadao(digitado: string) {
     this.getAllCidadaos().subscribe(cidadaos => {
       this.cidadaos = cidadaos as Cidadao[];
-      console.log(cidadaos);
-      console.log(this.cidadaos);
       for (const cidadao of this.cidadaos) {
         if (cidadao.cpf.includes(digitado) || cidadao.rg.includes(digitado)) {
           this.selecionadoId = cidadao.id;
@@ -44,7 +42,20 @@ export class CidadaoServiceService {
     });
 
   }
+  jaTemosCidadao(id: number) {
+    this.getAllCidadaos().subscribe(cidadaos => {
+      this.cidadaos = cidadaos as Cidadao[];
+      for (const cidadao of this.cidadaos) {
+        if (cidadao.id === id ) {
+          this.selecionadoId = cidadao.id;
+          this.router.navigate(['/cidadaos/visualizar']);
+        } else {
+          console.log('nope');
+        }
+      }
+    });
 
+  }
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
