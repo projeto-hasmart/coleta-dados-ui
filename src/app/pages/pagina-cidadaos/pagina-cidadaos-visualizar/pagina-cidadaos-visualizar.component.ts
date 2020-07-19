@@ -4,19 +4,20 @@ import { ApiService } from './../../../services/api.service';
 import { Cidadao } from './../../../models/cidadao';
 import { CidadaoServiceService } from './../../../services/cidadao/cidadao-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
 import { Medicao } from 'src/app/models/medicao';
+import { DatePipe } from '@angular/common';
 
 
 interface Diabetes {
-  value: string;
+  value: number;
   viewValue: string;
 }
 interface Fumante {
-  value: string;
+  value: number;
   viewValue: string;
 }
 let ELEMENT_DATA: any[] = [
@@ -61,14 +62,33 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
 
   color = 'green';
   diabetess: Diabetes[] = [
-    {value: 'tipo-1', viewValue: 'Tipo 1'},
-    {value: 'tipo-2', viewValue: 'Tipo 2'},
-    {value: 'tipo-3', viewValue: 'Tipo 3'}
+    {value: 1, viewValue: 'Não'},
+    {value: 2, viewValue: 'Tipo 1'},
+    {value: 3, viewValue: 'Tipo 2'},
+    {value: 4, viewValue: 'Diabetes Gestante'}
   ];
   fumantes: Fumante[] = [
-    {value: 'naofumante', viewValue: 'Não fumante'},
-    {value: 'fumante', viewValue: 'Fumante'}
+    {value: 1, viewValue: 'Não fumante'},
+    {value: 2, viewValue: 'Fumante'},
+    {value: 3, viewValue: 'Ex-Fumante'}
   ];
+  genero: string;
+  generos: string[] = [
+    'Masculino',
+    'Feminino',
+    'Outro',
+    'Prefere não dizer'
+  ];
+  gotDate() {
+    const dateComingFromServer = new DatePipe('dd/MM/yyyy').transform(this.oNossoCidadao.dataNascimento, 'mm-dd-yyyy');
+    console.log(dateComingFromServer);
+    this.oNossoCidadao.dataNascimento = dateComingFromServer;
+  }
+  checkDate() {
+    const dateSendingToServer = new DatePipe('en-US').transform(this.oNossoCidadao.dataNascimento, 'dd/MM/yyyy');
+    console.log(dateSendingToServer);
+    this.oNossoCidadao.dataNascimento = dateSendingToServer;
+  }
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -92,30 +112,28 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   }
 
   updateCz(cidadaoEditado: Cidadao) {
-    this.apiService.updateCidadao(cidadaoEditado);
+    this.checkDate();
+    this.apiService.updateCidadao(cidadaoEditado, this.oNossoCidadao.id).subscribe();
   }
 
   ngOnInit() {
     if (this.cz.selecionadoId === undefined) {
       this.router.navigate(['/cidadaos']);
     } else {
+      ELEMENT_DATA = [];
       localStorage.setItem('citizen', this.cz.selecionadoId.toString());
-      console.log(localStorage.getItem('citizen'));
+      if ((localStorage.getItem('citizen')) !== undefined) {
       this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
       this.oNossoCidadao = cidadao as Cidadao;
+      this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
       this.getMedicoes();
+      this.genero = this.oNossoCidadao.dadosPessoais.genero;
+
+
     });
+  }
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
   }
-}
-compare( a, b ) {
-  if ( a.dataHora < b.dataHora ) {
-    return -1;
-  }
-  if ( a.dataHora > b.dataHora ) {
-    return 1;
-  }
-  return 0;
 }
 getMedicoes() {
   ELEMENT_DATA = [];
@@ -126,7 +144,11 @@ getMedicoes() {
   //   ELEMENT_DATA.push(disp);
   // }
 
-  ELEMENT_DATA.sort( this.compare );
+  ELEMENT_DATA.sort((a, b) => {
+    // tslint:disable-next-line: no-angle-bracket-type-assertion
+    return <any> new Date(b.dataHora) - <any> new Date(a.dataHora);
+  });
+  this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
 
 }
 goToView() {

@@ -41,17 +41,14 @@ export class ApiService {
   }
 
   // API: PUT /cidadaos/:id
-  public updateCidadao(cidadao: Cidadao): Observable<any> {
-    return this.httpClient.put(('api/hasmart/api/Cidadaos/' + cidadao.id), cidadao)
+  public updateCidadao(cidadao: Cidadao, id: number): Observable<any> {
+    return this.httpClient.put(('api/hasmart/api/Cidadaos/' + id), cidadao)
       .pipe(
       retry(2),
       catchError(this.handleError));
   }
 
-  // DELETE /todos/:id
-  public deleteTodoById(todoId: number) {
-    // will use this.http.delete()
-  }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

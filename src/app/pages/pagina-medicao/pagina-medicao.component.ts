@@ -24,6 +24,7 @@ export class PaginaMedicaoComponent implements OnInit {
   oNossoCidadao: Cidadao;
   apiService: ApiService;
   finalData: Afericao[] = [];
+  isCollapsed = true;
   cz: CidadaoServiceService;
   mz: MedicaoServiceService;
   dz: DispensacaoServiceService;
@@ -95,9 +96,9 @@ export class PaginaMedicaoComponent implements OnInit {
     this.apiService = apiService;
    }
 
- updateCz(cidadaoEditado: Cidadao) {
-  this.apiService.updateCidadao(cidadaoEditado);
-}
+//  updateCz(cidadaoEditado: Cidadao) {
+//   this.apiService.updateCidadao(cidadaoEditado);
+// }
 
 ngOnInit() {
   if (this.cz.selecionadoId === undefined) {

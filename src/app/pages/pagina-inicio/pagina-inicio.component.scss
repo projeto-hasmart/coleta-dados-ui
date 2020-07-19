@@ -61,9 +61,14 @@ body {
 }
 
 #togglebutton {
-    // background-color: white;
+    // background-color: green;
     color: black;
     display: inline-block;
+}
+
+.mat-button-toggle-checked {
+    background-color: #009728;
+    // background-color: pink;
 }
 
 .search-bar {
