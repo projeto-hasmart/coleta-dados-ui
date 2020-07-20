@@ -145,9 +145,9 @@ getMedicoes() {
   // }
 
   ELEMENT_DATA.sort((a, b) => {
-    // tslint:disable-next-line: no-angle-bracket-type-assertion
-    return <any> new Date(b.dataHora) - <any> new Date(a.dataHora);
+    return (new Date(b.dataHora.split('/').reverse().join('-')) as any) - (new Date(a.dataHora.split('/').reverse().join('-')) as any);
   });
+  console.log('ed? ', ELEMENT_DATA);
   this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
 
 }

@@ -221,8 +221,8 @@
             </div>
         </div>
         <a routerLink="/medicao/sucesso">
-            <button mat-button id="finalizarButton" (click)="novaMedicao()"><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button></a>
+            <button mat-button id="finalizarButton" (click)="novaMedicao()" *ngIf="peso"><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button></a>
         <!--*ngIf=peso -->
-        <!-- <button mat-button id="finalizarButtonBlocked" *ngIf=!peso><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button> -->
+        <button mat-button id="finalizarButtonBlocked" *ngIf="!peso"><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button>
     </div>
 </section>
