@@ -34,7 +34,8 @@
                             </div>
                             <div class="col-sm-9">
                                 <mat-card-title id="cardTitle">Medição</mat-card-title>
-                                <label id="ultimaMedicao">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                                <label id="ultimaMedicao" *ngIf="oNossoCidadao.medicoes[0] !== undefined">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                                <label id="semMedicao" *ngIf="oNossoCidadao.medicoes[0] === undefined">O Cidadão não tem medições cadastradas</label>
                                 <label id="autorizacaoMedicao">O paciente está autorizado a realizar uma medição de pressão arterial neste período.</label>
                                 <a><button mat-button id="medicaoButton" class="pull-right" (click)="goToView()">
                 <label id="medicaoButtonLabel">REALIZAR MEDIÇÃO</label></button></a></div>
