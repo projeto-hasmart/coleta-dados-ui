@@ -12,8 +12,8 @@ import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
 
 
-const ELEMENT_DATA: Afericao[] = [];
-const ELEMENTS_DATA: Afericao[] = [];
+let ELEMENT_DATA: Afericao[] = [];
+let ELEMENTS_DATA: Afericao[] = [];
 
 @Component({
   selector: 'app-pagina-medicao',
@@ -105,6 +105,10 @@ ngOnInit() {
     this.router.navigate(['/cidadaos']);
   } else {
   this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
+    ELEMENT_DATA = [];
+    ELEMENTS_DATA = [];
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    this.dataSourced = new MatTableDataSource(ELEMENTS_DATA);
     this.oNossoCidadao = cidadao as Cidadao;
     console.log(cidadao);
     console.log(this.oNossoCidadao);
