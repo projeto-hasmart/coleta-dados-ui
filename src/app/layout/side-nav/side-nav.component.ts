@@ -15,6 +15,7 @@ export class SideNavComponent implements OnInit {
   atual: string;
   medicao = false;
   dispensacao = false;
+  doWeHaveCitizen = false;
   routeData;
   // tslint:disable-next-line: radix
   idk: number = parseInt(localStorage.getItem('citizen'));
@@ -24,12 +25,10 @@ export class SideNavComponent implements OnInit {
                  this.idk = idk.selecionadoId;
                }
   ngOnInit() {
+
     $(document).ready(() => {
       $('.sidebar-menu').tree();
     });
-    console.log(this.routeData);
-    console.log(this.dispensacao);
-    console.log(this.medicao);
     if (this.routeData === 'medicao') {
       this.medicao = true;
     }

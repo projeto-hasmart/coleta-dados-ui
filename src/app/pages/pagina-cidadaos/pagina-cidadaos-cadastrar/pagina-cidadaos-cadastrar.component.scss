@@ -159,10 +159,10 @@
 #inputTelefone {
     margin-left: 2%;
     right: 0%;
-    margin-top: 3%;
+    margin-top: 1.5%;
     bottom: 0%;
     background: #FFFFFF;
-    width: 98%;
+    width: 47.5%;
     box-sizing: border-box;
     height: 56px;
     font-family: 'Roboto';
@@ -181,6 +181,16 @@
 #inputComplemento {
     margin-left: 2%;
     right: 0%;
+    margin-top: 3%;
+    background: #FFFFFF;
+    width: 98%;
+    box-sizing: border-box;
+    height: 56px;
+    font-family: 'Roboto';
+}
+
+#inputCpf {
+    margin-left: 1%;
     margin-top: 1.5%;
     background: #FFFFFF;
     width: 47.5%;
@@ -189,7 +199,7 @@
     font-family: 'Roboto';
 }
 
-#inputCpf {
+#inputEmail {
     margin-left: 1%;
     margin-top: 1.5%;
     background: #FFFFFF;
@@ -409,4 +419,11 @@ form input:focus {
     line-height: 30px;
     /* identical to box height */
     color: #000000;
+}
+
+#errorLabel {
+    font-size: 12px;
+    margin-left: 2%;
+    color: red;
+    font-family: 'Roboto';
 }

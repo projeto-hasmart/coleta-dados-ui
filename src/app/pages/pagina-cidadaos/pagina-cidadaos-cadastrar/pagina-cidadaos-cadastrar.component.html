@@ -10,19 +10,38 @@
         <div class="row">
             <div class="col-sm-4">
                 <input type="text" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="nome" name="nome" #inputNome="ngModel" required>
+                <label id="errorLabel" *ngIf="nome === undefined && checkEmpty">Digite um valor válido</label>
+
                 <input type="text" placeholder="Rua e número*" id="inputRua" [(ngModel)]="rua" name="rua" #inputRua="ngModel" required>
+                <label id="errorLabel" *ngIf="rua === undefined && checkEmpty">Digite um valor válido para a rua</label>
+                <label id="errorLabel" *ngIf="numero === undefined && checkEmpty">Digite um valor válido para o número</label>
                 <input type="text" placeholder="Cidade*" id="inputCidade" [(ngModel)]="cidade" name="cidade" #inputCidade="ngModel" required>
+                <label id="errorLabel" *ngIf="cidade === undefined && checkEmpty">Digite um valor válido</label>
                 <input type="text" placeholder="Estado*" id="inputEstado" [(ngModel)]="estado" name="estado" #inputEstado="ngModel" required>
-                <input type="text" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="telefone" name="telefone" #inputTelefone="ngModel" required>
+                <label id="errorLabel" *ngIf="estado === undefined && checkEmpty">Digite um valor válido</label>
+
+                <input type="text" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="complemento" name="complemento" #inputComplemento="ngModel" required>
+                <label id="errorLabel" *ngIf="complemento === undefined && checkEmpty">Digite um valor válido</label>
+
+
             </div>
             <div class="col-sm-8">
                 <div class='row'>
                     <input type="date" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="nascimento" name="nascimento" #inputNascimento="ngModel" required>
-                    <input type="text" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="complemento" name="complemento" #inputComplemento="ngModel" required>
+                    <label id="errorLabel" *ngIf="nascimento === undefined && checkEmpty">Digite um valor válido</label>
+                    <input type="text" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="telefone" name="telefone" #inputTelefone="ngModel" required>
+                    <label id="errorLabel" *ngIf="telefone === undefined && checkEmpty">Digite um valor válido</label>
                 </div>
                 <div class='row'>
                     <input type="text" placeholder="CPF*" id="inputCpf" [(ngModel)]="cpf" name="cpf" #inputCpf="ngModel" required>
+                    <label id="errorLabel" *ngIf="cpf === undefined && checkEmpty">Digite um valor válido</label>
                     <input type="text" placeholder="RG*" id="inputRg" [(ngModel)]="rg" name="rg" #inputRg="ngModel" required>
+                    <label id="errorLabel" *ngIf="rg === undefined && checkEmpty">Digite um valor válido</label>
+                </div>
+                <div class='row'>
+                    <input type='text' placeholder="E-mail*" id="inputEmail" [(ngModel)]="email" name="email" #inputEmail="ngModel" style="width: 97%; margin-top: 1%;">
+                    <label id="errorLabel" *ngIf="email === undefined && checkEmpty">Digite um valor válido</label>
+
                 </div>
                 <div class="row" id="genero" style="margin-top: 1.5%;">
                     <label>Gênero*</label>
@@ -32,9 +51,7 @@
                         <mat-radio-button class="example-radio-button" *ngFor="let gender of generos" [value]="gender">{{gender}}</mat-radio-button>
                     </mat-radio-group>
                 </div>
-                <div class='row'>
-                    <input type='text' placeholder="Outro..." id="inputCpf" [(ngModel)]="genero" name="genero" #generoRadio="ngModel" style="width: 97%; margin-top: 1%;">
-                </div>
+
             </div>
 
         </div>
@@ -45,6 +62,7 @@
         <div class='row'>
             <div class="col-sm-4">
                 <input type="number" class="form-control input-sm" placeholder="Altura*" id="inputAltura" [(ngModel)]="altura" name="altura" #inputAltura="ngModel" required>
+                <label id="errorLabel" *ngIf="altura === undefined && checkEmpty || invalidAltura">Digite um valor válido</label>
                 <mat-slide-toggle class="example-margin" [checked]="checked" [disabled]="disabled" id="usoPrevioLabel" [(ngModel)]="antiHipertensivos" name="antiHipertensivos" #usoPrevioLabel="ngModel" required>
                     Uso prévio de anti-hipertensivo*
                 </mat-slide-toggle>
@@ -74,9 +92,9 @@
             </div>
         </div>
     </div>
-    <button mat-button id="cadastraButton" data-toggle="modal" data-target="#okcidadao" class="pull-right" (click)="cadastraCidadao()">
+    <button mat-button id="cadastraButton" data-toggle="modal" data-target="#okcidadao" class="pull-right" (click)="checkEmpt()">
         <label id="cadastraButtonLabel">CADASTRAR CIDADÃO</label></button>
-    <div class="modal fade" id="okcidadao">
+    <div class="modal fade" id="okcidadao" *ngIf="valid">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
 

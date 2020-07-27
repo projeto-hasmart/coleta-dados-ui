@@ -45,8 +45,14 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   complemento: string;
   cpf: string;
   rg: string;
+  email: string;
   altura: string;
   dataReal: any;
+  checkEmpty = false;
+  numero: string;
+  invalidAltura = false;
+  valid = false;
+
 
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
     this.cz = cz;
@@ -79,8 +85,24 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     console.log(dateSendingToServer);
     this.dataReal = dateSendingToServer;
   }
-  cadastraCidadao() {
+
+  checkEmpt() {
     this.checkDate();
+    this.numero = this.rua.split(',')[1];
+    if ((parseFloat(this.altura) < 3 && parseFloat(this.altura) > 0.5) || this.altura === undefined) {
+    if (this.nome === undefined || this.dataReal === undefined || this.cpf === undefined || this.rg === undefined
+      || this.cidade === undefined || this.estado === undefined || this.complemento === undefined || this.rua === undefined
+      || this.numero === undefined || this.email === undefined || this.telefone === undefined || this.altura === undefined) {
+        this.checkEmpty = true;
+    } else {
+      this.valid = true;
+      this.cadastraCidadao();
+    }
+  } else {
+    this.invalidAltura = true;
+  }
+  }
+  cadastraCidadao() {
     this.oNovoCidadao = {
       nome : this.nome,
       dataNascimento: this.dataReal,
@@ -94,6 +116,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
           rua: this.rua.split(',')[0],
           numero: this.rua.split(',')[1]
         },
+        email: this.email,
         telefone: this.telefone,
         genero: this.genero
       },
@@ -108,6 +131,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     console.log(this.oNovoCidadao);
     this.apiService.createCidadao(this.oNovoCidadao).subscribe();
   }
+
   goToView() {
     this.cz.selecionaCidadao(this.oNovoCidadao.cpf);
   }
