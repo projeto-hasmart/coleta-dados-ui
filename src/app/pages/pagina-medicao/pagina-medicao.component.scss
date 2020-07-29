@@ -966,3 +966,16 @@ table {
 .modal-sm {
     top: 30%;
 }
+
+#errorLabel {
+    font-size: 12px;
+    margin-left: 2%;
+    height: 13px;
+    color: red;
+    font-family: 'Roboto';
+}
+
+.errorInput {
+    border: 1px solid red;
+    outline: none;
+}

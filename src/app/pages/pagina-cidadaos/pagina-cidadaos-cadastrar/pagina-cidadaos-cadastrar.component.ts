@@ -88,7 +88,9 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
 
   checkEmpt() {
     this.checkDate();
-    this.numero = this.rua.split(',')[1];
+    if ( this.rua !== undefined) {
+      this.numero = this.rua.split(',')[1];
+    }
     if ((parseFloat(this.altura) < 3 && parseFloat(this.altura) > 0.5) || this.altura === undefined) {
     if (this.nome === undefined || this.dataReal === undefined || this.cpf === undefined || this.rg === undefined
       || this.cidade === undefined || this.estado === undefined || this.complemento === undefined || this.rua === undefined

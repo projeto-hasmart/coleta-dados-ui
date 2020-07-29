@@ -8,38 +8,51 @@
         <label id="informacoesPessoais">Informações Pessoais</label>
         <label id="obrigatorio">*Campos obrigatórios</label>
         <div class="row">
-            <div class="col-sm-4">
-                <input type="text" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="nome" name="nome" #inputNome="ngModel" required>
-                <label id="errorLabel" *ngIf="nome === undefined && checkEmpty">Digite um valor válido</label>
+            <div class="col-sm-4" style="margin-left: -0.5%;">
+                <div class="col-sm-12">
+                    <input type="text" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" required>
+                    <label id="errorLabel" *ngIf="nome === undefined && checkEmpty">O campo nome é obrigatório</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" placeholder="Rua e número*" id="inputRua" [(ngModel)]="rua" name="rua" #inputRua="ngModel" [class.errorInput]="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)" required>
+                    <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
+                    <!-- <div class="row"> -->
+                    <input type="text" placeholder="Cidade*" id="inputCidade" [(ngModel)]="cidade" name="cidade" [class.errorInput]="cidade === undefined && checkEmpty" #inputCidade="ngModel" required>
+                    <input type="text" placeholder="Estado*" id="inputEstado" [(ngModel)]="estado" name="estado" [class.errorInput]="estado === undefined && checkEmpty" #inputEstado="ngModel" required>
 
-                <input type="text" placeholder="Rua e número*" id="inputRua" [(ngModel)]="rua" name="rua" #inputRua="ngModel" required>
-                <label id="errorLabel" *ngIf="rua === undefined && checkEmpty">Digite um valor válido para a rua</label>
-                <label id="errorLabel" *ngIf="numero === undefined && checkEmpty">Digite um valor válido para o número</label>
-                <input type="text" placeholder="Cidade*" id="inputCidade" [(ngModel)]="cidade" name="cidade" #inputCidade="ngModel" required>
-                <label id="errorLabel" *ngIf="cidade === undefined && checkEmpty">Digite um valor válido</label>
-                <input type="text" placeholder="Estado*" id="inputEstado" [(ngModel)]="estado" name="estado" #inputEstado="ngModel" required>
-                <label id="errorLabel" *ngIf="estado === undefined && checkEmpty">Digite um valor válido</label>
+                    <!-- <label id="errorLabel" *ngIf="">Todos os campos do Endereço são obrigatórios</label> -->
+                    <!-- </div>
+                    <div class="col-sm-6"> -->
+                    <label id="errorLabel" *ngIf="(estado === undefined && checkEmpty) || (cidade === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
+                    <!-- </div> -->
+                    <input type="text" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="complemento" name="complemento" #inputComplemento="ngModel" [class.errorInput]="complemento === undefined && checkEmpty" required>
+                    <label id="errorLabel" *ngIf="complemento === undefined && checkEmpty">Todos os campos do Endereço são obrigatórios</label>
 
-                <input type="text" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="complemento" name="complemento" #inputComplemento="ngModel" required>
-                <label id="errorLabel" *ngIf="complemento === undefined && checkEmpty">Digite um valor válido</label>
-
-
+                </div>
             </div>
             <div class="col-sm-8">
                 <div class='row'>
-                    <input type="date" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="nascimento" name="nascimento" #inputNascimento="ngModel" required>
-                    <label id="errorLabel" *ngIf="nascimento === undefined && checkEmpty">Digite um valor válido</label>
-                    <input type="text" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="telefone" name="telefone" #inputTelefone="ngModel" required>
-                    <label id="errorLabel" *ngIf="telefone === undefined && checkEmpty">Digite um valor válido</label>
+                    <div class="col-sm-6">
+                        <input type="date" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="nascimento" name="nascimento" #inputNascimento="ngModel" [class.errorInput]="nascimento === undefined && checkEmpty" required>
+                        <label id="errorLabel" *ngIf="nascimento === undefined && checkEmpty">O cidadão deve ter pelo menos 18 anos de idade</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="telefone" name="telefone" #inputTelefone="ngModel" [class.errorInput]="telefone === undefined && checkEmpty" required>
+                        <label id="errorLabel" *ngIf="telefone === undefined && checkEmpty">O campo telefone é obrigatório e deve ser composto apenas por números</label>
+                    </div>
                 </div>
                 <div class='row'>
-                    <input type="text" placeholder="CPF*" id="inputCpf" [(ngModel)]="cpf" name="cpf" #inputCpf="ngModel" required>
-                    <label id="errorLabel" *ngIf="cpf === undefined && checkEmpty">Digite um valor válido</label>
-                    <input type="text" placeholder="RG*" id="inputRg" [(ngModel)]="rg" name="rg" #inputRg="ngModel" required>
-                    <label id="errorLabel" *ngIf="rg === undefined && checkEmpty">Digite um valor válido</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="CPF*" id="inputCpf" [(ngModel)]="cpf" name="cpf" #inputCpf="ngModel" [class.errorInput]="cpf === undefined && checkEmpty" required>
+                        <label id="errorLabel" *ngIf="cpf === undefined && checkEmpty">O campo CPF deve ser composto por 11 números.</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="RG*" id="inputRg" [(ngModel)]="rg" name="rg" #inputRg="ngModel" [class.errorInput]="rg === undefined && checkEmpty" required>
+                        <label id="errorLabel" *ngIf="rg === undefined && checkEmpty">O campo RG deve ser composto apenas por números.</label>
+                    </div>
                 </div>
                 <div class='row'>
-                    <input type='text' placeholder="E-mail*" id="inputEmail" [(ngModel)]="email" name="email" #inputEmail="ngModel" style="width: 97%; margin-top: 1%;">
+                    <input type='text' placeholder="E-mail*" id="inputEmail" [(ngModel)]="email" name="email" #inputEmail="ngModel" [class.errorInput]="email === undefined && checkEmpty" style="width: 96.5%; margin-top: 1.5%;">
                     <label id="errorLabel" *ngIf="email === undefined && checkEmpty">Digite um valor válido</label>
 
                 </div>
@@ -61,9 +74,13 @@
         <label id="informacoesEstaticasLabel">Informações Estáticas de Hipertensão Arterial</label>
         <div class='row'>
             <div class="col-sm-4">
-                <input type="number" class="form-control input-sm" placeholder="Altura*" id="inputAltura" [(ngModel)]="altura" name="altura" #inputAltura="ngModel" required>
-                <label id="errorLabel" *ngIf="altura === undefined && checkEmpty || invalidAltura">Digite um valor válido</label>
-                <mat-slide-toggle class="example-margin" [checked]="checked" [disabled]="disabled" id="usoPrevioLabel" [(ngModel)]="antiHipertensivos" name="antiHipertensivos" #usoPrevioLabel="ngModel" required>
+                <input type="number" class="form-control input-sm" placeholder="Altura*" id="inputAltura" [(ngModel)]="altura" name="altura" #inputAltura="ngModel" [class.errorInput]="altura === undefined && checkEmpty" required>
+                <label id="errorLabel" *ngIf="altura === undefined && checkEmpty || invalidAltura">O campo altura deve estar no intervalo entre 0.5 e 3.0 metros</label>
+                <mat-slide-toggle class="example-margin" [checked]="checked" [disabled]="disabled" id="usoPrevioLabel" [(ngModel)]="antiHipertensivos" name="antiHipertensivos" #usoPrevioLabel="ngModel" *ngIf="!checkEmpty && !invalidAltura" required>
+                    Uso prévio de anti-hipertensivo*
+                </mat-slide-toggle>
+                <mat-slide-toggle class="example-margin" [checked]="checked" [disabled]="disabled" id="usoPrevioLabelErros" [(ngModel)]="antiHipertensivos" name="antiHipertensivos" #usoPrevioLabelErros="ngModel" *ngIf="altura === undefined && checkEmpty || invalidAltura"
+                    required>
                     Uso prévio de anti-hipertensivo*
                 </mat-slide-toggle>
             </div>

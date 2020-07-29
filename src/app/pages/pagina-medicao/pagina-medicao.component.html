@@ -151,20 +151,23 @@
                             <!-- sistolica Column -->
                             <ng-container matColumnDef="sistolica">
                                 <th mat-header-cell *matHeaderCellDef> Pressão Sistólica </th>
-                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.sistolica" placeholder="Digite um valor"> </td>
+                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.sistolica" [class.errorInput]="(!direitoOK && error) || (element.diastolica > element.sistolica)" placeholder="Digite um valor"> </td>
                             </ng-container>
 
                             <!-- diastolica Column -->
                             <ng-container matColumnDef="diastolica">
                                 <th mat-header-cell *matHeaderCellDef> Pressão diastólica </th>
-                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.diastolica" placeholder="Digite um valor">
+                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.diastolica" [class.errorInput]="(!direitoOK && error) || (element.diastolica > element.sistolica)" placeholder="Digite um valor">
                                 </td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;">
                             </tr>
+
                         </table>
                         <button id="novaAfericao" (click)="addRow()"><mat-icon id="iconplus">add</mat-icon><label id="afericaobuttonlabel">Nova aferição</label></button>
+                        <label id="errorLabel" *ngIf="!direitoOK && error">A pressão diastólica deve ser inferior à sistólica</label>
+
                     </div>
                 </div>
                 <div id="passodois">
@@ -192,13 +195,13 @@
                             <!-- sistolica Column -->
                             <ng-container matColumnDef="sistolica">
                                 <th mat-header-cell *matHeaderCellDef> Pressão Sistólica </th>
-                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.sistolica" placeholder="Digite um valor"> </td>
+                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.sistolica" placeholder="Digite um valor" [class.errorInput]="(!esquerdoOK && error) || (element.diastolica > element.sistolica)"> </td>
                             </ng-container>
 
                             <!-- diastolica Column -->
                             <ng-container matColumnDef="diastolica">
                                 <th mat-header-cell *matHeaderCellDef> Pressão diastólica </th>
-                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.diastolica" placeholder="Digite um valor">
+                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.diastolica" placeholder="Digite um valor" [class.errorInput]="(!esquerdoOK && error) || (element.diastolica > element.sistolica)">
                                 </td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -206,6 +209,7 @@
                             </tr>
                         </table>
                         <button id="novaAfericao" (click)="addRowd()"><mat-icon id="iconplus" >add</mat-icon><label id="afericaobuttonlabel">Nova aferição</label></button>
+                        <label id="errorLabel" *ngIf="!direitoOK && error">A pressão diastólica deve ser inferior à sistólica</label>
                     </div>
                 </div>
                 <div id="passotres">
@@ -216,12 +220,13 @@
                     </div>
                     <input type="number" class="input-control" placeholder="Peso" id="pesoinput" [(ngModel)]="peso">
                     <!--(keyup)="onKey($event)"-->
+                    <label id="errorLabel" *ngIf="(peso < 30 || peso > 400) && error">O campo 'Peso' deve estar entre 30 e 400 kg</label>
 
                 </div>
             </div>
         </div>
         <a routerLink="/medicao/sucesso">
-            <button mat-button id="finalizarButton" (click)="novaMedicao()" *ngIf="peso"><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button></a>
+            <button mat-button id="finalizarButton" (click)="checkMedicao()" *ngIf="peso"><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button></a>
         <!--*ngIf=peso -->
         <button mat-button id="finalizarButtonBlocked" *ngIf="!peso"><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button>
     </div>

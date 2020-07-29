@@ -35,7 +35,9 @@ export class PaginaMedicaoComponent implements OnInit {
   peso: number;
   data = Object.assign( ELEMENT_DATA);
   datum = Object.assign( ELEMENTS_DATA);
-
+  error = false;
+  direitoOK: boolean;
+  esquerdoOK: boolean;
   displayedColumns: string[] = ['select',  'sistolica', 'diastolica'];
   dataSource = new MatTableDataSource<Afericao>(ELEMENT_DATA);
   dataSourced = new MatTableDataSource<Afericao>(ELEMENTS_DATA);
@@ -150,6 +152,33 @@ removeSelectedMows() {
     this.dataSourced = new MatTableDataSource<Afericao>(this.datum);
   });
   this.selections = new SelectionModel<Afericao>(true, []);
+}
+checkMedicao() {
+  if (ELEMENT_DATA !== undefined && ELEMENTS_DATA !== undefined && this.peso > 30 && this.peso < 400) {
+    for ( const data of ELEMENT_DATA ) {
+      if ((data.sistolica > data.diastolica) && (data.diastolica > 1 && data.diastolica < 300)
+      && (data.sistolica > 1 && data.sistolica < 300)) {
+        this.direitoOK = true;
+      } else {
+        this.direitoOK = false;
+      }
+    }
+    for ( const datum of ELEMENTS_DATA ) {
+      if ((datum.sistolica > datum.diastolica) && (datum.diastolica > 1 && datum.diastolica < 300)
+      && (datum.sistolica > 1 && datum.sistolica < 300)) {
+        this.esquerdoOK = true;
+      } else {
+        this.esquerdoOK = false;
+      }
+    }
+    if ( this.direitoOK === true && this.esquerdoOK === true) {
+      this.novaMedicao();
+    } else {
+      this.error = true;
+    }
+  } else {
+    this.error = true;
+  }
 }
 novaMedicao() {
   for ( const data of ELEMENT_DATA) { // pode estar colocando 1 como valor da medicao
