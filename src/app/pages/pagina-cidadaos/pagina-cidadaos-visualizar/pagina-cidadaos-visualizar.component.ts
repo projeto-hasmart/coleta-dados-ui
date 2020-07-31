@@ -10,6 +10,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
 import { Medicao } from 'src/app/models/medicao';
 import { DatePipe } from '@angular/common';
+import { CidadaoEdit } from 'src/app/models/cidadaoEdit';
 
 
 interface Diabetes {
@@ -46,7 +47,9 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   responsavel: string;
   router: Router;
   buscado: string;
-
+  showingCpf: string;
+  cidadaoEditado: CidadaoEdit;
+i = 0;
   weight;
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
     this.cz = cz;
@@ -111,9 +114,30 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 
-  updateCz(cidadaoEditado: Cidadao) {
+  updateCz() {
     this.checkDate();
-    this.apiService.updateCidadao(cidadaoEditado, this.oNossoCidadao.id).subscribe();
+    this.cidadaoEditado = {
+      dadosPessoais: {
+        endereco: {
+          rua: this.oNossoCidadao.dadosPessoais.endereco.rua,
+          numero: this.oNossoCidadao.dadosPessoais.endereco.numero,
+          complemento: this.oNossoCidadao.dadosPessoais.endereco.complemento,
+          cidade: this.oNossoCidadao.dadosPessoais.endereco.cidade,
+          estado: this.oNossoCidadao.dadosPessoais.endereco.estado
+        },
+        email: this.oNossoCidadao.dadosPessoais.email,
+        telefone: this.oNossoCidadao.dadosPessoais.telefone,
+        genero: this.oNossoCidadao.dadosPessoais.genero
+      },
+      indicadorRiscoHAS: {
+        altura: this.oNossoCidadao.indicadorRiscoHAS.altura,
+        diabetico: this.oNossoCidadao.indicadorRiscoHAS.diabetico,
+        fumante: this.oNossoCidadao.indicadorRiscoHAS.fumante,
+        antiHipertensivos: this.oNossoCidadao.indicadorRiscoHAS.antiHipertensivos,
+        historicoAvc: this.oNossoCidadao.indicadorRiscoHAS.historicoAvc
+      }
+    };
+    this.apiService.updateCidadao(this.cidadaoEditado, this.oNossoCidadao.id).subscribe();
   }
 
   ngOnInit() {
@@ -128,8 +152,19 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
       this.getMedicoes();
       this.genero = this.oNossoCidadao.dadosPessoais.genero;
+      while ( this.i < 11) {
+        if (this.i === 2 || this.i === 5 ) {
+          this.showingCpf = this.oNossoCidadao.cpf.charAt[this.i] + '.';
+          this.i++;
+        } else if (this.i === 8) {
+          this.showingCpf = this.oNossoCidadao.cpf.charAt[this.i] + '-';
+          this.i++;
+        } else {
+          this.i++;
+        }
 
-
+      }
+      console.log(this.showingCpf);
     });
   }
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);

@@ -14,7 +14,7 @@
     <div id="searchboxtoggle" class="row">
         <!-- [(ngModel)]="modelName" multiple vertical="false"-->
 
-        <mat-button-toggle-group id="cpfrgtoggle" class="shadow p-3 mb-5 bg-white rounded">
+        <mat-button-toggle-group id="cpfrgtoggle" class="shadow p-3 mb-5 bg-white rounded" #group="matButtonToggleGroup">
             <mat-button-toggle value="cpf" id="togglebutton">
                 CPF
             </mat-button-toggle>
@@ -23,8 +23,8 @@
             </mat-button-toggle>
         </mat-button-toggle-group>
         <div class="search-bar shadow p-3 mb-5 bg-white rounded">
-            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." (keydown.enter)="goToView()" id="searchBox" [(ngModel)]="buscado" required>
-            <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="goToView()">
+            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." (keydown.enter)="goToView(group.value)" id="searchBox" [(ngModel)]="buscado" required>
+            <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="goToView(group.value)">
 <i class="fa fa-search"></i> </button>
         </div>
         <a routerLink="/cidadaos/cadastrar">
@@ -36,7 +36,7 @@
     </button>
         </a>
     </div>
-    <div>
+    <!-- <div>
         <div id='estatisticas'>Estatísticas</div>
         <div class="row">
             <div class="col-sm-3">
@@ -77,6 +77,6 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 </section>
 <!-- /.content -->

@@ -74,9 +74,6 @@ export class PaginaCidadaosComponent implements OnInit {
     if (parseInt(localStorage.getItem('citizen')) !== undefined) {
       // tslint:disable-next-line: radix
       this.cidadaoService.jaTemosCidadao(parseInt(localStorage.getItem('citizen')));
-    } else {
-      this.getCidadaos();
-      this.cidadaoService.getAllCidadaos();
     }
   }
 
@@ -87,8 +84,8 @@ export class PaginaCidadaosComponent implements OnInit {
 
   }
 
-  goToView() {
-    this.cidadaoService.selecionaCidadao(this.buscado);
+  goToView(groupValue: string) {
+    this.cidadaoService.selecionaCidadao(this.buscado, groupValue);
   }
 
 }

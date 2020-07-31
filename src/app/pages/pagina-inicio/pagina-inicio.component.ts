@@ -73,33 +73,13 @@ export class PaginaInicio implements OnInit {
   }
 
   ngOnInit() {
-    this.getCidadaos();
-    this.calculaMedicoes();
   }
 
-  getCidadaos(): void {
-    this.apiService.getAllCidadaos().subscribe((cidadaos: Cidadao[]) => {
-      this.cidadaos = cidadaos;
-      console.log(cidadaos);
-    });
-    console.log(this.cidadaos);
 
-    this.cidadaos$ = this.apiService.getAllCidadaos();
-    console.log(this.cidadaos$);
-  }
 
-  calculaMedicoes() {
-    for (const cit of this.cidadaos) {
-      for (const med of cit.medicoes) {
-        for (const af of med.afericoes) {
-          this.totalMedicoes++;
-        }
-      }
-    }
-  }
-  goToView() {
+  goToView(groupVale: string) {
     this.idk.buscado = this.buscado;
-    this.cidadaoService.selecionaCidadao(this.buscado);
+    this.cidadaoService.selecionaCidadao(this.buscado, groupVale);
   }
 
 }

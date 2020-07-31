@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
+import { CidadaoEdit } from '../models/cidadaoEdit';
 
 
 
@@ -41,7 +42,7 @@ export class ApiService {
   }
 
   // API: PUT /cidadaos/:id
-  public updateCidadao(cidadao: Cidadao, id: number): Observable<any> {
+  public updateCidadao(cidadao: CidadaoEdit, id: number): Observable<any> {
     return this.httpClient.put(('api/hasmart/api/Cidadaos/' + id), cidadao)
       .pipe(
       retry(2),
