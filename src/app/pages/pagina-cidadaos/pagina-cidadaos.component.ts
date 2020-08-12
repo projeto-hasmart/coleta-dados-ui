@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
+import { Global } from 'src/app/models/globalConstants';
 
 export interface PeriodicElement {
   name: string;
@@ -39,6 +40,7 @@ export class PaginaCidadaosComponent implements OnInit {
   displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<Cidadao>(this.cidadaos);
   selection = new SelectionModel<Cidadao>(true, []);
+  idk: Global;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -61,27 +63,29 @@ export class PaginaCidadaosComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id}`;
   }
-  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService) {
+  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, idk: Global) {
     this.apiService = apiService;
     this.cidadaoService = cidadaoService;
+    this.idk = idk;
   }
 
   ngOnInit() {
-    this.getCidadaos();
-    this.cidadaoService.getAllCidadaos();
+    // tslint:disable-next-line: radix
+    if (parseInt(localStorage.getItem('citizen')) !== undefined) {
+      // tslint:disable-next-line: radix
+      this.cidadaoService.jaTemosCidadao(parseInt(localStorage.getItem('citizen')));
+    }
   }
 
   getCidadaos(): void {
     this.apiService.getAllCidadaos().subscribe(cidadaos => {
       this.cidadaos = cidadaos as Cidadao[];
-      console.log(cidadaos);
-      console.log(this.cidadaos);
     });
 
   }
 
-  goToView() {
-    this.cidadaoService.selecionaCidadao(this.buscado);
+  goToView(groupValue: string) {
+    this.cidadaoService.selecionaCidadao(this.buscado, groupValue);
   }
 
 }

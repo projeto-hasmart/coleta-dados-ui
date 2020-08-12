@@ -4,32 +4,26 @@ import { ApiService } from './../../../services/api.service';
 import { Cidadao } from './../../../models/cidadao';
 import { CidadaoServiceService } from './../../../services/cidadao/cidadao-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { element } from 'protractor';
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
 import { Medicao } from 'src/app/models/medicao';
+import { DatePipe } from '@angular/common';
+import { CidadaoEdit } from 'src/app/models/cidadaoEdit';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+
 interface Diabetes {
-  value: string;
+  value: number;
   viewValue: string;
 }
 interface Fumante {
-  value: string;
+  value: number;
   viewValue: string;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'}
+let ELEMENT_DATA: any[] = [
+];
+let ELEMENTS_DATA: any[] = [
 ];
 const MEDICAO: Medicao[] = [];
 
@@ -49,7 +43,13 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   mz: MedicaoServiceService;
   dz: DispensacaoServiceService;
   cidadao$: Observable<Cidadao>;
+  ultimaMedicao: string;
+  responsavel: string;
   router: Router;
+  buscado: string;
+  showingCpf: string;
+  cidadaoEditado: CidadaoEdit;
+i = 0;
   weight;
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
     this.cz = cz;
@@ -58,20 +58,40 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     this.apiService = apiService;
    }
   displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+  dataSourceMedi = new MatTableDataSource<any>(ELEMENTS_DATA);
+  selection = new SelectionModel<any>(true, []);
   /* declarando um nome pro property binding do nome dinâmico */
 
   color = 'green';
   diabetess: Diabetes[] = [
-    {value: 'tipo-1', viewValue: 'Tipo 1'},
-    {value: 'tipo-2', viewValue: 'Tipo 2'},
-    {value: 'tipo-3', viewValue: 'Tipo 3'}
+    {value: 1, viewValue: 'Não'},
+    {value: 2, viewValue: 'Tipo 1'},
+    {value: 3, viewValue: 'Tipo 2'},
+    {value: 4, viewValue: 'Diabetes Gestante'}
   ];
   fumantes: Fumante[] = [
-    {value: 'naofumante', viewValue: 'Não fumante'},
-    {value: 'fumante', viewValue: 'Fumante'}
+    {value: 1, viewValue: 'Não fumante'},
+    {value: 2, viewValue: 'Fumante'},
+    {value: 3, viewValue: 'Ex-Fumante'}
   ];
+  genero: string;
+  generos: string[] = [
+    'Masculino',
+    'Feminino',
+    'Outro',
+    'Prefere não dizer'
+  ];
+  gotDate() {
+    const dateComingFromServer = new DatePipe('dd/MM/yyyy').transform(this.oNossoCidadao.dataNascimento, 'mm-dd-yyyy');
+    console.log(dateComingFromServer);
+    this.oNossoCidadao.dataNascimento = dateComingFromServer;
+  }
+  checkDate() {
+    const dateSendingToServer = new DatePipe('en-US').transform(this.oNossoCidadao.dataNascimento, 'dd/MM/yyyy');
+    console.log(dateSendingToServer);
+    this.oNossoCidadao.dataNascimento = dateSendingToServer;
+  }
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -87,32 +107,105 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
+  checkboxLabel(row?: any): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 
-  updateCz(cidadaoEditado: Cidadao) {
-    this.apiService.updateCidadao(cidadaoEditado);
+  updateCz() {
+    this.checkDate();
+    this.cidadaoEditado = {
+      dadosPessoais: {
+        endereco: {
+          rua: this.oNossoCidadao.dadosPessoais.endereco.rua,
+          numero: this.oNossoCidadao.dadosPessoais.endereco.numero,
+          complemento: this.oNossoCidadao.dadosPessoais.endereco.complemento,
+          cidade: this.oNossoCidadao.dadosPessoais.endereco.cidade,
+          estado: this.oNossoCidadao.dadosPessoais.endereco.estado
+        },
+        email: this.oNossoCidadao.dadosPessoais.email,
+        telefone: this.oNossoCidadao.dadosPessoais.telefone,
+        genero: this.oNossoCidadao.dadosPessoais.genero
+      },
+      indicadorRiscoHAS: {
+        altura: this.oNossoCidadao.indicadorRiscoHAS.altura,
+        diabetico: this.oNossoCidadao.indicadorRiscoHAS.diabetico,
+        fumante: this.oNossoCidadao.indicadorRiscoHAS.fumante,
+        antiHipertensivos: this.oNossoCidadao.indicadorRiscoHAS.antiHipertensivos,
+        historicoAvc: this.oNossoCidadao.indicadorRiscoHAS.historicoAvc
+      }
+    };
+    this.apiService.updateCidadao(this.cidadaoEditado, this.oNossoCidadao.id).subscribe();
   }
 
   ngOnInit() {
     if (this.cz.selecionadoId === undefined) {
       this.router.navigate(['/cidadaos']);
     } else {
-    this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
+      ELEMENT_DATA = [];
+      localStorage.setItem('citizen', this.cz.selecionadoId.toString());
+      if ((localStorage.getItem('citizen')) !== undefined) {
+      this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
       this.oNossoCidadao = cidadao as Cidadao;
-      console.log(cidadao);
-      console.log(this.oNossoCidadao);
-      this.weight =  this.oNossoCidadao.medicoes[this.oNossoCidadao.medicoes.length - 1].peso;
+      this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
+      this.getMedicoes();
+      this.genero = this.oNossoCidadao.dadosPessoais.genero;
+      while ( this.i < 11) {
+        if (this.i === 2 || this.i === 5 ) {
+          this.showingCpf = this.oNossoCidadao.cpf.charAt[this.i] + '.';
+          this.i++;
+        } else if (this.i === 8) {
+          this.showingCpf = this.oNossoCidadao.cpf.charAt[this.i] + '-';
+          this.i++;
+        } else {
+          this.i++;
+        }
+
+      }
+      console.log(this.showingCpf);
     });
-    this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
   }
+      this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
+  }
+}
+getMedicoes() {
+  ELEMENT_DATA = [];
+  for (const med of this.oNossoCidadao.medicoes) {
+    ELEMENT_DATA.push(med);
+  }
+  // for (const disp of this.oNossoCidadao.dispensacoes) {
+  //   ELEMENT_DATA.push(disp);
+  // }
+
+  ELEMENT_DATA.sort((a, b) => {
+    return (new Date(b.dataHora.split('/').reverse().join('-')) as any) - (new Date(a.dataHora.split('/').reverse().join('-')) as any);
+  });
+  console.log('ed? ', ELEMENT_DATA);
+  this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+
 }
 goToView() {
   this.mz.selecionaCidadao(this.oNossoCidadao.cpf);
 }
+searchToView() {
+  this.cz.selecionaCidadao(this.buscado);
 
+}
+medicaoDe(dataHora: string) {
+  for (const med of ELEMENT_DATA) {
+    if (med.dataHora === dataHora) {
+      ELEMENTS_DATA = [];
+      this.ultimaMedicao = dataHora;
+      this.responsavel = med.estabelecimentoId;
+      this.weight = med.peso;
+      for (const af of med.afericoes) {
+        ELEMENTS_DATA.push(af);
+        this.dataSourceMedi = new MatTableDataSource(ELEMENTS_DATA);
+
+      }
+    }
+  }
+}
 }

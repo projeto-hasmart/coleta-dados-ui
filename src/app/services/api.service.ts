@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
+import { CidadaoEdit } from '../models/cidadaoEdit';
 
 
 
@@ -25,8 +26,11 @@ export class ApiService {
   }
 
   // API: POST /HaSmart/api/cidadaos
-  public createCidadao(cidadao: Cidadao) {
-    // will use this.http.post()
+  public createCidadao(cidadao: Cidadao): Observable<Cidadao> {
+    return this.httpClient.post<Cidadao>(('api/hasmart/api/Cidadaos'), cidadao)
+    .pipe(
+      retry(2),
+      catchError(this.handleError));
   }
 
   // API: GET /cidadaos/:id
@@ -38,17 +42,14 @@ export class ApiService {
   }
 
   // API: PUT /cidadaos/:id
-  public updateCidadao(cidadao: Cidadao): Observable<any> {
-    return this.httpClient.put(('api/hasmart/api/Cidadaos/' + cidadao.id), cidadao)
+  public updateCidadao(cidadao: CidadaoEdit, id: number): Observable<any> {
+    return this.httpClient.put(('api/hasmart/api/Cidadaos/' + id), cidadao)
       .pipe(
       retry(2),
       catchError(this.handleError));
   }
 
-  // DELETE /todos/:id
-  public deleteTodoById(todoId: number) {
-    // will use this.http.delete()
-  }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -59,6 +60,7 @@ export class ApiService {
       errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
     }
     console.log(errorMessage);
+    console.log(error);
     return throwError(errorMessage);
   }
 }

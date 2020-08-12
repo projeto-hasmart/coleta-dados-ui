@@ -92,9 +92,13 @@
 }
 
 #togglebutton {
-    background-color: white;
-    color: black;
+    // background-color: white;
     display: inline-block;
+}
+
+.mat-button-toggle-checked {
+    color: #009728;
+    // background-color: pink;
 }
 
 .search-bar {

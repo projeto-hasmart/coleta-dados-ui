@@ -14,7 +14,7 @@
     <div id="searchboxtoggle" class="row">
         <!-- [(ngModel)]="modelName" multiple vertical="false"-->
 
-        <mat-button-toggle-group id="cpfrgtoggle">
+        <mat-button-toggle-group id="cpfrgtoggle" class="shadow p-3 mb-5 bg-white rounded" #group="matButtonToggleGroup">
             <mat-button-toggle value="cpf" id="togglebutton">
                 CPF
             </mat-button-toggle>
@@ -22,9 +22,9 @@
                 RG
             </mat-button-toggle>
         </mat-button-toggle-group>
-        <div class="search-bar">
-            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." id="searchBox" [(ngModel)]="buscado" required>
-            <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="goToView()">
+        <div class="search-bar shadow p-3 mb-5 bg-white rounded">
+            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." (keydown.enter)="goToView(group.value)" id="searchBox" [(ngModel)]="buscado" required>
+            <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="goToView(group.value)">
 <i class="fa fa-search"></i> </button>
         </div>
         <a routerLink="/cidadaos/cadastrar">
@@ -36,7 +36,7 @@
     </button>
         </a>
     </div>
-    <div>
+    <!-- <div>
         <div id='estatisticas'>Estatísticas</div>
         <div class="row">
             <div class="col-sm-3">
@@ -51,7 +51,7 @@
             <div class="col-sm-3">
                 <mat-card id="mdc-card2">
                     <mat-card-content>
-                        <label id='mdc-card2number'>15</label>
+                        <label id='mdc-card2number'>22</label>
                         <label id='mdc-card2name'>Medições</label>
                         <img src="assets/dist/img/white_heart.png" id="mdc-card2img">
                     </mat-card-content>
@@ -60,7 +60,7 @@
             <div class="col-sm-3">
                 <mat-card id="mdc-card3">
                     <mat-card-content>
-                        <label id='mdc-card3number'>7</label>
+                        <label id='mdc-card3number'>0</label>
                         <label id='mdc-card3name'>Dispensações</label>
                         <img src="assets/dist/img/white_check.png" id="mdc-card3img">
                     </mat-card-content>
@@ -77,6 +77,6 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 </section>
 <!-- /.content -->

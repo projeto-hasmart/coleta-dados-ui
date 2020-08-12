@@ -23,15 +23,14 @@ export class MedicaoServiceService {
   getAllCidadaos(): Observable<Cidadao[]> {
     return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos')
       .pipe(
-        retry(2),
         catchError(this.handleError));
   }
   getCidadaos(): void {
 
 
   }
-  public createMedicao(medicao: Medicao): Observable<Medicao> {
-    return this.httpClient.post<Medicao>(('api/hasmart/api/Farmacia/medicoes' + this.selecionadoId), medicao)
+  public createMedicao(medicao: Medicao, id: number): Observable<Medicao> {
+    return this.httpClient.post<Medicao>(('api/hasmart/api/Farmacia/medicoes?cidadaoId=' + id), medicao)
       .pipe(
         retry(2),
         catchError(this.handleError));
@@ -60,9 +59,10 @@ export class MedicaoServiceService {
       errorMessage = error.error.message;
     } else {
       // Erro ocorreu no lado do servidor
-      errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
+      errorMessage = `Código do erro: ${error.status}, ` + `mensagem: ${error.message}`;
     }
     console.log(errorMessage);
+    console.log(error);
     return throwError(errorMessage);
   }
 }

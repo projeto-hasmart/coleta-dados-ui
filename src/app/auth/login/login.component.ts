@@ -29,14 +29,12 @@ export class LoginComponent implements OnInit, OnDestroy {
         increaseArea: '20%'
       });
     }); */
-    this.apiService.getAllCidadaos().subscribe((cidadaos: Cidadao[]) => {
-      this.cidadaos = cidadaos;
-      console.log(cidadaos);
-      console.log(this.cidadaos);
-    });
+    this.clearLocalStorage();
 
   }
-
+  clearLocalStorage() {
+    localStorage.clear();
+  }
   ngOnDestroy(): void {
     $('body').removeClass('hold-transition login-page');
   }

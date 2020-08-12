@@ -13,38 +13,60 @@ export class CidadaoServiceService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  cidadaos: Array<Cidadao>;
+  cidadaos: Cidadao[];
+  cidadano: Cidadao;
   constructor(private httpClient: HttpClient, private router: Router) {
    }
 
   // API: GET /cidadaos
-  getAllCidadaos(): Observable<Cidadao[]> {
-    return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos')
+  getAllCidadaos(cpf: string): Observable<Cidadao[]> {
+    return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos?cpf=' + cpf)
       .pipe(
         retry(2),
         catchError(this.handleError));
   }
-  getCidadaos(): void {
+  getCidadaos(rg: string): Observable<Cidadao[]> {
+    return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos?rg=' + rg)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+  selecionaCidadao(digitado: string, groupValue?: string) {
+    if (groupValue === 'cpf') {
+      this.getAllCidadaos(digitado).subscribe(cidadao => {
+        console.log(groupValue, digitado, ' isso foi pesquisado');
+        this.cidadaos = cidadao as Cidadao[];
+        console.log('isso é o resultado', cidadao);
+        console.log('isso tambem é resultado', this.cidadaos);
+        this.selecionadoId = this.cidadaos[0].id;
+        console.log('isso também é selecionado', this.selecionadoId);
+        this.router.navigate(['/cidadaos/visualizar']);
+      });
+    } else if (groupValue === 'rg') {
+      this.getCidadaos(digitado).subscribe(cidadao => {
+        this.cidadaos = cidadao as Cidadao[];
+        this.selecionadoId = cidadao[0].id;
+        this.router.navigate(['/cidadaos/visualizar']);
+      });
+    }
 
 
   }
-  selecionaCidadao(digitado: string) {
-    this.getAllCidadaos().subscribe(cidadaos => {
-      this.cidadaos = cidadaos as Cidadao[];
-      console.log(cidadaos);
-      console.log(this.cidadaos);
-      for (const cidadao of this.cidadaos) {
-        if (cidadao.cpf.includes(digitado) || cidadao.rg.includes(digitado)) {
-          this.selecionadoId = cidadao.id;
-          this.router.navigate(['/cidadaos/visualizar']);
-        } else {
-          console.log('nope');
-        }
-      }
+  public getCidadaoById(cidadaoId: number): Observable<Cidadao> {
+    return this.httpClient.get<Cidadao>('api/hasmart/api/Cidadaos/' + cidadaoId)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+  jaTemosCidadao(id: number) {
+    this.getCidadaoById(id).subscribe(cidadao => {
+      this.cidadano = cidadao as Cidadao;
+      this.selecionadoId = cidadao.id;
+      this.router.navigate(['/cidadaos/visualizar']);
+
     });
 
   }
-
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
