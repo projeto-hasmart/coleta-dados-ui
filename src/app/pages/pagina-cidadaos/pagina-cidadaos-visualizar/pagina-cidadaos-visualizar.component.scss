@@ -1116,7 +1116,6 @@ th.mat-header-cell {
 }
 
 #informacoesPessoais {
-    position: relative;
     width: 223px;
     height: 30px;
     top: 0px;
@@ -1155,6 +1154,7 @@ th.mat-header-cell {
 
 #genero {
     margin-left: 0%;
+    margin-top: 3%;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -1176,101 +1176,90 @@ th.mat-header-cell {
 }
 
 #inputNome {
-    margin-left: 2%;
-    right: 0%;
-    margin-top: 3%;
+    margin-top: 1.5%;
     bottom: 0%;
     background: #FFFFFF;
     height: 56px;
     font-family: 'Roboto';
-    width: 98%;
+    width: 100%;
     box-sizing: border-box;
-    display: flex;
 }
 
 #inputRua {
-    margin-left: 2%;
     right: 0%;
-    margin-top: 3%;
     bottom: 0%;
     background: #FFFFFF;
-    width: 98%;
+    width: 100%;
     box-sizing: border-box;
     height: 56px;
     font-family: 'Roboto';
 }
 
 #inputCidade {
-    margin-left: 2%;
     top: 30px;
     bottom: 0%;
     margin-top: 3%;
     background: #FFFFFF;
-    width: 44%;
+    width: 100%;
     box-sizing: border-box;
     height: 56px;
     font-family: 'Roboto';
 }
 
 #inputEstado {
-    margin-left: 10%;
+    margin-left: 0.5%;
     margin-top: 3%;
     bottom: 0%;
     background: #FFFFFF;
-    width: 44%;
+    width: 100%;
     box-sizing: border-box;
     height: 56px;
     font-family: 'Roboto';
 }
 
 #inputTelefone {
-    margin-left: 2%;
     right: 0%;
     margin-top: 3%;
     bottom: 0%;
     background: #FFFFFF;
-    width: 98%;
+    width: 100%;
     box-sizing: border-box;
     height: 56px;
     font-family: 'Roboto';
 }
 
 #inputNascimento {
-    margin-left: 1%;
     background: #FFFFFF;
-    width: 47.5%;
-    margin-top: 1.5%;
+    width: 100%;
+    margin-top: 3%;
     box-sizing: border-box;
     height: 56px;
     font-family: 'Roboto';
 }
 
 #inputComplemento {
-    margin-left: 2%;
     right: 0%;
     margin-top: 1.5%;
     background: #FFFFFF;
-    width: 47.5%;
+    width: 100%;
     box-sizing: border-box;
     height: 56px;
     font-family: 'Roboto';
 }
 
 #inputCpf {
-    margin-left: 1%;
-    margin-top: 1.5%;
+    margin-top: 3%;
     background: #FFFFFF;
-    width: 47.5%;
+    width: 100%;
     box-sizing: border-box;
     height: 56px;
     font-family: 'Roboto';
 }
 
 #inputRg {
-    margin-left: 2%;
-    margin-top: 1.5%;
+    margin-top: 3%;
     background: #FFFFFF;
-    width: 47.5%;
+    width: 100%;
     box-sizing: border-box;
     height: 56px;
     font-family: 'Roboto';

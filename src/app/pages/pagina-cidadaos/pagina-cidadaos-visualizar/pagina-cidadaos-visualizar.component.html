@@ -191,37 +191,75 @@
                             <label id="informacoesPessoais">Informações pessoais</label>
                             <label id="obrigatorio">* Campos obrigatórios</label>
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="oNossoCidadao.nome">
-                                    <input type="text" class="input-control" placeholder="Rua e número*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.rua">
-                                    <input type="text" class="input-control" placeholder="Cidade*" id="inputCidade" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cidade">
-                                    <input type="text" class="input-control" placeholder="Estado*" id="inputEstado" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.estado">
-                                    <input type="text" class="input-control" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="oNossoCidadao.dadosPessoais.telefone">
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="row">
-                                        <input type="date" class="input-control" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="oNossoCidadao.dataNascimento">
-                                        <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.complemento">
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-12" style="width: 98.5%;">
+                                        <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="oNossoCidadao.nome">
                                     </div>
-                                    <div class="row">
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-6" style="width: 49%;">
+                                        <input type="date" class="input-control" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="oNossoCidadao.dataNascimento">
+                                    </div>
+                                    <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
+                                        <input type="text" class="input-control" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="oNossoCidadao.dadosPessoais.telefone">
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-6" style="width: 49%;">
                                         <input type="text" class="input-control" placeholder="CPF*" id="inputCpf" [(ngModel)]="oNossoCidadao.cpf">
+                                    </div>
+                                    <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
                                         <input type="text" class="input-control" placeholder="RG*" id="inputRg" [(ngModel)]="oNossoCidadao.rg">
                                     </div>
-                                    <div class="row" id="genero" style="margin-top: 1.5%;">
-                                        <label>Gênero*</label>
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-6" style="width: 49%;">
+                                        <input type="text" class="input-control" placeholder="Email" id="inputRg" [(ngModel)]="oNossoCidadao.dadosPessoais.email">
                                     </div>
-                                    <div class="row" id="genero" style="margin-top: 0.5%; margin-left: -0.25%;">
-                                        <mat-radio-group id="generoRadio" [(ngModel)]="genero" name="genero" #generoRadio="ngModel" required>
-                                            <mat-radio-button class="example-radio-button" *ngFor="let gender of generos" [value]="gender">{{gender}}</mat-radio-button>
-                                        </mat-radio-group>
+                                    <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
+                                        <div class="row" id="genero">
+                                            <label>Gênero*</label>
+                                        </div>
+                                        <div class="row" id="genero" style="margin-top: 0.5%; margin-left: -0.25%;">
+                                            <mat-radio-group id="generoRadio" [(ngModel)]="genero" name="genero" #generoRadio="ngModel" required>
+                                                <mat-radio-button class="example-radio-button" *ngFor="let gender of generos" [value]="gender">{{gender}}</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                            <label id="informacoesEstaticasLabel">Endereço</label>
+                            <div class="row" id='estaticas'>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-3"> <input type="text" class="input-control" placeholder="CEP*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cep">
+                                    </div>
+                                    <div class="col-md-9" style="width: 73.5%;"> <input type="text" class="input-control" placeholder="Rua e número*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.rua">
+                                    </div>
+
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-6" style="width: 48.75%;">
+                                        <input type="text" class="input-control" placeholder="Cidade*" id="inputCidade" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cidade">
+
+                                    </div>
+                                    <div class="col-md-6" style="width: 48.75%;margin-left: 0.5%;">
+                                        <input type="text" class="input-control" placeholder="Estado*" id="inputEstado" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.estado">
+
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-12" style="width: 98.5%;">
+                                        <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.complemento">
+
+                                    </div>
+
                                 </div>
                             </div>
                             <label id="informacoesEstaticasLabel">Informações Estáticas de Hipertensão Arterial</label>
                             <div class="row" id='estaticas'>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control input-sm" placeholder="Altura" id="inputAltura" [(ngModel)]="oNossoCidadao.indicadorRiscoHAS.altura">
-                                    <mat-slide-toggle class="example-margin" [checked]="oNossoCidadao.indicadorRiscoHAS.historicoAvc" [disabled]="oNossoCidadao.indicadorRiscoHAS.historicoAvc" id="avcToggleLabel">
+                                    <mat-slide-toggle class="example-margin" [checked]="oNossoCidadao.indicadorRiscoHAS.historicoAvc" [disabled]="oNossoCidadao.indicadorRiscoHAS.historicoAvc" id="avcToggleLabel" style="margin-left: 0.5%;">
                                         Histórico de AVC
                                     </mat-slide-toggle>
 
@@ -244,7 +282,7 @@
                                 <div class="col-sm-4">
                                     <mat-form-field id="diabetesDrop">
                                         <mat-label>Diabetes</mat-label>
-                                        <mat-select style="width: 248px; height: 56px;">
+                                        <mat-select style="width: 238px; height: 56px;">
                                             <mat-option *ngFor="let diabetes of diabetess" [value]="diabetes.value">
                                                 {{diabetes.viewValue}}
                                             </mat-option>

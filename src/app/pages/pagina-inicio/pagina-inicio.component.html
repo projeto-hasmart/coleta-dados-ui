@@ -27,7 +27,7 @@
             <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="goToView(group.value)">
 <i class="fa fa-search"></i> </button>
         </div>
-        <a routerLink="/cidadaos/cadastrar">
+        <a routerLink="/cidadaos/cadastrar" *ngIf="!errorBye">
             <button mat-button id="novoCidadaoButton" class="pull-right">
 
       <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
