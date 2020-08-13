@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CidadaoServiceService } from 'src/app/services/cidadao/cidadao-service.service';
 import { Cidadao } from 'src/app/models/cidadao';
@@ -10,14 +11,30 @@ import { Cidadao } from 'src/app/models/cidadao';
 export class PaginaMedicaoSucessoComponent implements OnInit {
   cz: CidadaoServiceService;
   oNossoCidadao: Cidadao;
-
-  constructor(  cz: CidadaoServiceService) {
+  router: Router;
+  constructor(  cz: CidadaoServiceService, router: Router) {
     this.cz = cz;
+    this.router = router;
    }
 
   ngOnInit() {
   }
-  goToView() {
-    this.cz.selecionaCidadao(this.oNossoCidadao.cpf);
+  goToView(groupValue: string) {
+    this.selecionaCidadao(this.oNossoCidadao.cpf, groupValue);
+  }
+  selecionaCidadao(digitado: string, groupValue?: string) {
+    if (groupValue === 'cpf') {
+      this.cz.getAllCidadaos(digitado).subscribe(cidadao => {
+        this.cz.cidadaos = cidadao as Cidadao[];
+        this.cz.selecionadoId = cidadao[0].id;
+        this.router.navigate(['/cidadaos/visualizar']);
+      });
+    } else if (groupValue === 'rg') {
+      this.cz.getCidadaos(digitado).subscribe(cidadao => {
+        this.cz.cidadaos = cidadao as Cidadao[];
+        this.cz.selecionadoId = cidadao[0].id;
+        this.router.navigate(['/cidadaos/visualizar']);
+      });
     }
+  }
 }

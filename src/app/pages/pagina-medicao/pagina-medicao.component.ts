@@ -43,7 +43,7 @@ export class PaginaMedicaoComponent implements OnInit {
   dataSourced = new MatTableDataSource<Afericao>(ELEMENTS_DATA);
   selection = new SelectionModel<Afericao>(true, []);
   selections = new SelectionModel<Afericao>(true, []);
-
+  errorBye = false;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -119,7 +119,31 @@ ngOnInit() {
 }
 }
 goToView() {
-this.cz.selecionaCidadao(this.oNossoCidadao.cpf);
+  this.selecionaCidadao(this.oNossoCidadao.cpf, 'cpf');
+}
+selecionaCidadao(digitado: string, groupValue?: string) {
+  if (groupValue === 'cpf') {
+    this.cz.getAllCidadaos(digitado).subscribe(cidadao => {
+      this.cz.cidadaos = cidadao as Cidadao[];
+      this.cz.selecionadoId = cidadao[0].id;
+      this.router.navigate(['/cidadaos/visualizar']);
+    },
+    err => {
+      this.errorBye = true;
+      console.log(err.error.errors.Cidadão[0]);
+    });
+  } else if (groupValue === 'rg') {
+    this.cz.getCidadaos(digitado).subscribe(cidadao => {
+      this.cz.cidadaos = cidadao as Cidadao[];
+      this.cz.selecionadoId = cidadao[0].id;
+      this.router.navigate(['/cidadaos/visualizar']);
+    }, err => {
+      this.errorBye = true;
+      console.log(err.error.errors.Cidadão[0]);
+    });
+  }
+
+
 }
 addRow() {
   this.novaAfericao = {

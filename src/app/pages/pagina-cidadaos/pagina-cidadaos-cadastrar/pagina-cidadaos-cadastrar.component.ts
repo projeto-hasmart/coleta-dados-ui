@@ -6,6 +6,8 @@ import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensa
 import { Router } from '@angular/router';
 import { Cidadao } from 'src/app/models/cidadao';
 import { DatePipe } from '@angular/common';
+import { map } from 'rxjs/operators';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 interface Diabetes {
   value: number;
@@ -43,6 +45,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   telefone: string;
   nascimento: string;
   complemento: string;
+  cep: string;
   cpf: string;
   rg: string;
   email: string;
@@ -52,7 +55,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   numero: string;
   invalidAltura = false;
   valid = false;
-
+  errorBye = false;
 
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
     this.cz = cz;
@@ -64,8 +67,8 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   generos: string[] = [
     'Masculino',
     'Feminino',
-    'Outro',
-    'Prefere não dizer'
+    'Prefere não dizer',
+    'Outro'
   ];
   diabetess: Diabetes[] = [
     {value: 1, viewValue: 'Não'},
@@ -79,10 +82,16 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     {value: 3, viewValue: 'Ex-Fumante'}
   ];
   ngOnInit() {
+    if (localStorage.getItem('newCpf') !== null) {
+      this.cpf = localStorage.getItem('newCpf');
+      localStorage.removeItem('newCpf');
+    } else if (localStorage.getItem('newRg') !== null) {
+      this.rg = localStorage.getItem('newRg');
+      localStorage.removeItem('newRg');
+    }
   }
   checkDate() {
     const dateSendingToServer = new DatePipe('en-US').transform(this.nascimento, 'dd/MM/yyyy');
-    console.log(dateSendingToServer);
     this.dataReal = dateSendingToServer;
   }
 
@@ -93,18 +102,19 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     }
     if ((parseFloat(this.altura) < 3 && parseFloat(this.altura) > 0.5) || this.altura === undefined) {
     if (this.nome === undefined || this.dataReal === undefined || this.cpf === undefined || this.rg === undefined
-      || this.cidade === undefined || this.estado === undefined || this.complemento === undefined || this.rua === undefined
+      || this.cidade === undefined || this.estado === undefined || this.cep === undefined || this.rua === undefined
       || this.numero === undefined || this.email === undefined || this.telefone === undefined || this.altura === undefined) {
         this.checkEmpty = true;
     } else {
       this.valid = true;
       this.cadastraCidadao();
+
     }
   } else {
     this.invalidAltura = true;
   }
   }
-  cadastraCidadao() {
+  async cadastraCidadao() {
     this.oNovoCidadao = {
       nome : this.nome,
       dataNascimento: this.dataReal,
@@ -130,11 +140,24 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
         historicoAvc: this.historicoAvc
       }
     };
-    console.log(this.oNovoCidadao);
-    this.apiService.createCidadao(this.oNovoCidadao).subscribe();
-  }
+    this.apiService.createCidadao(this.oNovoCidadao).subscribe(
+      res => {
+        console.log('200, OK');
+      },
+      err => {
+        this.errorBye = true;
+        this.valid = false;
+        console.log(err.error.errors.Cidadão[0]);
+      });
 
+  }
+  errorFound() {
+    console.log(this.apiService.statusCode);
+    if (this.apiService.statusCode === 400) {
+      console.log('UWU clear is coming');
+    }
+  }
   goToView() {
-    this.cz.selecionaCidadao(this.oNovoCidadao.cpf);
+    this.cz.getAllCidadaos(this.oNovoCidadao.cpf);
   }
 }

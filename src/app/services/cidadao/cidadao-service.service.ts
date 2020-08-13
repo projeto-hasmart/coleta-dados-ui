@@ -22,36 +22,22 @@ export class CidadaoServiceService {
   getAllCidadaos(cpf: string): Observable<Cidadao[]> {
     return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos?cpf=' + cpf)
       .pipe(
+        map((data: Cidadao[]) => {
+          return data;
+        }),
         retry(2),
         catchError(this.handleError));
   }
   getCidadaos(rg: string): Observable<Cidadao[]> {
     return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos?rg=' + rg)
       .pipe(
+        map((data: Cidadao[]) => {
+          return data;
+        }),
         retry(2),
         catchError(this.handleError));
   }
-  selecionaCidadao(digitado: string, groupValue?: string) {
-    if (groupValue === 'cpf') {
-      this.getAllCidadaos(digitado).subscribe(cidadao => {
-        console.log(groupValue, digitado, ' isso foi pesquisado');
-        this.cidadaos = cidadao as Cidadao[];
-        console.log('isso é o resultado', cidadao);
-        console.log('isso tambem é resultado', this.cidadaos);
-        this.selecionadoId = this.cidadaos[0].id;
-        console.log('isso também é selecionado', this.selecionadoId);
-        this.router.navigate(['/cidadaos/visualizar']);
-      });
-    } else if (groupValue === 'rg') {
-      this.getCidadaos(digitado).subscribe(cidadao => {
-        this.cidadaos = cidadao as Cidadao[];
-        this.selecionadoId = cidadao[0].id;
-        this.router.navigate(['/cidadaos/visualizar']);
-      });
-    }
 
-
-  }
   public getCidadaoById(cidadaoId: number): Observable<Cidadao> {
     return this.httpClient.get<Cidadao>('api/hasmart/api/Cidadaos/' + cidadaoId)
       .pipe(
@@ -77,6 +63,6 @@ export class CidadaoServiceService {
       errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
     }
     console.log(errorMessage);
-    return throwError(errorMessage);
+    return throwError(error);
   }
 }

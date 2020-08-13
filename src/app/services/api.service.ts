@@ -13,8 +13,9 @@ import { CidadaoEdit } from '../models/cidadaoEdit';
 export class ApiService {
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Response-Type': 'text' } )
   };
+  statusCode: number;
   cidadaos: Array<Cidadao>;
   constructor(private httpClient: HttpClient) { }
   // API: GET /cidadaos
@@ -29,7 +30,6 @@ export class ApiService {
   public createCidadao(cidadao: Cidadao): Observable<Cidadao> {
     return this.httpClient.post<Cidadao>(('api/hasmart/api/Cidadaos'), cidadao)
     .pipe(
-      retry(2),
       catchError(this.handleError));
   }
 
@@ -61,6 +61,7 @@ export class ApiService {
     }
     console.log(errorMessage);
     console.log(error);
-    return throwError(errorMessage);
+    this.statusCode = error.status;
+    return throwError(error);
   }
 }

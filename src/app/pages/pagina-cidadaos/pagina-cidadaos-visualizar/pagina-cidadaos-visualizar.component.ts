@@ -49,7 +49,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   buscado: string;
   showingCpf: string;
   cidadaoEditado: CidadaoEdit;
-i = 0;
+  i = 0;
   weight;
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
     this.cz = cz;
@@ -152,22 +152,29 @@ i = 0;
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
       this.getMedicoes();
       this.genero = this.oNossoCidadao.dadosPessoais.genero;
-      while ( this.i < 11) {
-        if (this.i === 2 || this.i === 5 ) {
-          this.showingCpf = this.oNossoCidadao.cpf.charAt[this.i] + '.';
-          this.i++;
-        } else if (this.i === 8) {
-          this.showingCpf = this.oNossoCidadao.cpf.charAt[this.i] + '-';
-          this.i++;
-        } else {
-          this.i++;
-        }
-
-      }
-      console.log(this.showingCpf);
+      this.verCpf();
     });
   }
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
+  }
+}
+verCpf() {
+  this.i = 0;
+  while ( this.i < 11) {
+    if (this.i === 2 || this.i === 5 ) {
+      this.showingCpf += this.oNossoCidadao.cpf.charAt(this.i) + '.';
+      this.i++;
+    } else if (this.i === 8) {
+      this.showingCpf += this.oNossoCidadao.cpf.charAt(this.i) + '-';
+      this.i++;
+    } else if (this.i === 0) {
+      this.showingCpf = this.oNossoCidadao.cpf.charAt(this.i);
+      this.i++;
+    } else {
+      this.showingCpf += this.oNossoCidadao.cpf.charAt(this.i);
+      this.i++;
+    }
+
   }
 }
 getMedicoes() {
@@ -182,17 +189,16 @@ getMedicoes() {
   ELEMENT_DATA.sort((a, b) => {
     return (new Date(b.dataHora.split('/').reverse().join('-')) as any) - (new Date(a.dataHora.split('/').reverse().join('-')) as any);
   });
-  console.log('ed? ', ELEMENT_DATA);
   this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
 
 }
 goToView() {
   this.mz.selecionaCidadao(this.oNossoCidadao.cpf);
 }
-searchToView() {
-  this.cz.selecionaCidadao(this.buscado);
+// searchToView() {
+//   this.cz.selecionaCidadao(this.buscado);
 
-}
+// }
 medicaoDe(dataHora: string) {
   for (const med of ELEMENT_DATA) {
     if (med.dataHora === dataHora) {
