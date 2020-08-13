@@ -6,6 +6,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
 import { Global } from 'src/app/models/globalConstants';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
   name: string;
@@ -44,6 +45,8 @@ export class PaginaInicio implements OnInit {
   selection = new SelectionModel<PeriodicElement>(true, []);
   totalMedicoes: number;
   idk: Global;
+  errorBye = false;
+  router: Router;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -77,9 +80,40 @@ export class PaginaInicio implements OnInit {
 
 
 
-  goToView(groupVale: string) {
-    this.idk.buscado = this.buscado;
-    this.cidadaoService.selecionaCidadao(this.buscado, groupVale);
+  goToView(groupValue: string) {
+    this.selecionaCidadao(this.buscado, groupValue);
   }
+  selecionaCidadao(digitado: string, groupValue?: string) {
+    if (groupValue === 'cpf') {
+      this.cidadaoService.getAllCidadaos(digitado).subscribe(cidadao => {
+        this.cidadaoService.cidadaos = cidadao as Cidadao[];
+        this.cidadaoService.selecionadoId = cidadao[0].id;
+        this.router.navigate(['/cidadaos/visualizar']);
+      },
+      err => {
+        if (err.error.status === 404) {
+          this.errorBye = true;
+        }
+      });
+    } else if (groupValue === 'rg') {
+      this.cidadaoService.getCidadaos(digitado).subscribe(cidadao => {
+        this.cidadaoService.cidadaos = cidadao as Cidadao[];
+        this.cidadaoService.selecionadoId = cidadao[0].id;
+        this.router.navigate(['/cidadaos/visualizar']);
+      }, err => {
+        if (err.error.status === 404) {
+          this.errorBye = true;
+        }
+      });
+    }
 
+
+  }
+  newCitizen(groupValue: string) {
+    if (groupValue === 'cpf') {
+      localStorage.setItem('newCpf', this.buscado);
+    } else if (groupValue === 'rg') {
+      localStorage.setItem('newRg', this.buscado);
+    }
+  }
 }

@@ -7,69 +7,84 @@
         <!--class="box box-solid box-default" id="boxInformacoes"-->
         <label id="informacoesPessoais">Informações Pessoais</label>
         <label id="obrigatorio">*Campos obrigatórios</label>
-        <div class="row">
-            <div class="col-sm-4" style="margin-left: -0.5%;">
-                <div class="col-sm-12">
-                    <input type="text" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" required>
-                    <label id="errorLabel" *ngIf="nome === undefined && checkEmpty">O campo nome é obrigatório</label>
-                </div>
-                <div class="col-sm-12">
-                    <input type="text" placeholder="Rua e número*" id="inputRua" [(ngModel)]="rua" name="rua" #inputRua="ngModel" [class.errorInput]="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)" required>
-                    <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
-                    <!-- <div class="row"> -->
-                    <input type="text" placeholder="Cidade*" id="inputCidade" [(ngModel)]="cidade" name="cidade" [class.errorInput]="cidade === undefined && checkEmpty" #inputCidade="ngModel" required>
-                    <input type="text" placeholder="Estado*" id="inputEstado" [(ngModel)]="estado" name="estado" [class.errorInput]="estado === undefined && checkEmpty" #inputEstado="ngModel" required>
-
-                    <!-- <label id="errorLabel" *ngIf="">Todos os campos do Endereço são obrigatórios</label> -->
-                    <!-- </div>
-                    <div class="col-sm-6"> -->
-                    <label id="errorLabel" *ngIf="(estado === undefined && checkEmpty) || (cidade === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
-                    <!-- </div> -->
-                    <input type="text" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="complemento" name="complemento" #inputComplemento="ngModel" [class.errorInput]="complemento === undefined && checkEmpty" required>
-                    <label id="errorLabel" *ngIf="complemento === undefined && checkEmpty">Todos os campos do Endereço são obrigatórios</label>
-
-                </div>
+        <div class="row" style="margin-left: -0.5%;">
+            <div class="col-md-12" style="width: 99.5%;">
+                <input type="text" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" required>
+                <label id="errorLabel" *ngIf="nome === undefined && checkEmpty">O campo nome é obrigatório</label>
             </div>
-            <div class="col-sm-8">
-                <div class='row'>
-                    <div class="col-sm-6">
-                        <input type="date" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="nascimento" name="nascimento" #inputNascimento="ngModel" [class.errorInput]="nascimento === undefined && checkEmpty" required>
-                        <label id="errorLabel" *ngIf="nascimento === undefined && checkEmpty">O cidadão deve ter pelo menos 18 anos de idade</label>
-                    </div>
-                    <div class="col-sm-6">
-                        <input type="text" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="telefone" name="telefone" #inputTelefone="ngModel" [class.errorInput]="telefone === undefined && checkEmpty" required>
-                        <label id="errorLabel" *ngIf="telefone === undefined && checkEmpty">O campo telefone é obrigatório e deve ser composto apenas por números</label>
-                    </div>
-                </div>
-                <div class='row'>
-                    <div class="col-sm-6">
-                        <input type="text" placeholder="CPF*" id="inputCpf" [(ngModel)]="cpf" name="cpf" #inputCpf="ngModel" [class.errorInput]="cpf === undefined && checkEmpty" required>
-                        <label id="errorLabel" *ngIf="cpf === undefined && checkEmpty">O campo CPF deve ser composto por 11 números.</label>
-                    </div>
-                    <div class="col-sm-6">
-                        <input type="text" placeholder="RG*" id="inputRg" [(ngModel)]="rg" name="rg" #inputRg="ngModel" [class.errorInput]="rg === undefined && checkEmpty" required>
-                        <label id="errorLabel" *ngIf="rg === undefined && checkEmpty">O campo RG deve ser composto apenas por números.</label>
-                    </div>
-                </div>
-                <div class='row'>
-                    <input type='text' placeholder="E-mail*" id="inputEmail" [(ngModel)]="email" name="email" #inputEmail="ngModel" [class.errorInput]="email === undefined && checkEmpty" style="width: 96.5%; margin-top: 1.5%;">
-                    <label id="errorLabel" *ngIf="email === undefined && checkEmpty">Digite um valor válido</label>
+        </div>
+        <div class='row' style="margin-left: -0.5%;">
+            <div class="col-md-6" style="width: 49.5%;">
+                <input type="date" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="nascimento" name="nascimento" #inputNascimento="ngModel" [class.errorInput]="nascimento === undefined && checkEmpty" required>
+                <label id="errorLabel" *ngIf="nascimento === undefined && checkEmpty">O cidadão deve ter pelo menos 18 anos de idade</label>
+            </div>
+            <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
+                <input type="text" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="telefone" name="telefone" #inputTelefone="ngModel" [class.errorInput]="telefone === undefined && checkEmpty" required>
+                <label id="errorLabel" *ngIf="telefone === undefined && checkEmpty">O campo telefone é obrigatório e deve ser composto apenas por números</label>
+            </div>
+        </div>
+        <div class='row' style="margin-left: -0.5%;">
+            <div class="col-md-6" style="width: 49.5%;">
+                <input type="text" placeholder="CPF*" id="inputCpf" [(ngModel)]="cpf" name="cpf" #inputCpf="ngModel" [class.errorInput]="cpf === undefined && checkEmpty" required>
+                <label id="errorLabel" *ngIf="cpf === undefined && checkEmpty">O campo CPF deve ser composto por 11 números.</label>
+            </div>
+            <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
+                <input type="text" placeholder="RG*" id="inputRg" [(ngModel)]="rg" name="rg" #inputRg="ngModel" [class.errorInput]="rg === undefined && checkEmpty" required>
+                <label id="errorLabel" *ngIf="rg === undefined && checkEmpty">O campo RG deve ser composto apenas por números.</label>
+            </div>
+        </div>
+        <div class='row' style="margin-left: -0.5%;">
+            <div class="col-md-6" style="width: 49.5%;">
+                <input type='text' placeholder="E-mail*" id="inputEmail" [(ngModel)]="email" name="email" #inputEmail="ngModel" [class.errorInput]="email === undefined && checkEmpty">
+                <label id="errorLabel" *ngIf="email === undefined && checkEmpty">Digite um valor válido</label>
+            </div>
+            <div class="col-md-6" id="genero" style="margin-top: 1.5%;width: 49.5%;margin-left: 0.5%;">
+                <label>Gênero*</label>
 
-                </div>
-                <div class="row" id="genero" style="margin-top: 1.5%;">
-                    <label>Gênero*</label>
-                </div>
-                <div class='row' id="genero" style="margin-top: 0.5%; margin-left: -0.25%;">
+                <div class='row' id="genero" style="margin-top: 0.5%;">
                     <mat-radio-group id="generoRadio" [(ngModel)]="genero" name="genero" #generoRadio="ngModel" required>
                         <mat-radio-button class="example-radio-button" *ngFor="let gender of generos" [value]="gender">{{gender}}</mat-radio-button>
                     </mat-radio-group>
                 </div>
-
             </div>
-
         </div>
-    </div>
 
+
+
+    </div>
+    <div class="box box-solid box-default" id="boxEstaticas">
+        <label id="informacoesEstaticasLabel">Endereço</label>
+        <div class='row'>
+
+            <div class="col-md-3">
+                <input type="text" placeholder="CEP*" id="inputCep" [(ngModel)]="cep" name="cep" #inputCep="ngModel" [class.errorInput]="(cep === undefined && checkEmpty)" required>
+                <label id="errorLabel" *ngIf="cep === undefined && checkEmpty">Todos os campos do Endereço são obrigatórios</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" placeholder="Endereço*" id="inputRua" [(ngModel)]="rua" name="rua" #inputRua="ngModel" [class.errorInput]="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)" required>
+                <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" placeholder="Cidade*" id="inputCidade" [(ngModel)]="cidade" name="cidade" [class.errorInput]="cidade === undefined && checkEmpty" #inputCidade="ngModel" required>
+            </div>
+            <div class="col-md-6">
+                <input type="text" placeholder="Estado*" id="inputEstado" [(ngModel)]="estado" name="estado" [class.errorInput]="estado === undefined && checkEmpty" #inputEstado="ngModel" required>
+            </div>
+            <label id="errorLabel" *ngIf="(estado === undefined && checkEmpty) || (cidade === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
+            <!-- <label id="errorLabel" *ngIf="">Todos os campos do Endereço são obrigatórios</label> -->
+        </div>
+        <!-- <div class="col-sm-6"> -->
+        <!-- </div> -->
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="complemento" name="complemento" #inputComplemento="ngModel">
+            </div>
+        </div>
+
+    </div>
     <div class="box box-solid box-default" id="boxEstaticas">
         <label id="informacoesEstaticasLabel">Informações Estáticas de Hipertensão Arterial</label>
         <div class='row'>
@@ -111,7 +126,7 @@
     </div>
     <button mat-button id="cadastraButton" data-toggle="modal" data-target="#okcidadao" class="pull-right" (click)="checkEmpt()">
         <label id="cadastraButtonLabel">CADASTRAR CIDADÃO</label></button>
-    <div class="modal fade" id="okcidadao" *ngIf="valid">
+    <div class="modal fade" id="okcidadao" *ngIf="valid && !errorBye">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
 

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CidadaoServiceService } from './../../services/cidadao/cidadao-service.service';
 import { Cidadao } from './../../models/cidadao';
 import { Component, OnInit } from '@angular/core';
@@ -33,40 +34,17 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./pagina-cidadaos.component.scss']
 })
 export class PaginaCidadaosComponent implements OnInit {
-  cidadaos: Cidadao[];
   apiService: ApiService;
   cidadaoService: CidadaoServiceService;
   buscado: string;
   displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<Cidadao>(this.cidadaos);
   selection = new SelectionModel<Cidadao>(true, []);
-  idk: Global;
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Cidadao): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id}`;
-  }
-  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, idk: Global) {
+  router: Router;
+  errorBye = false;
+  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, router: Router) {
     this.apiService = apiService;
     this.cidadaoService = cidadaoService;
-    this.idk = idk;
+    this.router = router;
   }
 
   ngOnInit() {
@@ -77,15 +55,40 @@ export class PaginaCidadaosComponent implements OnInit {
     }
   }
 
-  getCidadaos(): void {
-    this.apiService.getAllCidadaos().subscribe(cidadaos => {
-      this.cidadaos = cidadaos as Cidadao[];
-    });
-
-  }
-
   goToView(groupValue: string) {
-    this.cidadaoService.selecionaCidadao(this.buscado, groupValue);
+    this.selecionaCidadao(this.buscado, groupValue);
   }
+  selecionaCidadao(digitado: string, groupValue?: string) {
+    if (groupValue === 'cpf') {
+      this.cidadaoService.getAllCidadaos(digitado).subscribe(cidadao => {
+        this.cidadaoService.cidadaos = cidadao as Cidadao[];
+        this.cidadaoService.selecionadoId = cidadao[0].id;
+        this.router.navigate(['/cidadaos/visualizar']);
+      },
+      err => {
+        if (err.error.status === 404) {
+          this.errorBye = true;
+        }
+      });
+    } else if (groupValue === 'rg') {
+      this.cidadaoService.getCidadaos(digitado).subscribe(cidadao => {
+        this.cidadaoService.cidadaos = cidadao as Cidadao[];
+        this.cidadaoService.selecionadoId = cidadao[0].id;
+        this.router.navigate(['/cidadaos/visualizar']);
+      }, err => {
+        if (err.error.status === 404) {
+          this.errorBye = true;
+        }
+      });
+    }
 
+
+  }
+  newCitizen(groupValue: string) {
+    if (groupValue === 'cpf') {
+      localStorage.setItem('newCpf', this.buscado);
+    } else if (groupValue === 'rg') {
+      localStorage.setItem('newRg', this.buscado);
+    }
+  }
 }
