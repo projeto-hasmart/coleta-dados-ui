@@ -69,10 +69,11 @@ export class PaginaInicio implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
-  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, idk: Global) {
+  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, idk: Global, router: Router) {
     this.apiService = apiService;
     this.cidadaoService = cidadaoService;
     this.idk = idk;
+    this.router = router;
   }
 
   ngOnInit() {
