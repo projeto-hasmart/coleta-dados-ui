@@ -24,6 +24,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { PaginaMedicaoSucessoComponent } from './pagina-medicao/pagina-medicao-sucesso/pagina-medicao-sucesso.component';
 import { PaginaMedicamentosComponent } from './pagina-medicamentos/pagina-medicamentos.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Global } from 'src/app/models/globalConstants';
@@ -57,7 +58,8 @@ import { Global } from 'src/app/models/globalConstants';
     MatMenuModule,
     MatExpansionModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   providers: [
     Global

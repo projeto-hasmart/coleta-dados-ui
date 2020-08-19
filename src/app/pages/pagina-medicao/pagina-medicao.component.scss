@@ -967,6 +967,10 @@ table {
     top: 30%;
 }
 
+.modal-md {
+    top: 30%;
+}
+
 #errorLabel {
     font-size: 12px;
     margin-left: 2%;
@@ -978,4 +982,77 @@ table {
 .errorInput {
     border: 1px solid red;
     outline: none;
+}
+
+::ng-deep .cdk-overlay-container {
+    z-index: 9999;
+}
+
+#adicionarButtonLabel {
+    position: static;
+    width: 74px;
+    height: 16px;
+    left: 16px;
+    top: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: center;
+    margin: 10px 0px;
+}
+
+#adicionarButton {
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: flex-start;
+    margin: 16px 0px;
+}
+
+#naoAdicionarButtonLabel {
+    /* Label */
+    position: static;
+    width: 72px;
+    height: 16px;
+    left: 16px;
+    top: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    /* 700 */
+    color: #245E33;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: center;
+    margin: 10px 0px;
+}
+
+#naoAdicionarButton {
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 4px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: flex-start;
+    margin: 16px 0px;
+}
+
+#buttons-modal {
+    margin-left: 67%;
 }

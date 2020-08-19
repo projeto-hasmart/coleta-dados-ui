@@ -1,3 +1,4 @@
+import { Medicamento } from './medicamento';
 export interface Afericao {
   sistolica?: number;
   diastolica?: number;

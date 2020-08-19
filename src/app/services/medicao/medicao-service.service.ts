@@ -32,7 +32,6 @@ export class MedicaoServiceService {
   public createMedicao(medicao: Medicao, id: number): Observable<Medicao> {
     return this.httpClient.post<Medicao>(('api/hasmart/api/Farmacia/medicoes?cidadaoId=' + id), medicao)
       .pipe(
-        retry(2),
         catchError(this.handleError));
   }
   selecionaCidadao(digitado: string) {
