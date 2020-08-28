@@ -59,8 +59,8 @@ export class ApiService {
       // Erro ocorreu no lado do servidor
       errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
     }
-    console.log(errorMessage);
-    console.log(error);
+    // console.log(errorMessage);
+    // console.log(error);
     this.statusCode = error.status;
     return throwError(error);
   }

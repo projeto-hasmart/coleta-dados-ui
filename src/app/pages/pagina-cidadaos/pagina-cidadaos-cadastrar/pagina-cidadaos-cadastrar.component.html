@@ -25,7 +25,7 @@
         </div>
         <div class='row' style="margin-left: -0.5%;">
             <div class="col-md-6" style="width: 49.5%;">
-                <input type="text" placeholder="CPF*" id="inputCpf" [(ngModel)]="cpf" name="cpf" #inputCpf="ngModel" [class.errorInput]="cpf === undefined && checkEmpty" required>
+                <input type="text" placeholder="CPF*" id="inputCpf" [(ngModel)]="cpf" name="cpf" #inputCpf="ngModel" [class.errorInput]="cpf === undefined && checkEmpty" required mask="000.000.000-00">
                 <label id="errorLabel" *ngIf="cpf === undefined && checkEmpty">O campo CPF deve ser composto por 11 números.</label>
             </div>
             <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
@@ -57,7 +57,7 @@
         <div class='row' style="margin-left: -0.5%;">
 
             <div class="col-md-3">
-                <input type="text" placeholder="CEP*" id="inputCep" [(ngModel)]="cep" name="cep" #inputCep="ngModel" [class.errorInput]="(cep === undefined && checkEmpty)" required>
+                <input type="text" placeholder="CEP*" id="inputCep" [(ngModel)]="cep" name="cep" #inputCep="ngModel" [class.errorInput]="(cep === undefined && checkEmpty)" required mask="00000-000" (keyup)="verificaCep(cep)">
                 <label id="errorLabel" *ngIf="cep === undefined && checkEmpty">Todos os campos do Endereço são obrigatórios</label>
             </div>
             <div class="col-md-9" style="width: 74.5%;">

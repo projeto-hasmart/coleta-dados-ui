@@ -20,34 +20,53 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body" *ngIf="isCollapsed">
-                <div class="box  box-default" id="infoBoxPessoal">
+                <div class="box box-default" id="infoBoxPessoal" *ngIf="cidadao$ | async">
                     <label id="pessoaisLabel">Pessoais</label>
                     <div class="row">
-                        <div class="col-sm-4">
-                            <label id="nomeLabel">NOME</label>
-                            <label id="nomeResult">{{oNossoCidadao.nome}}</label>
-                            <label id="enderecoLabel">ENDEREÇO</label>
-                            <label id="enderecoResult">{{oNossoCidadao.dadosPessoais.endereco.rua}}, {{oNossoCidadao.dadosPessoais.endereco.numero}}</label>
-                            <label id="cidadeLabel">CIDADE</label>
-                            <label id="cidadeResult">{{oNossoCidadao.dadosPessoais.endereco.cidade}}</label>
-                            <label id="telefoneLabel">TELEFONE</label>
-                            <label id="telefoneResult">{{oNossoCidadao.dadosPessoais.telefone}}</label>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">NOME</label>
+                            <label id="dadoResult">{{oNossoCidadao.nome}}</label>
+                            <label id="dadoLabel">CPF</label>
+                            <label id="dadoResult">{{showingCpf}}</label>
+                            <label id="dadoLabel">GÊNERO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.genero}}</label>
                         </div>
-                        <div class="col-sm-4">
-                            <label id="dataNascimentoLabel">DATA DE NASCIMENTO</label>
-                            <label id="dataNascimentoResult">{{oNossoCidadao.dataNascimento}}</label>
-                            <label id="complementoLabel">COMPLEMENTO</label>
-                            <label id="complementoResult">{{oNossoCidadao.dadosPessoais.endereco.complemento}}</label>
-                            <label id="estadoLabel">ESTADO</label>
-                            <label id="estadoResult">{{oNossoCidadao.dadosPessoais.endereco.estado}}</label>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">DATA DE NASCIMENTO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dataNascimento}}</label>
+                            <label id="dadoLabel">RG</label>
+                            <label id="dadoResult">{{oNossoCidadao.rg}}</label>
                         </div>
-                        <div class="col-sm-4">
-                            <label id="cpfLabel">CPF</label>
-                            <label id="cpfResult">{{oNossoCidadao.cpf}}</label>
-                            <label id="rgLabel">RG</label>
-                            <label id="rgResult">{{oNossoCidadao.rg}}</label>
-                            <label id="generoLabel">GÊNERO</label>
-                            <label id="generoResult">{{oNossoCidadao.dadosPessoais.genero}}</label>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">TELEFONE</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.telefone}}</label>
+                            <label id="dadoLabel">E-MAIL</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.email}}</label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-default" id="infoBoxEstaticas">
+
+                    <label id="estaticasLabel">Endereço</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label id="dadoLabel">CEP</label>
+                            <label id="dadoResult">{{showingCep}}</label>
+                            <label id="dadoLabel">ESTADO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.estado}}</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">ENDEREÇO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.rua}}, {{oNossoCidadao.dadosPessoais.endereco.numero}}</label>
+                            <label id="dadoLabel">COMPLEMENTO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.complemento}}</label>
+                        </div>
+                        <div class="col-md-4">
+
+                            <label id="dadoLabel">CIDADE</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.cidade}}</label>
+
                         </div>
                     </div>
                 </div>
@@ -55,27 +74,32 @@
 
                     <label id="estaticasLabel">Estáticas</label>
                     <div class="row">
-                        <div class="col-sm-4">
-                            <label id="alturaLabel">ALTURA</label>
-                            <label id="alturaResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
-                            <label id="antiHipertensivoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
-                            <label id="antiHipertensivoResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Não</label>
-                            <label id="antiHipertensivoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Sim</label>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">ALTURA</label>
+                            <label id="dadoResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
+                            <label id="dadoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
+                            <label id="dadoResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Sim</label>
+
                         </div>
-                        <div class="col-sm-4">
-                            <label id="diabetesLabel">DIABETES</label>
-                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
-                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
-                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
-                            <label id="avcLabel">HISTÓRICO DE AVC</label>
-                            <label id="avcResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc">Sim</label>
-                            <label id="avcResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.historicoAvc">Não</label>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">DIABETES</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 4">Diabetes Gestante</label>
+
+                            <label id="dadoLabel">HISTÓRICO DE AVC</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc">Sim</label>
+                            <label id="dadoResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.historicoAvc">Não</label>
+
                         </div>
-                        <div class="col-sm-4">
-                            <label id="fumanteLabel">FUMANTE</label>
-                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
-                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
-                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">FUMANTE</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
+
                         </div>
                     </div>
                 </div>

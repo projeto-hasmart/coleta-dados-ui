@@ -7,6 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
 import { Global } from 'src/app/models/globalConstants';
 import { Router } from '@angular/router';
+import { HostListener } from '@angular/core';
 
 export interface PeriodicElement {
   name: string;
@@ -47,6 +48,7 @@ export class PaginaInicio implements OnInit {
   idk: Global;
   errorBye = false;
   router: Router;
+  mask: string;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -78,15 +80,21 @@ export class PaginaInicio implements OnInit {
 
   ngOnInit() {
   }
-
-
+  checkIt(groupValue: string) {
+    if (groupValue === 'cpf') {
+      this.mask = '000.000.000-00';
+    } else {
+      this.mask = '00000000000';
+    }
+  }
 
   goToView(groupValue: string) {
     this.selecionaCidadao(this.buscado, groupValue);
+    console.log(this.buscado);
   }
   selecionaCidadao(digitado: string, groupValue?: string) {
     if (groupValue === 'cpf') {
-      this.cidadaoService.getAllCidadaos(digitado).subscribe(cidadao => {
+      this.cidadaoService.getAllCidadaos(this.buscado).subscribe(cidadao => {
         this.cidadaoService.cidadaos = cidadao as Cidadao[];
         this.cidadaoService.selecionadoId = cidadao[0].id;
         this.router.navigate(['/cidadaos/visualizar']);

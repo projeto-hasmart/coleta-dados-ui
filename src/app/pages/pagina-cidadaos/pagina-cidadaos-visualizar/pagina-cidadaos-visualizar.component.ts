@@ -48,14 +48,18 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   router: Router;
   buscado: string;
   showingCpf: string;
+  showingCep: string;
   cidadaoEditado: CidadaoEdit;
   i = 0;
+  j: number;
+  sendingCpf: string;
   weight;
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
     this.cz = cz;
     this.mz = mz;
     this.dz = dz;
     this.apiService = apiService;
+    this.router = router;
    }
   displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
   dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
@@ -115,15 +119,15 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   }
 
   updateCz() {
-    this.checkDate();
     this.cidadaoEditado = {
       dadosPessoais: {
         endereco: {
-          rua: this.oNossoCidadao.dadosPessoais.endereco.rua,
-          numero: this.oNossoCidadao.dadosPessoais.endereco.numero,
+          rua: this.oNossoCidadao.dadosPessoais.endereco.rua.split(',')[0],
+          numero: this.oNossoCidadao.dadosPessoais.endereco.rua.split(',')[1],
           complemento: this.oNossoCidadao.dadosPessoais.endereco.complemento,
           cidade: this.oNossoCidadao.dadosPessoais.endereco.cidade,
-          estado: this.oNossoCidadao.dadosPessoais.endereco.estado
+          estado: this.oNossoCidadao.dadosPessoais.endereco.estado,
+          cep: this.oNossoCidadao.dadosPessoais.endereco.cep
         },
         email: this.oNossoCidadao.dadosPessoais.email,
         telefone: this.oNossoCidadao.dadosPessoais.telefone,
@@ -138,6 +142,8 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
       }
     };
     this.apiService.updateCidadao(this.cidadaoEditado, this.oNossoCidadao.id).subscribe();
+    this.verCep();
+    window.location.reload();
   }
 
   ngOnInit() {
@@ -153,9 +159,35 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
       this.getMedicoes();
       this.genero = this.oNossoCidadao.dadosPessoais.genero;
       this.verCpf();
+      this.verCep();
     });
   }
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
+  }
+}
+verificaCep(cep: string) {
+  if (cep.length === 8) {
+    this.cz.pegaremosCep(cep).subscribe(data => {
+      this.oNossoCidadao.dadosPessoais.endereco.rua = data.logradouro;
+      this.oNossoCidadao.dadosPessoais.endereco.cidade = data.localidade;
+      this.oNossoCidadao.dadosPessoais.endereco.estado = data.uf;
+    });
+  }
+
+}
+verCep() {
+  this.i = 0;
+  while ( this.i < 8) {
+    if (this.i === 4) {
+      this.showingCep += this.oNossoCidadao.dadosPessoais.endereco.cep.charAt(this.i) + '-';
+      this.i++;
+    } else if (this.i === 0) {
+      this.showingCep = this.oNossoCidadao.dadosPessoais.endereco.cep.charAt(this.i);
+      this.i++;
+    } else {
+      this.showingCep += this.oNossoCidadao.dadosPessoais.endereco.cep.charAt(this.i);
+      this.i++;
+    }
   }
 }
 verCpf() {
@@ -192,6 +224,8 @@ getMedicoes() {
   this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
 
 }
+
+
 goToView() {
   this.mz.selecionaCidadao(this.oNossoCidadao.cpf);
 }

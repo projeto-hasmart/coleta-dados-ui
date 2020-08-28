@@ -1,4 +1,4 @@
-<section class="content-header">
+<section class="content-header" *ngIf="(cidadao$ | async)">
     <div id="divtitle">
         <label id="labelNome">{{oNossoCidadao.nome}}</label>
         <div id="divcpf"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{oNossoCidadao.cpf}}</label></div>
@@ -21,22 +21,28 @@
         </div>
     </div> -->
 </section>
-<section class="content">
+<section class="content" *ngIf="(cidadao$ | async)">
     <div class="container">
         <div class="box box-default" id="box">
             <label id="autorizacoesLabel">Autorizações</label>
             <div class="row">
-                <div class='col-sm-6'>
+                <div class='col-md-12'>
                     <mat-card id="medicaoCard" *ngIf="oNossoCidadao.podeRealizarMedicao">
                         <div class='row'>
-                            <div class="col-sm-3">
+                            <div class="col-md-2">
                                 <img src="assets/dist/img/logo_maior.png" id="cardImg">
                             </div>
-                            <div class="col-sm-9">
-                                <mat-card-title id="cardTitle">Medição</mat-card-title>
-                                <label id="ultimaMedicao" *ngIf="oNossoCidadao.medicoes[0] !== undefined">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
-                                <label id="semMedicao" *ngIf="oNossoCidadao.medicoes[0] === undefined">O Cidadão não tem medições cadastradas</label>
-                                <label id="autorizacaoMedicao">O paciente está autorizado a realizar uma medição de pressão arterial neste período.</label>
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <mat-card-title id="cardTitle">Medição</mat-card-title>
+                                </div>
+                                <div class="row">
+                                    <label id="ultimaMedicao" *ngIf="oNossoCidadao.medicoes[0] !== undefined">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                                    <label id="semMedicao" *ngIf="oNossoCidadao.medicoes[0] === undefined">O Cidadão não tem medições cadastradas</label>
+                                </div>
+                                <div class="row">
+                                    <label id="autorizacaoMedicao">O paciente está autorizado a realizar uma medição de pressão arterial neste período.</label>
+                                </div>
                                 <a><button mat-button id="medicaoButton" class="pull-right" (click)="goToView()">
                 <label id="medicaoButtonLabel">REALIZAR MEDIÇÃO</label></button></a></div>
                         </div>
@@ -55,7 +61,7 @@
                         </div>
                     </mat-card>
                 </div>
-                <div class='col-sm-6'>
+                <!-- <div class='col-sm-6'>
                     <mat-card id="dispensacaoCard" *ngIf="oNossoCidadao.podeRealizarDispensacao">
                         <div class="row">
                             <div class="col-sm-3">
@@ -83,7 +89,7 @@
                             </div>
                         </div>
                     </mat-card>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="box box-default" id="infoBox">
@@ -206,7 +212,7 @@
                                 </div>
                                 <div class="row" style="margin-left: 0.5%;">
                                     <div class="col-md-6" style="width: 49%;">
-                                        <input type="text" class="input-control" placeholder="CPF*" id="inputCpf" [(ngModel)]="oNossoCidadao.cpf">
+                                        <input type="text" class="input-control" placeholder="CPF*" id="inputCpf" [(ngModel)]="oNossoCidadao.cpf" mask="000.000.000-00">
                                     </div>
                                     <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
                                         <input type="text" class="input-control" placeholder="RG*" id="inputRg" [(ngModel)]="oNossoCidadao.rg">
@@ -231,7 +237,7 @@
                             <label id="informacoesEstaticasLabel">Endereço</label>
                             <div class="row" id='estaticas'>
                                 <div class="row" style="margin-left: 0.5%;">
-                                    <div class="col-md-3"> <input type="text" class="input-control" placeholder="CEP*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cep">
+                                    <div class="col-md-3"> <input type="text" class="input-control" placeholder="CEP*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cep" mask="00000-000" (keyup)="verificaCep(oNossoCidadao.dadosPessoais.endereco.cep)">
                                     </div>
                                     <div class="col-md-9" style="width: 73.5%;"> <input type="text" class="input-control" placeholder="Rua e número*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.rua">
                                     </div>
@@ -305,64 +311,83 @@
             <div class="box-body" *ngIf="isCollapsed">
                 <div class="box box-default" id="infoBoxPessoal" *ngIf="cidadao$ | async">
                     <label id="pessoaisLabel">Pessoais</label>
-                    <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                            <label id="nomeLabel">NOME</label>
-                            <label id="nomeResult">{{oNossoCidadao.nome}}</label>
-                            <label id="enderecoLabel">ENDEREÇO</label>
-                            <label id="enderecoResult">{{oNossoCidadao.dadosPessoais.endereco.rua}}, {{oNossoCidadao.dadosPessoais.endereco.numero}}</label>
-                            <label id="cidadeLabel">CIDADE</label>
-                            <label id="cidadeResult">{{oNossoCidadao.dadosPessoais.endereco.cidade}}</label>
-                            <label id="telefoneLabel">TELEFONE</label>
-                            <label id="telefoneResult">{{oNossoCidadao.dadosPessoais.telefone}}</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label id="dadoLabel">NOME</label>
+                            <label id="dadoResult">{{oNossoCidadao.nome}}</label>
+                            <label id="dadoLabel">CPF</label>
+                            <label id="dadoResult">{{showingCpf}}</label>
+                            <label id="dadoLabel">GÊNERO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.genero}}</label>
                         </div>
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                            <label id="dataNascimentoLabel">DATA DE NASCIMENTO</label>
-                            <label id="dataNascimentoResult">{{oNossoCidadao.dataNascimento}}</label>
-                            <label id="complementoLabel">COMPLEMENTO</label>
-                            <label id="complementoResult">{{oNossoCidadao.dadosPessoais.endereco.complemento}}</label>
-                            <label id="estadoLabel">ESTADO</label>
-                            <label id="estadoResult">{{oNossoCidadao.dadosPessoais.endereco.estado}}</label>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">DATA DE NASCIMENTO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dataNascimento}}</label>
+                            <label id="dadoLabel">RG</label>
+                            <label id="dadoResult">{{oNossoCidadao.rg}}</label>
                         </div>
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                            <label id="cpfLabel">CPF</label>
-                            <label id="cpfResult">{{showingCpf}}</label>
-                            <label id="rgLabel">RG</label>
-                            <label id="rgResult">{{oNossoCidadao.rg}}</label>
-                            <label id="generoLabel">GÊNERO</label>
-                            <label id="generoResult">{{oNossoCidadao.dadosPessoais.genero}}</label>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">TELEFONE</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.telefone}}</label>
+                            <label id="dadoLabel">E-MAIL</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.email}}</label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-default" id="infoBoxEstaticas">
+
+                    <label id="estaticasLabel">Endereço</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label id="dadoLabel">CEP</label>
+                            <label id="dadoResult">{{showingCep}}</label>
+                            <label id="dadoLabel">ESTADO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.estado}}</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">ENDEREÇO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.rua}}, {{oNossoCidadao.dadosPessoais.endereco.numero}}</label>
+                            <label id="dadoLabel">COMPLEMENTO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.complemento}}</label>
+                        </div>
+                        <div class="col-md-4">
+
+                            <label id="dadoLabel">CIDADE</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.cidade}}</label>
+
                         </div>
                     </div>
                 </div>
                 <div class="box box-default" id="infoBoxEstaticas">
 
                     <label id="estaticasLabel">Estáticas</label>
-                    <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                            <label id="alturaLabel">ALTURA</label>
-                            <label id="alturaResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
-                            <label id="antiHipertensivoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
-                            <label id="antiHipertensivoResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Não</label>
-                            <label id="antiHipertensivoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Sim</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label id="dadoLabel">ALTURA</label>
+                            <label id="dadoResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
+                            <label id="dadoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
+                            <label id="dadoResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Sim</label>
 
                         </div>
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                            <label id="diabetesLabel">DIABETES</label>
-                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
-                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
-                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
-                            <label id="diabetesResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 4">Diabetes Gestante</label>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">DIABETES</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 4">Diabetes Gestante</label>
 
-                            <label id="avcLabel">HISTÓRICO DE AVC</label>
-                            <label id="avcResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc">Sim</label>
-                            <label id="avcResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.historicoAvc">Não</label>
+                            <label id="dadoLabel">HISTÓRICO DE AVC</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc">Sim</label>
+                            <label id="dadoResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.historicoAvc">Não</label>
 
                         </div>
-                        <div fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
-                            <label id="fumanteLabel">FUMANTE</label>
-                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
-                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
-                            <label id="fumanteResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">FUMANTE</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
 
                         </div>
                     </div>

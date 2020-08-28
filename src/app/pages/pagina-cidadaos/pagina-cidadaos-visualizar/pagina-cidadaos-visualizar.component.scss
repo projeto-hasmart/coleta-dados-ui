@@ -215,20 +215,20 @@ table {
 }
 
 #medicaoCard {
+    margin-left: 0.5%;
     padding: 15px;
-    width: 100%;
+    width: 99%;
     height: 185px;
-    left: 1%;
     margin-top: 15px;
     background: #BEE3C8;
     border-radius: 3px;
 }
 
 #medicaoCardNao {
+    margin-left: 0.5%;
     padding: 15px;
-    width: 100%;
+    width: 99%;
     height: 185px;
-    left: 1%;
     margin-top: 15px;
     background: #E3BEBE;
     border-radius: 3px;
@@ -261,14 +261,14 @@ table {
 #cardImg {
     position: absolute;
     margin-left: 20%;
-    margin-top: 20%;
+    margin-top: 10%;
     /* 700 */
 }
 
 #ultimaMedicao {
     width: 205px;
     height: 19px;
-    top: 44px;
+    margin-top: 10px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -281,7 +281,7 @@ table {
 #semMedicao {
     width: 345px;
     height: 19px;
-    top: 44px;
+    margin-top: 10px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -294,7 +294,7 @@ table {
 #ultimaMedicaoNao {
     width: 205px;
     height: 19px;
-    top: 44px;
+    margin-top: 10px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -339,9 +339,9 @@ table {
 }
 
 #autorizacaoMedicao {
-    width: 400px;
+    width: 95%;
     height: 38px;
-    top: 73px;
+    margin-top: 10px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -352,9 +352,9 @@ table {
 }
 
 #autorizacaoMedicaoNao {
-    width: 400px;
+    width: 95%;
     height: 38px;
-    top: 73px;
+    margin-top: 10px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -464,7 +464,6 @@ table {
     flex-direction: column;
     padding: 10px;
     width: 100%;
-    min-height: 213px;
     height: wrap-content;
     margin-right: 10px;
     top: 0px;
@@ -477,7 +476,6 @@ table {
     position: static;
     width: 130px;
     height: 21px;
-    left: 10px;
     top: 10px;
     font-family: Poppins;
     font-style: normal;
@@ -491,45 +489,10 @@ table {
     flex: none;
     order: 0;
     align-self: flex-start;
-    margin: 0px 10px;
 }
 
-#nomeLabel {
+#dadoLabel {
     width: 100%;
-    margin-top: 10px;
-    margin-left: 10px;
-    box-sizing: border-box;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#nomeResult {
-    margin-left: 10px;
-    width: 100%;
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-    box-sizing: border-box;
-}
-
-#enderecoLabel {
-    margin-left: 10px;
-    width: 100%;
-    top: 84px;
     /* Overline */
     font-family: Roboto;
     font-style: normal;
@@ -543,40 +506,7 @@ table {
     opacity: 0.6;
 }
 
-#enderecoResult {
-    margin-left: 10px;
-    width: 100%;
-    top: 98px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-    box-sizing: border-box;
-}
-
-#cidadeLabel {
-    margin-left: 10px;
-    width: 100%;
-    top: 127px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#cidadeResult {
-    margin-left: 10px;
+#dadoResult {
     width: 100%;
     top: 141px;
     font-family: Roboto;
@@ -587,260 +517,6 @@ table {
     /* identical to box height */
     display: flex;
     color: #000000;
-}
-
-#telefoneLabel {
-    margin-left: 10px;
-    width: 100%;
-    top: 170px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#telefoneResult {
-    margin-left: 10px;
-    width: 100%;
-    top: 184px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-}
-
-#dataNascimentoLabel {
-    margin-left: 134px;
-    width: 100%;
-    margin-top: 10px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#dataNascimentoResult {
-    margin-left: 134px;
-    width: 100%;
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-    color: #000000;
-}
-
-#complementoLabel {
-    margin-left: 134px;
-    width: 100%;
-    top: 84px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#complementoResult {
-    margin-left: 134px;
-    width: 100%;
-    top: 98px;
-    /* Body 1 */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-    color: #000000;
-}
-
-#estadoLabel {
-    margin-left: 134px;
-    width: 100%;
-    top: 127px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#estadoResult {
-    margin-left: 134px;
-    width: 100%;
-    top: 141px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-}
-
-#cpfLabel {
-    margin-left: 134px;
-    width: 100%;
-    margin-top: 10px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-}
-
-#cpfResult {
-    margin-left: 134px;
-    width: 100%;
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-}
-
-#rgLabel {
-    margin-left: 134px;
-    width: 100%;
-    top: 84px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-}
-
-#rgResult {
-    margin-left: 134px;
-    width: 100%;
-    top: 98px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-}
-
-#generoLabel {
-    margin-left: 134px;
-    width: 100%;
-    top: 127px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-}
-
-#generoResult {
-    margin-left: 134px;
-    width: 100%;
-    top: 141px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #infoBoxEstaticas {
@@ -860,7 +536,6 @@ table {
     position: static;
     width: 130px;
     height: 21px;
-    left: 10px;
     top: 10px;
     font-family: Poppins;
     font-style: normal;
@@ -875,181 +550,6 @@ table {
     flex: none;
     order: 0;
     align-self: flex-start;
-    margin: 0px 10px;
-}
-
-#alturaLabel {
-    margin-left: 10px;
-    margin-top: 10px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#alturaResult {
-    margin-left: 10px;
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
-}
-
-#antiHipertensivoLabel {
-    margin-left: 10px;
-    top: 84px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#antiHipertensivoResult {
-    margin-left: 10px;
-    top: 98px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
-}
-
-#diabetesLabel {
-    margin-left: 134px;
-    margin-top: 10px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-}
-
-#diabetesResult {
-    margin-left: 134px;
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-}
-
-#avcLabel {
-    margin-left: 134px;
-    top: 84px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-}
-
-#avcResult {
-    margin-left: 134px;
-    top: 98px;
-    /* Body 1 */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-}
-
-#fumanteLabel {
-    margin-left: 134px;
-    margin-top: 10px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
-}
-
-#fumanteResult {
-    margin-left: 134px;
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
-    @media (max-width: 1600px) {
-        margin-left: 10px;
-    }
 }
 
 #medicaoBox {
@@ -1748,4 +1248,8 @@ input {
     @media (max-width: 1500px) {
         margin-left: 72%;
     }
+}
+
+::ng-deep .cdk-overlay-container {
+    z-index: 9999;
 }

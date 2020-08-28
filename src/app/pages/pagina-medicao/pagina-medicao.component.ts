@@ -13,7 +13,14 @@ import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
 import { FormControl } from '@angular/forms';
 
-
+interface Diabetes {
+  value: number;
+  viewValue: string;
+}
+interface Fumante {
+  value: number;
+  viewValue: string;
+}
 let ELEMENT_DATA: Afericao[] = [];
 let ELEMENTS_DATA: Afericao[] = [];
 
@@ -51,6 +58,9 @@ export class PaginaMedicaoComponent implements OnInit {
   selection = new SelectionModel<Afericao>(true, []);
   selections = new SelectionModel<Afericao>(true, []);
   errorBye = false;
+  showingCpf: string;
+  showingCep: string;
+  i = 0;
   public myControl: FormControl;
   filteredMedicine: Medicamento[] = [];
   availableMedicine: Medicamento[] = [
@@ -67,8 +77,24 @@ export class PaginaMedicaoComponent implements OnInit {
     {Nome: 'Metildopa', apresentacao: 'Comprimido 250mg'}
   ];
   // filteredMedicine: Observable<Medicamento[]>;
-
-
+  genero: string;
+  generos: string[] = [
+    'Masculino',
+    'Feminino',
+    'Outro',
+    'Prefere não dizer'
+  ];
+  diabetess: Diabetes[] = [
+    {value: 1, viewValue: 'Não'},
+    {value: 2, viewValue: 'Tipo 1'},
+    {value: 3, viewValue: 'Tipo 2'},
+    {value: 4, viewValue: 'Diabetes Gestante'}
+  ];
+  fumantes: Fumante[] = [
+    {value: 1, viewValue: 'Não fumante'},
+    {value: 2, viewValue: 'Fumante'},
+    {value: 3, viewValue: 'Ex-Fumante'}
+  ];
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -144,8 +170,9 @@ ngOnInit() {
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
     this.dataSourced = new MatTableDataSource(ELEMENTS_DATA);
     this.oNossoCidadao = cidadao as Cidadao;
-    console.log(cidadao);
-    console.log(this.oNossoCidadao);
+    this.genero = this.oNossoCidadao.dadosPessoais.genero;
+    this.verCpf();
+    this.verCep();
   });
   this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
 }
@@ -245,6 +272,40 @@ checkMedicao() {
     }
   } else {
     this.error = true;
+  }
+}
+verCep() {
+  this.i = 0;
+  while ( this.i < 8) {
+    if (this.i === 4) {
+      this.showingCep += this.oNossoCidadao.dadosPessoais.endereco.cep.charAt(this.i) + '-';
+      this.i++;
+    } else if (this.i === 0) {
+      this.showingCep = this.oNossoCidadao.dadosPessoais.endereco.cep.charAt(this.i);
+      this.i++;
+    } else {
+      this.showingCep += this.oNossoCidadao.dadosPessoais.endereco.cep.charAt(this.i);
+      this.i++;
+    }
+  }
+}
+verCpf() {
+  this.i = 0;
+  while ( this.i < 11) {
+    if (this.i === 2 || this.i === 5 ) {
+      this.showingCpf += this.oNossoCidadao.cpf.charAt(this.i) + '.';
+      this.i++;
+    } else if (this.i === 8) {
+      this.showingCpf += this.oNossoCidadao.cpf.charAt(this.i) + '-';
+      this.i++;
+    } else if (this.i === 0) {
+      this.showingCpf = this.oNossoCidadao.cpf.charAt(this.i);
+      this.i++;
+    } else {
+      this.showingCpf += this.oNossoCidadao.cpf.charAt(this.i);
+      this.i++;
+    }
+
   }
 }
 addMedicine(nomee: string) {
