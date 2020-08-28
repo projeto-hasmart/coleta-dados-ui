@@ -60,6 +60,7 @@ export class PaginaMedicaoComponent implements OnInit {
   errorBye = false;
   showingCpf: string;
   showingCep: string;
+  showingPhone: string;
   i = 0;
   public myControl: FormControl;
   filteredMedicine: Medicamento[] = [];
@@ -173,6 +174,7 @@ ngOnInit() {
     this.genero = this.oNossoCidadao.dadosPessoais.genero;
     this.verCpf();
     this.verCep();
+    this.verTelefone();
   });
   this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
 }
@@ -274,6 +276,24 @@ checkMedicao() {
     this.error = true;
   }
 }
+verTelefone() {
+  this.i = 0;
+  while (this.i < 11) {
+    if (this.i === 0) {
+      this.showingPhone = '(' + this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
+      this.i++;
+    } else if (this.i === 1) {
+      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + ')';
+      this.i++;
+    } else if (this.i === 6) {
+      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + '-';
+      this.i++;
+    } else {
+      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
+      this.i++;
+    }
+  }
+  }
 verCep() {
   this.i = 0;
   while ( this.i < 8) {

@@ -207,7 +207,7 @@
                                         <input type="date" class="input-control" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="oNossoCidadao.dataNascimento">
                                     </div>
                                     <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
-                                        <input type="text" class="input-control" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="oNossoCidadao.dadosPessoais.telefone">
+                                        <input type="text" class="input-control" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="oNossoCidadao.dadosPessoais.telefone" mask="(00)00000-0000">
                                     </div>
                                 </div>
                                 <div class="row" style="margin-left: 0.5%;">
@@ -328,7 +328,7 @@
                         </div>
                         <div class="col-md-4">
                             <label id="dadoLabel">TELEFONE</label>
-                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.telefone}}</label>
+                            <label id="dadoResult">{{showingPhone}}</label>
                             <label id="dadoLabel">E-MAIL</label>
                             <label id="dadoResult">{{oNossoCidadao.dadosPessoais.email}}</label>
 
