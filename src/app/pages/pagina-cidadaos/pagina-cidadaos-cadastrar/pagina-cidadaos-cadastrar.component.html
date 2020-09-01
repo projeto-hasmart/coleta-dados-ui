@@ -19,7 +19,7 @@
                 <label id="errorLabel" *ngIf="nascimento === undefined && checkEmpty">O cidadão deve ter pelo menos 18 anos de idade</label>
             </div>
             <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
-                <input type="text" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="telefone" name="telefone" #inputTelefone="ngModel" [class.errorInput]="telefone === undefined && checkEmpty" required>
+                <input type="text" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="telefone" name="telefone" #inputTelefone="ngModel" [class.errorInput]="telefone === undefined && checkEmpty" mask="(00)00000-0000" required>
                 <label id="errorLabel" *ngIf="telefone === undefined && checkEmpty">O campo telefone é obrigatório e deve ser composto apenas por números</label>
             </div>
         </div>

@@ -49,6 +49,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   buscado: string;
   showingCpf: string;
   showingCep: string;
+  showingPhone: string;
   cidadaoEditado: CidadaoEdit;
   i = 0;
   j: number;
@@ -160,6 +161,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
       this.genero = this.oNossoCidadao.dadosPessoais.genero;
       this.verCpf();
       this.verCep();
+      this.verTelefone();
     });
   }
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
@@ -174,6 +176,24 @@ verificaCep(cep: string) {
     });
   }
 
+}
+verTelefone() {
+this.i = 0;
+while (this.i < 11) {
+  if (this.i === 0) {
+    this.showingPhone = '(' + this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
+    this.i++;
+  } else if (this.i === 1) {
+    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + ')';
+    this.i++;
+  } else if (this.i === 6) {
+    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + '-';
+    this.i++;
+  } else {
+    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
+    this.i++;
+  }
+}
 }
 verCep() {
   this.i = 0;
