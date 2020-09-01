@@ -94,7 +94,6 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     const dateSendingToServer = new DatePipe('en-US').transform(this.nascimento, 'dd/MM/yyyy');
     this.dataReal = dateSendingToServer;
   }
-
   checkEmpt() {
     this.checkDate();
     if ( this.rua !== undefined) {
@@ -113,6 +112,16 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   } else {
     this.invalidAltura = true;
   }
+  }
+  verificaCep(cep: string) {
+    if (cep.length === 8) {
+      this.cz.pegaremosCep(cep).subscribe(data => {
+        this.rua = data.logradouro;
+        this.cidade = data.localidade;
+        this.estado = data.uf;
+      });
+    }
+
   }
   async cadastraCidadao() {
     this.oNovoCidadao = {
@@ -154,7 +163,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   errorFound() {
     console.log(this.apiService.statusCode);
     if (this.apiService.statusCode === 400) {
-      console.log('UWU clear is coming');
+      console.log('erro');
     }
   }
   goToView() {

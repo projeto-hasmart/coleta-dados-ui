@@ -89,7 +89,6 @@
     flex-direction: column;
     padding: 10px;
     width: 100%;
-    min-height: 213px;
     height: wrap-content;
     top: 0px;
     background: #FFFFFF;
@@ -104,7 +103,6 @@
     position: static;
     width: 130px;
     height: 21px;
-    left: 10px;
     top: 10px;
     font-family: Poppins;
     font-style: normal;
@@ -118,45 +116,10 @@
     flex: none;
     order: 0;
     align-self: flex-start;
-    margin: 0px 10px;
 }
 
-#nomeLabel {
+#dadoLabel {
     width: 100%;
-    margin-top: 10px;
-    margin-left: 10px;
-    box-sizing: border-box;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#nomeResult {
-    margin-left: 10px;
-    width: 100%;
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-    box-sizing: border-box;
-}
-
-#enderecoLabel {
-    margin-left: 10px;
-    width: 100%;
-    top: 84px;
     /* Overline */
     font-family: Roboto;
     font-style: normal;
@@ -170,246 +133,7 @@
     opacity: 0.6;
 }
 
-#enderecoResult {
-    margin-left: 10px;
-    width: 100%;
-    top: 98px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-    box-sizing: border-box;
-}
-
-#cidadeLabel {
-    margin-left: 10px;
-    width: 100%;
-    top: 127px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#cidadeResult {
-    margin-left: 10px;
-    width: 100%;
-    top: 141px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-}
-
-#telefoneLabel {
-    margin-left: 10px;
-    width: 100%;
-    top: 170px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#telefoneResult {
-    margin-left: 10px;
-    width: 100%;
-    top: 184px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-}
-
-#dataNascimentoLabel {
-    width: 100%;
-    margin-top: 10px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#dataNascimentoResult {
-    width: 100%;
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-}
-
-#complementoLabel {
-    width: 100%;
-    top: 84px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#complementoResult {
-    width: 100%;
-    top: 98px;
-    /* Body 1 */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-}
-
-#estadoLabel {
-    width: 100%;
-    top: 127px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#estadoResult {
-    width: 100%;
-    top: 141px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-}
-
-#cpfLabel {
-    width: 100%;
-    margin-top: 10px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#cpfResult {
-    width: 100%;
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-}
-
-#rgLabel {
-    width: 100%;
-    top: 84px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#rgResult {
-    width: 100%;
-    top: 98px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
-}
-
-#generoLabel {
-    width: 100%;
-    top: 127px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#generoResult {
+#dadoResult {
     width: 100%;
     top: 141px;
     font-family: Roboto;
@@ -433,16 +157,12 @@
     background: #FFFFFF;
     border-radius: 3px;
     /* Inside Auto Layout */
-    flex: none;
-    order: 1;
-    align-self: flex-start;
 }
 
 #estaticasLabel {
     position: static;
     width: 130px;
     height: 21px;
-    left: 10px;
     top: 10px;
     font-family: Poppins;
     font-style: normal;
@@ -457,157 +177,6 @@
     flex: none;
     order: 0;
     align-self: flex-start;
-    margin: 0px 10px;
-}
-
-#alturaLabel {
-    margin-left: 10px;
-    margin-top: 10px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#alturaResult {
-    margin-left: 10px;
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
-}
-
-#antiHipertensivoLabel {
-    margin-left: 10px;
-    top: 84px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#antiHipertensivoResult {
-    margin-left: 10px;
-    top: 98px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
-}
-
-#diabetesLabel {
-    margin-top: 10px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#diabetesResult {
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
-}
-
-#avcLabel {
-    top: 84px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#avcResult {
-    top: 98px;
-    /* Body 1 */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
-}
-
-#fumanteLabel {
-    margin-top: 10px;
-    /* Overline */
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: #000000;
-    opacity: 0.6;
-}
-
-#fumanteResult {
-    top: 55px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
 }
 
 #medicaoBox {

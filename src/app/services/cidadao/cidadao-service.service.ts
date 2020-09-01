@@ -53,6 +53,14 @@ export class CidadaoServiceService {
     });
 
   }
+  pegaremosCep(cep: string) {
+    return this.httpClient.get<any>('//viacep.com.br/ws/' + cep + '/json/')
+    .pipe(
+      map((data: any) => {
+        return data;
+      }),
+      catchError(this.handleError));
+  }
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -62,7 +70,7 @@ export class CidadaoServiceService {
       // Erro ocorreu no lado do servidor
       errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
     }
-    console.log(errorMessage);
+    console.log(error);
     return throwError(error);
   }
 }

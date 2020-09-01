@@ -41,6 +41,7 @@ export class PaginaCidadaosComponent implements OnInit {
   selection = new SelectionModel<Cidadao>(true, []);
   router: Router;
   errorBye = false;
+  mask: string;
   constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, router: Router) {
     this.apiService = apiService;
     this.cidadaoService = cidadaoService;
@@ -53,14 +54,21 @@ export class PaginaCidadaosComponent implements OnInit {
       // tslint:disable-next-line: radix
       this.cidadaoService.jaTemosCidadao(parseInt(localStorage.getItem('citizen')));
     }
-  }
+    }
 
-  goToView(groupValue: string) {
-    this.selecionaCidadao(this.buscado, groupValue);
-  }
-  selecionaCidadao(digitado: string, groupValue?: string) {
-    if (groupValue === 'cpf') {
-      this.cidadaoService.getAllCidadaos(digitado).subscribe(cidadao => {
+    checkIt(groupValue: string) {
+      if (groupValue === 'cpf') {
+        this.mask = '000.000.000-00';
+      } else {
+        this.mask = '00000000000';
+      }
+    }
+    goToView(groupValue: string) {
+      this.selecionaCidadao(this.buscado, groupValue);
+    }
+    selecionaCidadao(digitado: string, groupValue?: string) {
+      if (groupValue === 'cpf') {
+        this.cidadaoService.getAllCidadaos(this.buscado).subscribe(cidadao => {
         this.cidadaoService.cidadaos = cidadao as Cidadao[];
         this.cidadaoService.selecionadoId = cidadao[0].id;
         this.router.navigate(['/cidadaos/visualizar']);

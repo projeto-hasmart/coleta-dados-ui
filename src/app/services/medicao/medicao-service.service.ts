@@ -60,8 +60,8 @@ export class MedicaoServiceService {
       // Erro ocorreu no lado do servidor
       errorMessage = `Código do erro: ${error.status}, ` + `mensagem: ${error.message}`;
     }
-    console.log(errorMessage);
-    console.log(error);
+    // console.log(errorMessage);
+    // console.log(error);
     return throwError(errorMessage);
   }
 }

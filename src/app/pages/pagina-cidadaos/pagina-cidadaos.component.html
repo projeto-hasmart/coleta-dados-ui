@@ -24,7 +24,7 @@
             </mat-button-toggle>
         </mat-button-toggle-group>
         <div class="search-bar shadow p-3 mb-5 bg-white rounded">
-            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." (keydown.enter)="goToView(group.value)" id="searchBox" [(ngModel)]="buscado" required>
+            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." (keydown.enter)="goToView(group.value)" id="searchBox" [(ngModel)]="buscado" required [mask]="mask" (keyup)="checkIt(group.value)">
             <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="goToView(group.value)">
 <i class="fa fa-search"></i> </button>
         </div>

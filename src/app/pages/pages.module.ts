@@ -28,6 +28,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Global } from 'src/app/models/globalConstants';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { Global } from 'src/app/models/globalConstants';
     MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     Global
