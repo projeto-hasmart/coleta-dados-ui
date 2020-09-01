@@ -1,3 +1,4 @@
+import { Medicamento } from './../../models/medicamento';
 import { Medicao } from './../../models/medicao';
 import { Afericao } from './../../models/afericao';
 import { Component, OnInit } from '@angular/core';
@@ -10,6 +11,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
+import { FormControl } from '@angular/forms';
 
 
 let ELEMENT_DATA: Afericao[] = [];
@@ -38,12 +40,34 @@ export class PaginaMedicaoComponent implements OnInit {
   error = false;
   direitoOK: boolean;
   esquerdoOK: boolean;
+  medicamento: Medicamento;
+  medicamentos: Medicamento[] = [];
+  sentMedicamentos: Medicamento[] = [];
   displayedColumns: string[] = ['select',  'sistolica', 'diastolica'];
+  displayingColumns: string[] = ['nome', 'apresentacao', 'delete'];
   dataSource = new MatTableDataSource<Afericao>(ELEMENT_DATA);
   dataSourced = new MatTableDataSource<Afericao>(ELEMENTS_DATA);
+  dataSourcem = new MatTableDataSource<Medicamento>(this.medicamentos);
   selection = new SelectionModel<Afericao>(true, []);
   selections = new SelectionModel<Afericao>(true, []);
   errorBye = false;
+  public myControl: FormControl;
+  filteredMedicine: Medicamento[] = [];
+  availableMedicine: Medicamento[] = [
+    {Nome: 'Anlodipino Besilato', apresentacao: 'Comprimido 5mg'},
+    {Nome: 'Losartana Potássica', apresentacao: 'Comprimido 50mg'},
+    {Nome: 'Atenolol', apresentacao: 'Comprimido 50mg'},
+    {Nome: 'Carvedilol', apresentacao: 'Comprimidos 6,25mg'},
+    {Nome: 'Carvedilol', apresentacao: 'Comprimidos 25mg'},
+    {Nome: 'Propanolol Cloridato', apresentacao: 'Comprimido 40mg'},
+    {Nome: 'Enalapril Maleato', apresentacao: 'Comprimido 20mg'},
+    {Nome: 'Espironolactona', apresentacao: 'Comprimido 25mg'},
+    {Nome: 'Furosemida', apresentacao: 'Comprimido 40mg'},
+    {Nome: 'Hidroclorotiazida', apresentacao: 'Comprimido 25mg'},
+    {Nome: 'Metildopa', apresentacao: 'Comprimido 250mg'}
+  ];
+  // filteredMedicine: Observable<Medicamento[]>;
+
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -90,12 +114,20 @@ export class PaginaMedicaoComponent implements OnInit {
     this.dataSource.data.splice(index, 1);
     this.dataSource._updateChangeSubscription();
   }
-
+  deleteThisMedicine(row) {
+    const index = this.dataSourcem.data.indexOf(row.id);
+    this.dataSourcem.data.splice(index, 1);
+    this.dataSourcem._updateChangeSubscription();
+  }
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
     this.cz = cz;
     this.mz = mz;
     this.dz = dz;
     this.apiService = apiService;
+    this.myControl = new FormControl();
+    this.myControl.valueChanges.subscribe(newValue => {
+      this.filteredMedicine = this.filterValues(newValue);
+  });
    }
 
 //  updateCz(cidadaoEditado: Cidadao) {
@@ -117,6 +149,10 @@ ngOnInit() {
   });
   this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
 }
+}
+filterValues(search: string) {
+  return this.availableMedicine.filter( value =>
+  value.Nome.toLowerCase().indexOf(search.toLowerCase()) === 0);
 }
 goToView() {
   this.selecionaCidadao(this.oNossoCidadao.cpf, 'cpf');
@@ -156,6 +192,13 @@ addRowd() {
   };
   ELEMENTS_DATA.push(this.novaAfericao);
   this.dataSourced = new MatTableDataSource(ELEMENTS_DATA);
+}
+addRowm() {
+  this.medicamento = {
+
+  };
+  this.medicamentos.push(this.medicamento);
+  this.dataSourcem = new MatTableDataSource(this.sentMedicamentos);
 }
 removeSelectedRows() {
 
@@ -204,8 +247,14 @@ checkMedicao() {
     this.error = true;
   }
 }
+addMedicine(nomee: string) {
+  this.medicamento = {
+    Nome: nomee
+  };
+  this.sentMedicamentos.push(this.medicamento);
+}
 novaMedicao() {
-  for ( const data of ELEMENT_DATA) { // pode estar colocando 1 como valor da medicao
+  for ( const data of ELEMENT_DATA) {
     this.finalData.push(data);
   }
   for ( const data of ELEMENTS_DATA) {
@@ -213,12 +262,11 @@ novaMedicao() {
   }
   this.medido = {
     afericoes: this.finalData,
-    peso:	this.peso
+    peso:	this.peso,
+    medicamentos: this.sentMedicamentos
   };
 
-
   this.mz.createMedicao(this.medido, this.oNossoCidadao.id).subscribe();
-  console.log(this.mz.createMedicao(this.medido, this.oNossoCidadao.id).subscribe());
 }
 
 }

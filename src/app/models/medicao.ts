@@ -1,4 +1,5 @@
 import { Afericao } from './afericao';
+import { Medicamento } from './medicamento';
 
 export interface Medicao {
   afericoes: Afericao[];
@@ -7,4 +8,5 @@ export interface Medicao {
   estabelecimentoId?: number;
   cidadaoId?: number;
   id?: number;
+  medicamentos?: Medicamento[];
 }

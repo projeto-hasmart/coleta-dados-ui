@@ -223,6 +223,71 @@
                     <label id="errorLabel" *ngIf="(peso < 30 || peso > 400) && error">O campo 'Peso' deve estar entre 30 e 400 kg</label>
 
                 </div>
+                <div class="modal fade" id="adicionarMedicamento">
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content" style="background-color: #F2F2F2;">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="titleModal">Adicionar Medicamento</h4>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <input matInput placeholder="Digite o nome do Medicamento" aria-label="Digite o nome do Medicamento" [matAutocomplete]="auto" [formControl]="myControl" id="pesoinput">
+                                <mat-autocomplete #auto="matAutocomplete" (optionSelected)='addMedicine($event.option.value)'>
+                                    <mat-option *ngFor="let medicine of filteredMedicine" [value]="medicine.Nome">
+                                        <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
+                                        <span>{{medicine.Nome}}</span> |
+                                        <small>{{medicine.apresentacao}}</small>
+                                    </mat-option>
+                                </mat-autocomplete>
+                                <div id="buttons-modal">
+                                    <button data-dismiss="modal" id="naoAdicionarButton"><label id="naoAdicionarButtonLabel">CANCELAR</label></button>
+                                    <button (click)="addRowm()" data-dismiss="modal" id="adicionarButton" style="margin-left: 6%"><label id="adicionarButtonLabel">ADICIONAR</label></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="passotres">
+                    <div id="titlesTables">
+                        <label id="numero">4</label>
+                        <label id="medicaoTitleLabel" style="width: 388px;">Consulte o medicamente que o cidadão está tomando</label>
+                        <!-- <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right"><mat-icon>delete</mat-icon></button> -->
+                    </div>
+
+                    <div id="tabela">
+                        <!-- TABELA-->
+                        <table mat-table [dataSource]="dataSourcem" class="mat-elevation-z1">
+                            <ng-container matColumnDef="nome">
+                                <th mat-header-cell *matHeaderCellDef>Nome</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.Nome}}
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="apresentacao">
+                                <th mat-header-cell *matHeaderCellDef>Apresentação</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.apresentacao}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="delete">
+                                <th mat-header-cell *matHeaderCellDef></th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button mat-icon-button id="deleteButton" class="pull-right" (click)='deleteThisMedicine(element)' style="margin-top: 2%;"><mat-icon>delete</mat-icon></button>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayingColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayingColumns;">
+                            </tr>
+                        </table>
+                        <button id="novaAfericao" style="width: 199px;" data-toggle="modal" data-target="#adicionarMedicamento"><mat-icon id="iconplus">add</mat-icon><label id="afericaobuttonlabel"  style="width: 199px; margin-left: 0.5%">Novo medicamento</label></button>
+                    </div>
+                    <!--(keyup)="onKey($event)"-->
+
+                </div>
             </div>
         </div>
         <a routerLink="/medicao/sucesso">
