@@ -7,11 +7,11 @@
     <mat-card id="material-card">
         <mat-card-content>
             <div class="form-group has-feedback">
-                <input class="form-control" placeholder="Email" type="email" id="emailLabel">
+                <input class="form-control" placeholder="Email" type="email" id="emailLabel" [(ngModel)]="user" (keyup.enter)="createRole()">
                 <!-- <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
             </div>
             <div class="form-group has-feedback">
-                <input class="form-control" placeholder="Senha" [type]="hide ? 'password' : 'text'" id="senhaLabel">
+                <input class="form-control" placeholder="Senha" [type]="hide ? 'password' : 'text'" id="senhaLabel" (keyup.enter)="createRole()">
                 <span style="position:absolute; right:8px;top:15px;"><mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></span>
             </div>
 
@@ -19,7 +19,8 @@
                 <mat-checkbox [(ngModel)]="showPw"><label id="checkboxLabel">Manter-me conectado</label></mat-checkbox>
             </div>
             <!-- /.col -->
-            <button [routerLink]="'/inicio'" class="mat-button" id="loginButton">ENTRAR</button>
+            <!--[routerLink]="'/inicio'"-->
+            <button class="mat-button" id="loginButton" (click)="createRole()">ENTRAR</button>
             <!-- /.col -->
         </mat-card-content>
 

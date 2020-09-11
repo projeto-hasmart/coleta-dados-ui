@@ -9,6 +9,7 @@ import { PaginaCidadaosCadastrarComponent } from './pagina-cidadaos/pagina-cidad
 import { PaginaCidadaosVisualizarComponent } from './pagina-cidadaos/pagina-cidadaos-visualizar/pagina-cidadaos-visualizar.component';
 import { PaginaMedicaoSucessoComponent } from './pagina-medicao/pagina-medicao-sucesso/pagina-medicao-sucesso.component';
 import { PaginaMedicamentosComponent } from './pagina-medicamentos/pagina-medicamentos.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 
 const routes: Routes = [

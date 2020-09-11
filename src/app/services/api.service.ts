@@ -1,9 +1,12 @@
+import { Router } from '@angular/router';
 import { Cidadao } from './../models/cidadao';
+import { User } from './../models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { CidadaoEdit } from '../models/cidadaoEdit';
+import { Role } from '../models/role';
 
 
 
@@ -11,13 +14,16 @@ import { CidadaoEdit } from '../models/cidadaoEdit';
   providedIn: 'root'
 })
 export class ApiService {
-
+  private currentUserSubject: BehaviorSubject<User>;
+  user: User;
+  currentUser: Observable<User>;
+  role: string;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Response-Type': 'text' } )
   };
   statusCode: number;
   cidadaos: Array<Cidadao>;
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
   // API: GET /cidadaos
   getAllCidadaos(): Observable<Cidadao[]> {
     return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos')
@@ -48,7 +54,29 @@ export class ApiService {
       retry(2),
       catchError(this.handleError));
   }
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+}
+  login(usernameForLogin?: string, password?: string) {
+    if (usernameForLogin === 'admin') {
+      this.user = {
+        username: usernameForLogin,
+        role: Role.Admin
+      };
+      localStorage.setItem('currentUser', 'admin');
+      // this.router.navigate(['/admin']);
+      console.log('AMIGUINHO VOCÊ É ADMIN TAOKEY');
+    } else if (usernameForLogin === 'user') {
+      this.user = {
+        username: usernameForLogin,
+        role: Role.User
+      };
+      localStorage.setItem('currentUser', 'user');
+      console.log('AMIGUINHO VOCÊ É USER TAOKEY');
+      // this.currentUserSubject.next(this.user);
 
+    }
+  }
 
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
