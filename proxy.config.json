@@ -8,5 +8,15 @@
             "^/api": ""
         }
 
+    },
+    "/auth": {
+        "target": "http://localhost:5050",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/auth": ""
+        }
+
     }
 }
