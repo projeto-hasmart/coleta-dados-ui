@@ -90,7 +90,6 @@ export class PaginaInicio implements OnInit {
 
   goToView(groupValue: string) {
     this.selecionaCidadao(this.buscado, groupValue);
-    console.log(this.buscado);
   }
   selecionaCidadao(digitado: string, groupValue?: string) {
     if (groupValue === 'cpf') {

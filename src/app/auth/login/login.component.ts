@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     // if (this.apiService.currentUserValue) {
     //       this.router.navigate(['/inicio']);
     // }
-
   }
 
   ngOnInit() {
@@ -39,6 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
     }); */
     this.clearLocalStorage();
+    this.tryAuth();
 
   }
   clearLocalStorage() {
@@ -52,6 +52,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       // this.router.navigate(['/inicio']);
       console.log('valha como tu é admin');
     }
+  }
+  tryAuth() {
+    // this.apiService.authenticate(this.username, this.password);
+    this.apiService.authenticate().subscribe();
   }
   ngOnDestroy(): void {
     $('body').removeClass('hold-transition login-page');

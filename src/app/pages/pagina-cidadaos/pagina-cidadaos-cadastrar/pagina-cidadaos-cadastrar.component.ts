@@ -135,7 +135,8 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
           estado: this.estado,
           complemento: this.complemento,
           rua: this.rua.split(',')[0],
-          numero: this.rua.split(',')[1]
+          numero: this.rua.split(',')[1],
+          cep: this.cep
         },
         email: this.email,
         telefone: this.telefone,
@@ -151,7 +152,6 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     };
     this.apiService.createCidadao(this.oNovoCidadao).subscribe(
       res => {
-        console.log('200, OK');
       },
       err => {
         this.errorBye = true;

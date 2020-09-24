@@ -13,7 +13,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class MedicaoServiceService {
   selecionadoId: number;
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('token') })
   };
   cidadaos: Array<Cidadao>;
   constructor(private httpClient: HttpClient, private router: Router) {
@@ -21,7 +21,7 @@ export class MedicaoServiceService {
 
   // API: GET /cidadaos
   getAllCidadaos(): Observable<Cidadao[]> {
-    return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos')
+    return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos', this.httpOptions)
       .pipe(
         catchError(this.handleError));
   }
@@ -30,21 +30,18 @@ export class MedicaoServiceService {
 
   }
   public createMedicao(medicao: Medicao, id: number): Observable<Medicao> {
-    return this.httpClient.post<Medicao>(('api/hasmart/api/Farmacia/medicoes?cidadaoId=' + id), medicao)
+    return this.httpClient.post<Medicao>(('api/hasmart/api/Farmacia/medicoes?cidadaoId=' + id), medicao, this.httpOptions)
       .pipe(
         catchError(this.handleError));
   }
   selecionaCidadao(digitado: string) {
     this.getAllCidadaos().subscribe(cidadaos => {
       this.cidadaos = cidadaos as Cidadao[];
-      console.log(cidadaos);
-      console.log(this.cidadaos);
       for (const cidadao of this.cidadaos) {
         if (cidadao.cpf.includes(digitado) || cidadao.rg.includes(digitado)) {
           this.selecionadoId = cidadao.id;
           this.router.navigate(['/medicao']);
         } else {
-          console.log('nope');
         }
       }
     });
