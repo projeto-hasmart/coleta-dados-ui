@@ -20,8 +20,8 @@ export class MedicaoServiceService {
    }
 
   // API: GET /cidadaos
-  getAllCidadaos(): Observable<Cidadao[]> {
-    return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos', this.httpOptions)
+  getAllCidadaos(cpf: string): Observable<Cidadao[]> {
+    return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos?cpf=' + cpf, this.httpOptions)
       .pipe(
         catchError(this.handleError));
   }
@@ -35,7 +35,7 @@ export class MedicaoServiceService {
         catchError(this.handleError));
   }
   selecionaCidadao(digitado: string) {
-    this.getAllCidadaos().subscribe(cidadaos => {
+    this.getAllCidadaos(digitado).subscribe(cidadaos => {
       this.cidadaos = cidadaos as Cidadao[];
       for (const cidadao of this.cidadaos) {
         if (cidadao.cpf.includes(digitado) || cidadao.rg.includes(digitado)) {

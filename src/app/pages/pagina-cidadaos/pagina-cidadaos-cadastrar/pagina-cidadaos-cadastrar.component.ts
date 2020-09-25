@@ -34,13 +34,12 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   dz: DispensacaoServiceService;
   router: Router;
   oNovoCidadao: Cidadao;
-  historicoAvc: boolean;
-  antiHipertensivos: boolean;
-  doencaRenal: boolean;
-  insuficienciaCardiaca: boolean;
-  infarto: boolean;
-  doencaArterial: boolean;
-  retinopatia: boolean;
+  historicoAvc = 0;
+  doencaRenal = 0;
+  insuficienciaCardiaca = 0;
+  infarto = 0;
+  doencaArterial = 0;
+  retinopatia = 0;
   diabetes = 1;
   fumante = 1;
   rua: string;
@@ -148,13 +147,12 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
         altura: parseFloat(this.altura),
         diabetico: this.diabetes,
         fumante: this.fumante,
-        antiHipertensivos: this.antiHipertensivos,
         historicoAvc: this.historicoAvc,
-        doencaRenal: this.doencaRenal,
+        doencaRenalCronica: this.doencaRenal,
         insuficienciaCardiaca: this.insuficienciaCardiaca,
-        infarto: this.infarto,
-        doencaArterial: this.doencaArterial,
-        retinopatia: this.retinopatia
+        historicoInfarto: this.infarto,
+        doencaArterialObstrutivaPeriferica: this.doencaArterial,
+        retinopatiaHipertensiva: this.retinopatia
       }
     };
     this.apiService.createCidadao(this.oNovoCidadao).subscribe(

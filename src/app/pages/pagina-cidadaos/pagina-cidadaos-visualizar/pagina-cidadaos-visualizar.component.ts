@@ -45,7 +45,6 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   cidadao$: Observable<Cidadao>;
   ultimaMedicao: string;
   responsavel: string;
-
   router: Router;
   buscado: string;
   showingCpf: string;
@@ -139,13 +138,12 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
         altura: this.oNossoCidadao.indicadorRiscoHAS.altura,
         diabetico: this.oNossoCidadao.indicadorRiscoHAS.diabetico,
         fumante: this.oNossoCidadao.indicadorRiscoHAS.fumante,
-        antiHipertensivos: this.oNossoCidadao.indicadorRiscoHAS.antiHipertensivos,
         historicoAvc: this.oNossoCidadao.indicadorRiscoHAS.historicoAvc,
-        doencaRenal: this.oNossoCidadao.indicadorRiscoHAS.doencaRenal,
+        doencaRenalCronica: this.oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica,
         insuficienciaCardiaca: this.oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca,
-        infarto: this.oNossoCidadao.indicadorRiscoHAS.infarto,
-        doencaArterial: this.oNossoCidadao.indicadorRiscoHAS.doencaArterial,
-        retinopatia: this.oNossoCidadao.indicadorRiscoHAS.retinopatia
+        historicoInfarto: this.oNossoCidadao.indicadorRiscoHAS.historicoInfarto,
+        doencaArterialObstrutivaPeriferica: this.oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica,
+        retinopatiaHipertensiva: this.oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva
       }
     };
     this.apiService.updateCidadao(this.cidadaoEditado, this.oNossoCidadao.id).subscribe();

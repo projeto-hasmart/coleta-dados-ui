@@ -77,10 +77,12 @@
                         <div class="col-md-4">
                             <label id="dadoLabel">ALTURA</label>
                             <label id="dadoResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
-                            <label id="dadoLabel">USO PRÉVIO DE ANTI-HIPERTENSIVO</label>
-                            <label id="dadoResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Não</label>
-                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.antiHipertensivos">Sim</label>
-
+                            <label id="dadoLabel">DOENÇA RENAL CRÔNICA</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 2">Sim</label>
+                            <label id="dadoLabel">HISTÓRICO DE AVC</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1">Não</label>
                         </div>
                         <div class="col-md-4">
                             <label id="dadoLabel">DIABETES</label>
@@ -89,9 +91,13 @@
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 4">Diabetes Gestante</label>
 
-                            <label id="dadoLabel">HISTÓRICO DE AVC</label>
-                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc">Sim</label>
-                            <label id="dadoResult" *ngIf="!oNossoCidadao.indicadorRiscoHAS.historicoAvc">Não</label>
+                            <label id="dadoLabel">INSUFICIÊNCIA CARDÍACA</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1">Não</label>
+                            <label id="dadoLabel">DOENÇA ARTERIAL OBSTRUTIVA PERIFÉRICA</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 0">Não Informado</label>
 
                         </div>
                         <div class="col-md-4">
@@ -100,6 +106,14 @@
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
 
+                            <label id="dadoLabel">HISTÓRICO DE INFARTO</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1">Não</label>
+
+                            <label id="dadoLabel">RETINOPATIA HIPERTENSIVA</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 0">Não Informado</label>
                         </div>
                     </div>
                 </div>
