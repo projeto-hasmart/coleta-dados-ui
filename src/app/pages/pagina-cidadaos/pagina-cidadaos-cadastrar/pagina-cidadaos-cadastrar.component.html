@@ -60,8 +60,12 @@
                 <input type="text" placeholder="CEP*" id="inputCep" [(ngModel)]="cep" name="cep" #inputCep="ngModel" [class.errorInput]="(cep === undefined && checkEmpty)" required mask="00000-000" (keyup)="verificaCep(cep)">
                 <label id="errorLabel" *ngIf="cep === undefined && checkEmpty">Todos os campos do Endereço são obrigatórios</label>
             </div>
-            <div class="col-md-9" style="width: 74.5%;">
-                <input type="text" placeholder="Endereço*" id="inputRua" [(ngModel)]="rua" name="rua" #inputRua="ngModel" [class.errorInput]="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)" required>
+            <div class="col-md-7" style="width: 57.5%;">
+                <input type="text" placeholder="Logradouro*" id="inputRua" [(ngModel)]="rua" name="rua" #inputRua="ngModel" [class.errorInput]="(rua === undefined && checkEmpty) " required>
+                <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" placeholder="Número*" id="inputRua" [(ngModel)]="numero" name="numero" #inputRua="ngModel" [class.errorInput]="(numero === undefined && checkEmpty)" required>
                 <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
             </div>
         </div>
@@ -86,18 +90,12 @@
 
     </div>
     <div class="box box-solid box-default" id="boxEstaticas">
-        <label id="informacoesEstaticasLabel">Informações Estáticas de Hipertensão Arterial</label>
+        <label id="informacoesEstaticasLabel">Informações de Hipertensão Arterial</label>
         <div class='row'>
             <div class="col-sm-4">
                 <input type="number" class="form-control input-sm" placeholder="Altura*" id="inputAltura" [(ngModel)]="altura" name="altura" #inputAltura="ngModel" [class.errorInput]="altura === undefined && checkEmpty" required>
                 <label id="errorLabel" *ngIf="altura === undefined && checkEmpty || invalidAltura">O campo altura deve estar no intervalo entre 0.5 e 3.0 metros</label>
-                <mat-slide-toggle class="example-margin" [checked]="checked" [disabled]="disabled" id="usoPrevioLabel" [(ngModel)]="antiHipertensivos" name="antiHipertensivos" #usoPrevioLabel="ngModel" *ngIf="!checkEmpty && !invalidAltura" required>
-                    Uso prévio de anti-hipertensivo*
-                </mat-slide-toggle>
-                <mat-slide-toggle class="example-margin" [checked]="checked" [disabled]="disabled" id="usoPrevioLabelErros" [(ngModel)]="antiHipertensivos" name="antiHipertensivos" #usoPrevioLabelErros="ngModel" *ngIf="altura === undefined && checkEmpty || invalidAltura"
-                    required>
-                    Uso prévio de anti-hipertensivo*
-                </mat-slide-toggle>
+
             </div>
             <div class="col-sm-4">
                 <mat-form-field id="diabetesDrop">
@@ -108,9 +106,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-slide-toggle class="example-margin" [checked]="checked" [disabled]="disabled" id="avcToggleLabel" [(ngModel)]="historicoAvc" name="historicoAvc" #avcToggleLabel="ngModel" required>
-                    Histórico de AVC*
-                </mat-slide-toggle>
+
             </div>
             <div class='col-sm-4'>
                 <mat-form-field id="fumanteDrop">
@@ -121,6 +117,55 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+            </div>
+        </div>
+        <label id="informacoesEstaticasLabel">Comorbidades</label>
+        <div class="row">
+            <div class="col-md-5">
+                <label id='labelBackground'>
+              Doença Renal Crônica*
+              <button id="buttonYesCom" [class.selectedYes]="doencaRenal" (click)="doencaRenal = true"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonNoCom" [class.selectedNo]="doencaRenal === false" (click)="doencaRenal = false"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                </label>
+            </div>
+            <div class="col-md-5">
+                <label id='labelBackground'>
+            Insuficiência Cardíaca*
+            <button id="buttonYesCom" [class.selectedYes]="insuficienciaCardiaca" (click)="insuficienciaCardiaca = true"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonNoCom" [class.selectedNo]="insuficienciaCardiaca === false" (click)="insuficienciaCardiaca = false"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label id='labelBackground'>
+            Histórico de Infarto*
+            <button id="buttonYesCom" [class.selectedYes]="infarto" (click)="infarto = true"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonNoCom" [class.selectedNo]="infarto === false" (click)="infarto = false"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                </label>
+            </div>
+            <div class="col-md-5">
+                <label id='labelBackground'>
+              Histórico de AVC*
+              <button id="buttonYesCom" [class.selectedYes]="historicoAvc" (click)="historicoAvc = true"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonNoCom" [class.selectedNo]="historicoAvc === false" (click)="historicoAvc = false"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label id='labelBackground'>
+          Doença Arterial Obstrutiva Periférica
+          <button id="buttonYesCom" [class.selectedYes]="doencaArterial" (click)="doencaArterial = true"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonNoCom" [class.selectedNo]="doencaArterial === false" (click)="doencaArterial = false"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                </label>
+            </div>
+            <div class="col-md-5">
+                <label id='labelBackground'>
+            Retinopatia Hipertensiva
+            <button id="buttonYesCom" [class.selectedYes]="retinopatia" (click)="retinopatia = true"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonNoCom" [class.selectedNo]="retinopatia === false" (click)="retinopatia = false"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                </label>
             </div>
         </div>
     </div>

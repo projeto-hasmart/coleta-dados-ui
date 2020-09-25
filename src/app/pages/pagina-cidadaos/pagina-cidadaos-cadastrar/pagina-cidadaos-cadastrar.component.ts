@@ -34,8 +34,13 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   dz: DispensacaoServiceService;
   router: Router;
   oNovoCidadao: Cidadao;
-  historicoAvc = false;
-  antiHipertensivos = false;
+  historicoAvc: boolean;
+  antiHipertensivos: boolean;
+  doencaRenal: boolean;
+  insuficienciaCardiaca: boolean;
+  infarto: boolean;
+  doencaArterial: boolean;
+  retinopatia: boolean;
   diabetes = 1;
   fumante = 1;
   rua: string;
@@ -96,9 +101,6 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   }
   checkEmpt() {
     this.checkDate();
-    if ( this.rua !== undefined) {
-      this.numero = this.rua.split(',')[1];
-    }
     if ((parseFloat(this.altura) < 3 && parseFloat(this.altura) > 0.5) || this.altura === undefined) {
     if (this.nome === undefined || this.dataReal === undefined || this.cpf === undefined || this.rg === undefined
       || this.cidade === undefined || this.estado === undefined || this.cep === undefined || this.rua === undefined
@@ -134,8 +136,8 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
           cidade: this.cidade,
           estado: this.estado,
           complemento: this.complemento,
-          rua: this.rua.split(',')[0],
-          numero: this.rua.split(',')[1],
+          rua: this.rua,
+          numero: this.numero,
           cep: this.cep
         },
         email: this.email,
@@ -147,7 +149,12 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
         diabetico: this.diabetes,
         fumante: this.fumante,
         antiHipertensivos: this.antiHipertensivos,
-        historicoAvc: this.historicoAvc
+        historicoAvc: this.historicoAvc,
+        doencaRenal: this.doencaRenal,
+        insuficienciaCardiaca: this.insuficienciaCardiaca,
+        infarto: this.infarto,
+        doencaArterial: this.doencaArterial,
+        retinopatia: this.retinopatia
       }
     };
     this.apiService.createCidadao(this.oNovoCidadao).subscribe(

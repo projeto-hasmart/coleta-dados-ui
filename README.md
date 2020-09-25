@@ -5,15 +5,15 @@
 # Pré-VSCode
 # INSTALE O NODE.JS NA MÁQUINA ( https://nodejs.org/en/download/ )
 # INSTALE O GIT ( https://git-scm.com/downloads )
-# BAIXE O OPENVPN ( https://swupdate.openvpn.org/community/releases/openvpn-install-2.4.6-I602.exe )
-# Conectar a VPN via app baixado(Windows) ou terminal(Linux/Mac) utilizando Usuário, senha e arquivo .ovpn fornecido pela SESA;
+# BAIXE O FORTICLIENT 
+# Conectar a VPN via app baixado utilizando Usuário, senha e arquivo .ovpn fornecido pela SESA;
 # Ir no GitLab e fazer log-in;
-# Acessar o site do projeto: http://172.29.0.59/HASmart/coleta-dados-ui
+# Acessar o site do projeto: http://172.35.0.34/HASmart/coleta-dados-ui
 # Acessar a pasta que deseja salvar o projeto, usando seu terminal/prompt de comando;
-# Digitar git clone http://172.29.0.59/HASmart/coleta-dados-ui
+# Digitar git clone http://172.35.0.34/HASmart/coleta-dados-ui
 # Entrar na pasta coleta-dados-ui via terminal( cd coleta-dados-ui );
 # Digitar 'code .' para abrir o VSCode;
-# Ativar o Back-End do projeto, e conectar-se à página do Swagger que irá aparecer
+# Ativar o Back-End do projeto e o IS4
 
 # NO VSCode:
 # 1. Abrir um Terminal dentro do VSCode;

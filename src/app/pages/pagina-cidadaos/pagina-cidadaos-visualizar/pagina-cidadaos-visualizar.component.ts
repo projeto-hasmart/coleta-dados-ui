@@ -45,6 +45,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   cidadao$: Observable<Cidadao>;
   ultimaMedicao: string;
   responsavel: string;
+
   router: Router;
   buscado: string;
   showingCpf: string;
@@ -123,8 +124,8 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     this.cidadaoEditado = {
       dadosPessoais: {
         endereco: {
-          rua: this.oNossoCidadao.dadosPessoais.endereco.rua.split(',')[0],
-          numero: this.oNossoCidadao.dadosPessoais.endereco.rua.split(',')[1],
+          rua: this.oNossoCidadao.dadosPessoais.endereco.rua,
+          numero: this.oNossoCidadao.dadosPessoais.endereco.numero,
           complemento: this.oNossoCidadao.dadosPessoais.endereco.complemento,
           cidade: this.oNossoCidadao.dadosPessoais.endereco.cidade,
           estado: this.oNossoCidadao.dadosPessoais.endereco.estado,
@@ -139,7 +140,12 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
         diabetico: this.oNossoCidadao.indicadorRiscoHAS.diabetico,
         fumante: this.oNossoCidadao.indicadorRiscoHAS.fumante,
         antiHipertensivos: this.oNossoCidadao.indicadorRiscoHAS.antiHipertensivos,
-        historicoAvc: this.oNossoCidadao.indicadorRiscoHAS.historicoAvc
+        historicoAvc: this.oNossoCidadao.indicadorRiscoHAS.historicoAvc,
+        doencaRenal: this.oNossoCidadao.indicadorRiscoHAS.doencaRenal,
+        insuficienciaCardiaca: this.oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca,
+        infarto: this.oNossoCidadao.indicadorRiscoHAS.infarto,
+        doencaArterial: this.oNossoCidadao.indicadorRiscoHAS.doencaArterial,
+        retinopatia: this.oNossoCidadao.indicadorRiscoHAS.retinopatia
       }
     };
     this.apiService.updateCidadao(this.cidadaoEditado, this.oNossoCidadao.id).subscribe();
