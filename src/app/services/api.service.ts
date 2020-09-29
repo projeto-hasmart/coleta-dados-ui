@@ -77,18 +77,20 @@ login(usernameForLogin?: string, password?: string) {
   if (usernameForLogin === 'admin') {
     this.user = {
       username: usernameForLogin,
-      role: Role.Admin
+      role: Role.Admin,
+      firstName: 'Fábio',
+      lastName: 'Martins'
     };
-    localStorage.setItem('currentUser', 'admin');
+    localStorage.setItem('currentUser', JSON.stringify(this.user));
     // this.router.navigate(['/admin']);
-    console.log('AMIGUINHO VOCÊ É ADMIN TAOKEY');
   } else if (usernameForLogin === 'user') {
     this.user = {
       username: usernameForLogin,
-      role: Role.User
+      role: Role.User,
+      firstName: 'Maria',
+      lastName: 'Andrade'
     };
-    localStorage.setItem('currentUser', 'user');
-    console.log('AMIGUINHO VOCÊ É USER TAOKEY');
+    localStorage.setItem('currentUser', JSON.stringify(this.user));
     // this.currentUserSubject.next(this.user);
 
   }

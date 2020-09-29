@@ -3,6 +3,7 @@ import { filter, map } from 'rxjs/operators';
 import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute, RoutesRecognized, ActivationEnd, NavigationEnd } from '@angular/router';
 import { Global } from 'src/app/models/globalConstants';
+import { User } from 'src/app/models/user';
 declare var $;
 
 @Component({
@@ -13,10 +14,9 @@ declare var $;
 export class SideNavComponent implements OnInit {
   ativo = true;
   atual: string;
-  medicao = false;
-  dispensacao = false;
   doWeHaveCitizen = false;
   routeData;
+  user: User;
   // tslint:disable-next-line: radix
   idk: number = parseInt(localStorage.getItem('citizen'));
   constructor( private router: Router,
@@ -29,12 +29,7 @@ export class SideNavComponent implements OnInit {
     $(document).ready(() => {
       $('.sidebar-menu').tree();
     });
-    if (this.routeData === 'medicao') {
-      this.medicao = true;
-    }
-    if (this.routeData === 'dispensacao') {
-      this.dispensacao = true;
-    }
+    this.user = JSON.parse(localStorage.getItem('currentUser')) as User;
   }
 
   refresh(): void {

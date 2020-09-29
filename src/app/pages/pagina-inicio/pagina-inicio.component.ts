@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { CidadaoServiceService } from './../../services/cidadao/cidadao-service.service';
 import { Cidadao } from './../../models/cidadao';
 import {Component, OnInit} from '@angular/core';
@@ -49,6 +50,7 @@ export class PaginaInicio implements OnInit {
   errorBye = false;
   router: Router;
   mask: string;
+  user: User;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -79,6 +81,7 @@ export class PaginaInicio implements OnInit {
   }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('currentUser')) as User;
   }
   checkIt(groupValue: string) {
     if (groupValue === 'cpf') {
