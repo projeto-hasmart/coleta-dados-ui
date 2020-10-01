@@ -27,7 +27,9 @@
                                     <!-- start message -->
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img alt="User Image" class="img-circle" src="assets/dist/img/user2-160x160.jpg">
+                                            <img alt="User Image" class="img-circle" src="assets/dist/img/user2-160x160.jpg" *ngIf="user.role === 'Admin'">
+                                            <img alt="User Image" class="img-circle" src="assets/dist/img/user7-128x128.jpg" *ngIf="user.role === 'User'">
+
                                         </div>
                                         <h4>
                                             Support Team
@@ -68,7 +70,9 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu shadow-lg p-3 mb-5 bg-white rounded">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <img alt="User Image" class="user-image" src="assets/dist/img/user2-160x160.jpg" style="margin-left: -10px;">
+                        <img alt="User Image" class="user-image" src="assets/dist/img/user2-160x160.jpg" style="margin-left: -10px;" *ngIf="user.role === 'Admin'">
+                        <img alt="User Image" class="user-image" src="assets/dist/img/user7-128x128.jpg" style="margin-left: -10px;" *ngIf="user.role === 'User'">
+
                         <span class="hidden-md" style="margin-top: -12px;">{{user.firstName}} {{user.lastName}}<small><i class="fa fa-angle-down pull-right" style="color: grey; padding-left: 25px;" ></i></small></span>
                         <span id="role" style="margin-bottom: 14px;">{{user.role}}</span>
 
@@ -76,8 +80,8 @@
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img alt="User Image" class="img-circle" src="assets/dist/img/user2-160x160.jpg">
-
+                            <img alt="User Image" class="img-circle" src="assets/dist/img/user2-160x160.jpg" *ngIf="user.role === 'Admin'">
+                            <img alt="User Image" class="img-circle" src="assets/dist/img/user7-128x128.jpg" *ngIf="user.role === 'User'">
                             <p>
                                 {{user.firstName}} {{user.lastName}} - {{user.role}}
                                 <small>Member since Nov. 2012</small>
@@ -104,7 +108,7 @@
                                 <a class="btn btn-default btn-flat" href="#">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a class="btn btn-default btn-flat" href="#">Sign out</a>
+                                <a class="btn btn-default btn-flat" routerLink="/">Sign out</a>
                             </div>
                         </li>
                     </ul>
