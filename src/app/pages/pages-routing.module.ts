@@ -1,3 +1,4 @@
+import { PaginaFarmaciaComponent } from './pagina-farmacia/pagina-farmacia.component';
 import { PaginaMedicaoComponent } from './pagina-medicao/pagina-medicao.component';
 import { PaginaDispensacaoComponent } from './pagina-dispensacao/pagina-dispensacao.component';
 import {NgModule} from '@angular/core';
@@ -19,10 +20,9 @@ const routes: Routes = [
       { path: 'cidadaos', component: PaginaCidadaosComponent},
         {path: 'cidadaos/cadastrar', component: PaginaCidadaosCadastrarComponent},
         {path: 'cidadaos/visualizar', component: PaginaCidadaosVisualizarComponent},
-      { path: 'dispensacao', component: PaginaDispensacaoComponent },
       { path: 'medicao', component: PaginaMedicaoComponent},
       {path: 'medicao/sucesso', component: PaginaMedicaoSucessoComponent},
-      {path: 'medicamentos', component: PaginaMedicamentosComponent}
+      {path: 'admin/farmacia', component: PaginaFarmaciaComponent}
     ]
   }
 ];

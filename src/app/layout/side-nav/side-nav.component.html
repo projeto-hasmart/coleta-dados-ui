@@ -54,11 +54,11 @@
                     </a>
                 </li>
                 <li *ngIf="user.role==='Admin'">
-                    <a routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
+                    <a routerLink="/admin/farmacia" routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
                         <img src="assets/dist/img/farmacia.png">
                         <span style="width: 230px;">Farmácias</span>
                     </a>
-                    <a routerLinkActive="active-list-item" style="width: 230px; margin-left: -7px;" *ngIf="!ativo">
+                    <a routerLink="/admin/farmacia" routerLinkActive="active-list-item" style="width: 230px; margin-left: -7px;" *ngIf="!ativo">
                         <img src="assets/dist/img/farmacia.png">
                         <span>Farmácias</span>
                     </a>

@@ -1,0 +1,120 @@
+<section class="content-header">
+    <label id="titleLabel">Nova Farmácia</label>
+    <label id="subtitleLabel">Preencha as informações abaixo para cadastrar uma nova farmácia</label>
+    <label id="obrigatorio">*Campos obrigatórios</label>
+</section>
+<section class="content">
+    <div class="box box-solid box-default" id="boxInformacoes">
+        <label id="informacoesPessoais">Informações da Farmácia</label>
+        <div class="row" style="margin-left: -0.5%;">
+            <div class="col-md-12" style="width: 99.5%;">
+                <input type="text" placeholder="Razão Social*" id="inputRazao" required>
+                <!--[(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" -->
+                <!-- <label id="errorLabel">O campo nome é obrigatório</label> -->
+                <!--*ngIf="nome === undefined && checkEmpty"-->
+            </div>
+        </div>
+        <div class="row" style="margin-left: -0.5%;">
+            <div class="col-md-6" style="width: 49.5%;">
+                <input type="text" placeholder="Nome Fantasia*" id="inputFantasia" [(ngModel)]="nomeFantasia" required>
+                <!--[(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" -->
+                <!-- <label id="errorLabel">O campo nome é obrigatório</label> -->
+                <!--*ngIf="nome === undefined && checkEmpty"-->
+            </div>
+            <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
+                <input type="text" placeholder="CNPJ*" mask="00.000.000/0000-00" id="inputCnpj" required>
+                <!--[(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" -->
+                <!-- <label id="errorLabel">O campo nome é obrigatório</label> -->
+                <!--*ngIf="nome === undefined && checkEmpty"-->
+            </div>
+        </div>
+        <div class="row" style="margin-left: -0.5%;">
+            <div class="col-md-6" style="width: 49.5%;">
+                <input type="email" placeholder="E-mail do Responsável*" id="inputEmail" required>
+                <!--[(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" -->
+                <!-- <label id="errorLabel">O campo nome é obrigatório</label> -->
+                <!--*ngIf="nome === undefined && checkEmpty"-->
+            </div>
+            <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
+                <input type="text" placeholder="Telefone*" id="inputTelefone" mask="(00) 0000-0000" required>
+                <!--[(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" -->
+                <!-- <label id="errorLabel">O campo nome é obrigatório</label> -->
+                <!--*ngIf="nome === undefined && checkEmpty"-->
+            </div>
+        </div>
+
+    </div>
+    <div class="box box-solid box-default" id="boxEstaticas">
+        <label id="informacoesEstaticasLabel">Endereço</label>
+        <div class='row' style="margin-left: -0.5%;">
+
+            <div class="col-md-3">
+                <input type="text" placeholder="CEP*" id="inputCep" [(ngModel)]="cep" name="cep" #inputCep="ngModel" required mask="00000-000" (keyup)="verificaCep(cep)">
+                <!--[class.errorInput]="(cep === undefined && checkEmpty)"-->
+                <!-- <label id="errorLabel" *ngIf="cep === undefined && checkEmpty">Todos os campos do Endereço são obrigatórios</label> -->
+            </div>
+            <div class="col-md-7" style="width: 57.5%;">
+                <input type="text" placeholder="Logradouro*" id="inputRua" [(ngModel)]="rua" name="rua" #inputRua="ngModel" readonly="readonly" required>
+                <!--[class.errorInput]="(rua === undefined && checkEmpty) "-->
+                <!-- <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label> -->
+            </div>
+            <div class="col-md-2">
+                <input type="text" placeholder="Número*" id="inputRua" [(ngModel)]="numero" name="numero" #inputRua="ngModel" required>
+                <!--[class.errorInput]="(numero === undefined && checkEmpty)"-->
+                <!-- <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label> -->
+            </div>
+        </div>
+        <div class="row" style="margin-left: -0.5%;">
+            <div class="col-md-12" style="width: 99.5%;">
+                <input type="text" placeholder="Complemento" id="inputComplemento" [(ngModel)]="complemento" name="complemento" #inputComplemento="ngModel">
+            </div>
+        </div>
+        <div class="row" style="margin-left: -0.5%; margin-top: 1%;">
+            <div class="col-md-4" style="width: 32.5%;">
+                <input type="text" placeholder="Cidade*" id="inputCidade" [(ngModel)]="cidade" name="cidade" #inputCidade="ngModel" readonly="readonly" required>
+                <!--[class.errorInput]="cidade === undefined && checkEmpty"-->
+            </div>
+            <div class="col-md-4" style="width: 33.5%;margin-left: 0.5%; margin-top: 0.25%;">
+                <mat-form-field id="regioesDrop">
+                    <mat-label style="width: 220%;">Macrorregião</mat-label>
+                    <mat-select style="width: 220%;" id="inputRegiao" [(ngModel)]="macroregiao" name="macroRegioes" #inputRegiao="ngModel" required>
+                        <mat-option *ngFor="let macroRegiao of macroRegioes" [value]="macroRegiao.nome" style="width: 220%;">
+                            {{macroRegiao.nome}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div class="col-md-4" style="width: 32.5%;margin-left: 0.5%;">
+                <input type="text" placeholder="Estado*" id="inputEstado" [(ngModel)]="estado" name="estado" #inputEstado="ngModel" readonly="readonly" required>
+                <!--[class.errorInput]="estado === undefined && checkEmpty"-->
+            </div>
+            <!-- <label id="errorLabel" *ngIf="(estado === undefined && checkEmpty) || (cidade === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label> -->
+            <!-- <label id="errorLabel" *ngIf="">Todos os campos do Endereço são obrigatórios</label> -->
+        </div>
+        <!-- <div class="col-sm-6"> -->
+        <!-- </div> -->
+
+
+    </div>
+    <button mat-button id="cadastraButton" data-toggle="modal" data-target="#okcidadao" class="pull-right"> <!--(click)="checkEmpt()"-->
+      <label id="cadastraButtonLabel">REALIZAR CADASTRO</label></button>
+    <div class="modal fade" id="okcidadao">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="titleModal">Sucesso!</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <label id="modalText">A farmácia {{nomeFantasia}} foi cadastra com sucesso!</label>
+                    <button mat-button id="okbutton" data-dismiss="modal"><label id="oklabel">OK</label></button>
+                    <!--(click)="goToView()"-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
