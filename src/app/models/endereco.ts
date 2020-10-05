@@ -5,6 +5,7 @@ export interface Endereco {
     cidade: string;
     estado: string;
     cep?: string;
+    macroregiao?: number;
 }
 /*"endereco": {
       "rua": "string",
