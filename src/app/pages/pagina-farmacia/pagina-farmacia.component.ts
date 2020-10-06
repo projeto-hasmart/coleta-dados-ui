@@ -65,7 +65,7 @@ export class PaginaFarmaciaComponent implements OnInit {
   checkEmpt() {
     if (this.razaoSocial === undefined || this.nomeFantasia === undefined || this.cnpj === undefined ||
       this.cidade === undefined || this.estado === undefined || this.cep === undefined || this.rua === undefined
-      || this.numero === undefined || this.email === undefined || this.telefone === undefined ) {
+      || this.numero === undefined || this.email === undefined || this.telefone === undefined || this.cnpj.length < 14) {
         this.checkEmpty = true;
     } else {
       this.valid = true;

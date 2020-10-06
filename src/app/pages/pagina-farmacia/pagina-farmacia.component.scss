@@ -103,7 +103,7 @@ form input:focus {
 }
 
 .errorInput {
-    border: 1px solid red;
+    border: 1px solid #C32240;
     outline: none;
 }
 
@@ -330,4 +330,12 @@ form input:focus {
     order: 0;
     align-self: center;
     margin: 10px 0px;
+}
+
+#errorLabel {
+    font-size: 12px;
+    margin-left: 2%;
+    height: 13px;
+    color: #C32240;
+    font-family: 'Roboto';
 }

@@ -40,8 +40,8 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   infarto = 0;
   doencaArterial = 0;
   retinopatia = 0;
-  diabetes = 1;
-  fumante = 1;
+  diabetes;
+  fumante;
   rua: string;
   nome: string;
   cidade: string;

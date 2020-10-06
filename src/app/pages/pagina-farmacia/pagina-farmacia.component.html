@@ -8,40 +8,28 @@
         <label id="informacoesPessoais">Informações da Farmácia</label>
         <div class="row" style="margin-left: -0.5%;">
             <div class="col-md-12" style="width: 99.5%;">
-                <input type="text" placeholder="Razão Social*" id="inputRazao" [(ngModel)]='razaoSocial' required>
-                <!--[(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" -->
-                <!-- <label id="errorLabel">O campo nome é obrigatório</label> -->
-                <!--*ngIf="nome === undefined && checkEmpty"-->
+                <input type="text" placeholder="Razão Social*" id="inputRazao" [(ngModel)]='razaoSocial' name="razaoSocial" #inputRazao="ngModel" [class.errorInput]="razaoSocial === undefined && checkEmpty" required>
+                <label id="errorLabel" *ngIf="razaoSocial === undefined && checkEmpty">O campo Razão Social é obrigatório.</label>
             </div>
         </div>
         <div class="row" style="margin-left: -0.5%;">
             <div class="col-md-6" style="width: 49.5%;">
-                <input type="text" placeholder="Nome Fantasia*" id="inputFantasia" [(ngModel)]="nomeFantasia" required>
-                <!--[(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" -->
-                <!-- <label id="errorLabel">O campo nome é obrigatório</label> -->
-                <!--*ngIf="nome === undefined && checkEmpty"-->
+                <input type="text" placeholder="Nome Fantasia*" id="inputFantasia" [(ngModel)]="nomeFantasia" name="nomeFantasia" #inputFantasia="ngModel" [class.errorInput]="nomeFantasia === undefined && checkEmpty" required>
+                <label id="errorLabel" *ngIf="nomeFantasia === undefined && checkEmpty">O campo Nome Fantasia é obrigatório</label>
             </div>
             <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
-                <input type="text" placeholder="CNPJ*" mask="00.000.000/0000-00" id="inputCnpj" [(ngModel)]='cnpj' required>
-                <!--[(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" -->
-                <!-- <label id="errorLabel">O campo nome é obrigatório</label> -->
-                <!--*ngIf="nome === undefined && checkEmpty"-->
-                <label id="errorLabel" *ngIf="cnpj === undefined && checkEmpty">{{error.error.errors.Cnpj}}</label>
-
+                <input type="text" placeholder="CNPJ*" mask="00.000.000/0000-00" id="inputCnpj" [(ngModel)]='cnpj' name="cnpj" #inputCnpj="ngModel" [class.errorInput]="(cnpj === undefined && checkEmpty) " required>
+                <label id="errorLabel" *ngIf="(cnpj === undefined && checkEmpty) || (cnpj !== undefined &&cnpj.length < 14 && checkEmpty)">O campo CNPJ é obrigatório e deve ser composto por 14 números.</label>
             </div>
         </div>
         <div class="row" style="margin-left: -0.5%;">
             <div class="col-md-6" style="width: 49.5%;">
-                <input type="email" placeholder="E-mail do Responsável*" id="inputEmail" [(ngModel)]='email' required>
-                <!--[(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" -->
-                <!-- <label id="errorLabel">O campo nome é obrigatório</label> -->
-                <!--*ngIf="nome === undefined && checkEmpty"-->
+                <input type="email" placeholder="E-mail do Responsável*" id="inputEmail" [(ngModel)]='email' name="email" #inputEmail="ngModel" [class.errorInput]="email  === undefined && checkEmpty" required>
+                <label id="errorLabel" *ngIf="email === undefined && checkEmpty">O campo E-mail é obrigatório</label>
             </div>
             <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
-                <input type="text" placeholder="Telefone*" id="inputTelefone" mask="(00) 0000-0000" [(ngModel)]='telefone' required>
-                <!--[(ngModel)]="nome" name="nome" #inputNome="ngModel" [class.errorInput]="nome === undefined && checkEmpty" -->
-                <!-- <label id="errorLabel">O campo nome é obrigatório</label> -->
-                <!--*ngIf="nome === undefined && checkEmpty"-->
+                <input type="text" placeholder="Telefone*" id="inputTelefone" mask="(00) 0000-0000" [(ngModel)]='telefone' name="telefone" #inputTelefone="ngModel" [class.errorInput]="telefone === undefined && checkEmpty" required>
+                <label id="errorLabel" *ngIf="telefone === undefined && checkEmpty">O campo telefone é obrigatório</label>
             </div>
         </div>
 
@@ -51,18 +39,16 @@
         <div class='row' style="margin-left: -0.5%;">
 
             <div class="col-md-3">
-                <input type="text" placeholder="CEP*" id="inputCep" [(ngModel)]="cep" name="cep" #inputCep="ngModel" required mask="00000-000" (keyup)="verificaCep(cep)" [class.errorInput]="(cep === undefined && checkEmpty)">
-                <label id="errorLabel" *ngIf="cep === undefined && checkEmpty">{{error.errors.Endereco.CEP}}</label>
+                <input type="text" placeholder="CEP*" id="inputCep" [(ngModel)]="cep" name="cep" #inputCep="ngModel" required mask="00000-000" (keyup)="verificaCep(cep)" [class.errorInput]="(cep === undefined && checkEmpty) || (cep !== undefined && cep.length < 8 && checkEmpty)">
+                <label id="errorLabel" *ngIf="(cep === undefined && checkEmpty) || (cep !== undefined && cep.length < 8 && checkEmpty)">CEP deve ser composto por 8 dígitos</label>
             </div>
             <div class="col-md-7" style="width: 57.5%;">
-                <input type="text" placeholder="Logradouro*" id="inputRua" [(ngModel)]="rua" name="rua" #inputRua="ngModel" required>
-                <!--[class.errorInput]="(rua === undefined && checkEmpty) "-->
-                <!-- <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label> -->
+                <input type="text" placeholder="Logradouro*" id="inputRua" [(ngModel)]="rua" name="rua" #inputRua="ngModel" [class.errorInput]="(rua === undefined && checkEmpty) " required>
+                <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty)">O campo Logradouro é obrigatório</label>
             </div>
             <div class="col-md-2">
-                <input type="text" placeholder="Número*" id="inputRua" [(ngModel)]="numero" name="numero" #inputRua="ngModel" required>
-                <!--[class.errorInput]="(numero === undefined && checkEmpty)"-->
-                <!-- <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label> -->
+                <input type="text" placeholder="Número*" id="inputRua" [(ngModel)]="numero" name="numero" #inputRua="ngModel" [class.errorInput]="(numero === undefined && checkEmpty)" required>
+                <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty) || (numero === undefined && checkEmpty)">O campo Número é obrigatório</label>
             </div>
         </div>
         <div class="row" style="margin-left: -0.5%;">
@@ -76,7 +62,7 @@
                 <!--[class.errorInput]="cidade === undefined && checkEmpty"-->
             </div>
             <div class="col-md-4" style="width: 33.5%;margin-left: 0.5%; margin-top: 0.25%;">
-                <mat-form-field id="regioesDrop">
+                <mat-form-field id="regioesDrop" [class.errorInput]="(macroregiao === undefined && checkEmpty)">
                     <mat-label style="width: 220%;">Macrorregião</mat-label>
                     <mat-select style="width: 220%;" id="inputRegiao" [(ngModel)]="macroregiao" name="macroRegioes" #inputRegiao="ngModel" required>
                         <mat-option *ngFor="let macroRegiao of macroRegioes" [value]="macroRegiao.value" style="width: 220%;">
@@ -84,6 +70,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <label id="errorLabel" *ngIf="(macroregiao === undefined && checkEmpty)">O campo Macrorregião é obrigatório</label>
 
             </div>
             <div class="col-md-4" style="width: 32.5%;margin-left: 0.5%;">
