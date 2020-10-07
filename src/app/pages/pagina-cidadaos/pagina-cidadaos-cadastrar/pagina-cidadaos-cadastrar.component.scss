@@ -455,6 +455,25 @@ form input:focus {
     padding-left: 10px;
 }
 
+#text {
+    margin-top: 3%;
+    background: #FFFFFF;
+    border-radius: 4px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+    color: #000000;
+    @media (max-width: 1720px) {
+        width: 50%;
+    }
+    @media (max-width: 1395px) {
+        width: 45%;
+    }
+}
+
 #buttonYesCom {
     width: 20%;
     height: 36px;
@@ -482,9 +501,10 @@ form input:focus {
     line-height: 16px;
     text-transform: uppercase;
     color: #FFFFFF;
-    margin: 10px;
+    margin: 15%;
     @media (max-width: 1532px) {
-        font-size: 12px;
+        font-size: 10px;
+        margin: 10%;
     }
 }
 
@@ -511,9 +531,10 @@ form input:focus {
     text-transform: uppercase;
     color: #FFFFFF;
     /* Inside Auto Layout */
-    margin: 10px;
+    margin: 15%;
     @media (max-width: 1532px) {
-        font-size: 12px;
+        font-size: 10px;
+        margin: 10%;
     }
 }
 

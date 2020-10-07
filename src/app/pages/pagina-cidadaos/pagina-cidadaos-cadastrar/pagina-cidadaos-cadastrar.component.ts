@@ -67,7 +67,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     this.dz = dz;
     this.apiService = apiService;
    }
-  genero = 'Masculino';
+  genero;
   generos: string[] = [
     'Masculino',
     'Feminino',

@@ -248,6 +248,13 @@
 
                                 </div>
                                 <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-12" style="width: 98.5%;">
+                                        <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.complemento">
+
+                                    </div>
+
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
                                     <div class="col-md-6" style="width: 48.75%;">
                                         <input type="text" class="input-control" placeholder="Cidade*" id="inputCidade" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cidade">
 
@@ -257,13 +264,7 @@
 
                                     </div>
                                 </div>
-                                <div class="row" style="margin-left: 0.5%;">
-                                    <div class="col-md-12" style="width: 98.5%;">
-                                        <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.complemento">
 
-                                    </div>
-
-                                </div>
                             </div>
                             <label id="informacoesEstaticasLabel">Informações de Hipertensão Arterial</label>
                             <div class="row" id='estaticas'>
@@ -298,23 +299,23 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <label id='labelBackground' style="margin-left: 2%; width: 98%;">
-                                Doença Renal Crônica*
-                                <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1" (click)="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                                <label id="text">Doença Renal Crônica*</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1" (click)="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
 
                                     <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 2" (click)="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
                                     </label>
                                 </div>
                                 <div class="col-sm-4">
                                     <label id='labelBackground'>
-                              Insuficiência Cardíaca*
-                              <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1" (click)="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                                      <label id="text">Insuficiência Cardíaca*</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1" (click)="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
                                     <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 2" (click)="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
                                     </label>
                                 </div>
                                 <div class="col-sm-4">
                                     <label id='labelBackground'>
-                            Histórico de Infarto*
-                            <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1" (click)="oNossoCidadao.indicadorRiscoHAS.historicoInfarto = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                                      <label id="text">Histórico de Infarto*</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1" (click)="oNossoCidadao.indicadorRiscoHAS.historicoInfarto = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
                                     <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 2" (click)="oNossoCidadao.indicadorRiscoHAS.historicoInfarto = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
                                     </label>
                                 </div>
@@ -323,23 +324,23 @@
 
                                 <div class="col-sm-4">
                                     <label id='labelBackground' style="margin-left: 2%; width: 98%;">
-                                Histórico de AVC*
-                                  <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1" (click)="oNossoCidadao.indicadorRiscoHAS.historicoAvc = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                                      <label id="text">Histórico de AVC*</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1" (click)="oNossoCidadao.indicadorRiscoHAS.historicoAvc = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
                                     <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 2" (click)="oNossoCidadao.indicadorRiscoHAS.historicoAvc = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
 
                                     </label>
                                 </div>
                                 <div class="col-sm-4">
                                     <label id='labelBackground'>
-                          Doença Arterial Obstrutiva Periférica
-                          <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1" (click)="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                                      <label id="text">Doença Arterial Obstrutiva Periférica</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1" (click)="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
                                     <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 2" (click)="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
                                     </label>
                                 </div>
                                 <div class="col-sm-4">
                                     <label id='labelBackground'>
-                            Retinopatia Hipertensiva
-                            <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 1" (click)="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                                      <label id="text">Retinopatia Hipertensiva</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 1" (click)="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
                                     <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 2" (click)="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
                                     </label>
                                 </div>
