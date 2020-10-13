@@ -1,3 +1,4 @@
+import { PaginaMedicComponent } from './pagina-medic/pagina-medic.component';
 import { PaginaFarmaciaComponent } from './pagina-farmacia/pagina-farmacia.component';
 import { PaginaMedicaoComponent } from './pagina-medicao/pagina-medicao.component';
 import { PaginaDispensacaoComponent } from './pagina-dispensacao/pagina-dispensacao.component';
@@ -22,8 +23,12 @@ const routes: Routes = [
         {path: 'cidadaos/visualizar', component: PaginaCidadaosVisualizarComponent},
       { path: 'medicao', component: PaginaMedicaoComponent},
       {path: 'medicao/sucesso', component: PaginaMedicaoSucessoComponent},
-      {path: 'admin/farmacia', component: PaginaFarmaciaComponent}
+      {path: 'admin/farmacia', component: PaginaFarmaciaComponent},
+
     ]
+  },
+  {
+    path: 'medic', component: PaginaMedicComponent
   }
 ];
 

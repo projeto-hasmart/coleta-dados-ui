@@ -8,4 +8,5 @@ export interface User {
     lastName?: string;
     role: Role;
     token?: string;
+    crm?: string;
 }

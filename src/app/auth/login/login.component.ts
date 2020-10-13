@@ -46,7 +46,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   createRole() {
     this.apiService.login(this.user);
-    this.router.navigate(['/inicio']);
+    if (this.user === 'medic') {
+      this.router.navigate(['/medic']);
+    } else {
+      this.router.navigate(['/inicio']);
+    }
   }
   tryAuth() {
     // this.apiService.authenticate(this.username, this.password);

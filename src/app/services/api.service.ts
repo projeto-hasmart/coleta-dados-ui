@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, RouterState } from '@angular/router';
 import { Cidadao } from './../models/cidadao';
 import { User } from './../models/user';
 import { Injectable } from '@angular/core';
@@ -92,6 +92,16 @@ login(usernameForLogin?: string, password?: string) {
     };
     localStorage.setItem('currentUser', JSON.stringify(this.user));
     // this.currentUserSubject.next(this.user);
+
+  } else if (usernameForLogin === 'medic') {
+    this.user = {
+      username: usernameForLogin,
+      role: Role.Medic,
+      firstName: 'George',
+      lastName: 'Matos',
+      crm: '123123123'
+    };
+    localStorage.setItem('currentUser', JSON.stringify(this.user));
 
   }
 }

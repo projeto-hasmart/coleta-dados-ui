@@ -30,6 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Global } from 'src/app/models/globalConstants';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { PaginaFarmaciaComponent } from './pagina-farmacia/pagina-farmacia.component';
+import { PaginaMedicComponent } from './pagina-medic/pagina-medic.component';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { PaginaFarmaciaComponent } from './pagina-farmacia/pagina-farmacia.compo
     PaginaCidadaosVisualizarComponent,
     PaginaMedicaoSucessoComponent,
     PaginaMedicamentosComponent,
-    PaginaFarmaciaComponent
+    PaginaFarmaciaComponent,
+    PaginaMedicComponent
     ],
   imports: [
     CommonModule,
@@ -64,7 +67,9 @@ import { PaginaFarmaciaComponent } from './pagina-farmacia/pagina-farmacia.compo
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    DeviceDetectorModule.forRoot()
+
   ],
   providers: [
     Global
