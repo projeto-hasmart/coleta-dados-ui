@@ -16,17 +16,17 @@ Um aplicativo de página única (em inglês "single-page application", ou SPA) �
 * Ir no GitLab e fazer log-in;
 * Acessar o site do projeto: http://172.35.0.34/HASmart/coleta-dados-ui
 * Acessar a pasta que deseja salvar o projeto, usando seu terminal/prompt de comando;
-* Digitar git clone http://172.35.0.34/HASmart/coleta-dados-ui
-* Entrar na pasta coleta-dados-ui via terminal( cd coleta-dados-ui );
-* Digitar 'code .' para abrir o VSCode;
+* Digitar ```git clone http://172.35.0.34/HASmart/coleta-dados-ui```
+* Entrar na pasta coleta-dados-ui via terminal( ```cd coleta-dados-ui``` );
+* Digitar ```code .``` para abrir o VSCode;
 * Ativar o Back-End do projeto e o IS4
 
 # Já utilizando o código no VSCode:
 * 1. Abrir um Terminal dentro do VSCode;
-* 2. No terminal, digitar npm install se for a primeira vez;
+* 2. No terminal, digitar ```npm install``` se for a primeira vez;
 * 3. No terminal, digitar 
  ```npm i @angular/flex-layout@8.0.0-beta.27``` e depois ```npm i ngx-device-detector@1.3.20``` se for a primeira vez;
-* 4. Digitar (sudo) npm start;
+* 4. Digitar ```(sudo) npm start```;
 * 5. Acessar http://localhost:4200/;
 
 # Estrutura
