@@ -32,7 +32,6 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   cz: CidadaoServiceService;
   mz: MedicaoServiceService;
   dz: DispensacaoServiceService;
-  router: Router;
   oNovoCidadao: Cidadao;
   historicoAvc = 0;
   doencaRenal = 0;
@@ -61,7 +60,8 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   valid = false;
   errorBye = false;
 
-  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
+  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService,
+              private router: Router) {
     this.cz = cz;
     this.mz = mz;
     this.dz = dz;
@@ -172,6 +172,10 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     }
   }
   goToView() {
-    this.cz.getAllCidadaos(this.oNovoCidadao.cpf);
+    this.cz.getAllCidadaos(this.oNovoCidadao.cpf).subscribe(cidadao => {
+      this.cz.cidadaos = cidadao as Cidadao[];
+      this.cz.selecionadoId = cidadao[0].id;
+      this.router.navigate(['/cidadaos/visualizar']);
+    });
   }
 }
