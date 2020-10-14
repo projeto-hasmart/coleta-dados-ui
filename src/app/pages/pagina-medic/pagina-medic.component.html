@@ -6,21 +6,21 @@
 <section class="content-header">
     <div id="divtitle">
         <label id="labelNome">Relatórios</label>
-        <div id="divcpf"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{medic.crm}}</label></div>
+        <div id="divcpf" *ngIf="!isMobile"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{medic.crm}}</label></div>
         <label id="labelVisualize">Baixe os relatórios dos cidadãos vinculados ao seu CRM</label>
     </div>
 </section>
 <section class="content">
-    <div id="medicoesBackground" style="margin-left: 1%; width: 97%; margin-bottom: 0.5%;" *ngIf="isMobile">
+    <div id="medicoesBackground" class="row" style="margin-left: 1%; width: 97%; margin-bottom: 2.5%; height: fit-content;" *ngIf="isMobile">
         LEGENDA
+        <div class="row" style="margin-left: 2.55%;">
+            <img src=" /assets/dist/img/yellow_small_heart.png "> Medições Solicitadas
+            <img src=" /assets/dist/img/green_small_heart.png " style="margin-left: 1.5%;"> Medições Realizadas
+        </div>
     </div>
     <div class="box box-default" id="box">
         <div id="tabela" *ngIf="!isMobile">
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
-
-
-
-
 
                 <ng-container matColumnDef="cidadao">
                     <th mat-header-cell *matHeaderCellDef> Cidadão </th>
@@ -56,29 +56,33 @@
 
         <div id="mobiletabela" *ngIf="isMobile">
             <mat-card *ngFor="let element of ELEMENT_DATA" id="mobileDiv">
-                <div class="col-sm-9">
-                    <mat-card-title>
+                <div class="row">
+                    <div style="width: 80%; margin-left: 3%;" class="col-md-9">
+                        <mat-card-title>
+                            <div class="row">
+                                {{element.cidadao}}<label id="medicoesBackground" style="width: fit-content; display: inline-block;">
+                              <img src=" /assets/dist/img/yellow_small_heart.png ">{{element.medicoesS}}
+                              <img src="/assets/dist/img/green_small_heart.png"> {{element.medicoesR}}</label>
+                            </div>
+                        </mat-card-title>
                         <div class="row">
-                            {{element.cidadao}}<label id="medicoesBackground" style="width: 6%;"> <img src=" /assets/dist/img/yellow_small_heart.png " style="margin-left: 0.5%; margin-right: 0.5%;">{{element.medicoesS}}<img src="/assets/dist/img/green_small_heart.png" style="margin-left: 0.2%; margin-right: 0.5%;"> {{element.medicoesR}}</label>
-                        </div>
-                    </mat-card-title>
-                    <mat-card-content>
-                        <div class="row ">
-                            <img src="/assets/dist/img/telefone.png " style="width: 1%;margin-right: 0.5%; "><label id="labelText ">{{element.telefone}}</label>
+                            <img src="/assets/dist/img/telefone.png " style="width: 8%;margin-right: 0.5%; "><label id="labelText">{{element.telefone}}</label>
 
                         </div>
-                        <div class="row ">
-                            <img src="/assets/dist/img/telefone.png " style="width: 1%;margin-right: 0.5%; "><label id="labelText ">{{element.telefonesecundario}}</label>
+                        <div class="row">
+                            <img src="/assets/dist/img/telefone.png " style="width: 8%;margin-right: 0.5%; "><label id="labelText">{{element.telefonesecundario}}</label>
 
                         </div>
-                        <div class="row ">
-                            <label id="labelText ">Última visita:</label>
+                        <div class="row">
+                            <label id="labelText">Última visita:</label>
 
                         </div>
-                    </mat-card-content>
 
+                    </div>
+                    <div class="col-md-3 pull-right" style="width: 20%; margin-top: -25%; margin-right: 3%; height: 30%; background: #F2F2F2; border-radius: 8px; padding: 5%;">
+                        <img src="/assets/dist/img/download_phone.png" style="width: 50%; margin-left: 20%;">
+                    </div>
                 </div>
-                <div class="col-sm-3 "></div>
             </mat-card>
         </div>
 

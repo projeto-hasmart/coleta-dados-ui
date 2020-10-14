@@ -12,7 +12,7 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu shadow-lg p-3 mb-5 bg-white rounded" id="dropdownIcon" style="border-top-left-radius:10px; border-bottom-left-radius:10px">
+                <li *ngIf="user.role !== 'Medic'" class="dropdown messages-menu shadow-lg p-3 mb-5 bg-white rounded" id="dropdownIcon" style="border-top-left-radius:10px; border-bottom-left-radius:10px">
 
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="width: 49px;">
                         <mat-icon [ngStyle]="{'color':'rgba(35, 67, 35, 0.38)'}">email</mat-icon>
@@ -46,7 +46,7 @@
                 </li>
 
                 <!-- Notifications: style can be found in dropdown.less -->
-                <li class="dropdown notifications-menu shadow-lg p-3 mb-5 bg-white rounded" id="dropdownIcon" style="border-top-right-radius:10px; border-bottom-right-radius:10px">
+                <li *ngIf="user.role !== 'Medic'" class="dropdown notifications-menu shadow-lg p-3 mb-5 bg-white rounded" id="dropdownIcon" style="border-top-right-radius:10px; border-bottom-right-radius:10px">
 
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="width: 49px;">
                         <mat-icon [ngStyle]="{'color':'rgba(35, 67, 35, 0.38)'}">notifications</mat-icon>
@@ -73,8 +73,8 @@
                         <img alt="User Image" class="user-image" src="assets/dist/img/user2-160x160.jpg" style="margin-left: -10px;" *ngIf="user.role === 'Admin'">
                         <img alt="User Image" class="user-image" src="assets/dist/img/user7-128x128.jpg" style="margin-left: -10px;" *ngIf="user.role === 'User'">
 
-                        <span class="hidden-md" style="margin-top: -12px;">{{user.firstName}} {{user.lastName}}<small><i class="fa fa-angle-down pull-right" style="color: grey; padding-left: 25px;" ></i></small></span>
-                        <span id="role" style="margin-bottom: 14px;">{{user.role}}</span>
+                        <span class="hidden-md" style="margin-top: -12px;">{{user.firstName}} {{user.lastName}}<small *ngIf="user.role !== 'Medic'"><i class="fa fa-angle-down pull-right" style="color: grey; padding-left: 25px;" ></i></small></span>
+                        <span id="role" style="margin-bottom: 14px;">{{user.role}}</span> | <span *ngIf="user.role === 'Medic'" id="role" style="margin-bottom: 14px;">CRM {{user.crm}}</span>
 
                     </a>
                     <ul class="dropdown-menu">

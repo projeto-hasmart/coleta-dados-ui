@@ -151,7 +151,6 @@ table {
 #titleText {
     font-family: Poppins;
     font-style: normal;
-    font-weight: bold;
     font-size: 18px;
     line-height: 27px;
     /* identical to box height */
@@ -161,8 +160,7 @@ table {
 #mobileDiv {
     background-color: #FFFFFF;
     border-radius: 4px;
-    margin-top: 0.5%;
-    height: 132px;
+    margin-top: 2.5%;
 }
 
 #labelText {
@@ -190,4 +188,5 @@ table {
     letter-spacing: 0.25px;
     /* 00. On Surface / Medium Emphasis */
     color: rgba(0, 0, 0, 0.6);
+    margin-left: 1.5%;
 }

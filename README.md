@@ -24,7 +24,7 @@ Um aplicativo de página única (em inglês "single-page application", ou SPA) �
 # Já utilizando o código no VSCode:
 * 1. Abrir um Terminal dentro do VSCode;
 * 2. No terminal, digitar npm install se for a primeira vez;
-* 3. No terminal, digitar npm i @angular/flex-layout@8.0.0-beta.27 se for a primeira vez;
+* 3. No terminal, digitar 'npm i @angular/flex-layout@8.0.0-beta.27' e depois 'npm i ngx-device-detector@1.3.20' se for a primeira vez;
 * 4. Digitar (sudo) npm start;
 * 5. Acessar http://localhost:4200/;
 
