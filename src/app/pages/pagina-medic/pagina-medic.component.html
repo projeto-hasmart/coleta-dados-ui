@@ -37,12 +37,12 @@
                 </ng-container>
                 <ng-container matColumnDef="telefone">
                     <th mat-header-cell *matHeaderCellDef> Telefone 1 </th>
-                    <td mat-cell *matCellDef="let element" mask="(00)00000-0000"> {{element.telefone}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.telefone | mask:"(00)00000-0000"}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="telefone2">
                     <th mat-header-cell *matHeaderCellDef> Telefone 2 </th>
-                    <td mat-cell *matCellDef="let element" mask="(00)00000-0000"> {{element.telefonesecundario}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.telefonesecundario | mask:"(00)00000-0000"}} </td>
                 </ng-container>
                 <ng-container matColumnDef="download">
                     <th mat-header-cell *matHeaderCellDef> </th>
@@ -57,20 +57,20 @@
         <div id="mobiletabela" *ngIf="isMobile">
             <mat-card *ngFor="let element of ELEMENT_DATA" id="mobileDiv">
                 <div class="row">
-                    <div style="width: 80%; margin-left: 3%;" class="col-md-9">
-                        <mat-card-title>
-                            <div class="row">
+                    <div class="col-xs-8" style="margin-left: 5%;">
+                        <!---->
+                        <div class="row">
+                            <mat-card-title>
                                 {{element.cidadao}}<label id="medicoesBackground" style="width: fit-content; display: inline-block;">
                               <img src=" /assets/dist/img/yellow_small_heart.png ">{{element.medicoesS}}
-                              <img src="/assets/dist/img/green_small_heart.png"> {{element.medicoesR}}</label>
-                            </div>
-                        </mat-card-title>
+                              <img src="/assets/dist/img/green_small_heart.png"> {{element.medicoesR}}</label></mat-card-title>
+                        </div>
                         <div class="row">
-                            <img src="/assets/dist/img/telefone.png " style="width: 8%;margin-right: 0.5%; "><label id="labelText">{{element.telefone}}</label>
+                            <img src="/assets/dist/img/telefone_toca.png " style="width: 5%;margin-right: 2.5%; "><label id="labelText">{{element.telefone | mask:"(00)00000-0000"}}</label>
 
                         </div>
                         <div class="row">
-                            <img src="/assets/dist/img/telefone.png " style="width: 8%;margin-right: 0.5%; "><label id="labelText">{{element.telefonesecundario}}</label>
+                            <img src="/assets/dist/img/telefone_toca.png " style="width: 5%;margin-right: 2.5%; "><label id="labelText">{{element.telefonesecundario | mask:"(00)00000-0000"}}</label>
 
                         </div>
                         <div class="row">
@@ -79,8 +79,14 @@
                         </div>
 
                     </div>
-                    <div class="col-md-3 pull-right" style="width: 20%; margin-top: -25%; margin-right: 3%; height: 30%; background: #F2F2F2; border-radius: 8px; padding: 5%;">
-                        <img src="/assets/dist/img/download_phone.png" style="width: 50%; margin-left: 20%;">
+                    <div class="col-xs-4" style="margin: auto ; position: absolute;
+                    top:0;
+                    bottom: 0;
+
+                    right: 5%; width: 60px;height: 60px; background: #F2F2F2; border-radius: 8px; padding: 5%;">
+                        <!---->
+                        <img src="/assets/dist/img/download_phone.png" style="width: 70%; margin-left: 15%;">
+                        <!---->
                     </div>
                 </div>
             </mat-card>
