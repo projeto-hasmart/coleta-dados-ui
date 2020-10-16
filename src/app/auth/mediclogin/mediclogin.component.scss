@@ -6,7 +6,7 @@
     width: 326px;
     height: 34px;
     right: 5px;
-    top: 20px;
+    margin-top: 12px;
     /* 700 */
     background: #245E33;
     /* Button Shadow */
@@ -147,4 +147,6 @@ input.form-control:focus {
     /* identical to box height */
     color: #000000;
     text-align: center;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
