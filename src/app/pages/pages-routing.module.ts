@@ -16,7 +16,7 @@ import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
-    path: '', component: PagesComponent, children: [
+    path: '', component: PagesComponent,  children: [
       { path: 'inicio', component:  PaginaInicio },
       { path: 'cidadaos', component: PaginaCidadaosComponent},
         {path: 'cidadaos/cadastrar', component: PaginaCidadaosCadastrarComponent},
@@ -24,11 +24,10 @@ const routes: Routes = [
       { path: 'medicao', component: PaginaMedicaoComponent},
       {path: 'medicao/sucesso', component: PaginaMedicaoSucessoComponent},
       {path: 'admin/farmacia', component: PaginaFarmaciaComponent},
-
     ]
   },
   {
-    path: 'medic', component: PaginaMedicComponent
+    path: 'medico/visualizar', component: PaginaMedicComponent
   }
 ];
 

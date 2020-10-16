@@ -96,7 +96,7 @@ login(usernameForLogin?: string, password?: string) {
   } else if (usernameForLogin === 'medic') {
     this.user = {
       username: usernameForLogin,
-      role: Role.Medic,
+      role: Role.Medico,
       firstName: 'George',
       lastName: 'Matos',
       crm: '123123123'

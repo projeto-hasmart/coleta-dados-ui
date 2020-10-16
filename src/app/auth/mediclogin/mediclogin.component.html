@@ -1,0 +1,29 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<div class='content'>
+    <!-- /.login-logo -->
+    <mat-card id="material-card">
+        <mat-card-title style="margin-left: 40%; width: 55%; margin-top: 2%;">
+            <img src="/assets/dist/img/logo_inicio.png">
+        </mat-card-title>
+        <mat-card-content>
+            <label id="digiteseucrm">Digite seu CRM para visualizar seus relatórios:</label>
+            <div class="form-group has-feedback">
+                <input class="form-control" placeholder="CRM" type="email" id="emailLabel" [(ngModel)]="user" (keyup.enter)="createRole()">
+                <!-- <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
+            </div>
+
+
+            <!-- /.col -->
+            <!--[routerLink]="'/inicio'"-->
+            <button class="mat-button" id="loginButton" (click)="createRole()">ENTRAR</button>
+            <!-- /.col -->
+        </mat-card-content>
+
+    </mat-card>
+
+    <!-- /.login-box-body -->
+
+    <!-- /.login-box -->
+</div>

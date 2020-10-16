@@ -3,6 +3,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <app-header></app-header>
+<div id="hasmart" *ngIf="!isMobile">
+    <img src="/assets/dist/img/logo.png">
+    <label style="margin-left: 1%;">HASmart</label>
+</div>
+<div id="hasmartMobile" *ngIf="isMobile">
+    <img src="/assets/dist/img/logo.png">
+    <label style="margin-left: 1%;">HASmart</label>
+</div>
 <section class="content-header">
     <div id="divtitle">
         <label id="labelNome">Relatórios</label>
@@ -70,7 +78,7 @@
 
                         </div>
                         <div class="row">
-                            <img src="/assets/dist/img/telefone_toca.png " style="width: 5%;margin-right: 2.5%; "><label id="labelText">{{element.telefonesecundario | mask:"(00)00000-0000"}}</label>
+                            <img src="/assets/dist/img/CPF.png " style="width: 5%;margin-right: 2.5%; "><label id="labelText">{{element.cpf | mask:"000.000.000-00"}}</label>
 
                         </div>
                         <div class="row">

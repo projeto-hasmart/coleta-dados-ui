@@ -1,6 +1,5 @@
 #divtitle {
     display: inline-block;
-    margin-top: 2%;
 }
 
 .content-header {
@@ -188,4 +187,32 @@ table {
     /* 00. On Surface / Medium Emphasis */
     color: rgba(0, 0, 0, 0.6);
     margin-left: 1.5%;
+}
+
+mat-card-title {
+    font-size: 24px;
+}
+
+#hasmart {
+    margin-left: 3%;
+    padding-top: 1%;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 45px;
+    letter-spacing: 0.02em;
+    color: #000000;
+}
+
+#hasmartMobile {
+    margin-left: 4%;
+    padding-top: 4%;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 45px;
+    letter-spacing: 0.02em;
+    color: #000000;
 }

@@ -16,10 +16,10 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class PaginaMedicComponent implements OnInit {
   ELEMENT_DATA: Relatorio[] = [
     {cidadao: 'Hydrogen Monohidratado Saturado da Silva Cãozinho Júnior', medicoesS: 5,
-    medicoesR: 1,  telefone: '88999000990', telefonesecundario: '8835141110'},
-    {cidadao: 'Mateus Uziel Palácio Oliveira', medicoesS: 15,  medicoesR: 15, telefone: '85981560609'},
-    {cidadao: 'Jon Snow Junior dos Santos', medicoesS: 25,  medicoesR: 24, telefone: '88997953655'},
-    {cidadao: 'Lithium Ribeiro', medicoesS: 7,  medicoesR: 4, telefone: '88992168444'},
+    medicoesR: 1,  telefone: '88999000990', telefonesecundario: '8835141110', cpf: '45645612320'},
+    {cidadao: 'Mateus Uziel Palácio Oliveira', medicoesS: 15,  medicoesR: 15, telefone: '85981560609', cpf: '07283964320'},
+    {cidadao: 'Jon Snow Junior dos Santos', medicoesS: 25,  medicoesR: 24, telefone: '88997953655', cpf: '78912330012'},
+    {cidadao: 'Lithium Ribeiro', medicoesS: 7,  medicoesR: 4, telefone: '88992168444', cpf: '12345678910'},
   ];
   medic: User;
   selection = new SelectionModel<Relatorio>(true, []);

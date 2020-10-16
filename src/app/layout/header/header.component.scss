@@ -67,3 +67,108 @@ a :hover,
 mat-icon {
     margin-top: -5px;
 }
+
+#modalText {
+    position: static;
+    left: 0%;
+    right: 0%;
+    top: 50%;
+    bottom: 0%;
+    /* Body 1 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(0, 0, 0, 0.6);
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    margin: 0px 8px;
+}
+
+#simbutton {
+    display: inline-block;
+    flex-direction: row;
+    height: 36px;
+    width: 57px;
+    padding: 10px 16px;
+    left: 52%;
+    top: 0%;
+    bottom: 0%;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    border: 1px solid #245E33;
+    margin-left: 4%;
+}
+
+#simlabel {
+    margin-bottom: 10px;
+    width: 25px;
+    height: 16px;
+    left: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+#naobutton {
+    display: inline-block;
+    flex-direction: row;
+    height: 36px;
+    width: 57px;
+    padding: 10px 16px;
+    left: 45%;
+    top: 0%;
+    bottom: 0%;
+    /* 700 */
+    background: #FFFFFF;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    border: 1px solid #E5E5E5;
+}
+
+#naolabel {
+    margin-bottom: 10px;
+    width: 25px;
+    height: 16px;
+    left: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    /* 700 */
+    color: #245E33;
+}
+
+#titleModal {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    color: #000000;
+}
+
+.modal-sm {
+    top: 30%;
+}
+
+.modal-md {
+    top: 30%;
+}
+
+#buttons-modal {
+    margin-left: 67%;
+}

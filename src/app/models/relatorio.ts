@@ -7,5 +7,5 @@ export interface Relatorio {
   telefone: string;
   telefonesecundario?: string;
   telefoneterciario?: string;
-
+  cpf: string;
 }
