@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Farmacia } from './../../models/farmacia';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -17,7 +18,7 @@ export class AdminService {
   constructor(private httpClient: HttpClient) { }
 
   getAllCidadaos(cpf: string): Observable<Cidadao[]> {
-    return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos?cpf=' + cpf, this.httpOptions)
+    return this.httpClient.get<Cidadao[]>(environment.api + '/hasmart/api/Cidadaos?cpf=' + cpf, this.httpOptions)
       .pipe(
         map((data: Cidadao[]) => {
           return data;
@@ -27,7 +28,7 @@ export class AdminService {
   }
 
   getCidadaos(rg: string): Observable<Cidadao[]> {
-    return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos?rg=' + rg, this.httpOptions)
+    return this.httpClient.get<Cidadao[]>(environment.api + '/hasmart/api/Cidadaos?rg=' + rg, this.httpOptions)
       .pipe(
         map((data: Cidadao[]) => {
           return data;
@@ -37,12 +38,12 @@ export class AdminService {
   }
 
   public createCidadao(cidadao: Cidadao): Observable<Cidadao> {
-    return this.httpClient.post<Cidadao>(('api/hasmart/api/Cidadaos'), cidadao, this.httpOptions)
+    return this.httpClient.post<Cidadao>((environment.api + '/hasmart/api/Cidadaos'), cidadao, this.httpOptions)
     .pipe(
       catchError(this.handleError));
   }
   public createFarmacia(farmacia: Farmacia): Observable<Farmacia> {
-    return this.httpClient.post<Farmacia>(('api/hasmart/api/Farmacia'), farmacia, this.httpOptions)
+    return this.httpClient.post<Farmacia>((environment.api + '/hasmart/api/Farmacia'), farmacia, this.httpOptions)
     .pipe(
       catchError(this.handleError));
   }

@@ -4,6 +4,7 @@ import { Cidadao } from 'src/app/models/cidadao';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
+import { environment } from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class CidadaoServiceService {
 
    // API: GET /cidadaos
    getAllCidadaos(cpf: string): Observable<Cidadao[]> {
-     return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos?cpf=' + cpf, this.httpOptions)
+     return this.httpClient.get<Cidadao[]>(environment.api + '/hasmart/api/Cidadaos?cpf=' + cpf, this.httpOptions)
        .pipe(
          map((data: Cidadao[]) => {
            return data;
@@ -30,7 +31,7 @@ export class CidadaoServiceService {
          catchError(this.handleError));
    }
    getCidadaos(rg: string): Observable<Cidadao[]> {
-     return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos?rg=' + rg, this.httpOptions)
+     return this.httpClient.get<Cidadao[]>(environment.api + '/hasmart/api/Cidadaos?rg=' + rg, this.httpOptions)
        .pipe(
          map((data: Cidadao[]) => {
            return data;
@@ -40,7 +41,7 @@ export class CidadaoServiceService {
    }
 
    public getCidadaoById(cidadaoId: number): Observable<Cidadao> {
-     return this.httpClient.get<Cidadao>('api/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
+     return this.httpClient.get<Cidadao>(environment.api + '/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
        .pipe(
          retry(2),
          catchError(this.handleError));

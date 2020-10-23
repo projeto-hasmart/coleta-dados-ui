@@ -15,11 +15,11 @@ export class MedicloginComponent implements OnInit {
 
   ngOnInit() {
     this.clearLocalStorage();
-    this.tryAuth();
+    // this.tryAuth();
   }
   tryAuth() {
     // this.apiService.authenticate(this.username, this.password);
-    this.apiService.authenticate().subscribe();
+    // this.apiService.authenticate().subscribe();
   }
   clearLocalStorage() {
     localStorage.clear();

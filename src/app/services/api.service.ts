@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Router, RouterState } from '@angular/router';
 import { Cidadao } from './../models/cidadao';
 import { User } from './../models/user';
@@ -7,8 +8,6 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { CidadaoEdit } from '../models/cidadaoEdit';
 import { Role } from '../models/role';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +28,7 @@ cidadaos: Array<Cidadao>;
 
 // API: GET /cidadaos
 getAllCidadaos(): Observable<Cidadao[]> {
-  return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos', this.httpOptions)
+  return this.httpClient.get<Cidadao[]>(environment.api + '/hasmart/api/Cidadaos', this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError));
@@ -37,14 +36,14 @@ getAllCidadaos(): Observable<Cidadao[]> {
 
 // API: POST /HaSmart/api/cidadaos
 public createCidadao(cidadao: Cidadao): Observable<Cidadao> {
-  return this.httpClient.post<Cidadao>(('api/hasmart/api/Cidadaos'), cidadao, this.httpOptions)
+  return this.httpClient.post<Cidadao>((environment.api + '/hasmart/api/Cidadaos'), cidadao, this.httpOptions)
   .pipe(
     catchError(this.handleError));
 }
 
 // API: GET /cidadaos/:id
 public getCidadaoById(cidadaoId: number): Observable<Cidadao> {
-  return this.httpClient.get<Cidadao>('api/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
+  return this.httpClient.get<Cidadao>(environment.api + '/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError));
@@ -52,7 +51,7 @@ public getCidadaoById(cidadaoId: number): Observable<Cidadao> {
 
 // API: PUT /cidadaos/:id
 public updateCidadao(cidadao: CidadaoEdit, id: number): Observable<any> {
-  return this.httpClient.put(('api/hasmart/api/Cidadaos/' + id), cidadao, this.httpOptions)
+  return this.httpClient.put((environment.api + '/hasmart/api/Cidadaos/' + id), cidadao, this.httpOptions)
     .pipe(
     retry(2),
     catchError(this.handleError));
@@ -81,6 +80,7 @@ login(usernameForLogin?: string, password?: string) {
       firstName: 'Fábio',
       lastName: 'Martins'
     };
+    this.authenticate(usernameForLogin).subscribe();
     localStorage.setItem('currentUser', JSON.stringify(this.user));
     // this.router.navigate(['/admin']);
   } else if (usernameForLogin === 'user') {
@@ -90,6 +90,7 @@ login(usernameForLogin?: string, password?: string) {
       firstName: 'Maria',
       lastName: 'Andrade'
     };
+    this.authenticate(usernameForLogin).subscribe();
     localStorage.setItem('currentUser', JSON.stringify(this.user));
     // this.currentUserSubject.next(this.user);
 
@@ -101,23 +102,30 @@ login(usernameForLogin?: string, password?: string) {
       lastName: 'Matos',
       crm: '123123123'
     };
+    this.authenticate(usernameForLogin).subscribe();
     localStorage.setItem('currentUser', JSON.stringify(this.user));
 
   }
 }
-authenticate(): Observable<any> {
+authenticate(role: string): Observable<any> {
 const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
 const body = new URLSearchParams();
 body.set('grant_type', 'client_credentials');
-body.set('client_id', 'admin');
-body.set('client_secret', 'admin');
+if (role === 'admin') {
 
-return this.httpClient.post<any>('auth/connect/token', body.toString(), {
+  body.set('client_id', 'admin');
+  body.set('client_secret', 'admin');
+} else {
+
+body.set('client_id', 'user');
+body.set('client_secret', 'user');
+}
+
+return this.httpClient.post<any>(environment.auth + '/connect/token', body.toString(), {
   headers
 }).pipe(
   map(jwt => {
     if (jwt && jwt.access_token) {
-      console.log(jwt);
       localStorage.setItem('token', jwt.access_token.toString());
     }
   })

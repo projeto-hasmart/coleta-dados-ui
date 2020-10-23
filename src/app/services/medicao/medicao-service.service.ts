@@ -6,6 +6,7 @@ import { Cidadao } from 'src/app/models/cidadao';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { environment } from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class MedicaoServiceService {
 
   // API: GET /cidadaos
   getAllCidadaos(cpf: string): Observable<Cidadao[]> {
-    return this.httpClient.get<Cidadao[]>('api/hasmart/api/Cidadaos?cpf=' + cpf, this.httpOptions)
+    return this.httpClient.get<Cidadao[]>(environment.api + '/hasmart/api/Cidadaos?cpf=' + cpf, this.httpOptions)
       .pipe(
         catchError(this.handleError));
   }
@@ -30,7 +31,7 @@ export class MedicaoServiceService {
 
   }
   public createMedicao(medicao: Medicao, id: number): Observable<Medicao> {
-    return this.httpClient.post<Medicao>(('api/hasmart/api/Farmacia/medicoes?cidadaoId=' + id), medicao, this.httpOptions)
+    return this.httpClient.post<Medicao>((environment.api + '/hasmart/api/Farmacia/medicoes?cidadaoId=' + id), medicao, this.httpOptions)
       .pipe(
         catchError(this.handleError));
   }

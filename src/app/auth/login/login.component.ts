@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
     }); */
     this.clearLocalStorage();
-    this.tryAuth();
+    // this.tryAuth();
 
   }
   clearLocalStorage() {
@@ -48,10 +48,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.apiService.login(this.user);
     this.router.navigate(['/inicio']);
   }
-  tryAuth() {
-    // this.apiService.authenticate(this.username, this.password);
-    this.apiService.authenticate().subscribe();
-  }
+  // tryAuth() {
+  //   // this.apiService.authenticate(this.username, this.password);
+  //   this.apiService.authenticate().subscribe();
+  // }
   ngOnDestroy(): void {
     $('body').removeClass('hold-transition login-page');
   }
