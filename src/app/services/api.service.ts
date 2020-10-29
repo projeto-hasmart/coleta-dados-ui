@@ -117,8 +117,8 @@ if (role === 'admin') {
   body.set('client_secret', 'admin');
 } else {
 
-body.set('client_id', 'user');
-body.set('client_secret', 'user');
+body.set('client_id', 'atendente');
+body.set('client_secret', 'atendente');
 }
 
 return this.httpClient.post<any>(environment.auth + '/connect/token', body.toString(), {

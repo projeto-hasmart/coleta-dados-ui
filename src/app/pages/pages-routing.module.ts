@@ -1,3 +1,5 @@
+import { PaginaMedicMainComponent } from './pagina-medic/pagina-medic-main/pagina-medic-main.component';
+import { PaginaMedicVisualizacaoComponent } from './pagina-medic/pagina-medic-visualizacao/pagina-medic-visualizacao.component';
 import { PaginaMedicComponent } from './pagina-medic/pagina-medic.component';
 import { PaginaFarmaciaComponent } from './pagina-farmacia/pagina-farmacia.component';
 import { PaginaMedicaoComponent } from './pagina-medicao/pagina-medicao.component';
@@ -27,7 +29,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'medico/visualizar', component: PaginaMedicComponent
+    path: 'medico', component: PaginaMedicComponent, children: [
+      {path: 'visualizar', component: PaginaMedicMainComponent},
+      {path: 'visualizar/cidadao', component: PaginaMedicVisualizacaoComponent}
+    ]
   }
 ];
 

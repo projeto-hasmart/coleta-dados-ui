@@ -5,6 +5,7 @@ export interface Relatorio {
   medicoesS: number;
   medicoesR: number;
   telefone: string;
+  ultimaVisita: string;
   telefonesecundario?: string;
   telefoneterciario?: string;
   cpf: string;

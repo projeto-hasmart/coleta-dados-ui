@@ -32,6 +32,9 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { PaginaFarmaciaComponent } from './pagina-farmacia/pagina-farmacia.component';
 import { PaginaMedicComponent } from './pagina-medic/pagina-medic.component';
 import { DeviceDetectorModule } from 'ngx-device-detector';
+import { PaginaMedicVisualizacaoComponent } from './pagina-medic/pagina-medic-visualizacao/pagina-medic-visualizacao.component';
+import { PaginaMedicMainComponent } from './pagina-medic/pagina-medic-main/pagina-medic-main.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -46,7 +49,9 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
     PaginaMedicaoSucessoComponent,
     PaginaMedicamentosComponent,
     PaginaFarmaciaComponent,
-    PaginaMedicComponent
+    PaginaMedicComponent,
+    PaginaMedicVisualizacaoComponent,
+    PaginaMedicMainComponent
     ],
   imports: [
     CommonModule,
@@ -68,7 +73,8 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
     ReactiveFormsModule,
     MatAutocompleteModule,
     NgxMaskModule.forRoot(),
-    DeviceDetectorModule.forRoot()
+    DeviceDetectorModule.forRoot(),
+    MatTabsModule
 
   ],
   providers: [
