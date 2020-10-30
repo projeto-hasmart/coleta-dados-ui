@@ -2,9 +2,18 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-<app-header></app-header>
+<app-header style="
+position: fixed; right: 2%;     z-index: 100;
+background-color: #FFFFFF; height: 10%;" *ngIf="isMobile"></app-header>
+
+<app-header *ngIf="!isMobile"></app-header>
 <div id="hasmart" *ngIf="!isMobile">
     <img src="/assets/dist/img/logo.png">
     <label style="margin-left: 1%;">HASmart</label>
+</div>
+<div id="hasmart" *ngIf="isMobile" style="position: fixed;  z-index: 100; background-color: #FFFFFF
+ ">
+    <img src="/assets/dist/img/logo.png ">
+    <label style="margin-left: 0.5%; margin-top: 5%;">HASmart</label>
 </div>
 <router-outlet></router-outlet>

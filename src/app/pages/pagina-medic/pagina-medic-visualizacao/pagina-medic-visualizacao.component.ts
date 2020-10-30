@@ -11,6 +11,7 @@ import { CidadaoEdit } from 'src/app/models/cidadaoEdit';
 import { Medicao } from 'src/app/models/medicao';
 import { HttpClient } from '@angular/common/http';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { ViewEncapsulation } from '@angular/core';
 
 interface Diabetes {
   value: number;
@@ -30,10 +31,11 @@ const MEDICAO: Medicao[] = [];
 @Component({
   selector: 'app-pagina-medic-visualizacao',
   templateUrl: './pagina-medic-visualizacao.component.html',
-  styleUrls: ['./pagina-medic-visualizacao.component.scss']
+  styleUrls: ['./pagina-medic-visualizacao.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PaginaMedicVisualizacaoComponent implements OnInit {
-  isCollapsed = true;
+  isCollapsed = false;
 
   oNossoCidadao: Cidadao;
   cidadao$: Observable<Cidadao>;

@@ -1,115 +1,378 @@
+<button id="returnButton" routerLink="/medico/visualizar" *ngIf="!isMobile"><label id="returnButtonLabel"><i class="fa fa-arrow-left" style="margin-right: 3%;"></i>VOLTAR</label></button>
+
 <section class="content-header" *ngIf="(cidadao$ | async) && !isMobile">
+
     <div id="divtitle">
+
         <label id="labelNome">{{oNossoCidadao.nome}}</label>
-        <div id="divcpf"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{oNossoCidadao.cpf}}</label></div>
+        <div id="divcpf"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{showingCpf}}</label></div>
         <label id="labelVisualize">Visualize o relatório deste cidadão.</label>
+
     </div>
+    <button id="returnButton" *ngIf="!isMobile" class="pull-right" style="margin-left: none; margin-right: 2%; margin-top: 2%;"><label id="returnButtonLabel"><i class="fa fa-print" style="margin-right: 3%;"></i>Imprimir</label></button>
+
 </section>
 <section class="content" *ngIf="!isMobile">
     <div class="box box-default" id="infoBox">
-        <h3 class="box-title" id="labelInformacoes">Informações
-        </h3>
-        <div class="box-tools pull-right">
+        <div class="box-header with-border">
 
-            <button class="btn btn-box-tool" data-widget="collapse" (click)="isCollapsed = !isCollapsed"><i class="fa fa-angle-down"></i></button>
+            <h3 class="box-title" id="labelInformacoes">Informações do Cidadão
+            </h3>
+            <div class="box-tools pull-right">
+
+                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-down"></i></button>
+            </div>
         </div>
-        <div class="box-body" *ngIf="isCollapsed">
+        <div class="box-body">
             <div class="box box-default" id="infoBoxPessoal" *ngIf="cidadao$ | async">
-                <label id="pessoaisLabel">Pessoais</label>
-                <div class="row">
-                    <div class="col-md-4">
-                        <label id="dadoLabel">NOME</label>
-                        <label id="dadoResult">{{oNossoCidadao.nome}}</label>
-                        <label id="dadoLabel">CPF</label>
-                        <label id="dadoResult">{{showingCpf}}</label>
-                        <label id="dadoLabel">GÊNERO</label>
-                        <label id="dadoResult">{{oNossoCidadao.dadosPessoais.genero}}</label>
-                    </div>
-                    <div class="col-md-4">
-                        <label id="dadoLabel">DATA DE NASCIMENTO</label>
-                        <label id="dadoResult">{{oNossoCidadao.dataNascimento}}</label>
-                        <label id="dadoLabel">RG</label>
-                        <label id="dadoResult">{{oNossoCidadao.rg}}</label>
-                    </div>
-                    <div class="col-md-4">
-                        <label id="dadoLabel">TELEFONE</label>
-                        <label id="dadoResult">{{showingPhone}}</label>
-                        <label id="dadoLabel">E-MAIL</label>
-                        <label id="dadoResult">{{oNossoCidadao.dadosPessoais.email}}</label>
+                <mat-tab-group>
+                    <mat-tab label="Pessoais" id="tabTitle">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label id="dadoLabel">NOME</label>
+                                <label id="dadoResult">{{oNossoCidadao.nome}}</label>
+                                <label id="dadoLabel">CPF</label>
+                                <label id="dadoResult">{{showingCpf}}</label>
+                                <label id="dadoLabel">GÊNERO</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;">{{oNossoCidadao.dadosPessoais.genero}}</label>
+                            </div>
+                            <div class="col-md-4">
+                                <label id="dadoLabel">DATA DE NASCIMENTO</label>
+                                <label id="dadoResult">{{oNossoCidadao.dataNascimento}}</label>
+                                <label id="dadoLabel">RG</label>
+                                <label id="dadoResult">{{oNossoCidadao.rg}}</label>
+                            </div>
+                            <div class="col-md-4">
+                                <label id="dadoLabel">TELEFONE</label>
+                                <label id="dadoResult">{{showingPhone}}</label>
+                                <label id="dadoLabel">E-MAIL</label>
+                                <label id="dadoResult">{{oNossoCidadao.dadosPessoais.email}}</label>
 
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Endereço">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label id="dadoLabel">CEP</label>
+                                <label id="dadoResult">{{showingCep}}</label>
+                                <label id="dadoLabel">ESTADO</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;">{{oNossoCidadao.dadosPessoais.endereco.estado}}</label>
+                            </div>
+                            <div class="col-md-4">
+                                <label id="dadoLabel">ENDEREÇO</label>
+                                <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.rua}}, {{oNossoCidadao.dadosPessoais.endereco.numero}}</label>
+                                <label id="dadoLabel">COMPLEMENTO</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;">{{oNossoCidadao.dadosPessoais.endereco.complemento}}</label>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label id="dadoLabel">CIDADE</label>
+                                <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.cidade}}</label>
+
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Estáticas">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label id="dadoLabel">ALTURA</label>
+                                <label id="dadoResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
+                                <label id="dadoLabel">DOENÇA RENAL CRÔNICA</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1">Não</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 2">Sim</label>
+                                <label id="dadoLabel">HISTÓRICO DE AVC</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 2">Sim</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1">Não</label>
+                            </div>
+                            <div class="col-md-4">
+                                <label id="dadoLabel">DIABETES</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 4">Diabetes Gestante</label>
+
+                                <label id="dadoLabel">INSUFICIÊNCIA CARDÍACA</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 2">Sim</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1">Não</label>
+                                <label id="dadoLabel">DOENÇA ARTERIAL OBSTRUTIVA PERIFÉRICA</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 2">Sim</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1">Não</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 0">Não Informado</label>
+
+                            </div>
+                            <div class="col-md-4">
+                                <label id="dadoLabel">FUMANTE</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
+
+                                <label id="dadoLabel">HISTÓRICO DE INFARTO</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 2">Sim</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1">Não</label>
+
+                                <label id="dadoLabel">RETINOPATIA HIPERTENSIVA</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 2">Sim</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 1">Não</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 0">Não Informado</label>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+
+            </div>
+        </div>
+    </div>
+    <!--MODAL MEDIÇÃO-->
+    <div class="modal fade" id="verMedicao">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="titleModal">VISUALIZAR MEDIÇÃO <button type="button" class="close pull-right" data-dismiss="modal" style="top: 15px; right: 5px">&times;</button></h4>
+
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <label id="informacoesPessoais" style="top: -15px;">Informações</label>
+                    <div class="container" style="width: 97.5%; margin-left: 1%;">
+
+                        <!-- class='row'-->
+                        <div class='row' style="background-color: white; border-radius: 4px;">
+                            <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
+                                <label id="dataRealizacaoLabel">DATA DE REALIZAÇÃO</label>
+                                <label id="dataRealizacaoResult">{{ultimaMedicao}}</label>
+                                <label id="servicoLabel">SERVIÇO</label>
+                                <label id="servicoResult">Medição</label>
+                            </div>
+                            <!-- <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
+                                      <label id="responsavelLabel">RESPONSÁVEL</label>
+                                      <label id="responsavelResult">{{responsavel}}</label>
+
+                                  </div> -->
+                        </div>
+
+                    </div>
+                    <label id="informacoesPessoais">Aferições</label>
+                    <label id="informacoesPessoais" style="font-size: 14px;">Pressão Arterial</label>
+                    <div id="tabela" style="width: 98%;" *ngIf="cidadao$ | async">
+                        <!-- TABELA-->
+                        <table mat-table [dataSource]="dataSourceMedi" class="mat-elevation-z1">
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="data">
+                                <th mat-header-cell *matHeaderCellDef> Pressão Sistólica </th>
+                                <td mat-cell *matCellDef="let element"> {{element.sistolica}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="servico">
+                                <th mat-header-cell *matHeaderCellDef> Pressão Diastólica </th>
+                                <td mat-cell *matCellDef="let element"> {{element.diastolica}} </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="responsavel">
+                                <th mat-header-cell *matHeaderCellDef> </th>
+                                <td mat-cell *matCellDef="let element"> </td>
+                            </ng-container>
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="info" stickyEnd>
+                                <th mat-header-cell *matHeaderCellDef></th>
+                                <td mat-cell *matCellDef="let element">
+
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <label id="informacoesPessoais">Peso</label>
+
+                        <input type="text" readonly="readonly" class="input-control" [(ngModel)]="weight" id="inputNascimento" style="margin-left: 1%; width: 97.5%; margin-top: 10px; margin-bottom: 10px;">
                     </div>
                 </div>
             </div>
-            <div class="box box-default" id="infoBoxEstaticas">
+        </div>
+    </div>
 
-                <label id="estaticasLabel">Endereço</label>
-                <div class="row">
-                    <div class="col-md-4">
-                        <label id="dadoLabel">CEP</label>
-                        <label id="dadoResult">{{showingCep}}</label>
-                        <label id="dadoLabel">ESTADO</label>
-                        <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.estado}}</label>
-                    </div>
-                    <div class="col-md-4">
-                        <label id="dadoLabel">ENDEREÇO</label>
-                        <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.rua}}, {{oNossoCidadao.dadosPessoais.endereco.numero}}</label>
-                        <label id="dadoLabel">COMPLEMENTO</label>
-                        <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.complemento}}</label>
-                    </div>
-                    <div class="col-md-4">
+    <div class="box box-default" id="medicaoBox">
+        <div>
 
-                        <label id="dadoLabel">CIDADE</label>
-                        <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.cidade}}</label>
+            <label id="medicaoTitleLabel">Registros
+        </label>
+        </div>
+        <div id="tabela" *ngIf="(cidadao$ | async)">
+            <!-- TABELA-->
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z0" *ngIf="cidadao$ | async">
 
-                    </div>
-                </div>
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="data" *ngIf="(cidadao$ | async)">
+                    <th mat-header-cell *matHeaderCellDef> Data </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dataHora}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="servico" *ngIf="(cidadao$ | async)">
+                    <th mat-header-cell *matHeaderCellDef> Serviço </th>
+                    <td mat-cell *matCellDef="let element"> Medição </td>
+                    <!--{{element.name}}-->
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="responsavel">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <!--Responsável-->
+                    <td mat-cell *matCellDef="let element"> </td>
+                    <!--{{element.estabelecimentoId}}-->
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="info" stickyEnd>
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                        <button data-toggle="modal" data-target="#verMedicao" id="infoButton" (click)="medicaoDe(element.dataHora)"><mat-icon>info</mat-icon></button>
+                        <!--*ngIf='element.name === ""' -->
+                        <!-- <button *ngIf='element.name === "Helium"' data-toggle="modal" data-target="#verDispensacao" id="infoButton"><mat-icon>info</mat-icon></button> -->
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- AQUI COMEÇA O CÓDIGO MOBILE -->
+
+<section class="content-header" *ngIf="(cidadao$ | async) && isMobile">
+    <button id="returnButton" routerLink="/medico/visualizar" *ngIf="isMobile" style="margin-top: 20%; margin-left: 2%;"><label id="returnButtonLabel"><i class="fa fa-arrow-left" style="margin-right: 3%;"></i>VOLTAR</label></button>
+
+    <div id="divtitle">
+
+        <label id="labelNome">{{oNossoCidadao.nome}}</label>
+        <label id="labelVisualize">Visualize o relatório deste cidadão.</label>
+
+    </div>
+    <button id="returnButton" *ngIf="isMobile" class="pull-right" style="margin-left: none; margin-right: 2%; margin-top: 2%;"><label id="returnButtonLabel"><i class="fa fa-print" style="margin-right: 3%;"></i>Imprimir</label></button>
+
+</section>
+<section class="content" *ngIf="isMobile">
+    <div class="box box-default" id="infoBox">
+        <div class="box-header with-border">
+
+            <h3 class="box-title" id="labelInformacoes">Informações do Cidadão
+            </h3>
+            <div class="box-tools pull-right">
+
+                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-down"></i></button>
             </div>
-            <div class="box box-default" id="infoBoxEstaticas">
+        </div>
+        <div class="box-body">
+            <div class="box box-default" id="infoBoxPessoal" *ngIf="cidadao$ | async">
+                <mat-tab-group>
+                    <mat-tab label="Pessoais" id="tabTitle">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label id="dadoLabel">NOME</label>
+                                <label id="dadoResult">{{oNossoCidadao.nome}}</label>
+                                <label id="dadoLabel">CPF</label>
+                                <label id="dadoResult">{{showingCpf}}</label>
+                                <label id="dadoLabel">GÊNERO</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;">{{oNossoCidadao.dadosPessoais.genero}}</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <label id="dadoLabel">DATA DE NASCIMENTO</label>
+                                <label id="dadoResult">{{oNossoCidadao.dataNascimento}}</label>
+                                <label id="dadoLabel">RG</label>
+                                <label id="dadoResult">{{oNossoCidadao.rg}}</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <label id="dadoLabel">TELEFONE</label>
+                                <label id="dadoResult">{{showingPhone}}</label>
+                                <label id="dadoLabel">E-MAIL</label>
+                                <label id="dadoResult">{{oNossoCidadao.dadosPessoais.email}}</label>
 
-                <label id="estaticasLabel">Estáticas</label>
-                <div class="row">
-                    <div class="col-md-4">
-                        <label id="dadoLabel">ALTURA</label>
-                        <label id="dadoResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
-                        <label id="dadoLabel">DOENÇA RENAL CRÔNICA</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1">Não</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 2">Sim</label>
-                        <label id="dadoLabel">HISTÓRICO DE AVC</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 2">Sim</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1">Não</label>
-                    </div>
-                    <div class="col-md-4">
-                        <label id="dadoLabel">DIABETES</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 4">Diabetes Gestante</label>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Endereço">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label id="dadoLabel">CEP</label>
+                                <label id="dadoResult">{{showingCep}}</label>
+                                <label id="dadoLabel">ESTADO</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;">{{oNossoCidadao.dadosPessoais.endereco.estado}}</label>
+                            </div>
+                            <div class="col-md-4">
+                                <label id="dadoLabel">ENDEREÇO</label>
+                                <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.rua}}, {{oNossoCidadao.dadosPessoais.endereco.numero}}</label>
+                                <label id="dadoLabel">COMPLEMENTO</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;">{{oNossoCidadao.dadosPessoais.endereco.complemento}}</label>
+                            </div>
+                            <div class="col-md-4">
 
-                        <label id="dadoLabel">INSUFICIÊNCIA CARDÍACA</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 2">Sim</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1">Não</label>
-                        <label id="dadoLabel">DOENÇA ARTERIAL OBSTRUTIVA PERIFÉRICA</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 2">Sim</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1">Não</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 0">Não Informado</label>
+                                <label id="dadoLabel">CIDADE</label>
+                                <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.cidade}}</label>
 
-                    </div>
-                    <div class="col-md-4">
-                        <label id="dadoLabel">FUMANTE</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Estáticas">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label id="dadoLabel">ALTURA</label>
+                                <label id="dadoResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
+                                <label id="dadoLabel">DOENÇA RENAL CRÔNICA</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1">Não</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 2">Sim</label>
+                                <label id="dadoLabel">HISTÓRICO DE AVC</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 2">Sim</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1">Não</label>
+                            </div>
+                            <div class="col-md-4">
+                                <label id="dadoLabel">DIABETES</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 4">Diabetes Gestante</label>
 
-                        <label id="dadoLabel">HISTÓRICO DE INFARTO</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 2">Sim</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1">Não</label>
+                                <label id="dadoLabel">INSUFICIÊNCIA CARDÍACA</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 2">Sim</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1">Não</label>
+                                <label id="dadoLabel">DOENÇA ARTERIAL OBSTRUTIVA PERIFÉRICA</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 2">Sim</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1">Não</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 0">Não Informado</label>
 
-                        <label id="dadoLabel">RETINOPATIA HIPERTENSIVA</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 2">Sim</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 1">Não</label>
-                        <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 0">Não Informado</label>
-                    </div>
-                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label id="dadoLabel">FUMANTE</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
+
+                                <label id="dadoLabel">HISTÓRICO DE INFARTO</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 2">Sim</label>
+                                <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1">Não</label>
+
+                                <label id="dadoLabel">RETINOPATIA HIPERTENSIVA</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 2">Sim</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 1">Não</label>
+                                <label id="dadoResult" style="margin-bottom: 2%;" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 0">Não Informado</label>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+
             </div>
         </div>
     </div>

@@ -1,5 +1,7 @@
 #divtitle {
     display: inline-block;
+    margin-top: 1%;
+    margin-left: 1%;
 }
 
 .content-header {
@@ -7,11 +9,65 @@
 }
 
 .content {
-    margin-left: 1%;
+    margin-left: 2%;
+    width: 97%;
+}
+
+.content-header {
+    top: 3%;
 }
 
 .container {
     width: 100%;
+}
+
+.box-default {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.mat-tab-label {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #37804B;
+}
+
+.mat-tab-label.mat-tab-label-active {
+    background: linear-gradient(0deg, rgba(55, 128, 75, 0.12), rgba(55, 128, 75, 0.12)), #FFFFFF;
+}
+
+#returnButton {
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 4px;
+    width: 117px;
+    height: 36px;
+    margin-left: 3%;
+    margin-top: 1%;
+}
+
+#returnButtonLabel {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    width: 110px;
 }
 
 #infoBox {
@@ -20,7 +76,7 @@
     padding: 10px;
     width: 99%;
     left: 0px;
-    top: 75px;
+    top: 25px;
     background: #F2F2F2;
     border-radius: 4px;
     /* Inside Auto Layout */
@@ -159,6 +215,9 @@ table {
     text-transform: uppercase;
     color: #000000;
     opacity: 0.6;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
 }
 
 #dadoResult {
@@ -172,6 +231,7 @@ table {
     /* identical to box height */
     display: flex;
     color: #000000;
+    margin-left: 2%;
 }
 
 #medicaoBox {
@@ -181,7 +241,7 @@ table {
     width: 99%;
     min-height: 235px;
     height: wrap-content;
-    top: 100px;
+    top: 50px;
     background: #F5F5F5;
     border-radius: 4px;
     /* Inside Auto Layout */

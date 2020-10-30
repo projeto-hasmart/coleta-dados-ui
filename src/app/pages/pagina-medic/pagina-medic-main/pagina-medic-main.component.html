@@ -2,12 +2,9 @@
     <div id="topMobile" *ngIf="isMobile">
 
         <div id="hasmartMobile" *ngIf="isMobile">
-            <img src="/assets/dist/img/logo.png">
-            <label style="margin-left: 1%;">HASmart</label>
             <div id="divtitle">
-                <label id="labelNome">Relatórios</label>
-                <div id="divcpf" *ngIf="!isMobile"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{medic.crm}}</label></div>
-                <label id="labelVisualize">Baixe os relatórios dos cidadãos vinculados ao seu CRM</label>
+                <label id="labelNome" style="margin-top: 1.5%;">Relatórios</label>
+                <label id="labelVisualize" style="margin-top: 0.5%;">Baixe os relatórios dos cidadãos vinculados ao seu CRM</label>
             </div>
             <div id="medicoesBackground" class="row" style="margin-left: 1%; width: 97%; margin-bottom: 2.5%; height: fit-content;" *ngIf="isMobile">
                 LEGENDA
@@ -27,7 +24,7 @@
 </section>
 <section class="content">
 
-    <div class="box box-default" id="box">
+    <div class="box box-default" id="box" *ngIf="!isMobile">
         <div id="tabela" *ngIf="!isMobile">
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 
@@ -65,9 +62,11 @@
                 </tr>
             </table>
         </div>
+    </div>
+    <div class="box box-default" id="box" style="margin-top: 55%;" *ngIf="isMobile">
 
-        <div id="mobiletabela" *ngIf="isMobile" style="margin-top: 5%;">
-            <mat-card *ngFor="let element of ELEMENT_DATA" id="mobileDiv">
+        <div id="mobiletabela" *ngIf="isMobile">
+            <mat-card *ngFor="let element of ELEMENT_DATA" id="mobileDiv" (click)="getRecord(element.cpf)">
                 <div class="row">
                     <div class="col-xs-8" style="margin-left: 5%;">
                         <!---->
@@ -91,19 +90,9 @@
                         </div>
 
                     </div>
-                    <div class="col-xs-4" style="margin: auto ; position: absolute;
-                  top:0;
-                  bottom: 0;
-
-                  right: 5%; width: 60px;height: 60px; background: #F2F2F2; border-radius: 8px; padding: 5%;">
-                        <!---->
-                        <img src="/assets/dist/img/download_phone.png" style="width: 70%; margin-left: 15%;">
-                        <!---->
-                    </div>
                 </div>
             </mat-card>
         </div>
-
     </div>
     <!-- <div class="box box-default " id="boxTwo ">
       <div class='col-md-2'>
