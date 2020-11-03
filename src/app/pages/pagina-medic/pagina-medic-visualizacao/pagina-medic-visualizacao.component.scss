@@ -492,3 +492,56 @@ th.mat-header-cell {
     color: #000000;
     padding-left: 10px;
 }
+
+#titleModal {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    margin-left: 1%;
+    /* identical to box height */
+    text-transform: uppercase;
+    font-feature-settings: 'case' on;
+    color: #000000;
+}
+
+#secondTitleModal {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#informacoesPessoais {
+    width: 223px;
+    height: 30px;
+    top: 0px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    color: #000000;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: flex-start;
+    margin: 0px 10px;
+}
+
+#downloadPhone {
+    width: 48px;
+    height: 48px;
+    margin-top: 100px;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}

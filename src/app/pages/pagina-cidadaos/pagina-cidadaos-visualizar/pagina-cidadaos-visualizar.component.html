@@ -1,7 +1,7 @@
 <section class="content-header" *ngIf="(cidadao$ | async)">
     <div id="divtitle">
         <label id="labelNome">{{oNossoCidadao.nome}}</label>
-        <div id="divcpf"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{oNossoCidadao.cpf}}</label></div>
+        <div id="divcpf"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{showingCpf}}</label></div>
         <label id="labelVisualize">Visualize autorizações e dados de {{oNossoCidadao.nome}}, ou inicie processos de medição ou dispensação</label>
     </div>
     <!-- <div id="searchboxtoggle" class="row">

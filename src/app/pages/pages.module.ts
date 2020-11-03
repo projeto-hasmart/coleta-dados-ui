@@ -36,7 +36,7 @@ import { PaginaMedicVisualizacaoComponent } from './pagina-medic/pagina-medic-vi
 import { PaginaMedicMainComponent } from './pagina-medic/pagina-medic-main/pagina-medic-main.component';
 import {MatTabsModule} from '@angular/material/tabs';
 
-
+// npm install mdbootstrap
 @NgModule({
   declarations: [
     PagesComponent,
