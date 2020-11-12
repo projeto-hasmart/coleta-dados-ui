@@ -10,3 +10,10 @@ export interface Medicao {
   id?: number;
   medicamentos?: Medicamento[];
 }
+
+export interface MobileMedicao {
+  sistolica;
+  diastolica;
+  peso;
+  dataHora;
+}
