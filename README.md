@@ -23,9 +23,9 @@ Um aplicativo de página única (em inglês "single-page application", ou SPA) �
 
 # Já utilizando o código no VSCode:
 * 1. Abrir um Terminal dentro do VSCode;
-* 2. No terminal, digitar ```npm install``` se for a primeira vez;
+* 2. No terminal, digitar ```sudo npm install``` se for a primeira vez;
 * 3. No terminal, digitar 
- ```npm i @angular/flex-layout@8.0.0-beta.27```, ```sudo npm install jspdf@1.5.3``` e depois ```npm i ngx-device-detector@1.3.20``` se for a primeira vez;
+ ```sudo npm i @angular/flex-layout@8.0.0-beta.27```, ```sudo npm install jspdf@1.4.1```, ```sudo npm i html2canvas``` e depois ```sudo npm i ngx-device-detector@1.3.20``` se for a primeira vez;
 * 4. Digitar ```(sudo) npm start```;
 * 5. Acessar http://localhost:4200/;
 
@@ -46,6 +46,7 @@ Pasta pages:
   * pagina-inicio -> página inicial onde se recebe a pessoa que fez login e também dá a opção de já buscar um cidadão
   * pagina-medicamentos -> antigo conteúdo do projeto, não é mais utilizado
   * pagina-medicao -> página que é chamada quando se deseja fazer uma medição de um cidadão
+  * pagina-medic -> página para visualização por parte de médicos do programa, através de PCs ou Mobile.
 
 Root:
   * proxy.config.json -> configuração de proxy para conexão da API e evitar erros de CORS. 
