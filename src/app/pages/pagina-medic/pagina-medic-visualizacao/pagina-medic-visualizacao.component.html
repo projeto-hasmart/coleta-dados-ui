@@ -361,7 +361,7 @@ margin-top: 8%; width: 100%;">
             <div class="modal-body">
                 <label id="modalText">Baixe ou realize a impressão do relatório deste cidadão.</label>
                 <div id="buttons-modal">
-                    <button mat-button id="naobutton" data-dismiss="modal"><label id="naolabel">IMPRIMIR</label></button>
+                    <button mat-button id="naobutton" data-dismiss="modal" (click)="printAsPDF()"><label id="naolabel">IMPRIMIR</label></button>
                     <button mat-button id="simbutton" data-dismiss="modal" (click)="downloadAsPDF()"><label id="simlabel">BAIXAR</label></button>
                 </div>
             </div>

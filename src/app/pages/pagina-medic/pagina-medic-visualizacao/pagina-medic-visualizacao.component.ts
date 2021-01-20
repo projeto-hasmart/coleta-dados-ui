@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ViewEncapsulation } from '@angular/core';
 import * as jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 interface Diabetes {
   value: number;
@@ -119,25 +120,100 @@ ngOnInit() {
 
 
 }
+public printAsPDF() {
 
+
+  const div = document.getElementById('infoBox');
+  const divv = document.getElementById('medicaoBox');
+  const options = {
+    background: 'white',
+    scale: 3
+  };
+  const doc = new jsPDF('p', 'mm', 'a4', 1);
+
+  html2canvas(div, options).then((canvas) => {
+
+    const img = canvas.toDataURL('image/PNG');
+
+    // Add image Canvas to PDF
+    const bufferX = 5;
+    const bufferY = 5;
+    const imgProps = (doc as any).getImageProperties(img);
+    const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+
+    return doc;
+  });
+  html2canvas(divv, options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+      doc.addPage('p', 'mm', 'a4', 1);
+
+      // Add image Canvas to PDF
+      const bufferX = 5;
+      const bufferY = 5;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+
+      return doc;
+    // tslint:disable-next-line: no-shadowed-variable
+    }).then(doc => {
+      window.open(
+        doc.output('bloburl', { filename: 'Relatório HASmart ' + this.currentDate + '.pdf' }),
+        '_blank'
+      );
+    });
+
+
+}
 
 public downloadAsPDF() {
-  const doc = new jsPDF();
 
-  const specialElementHandlers = {
-    '#editor'(element, renderer) {
-      return true;
-    }
+
+  const div = document.getElementById('infoBox');
+  const divv = document.getElementById('medicaoBox');
+  const options = {
+    background: 'white',
+    scale: 3
   };
+  const doc = new jsPDF('p', 'mm', 'a4');
 
-  const pdfTable = this.infoBox.nativeElement;
+  html2canvas(div, options).then((canvas) => {
 
-  doc.fromHTML(pdfTable.innerHTML, 15, 15, {
-    width: 190,
-    elementHandlers: specialElementHandlers
+    const img = canvas.toDataURL('image/PNG');
+
+    // Add image Canvas to PDF
+    const bufferX = 5;
+    const bufferY = 5;
+    const imgProps = (doc as any).getImageProperties(img);
+    const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+
+    return doc;
   });
+  html2canvas(divv, options).then((canvas) => {
 
-  doc.save('relatorio' + this.currentDate + '.pdf');
+      const img = canvas.toDataURL('image/PNG');
+      doc.addPage('p', 'mm', 'a4');
+
+      // Add image Canvas to PDF
+      const bufferX = 5;
+      const bufferY = 5;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+
+      return doc;
+    // tslint:disable-next-line: no-shadowed-variable
+    }).then(doc => {
+      doc.save('Relatório HASmart ' + this.currentDate + '.pdf');
+    });
+
 
 }
 @HostListener('window:resize', ['$event'])
