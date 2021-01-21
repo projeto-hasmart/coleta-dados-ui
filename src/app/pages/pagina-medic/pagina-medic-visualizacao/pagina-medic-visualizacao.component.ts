@@ -1,3 +1,4 @@
+import { Cidadao } from './../../../models/cidadao';
 import { CidadaoServiceService } from './../../../services/cidadao/cidadao-service.service';
 import { ApiService } from './../../../services/api.service';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -6,7 +7,6 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Cidadao } from 'src/app/models/cidadao';
 import { CidadaoEdit } from 'src/app/models/cidadaoEdit';
 import { Medicao, MobileMedicao } from 'src/app/models/medicao';
 import { HttpClient } from '@angular/common/http';
@@ -57,7 +57,7 @@ export class PaginaMedicVisualizacaoComponent implements OnInit {
   j: number;
   sendingCpf: string;
   weight;
-  selectedCitizen;
+  selectedCitizen: Cidadao;
   displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
   dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
   dataSourceMedi = new MatTableDataSource<any>(this.ELEMENTS_DATA);
@@ -104,13 +104,13 @@ constructor(private apiService: ApiService, private cz: CidadaoServiceService, p
                }
 
 ngOnInit() {
-    this.selectedCitizen = localStorage.getItem('medicCitizen');
+    this.selectedCitizen = JSON.parse(localStorage.getItem('medicCitizen')) as Cidadao;
     this.innerWidth = window.innerWidth;
     this.ELEMENT_DATA = [];
     localStorage.setItem('citizen', '1');
     this.apiService.getCidadaoById(1).subscribe(cidadao => {
     this.oNossoCidadao = cidadao as Cidadao;
-    this.cidadao$ = this.apiService.getCidadaoById(1);
+    this.cidadao$ = this.apiService.getCidadaoById(this.selectedCitizen.id);
     this.getMedicoes();
     this.genero = this.oNossoCidadao.dadosPessoais.genero;
     this.verCpf();

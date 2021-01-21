@@ -30,35 +30,35 @@
 
                 <ng-container matColumnDef="cidadao">
                     <th mat-header-cell *matHeaderCellDef> Cidadão </th>
-                    <td mat-cell *matCellDef="let element"> {{element.cidadao}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
                 </ng-container>
                 <ng-container matColumnDef="ultimaVisita">
                     <th mat-header-cell *matHeaderCellDef> Última Visita </th>
-                    <td mat-cell *matCellDef="let element"> {{element.ultimaVisita}} </td>
+                    <!-- <td mat-cell *matCellDef="let element"> {{element.cidadaosAtuais}} </td> -->
                 </ng-container>
                 <ng-container matColumnDef="medicoesSolicitadas">
                     <th mat-header-cell *matHeaderCellDef> Medições Solicitadas </th>
-                    <td mat-cell *matCellDef="let element"> {{element.medicoesS}} </td>
+                    <!-- <td mat-cell *matCellDef="let element"> {{element.medicoesS}} </td> -->
                 </ng-container>
                 <ng-container matColumnDef="medicoesRealizadas">
                     <th mat-header-cell *matHeaderCellDef> Medições Realizadas </th>
-                    <td mat-cell *matCellDef="let element"> {{element.medicoesR}} </td>
+                    <!-- <td mat-cell *matCellDef="let element"> {{element.medicoesR}} </td> -->
                 </ng-container>
                 <ng-container matColumnDef="telefone">
                     <th mat-header-cell *matHeaderCellDef> Telefone 1 </th>
-                    <td mat-cell *matCellDef="let element"> {{element.telefone | mask:"(00)00000-0000"}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.dadosPessoais.telefone | mask:"(00)00000-0000"}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="telefone2">
                     <th mat-header-cell *matHeaderCellDef> Telefone 2 </th>
-                    <td mat-cell *matCellDef="let element"> {{element.telefonesecundario | mask:"(00)00000-0000"}} </td>
+                    <!-- <td mat-cell *matCellDef="let element"> {{element.telefonesecundario | mask:"(00)00000-0000"}} </td> -->
                 </ng-container>
                 <ng-container matColumnDef="cpf">
                     <th mat-header-cell *matHeaderCellDef>CPF</th>
                     <td mat-cell *matCellDef="let element">{{element.cpf}}</td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)">
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)"> <!--DAR UM JEITO DE PEGAR O CPF-->
                 </tr>
             </table>
         </div>
@@ -72,12 +72,13 @@
                         <!---->
                         <div class="row">
                             <mat-card-title>
-                                {{element.cidadao}}<label id="medicoesBackground" style="width: fit-content; display: inline-block;">
-                            <img src=" /assets/dist/img/yellow_small_heart.png ">{{element.medicoesS}}
-                            <img src="/assets/dist/img/green_small_heart.png"> {{element.medicoesR}}</label></mat-card-title>
+                                {{element.nome}}<label id="medicoesBackground" style="width: fit-content; display: inline-block;">
+                            <!-- <img src=" /assets/dist/img/yellow_small_heart.png ">{{element.medicoesS}} -->
+                            <!-- <img src="/assets/dist/img/green_small_heart.png"> {{element.medicoesR}}-->
+                          </label></mat-card-title>
                         </div>
                         <div class="row">
-                            <img src="/assets/dist/img/telefone_toca.png " style="width: 5%;margin-right: 2.5%; "><label id="labelText">{{element.telefone | mask:"(00)00000-0000"}}</label>
+                            <img src="/assets/dist/img/telefone_toca.png " style="width: 5%;margin-right: 2.5%; "><label id="labelText">{{element.dadosPessoais.telefone | mask:"(00)00000-0000"}}</label>
 
                         </div>
                         <div class="row">

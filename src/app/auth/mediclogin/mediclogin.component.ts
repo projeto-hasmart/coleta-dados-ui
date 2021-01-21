@@ -1,3 +1,4 @@
+import { MedicoService } from './../../services/medico/medico.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
@@ -11,7 +12,7 @@ export class MedicloginComponent implements OnInit {
   hide = true;
   showPw = false;
   user: string;
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private medicoService: MedicoService, private router: Router) { }
 
   ngOnInit() {
     this.clearLocalStorage();
@@ -25,8 +26,7 @@ export class MedicloginComponent implements OnInit {
     localStorage.clear();
   }
   createRole() {
-    this.apiService.login(this.user);
-    this.router.navigate(['medico/visualizar']);
+    this.medicoService.login(this.user);
 
   }
 }

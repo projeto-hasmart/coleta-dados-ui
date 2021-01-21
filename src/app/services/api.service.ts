@@ -94,19 +94,9 @@ login(usernameForLogin?: string, password?: string) {
     localStorage.setItem('currentUser', JSON.stringify(this.user));
     // this.currentUserSubject.next(this.user);
 
-  } else if (usernameForLogin === 'medic') {
-    this.user = {
-      username: usernameForLogin,
-      role: Role.Medico,
-      firstName: 'George',
-      lastName: 'Matos',
-      crm: '123123123'
-    };
-    this.authenticate(usernameForLogin).subscribe();
-    localStorage.setItem('currentUser', JSON.stringify(this.user));
-
   }
 }
+
 authenticate(role: string): Observable<any> {
 const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
 const body = new URLSearchParams();

@@ -27,15 +27,15 @@ statusCode: number;
 
 
 // API: GET /medico
-getMedicoById(crm: string): Observable<Medico[]> {
-  return this.httpClient.get<Medico[]>(environment.api + '/hasmart/api/Medico' + crm, this.httpOptions)
+getMedicoById(crm: string): Observable<Medico> {
+  return this.httpClient.get<Medico>(environment.api + '/hasmart/api/Medico?crm=' + crm, this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError));
 }
 
 // API: POST /HaSmart/api/medico
-public createCidadao(medico: Medico): Observable<Medico> {
+public createMedico(medico: Medico): Observable<Medico> {
   return this.httpClient.post<Medico>((environment.api + '/hasmart/api/Medico'), medico, this.httpOptions)
   .pipe(
     catchError(this.handleError));
@@ -56,46 +56,28 @@ handleError(error: HttpErrorResponse) {
   this.statusCode = error.status;
   return throwError(error);
 }
-login(usernameForLogin?: string, password?: string) {
-  if (usernameForLogin === 'admin') {
-    this.user = {
-      username: usernameForLogin,
-      role: Role.Admin,
-      firstName: 'Fábio',
-      lastName: 'Martins'
-    };
-    this.authenticate(usernameForLogin).subscribe();
-    localStorage.setItem('currentUser', JSON.stringify(this.user));
-    // this.router.navigate(['/admin']);
-  } else if (usernameForLogin === 'user') {
-    this.user = {
-      username: usernameForLogin,
-      role: Role.User,
-      firstName: 'Maria',
-      lastName: 'Andrade'
-    };
-    this.authenticate(usernameForLogin).subscribe();
-    localStorage.setItem('currentUser', JSON.stringify(this.user));
-    // this.currentUserSubject.next(this.user);
+login(crmLogin: string) {
 
-  } else if (usernameForLogin === 'medic') {
+  this.authenticate('medico').subscribe();
+  this.getMedicoById(crmLogin).subscribe(data => {
     this.user = {
-      username: usernameForLogin,
+      username: crmLogin,
+      crm: crmLogin,
       role: Role.Medico,
-      firstName: 'George',
-      lastName: 'Matos',
-      crm: '123123123'
+      firstName: data.nome
     };
-    this.authenticate(usernameForLogin).subscribe();
     localStorage.setItem('currentUser', JSON.stringify(this.user));
+    this.router.navigate(['medico/visualizar']);
+  });
 
-  }
+
+
 }
 authenticate(role: string): Observable<any> {
 const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
 const body = new URLSearchParams();
 body.set('grant_type', 'client_credentials');
-if (role === 'admin') {
+if (role === 'medico') {
 
   body.set('client_id', 'admin');
   body.set('client_secret', 'admin');
