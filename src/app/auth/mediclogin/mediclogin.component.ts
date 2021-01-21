@@ -11,6 +11,8 @@ import { ApiService } from 'src/app/services/api.service';
 export class MedicloginComponent implements OnInit {
   hide = true;
   showPw = false;
+  error;
+  medicoError;
   user: string;
   constructor(private medicoService: MedicoService, private router: Router) { }
 
@@ -27,6 +29,7 @@ export class MedicloginComponent implements OnInit {
   }
   createRole() {
     this.medicoService.login(this.user);
-
+    this.error = localStorage.getItem('authenticationError');
+    this.medicoError = localStorage.getItem('crmError');
   }
 }

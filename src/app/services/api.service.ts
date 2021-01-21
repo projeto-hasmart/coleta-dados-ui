@@ -74,24 +74,32 @@ handleError(error: HttpErrorResponse) {
 }
 login(usernameForLogin?: string, password?: string) {
   if (usernameForLogin === 'admin') {
-    this.user = {
-      username: usernameForLogin,
-      role: Role.Admin,
-      firstName: 'Fábio',
-      lastName: 'Martins'
-    };
-    this.authenticate(usernameForLogin).subscribe();
-    localStorage.setItem('currentUser', JSON.stringify(this.user));
+    this.authenticate(usernameForLogin).subscribe(date => {
+      this.user = {
+        username: usernameForLogin,
+        role: Role.Admin,
+        firstName: 'Fábio',
+        lastName: 'Martins'
+      };
+      localStorage.setItem('currentUser', JSON.stringify(this.user));
+    }, err => {
+      localStorage.setItem('authenticationError', 'yes');
+
+    });
     // this.router.navigate(['/admin']);
   } else if (usernameForLogin === 'user') {
-    this.user = {
-      username: usernameForLogin,
-      role: Role.User,
-      firstName: 'Maria',
-      lastName: 'Andrade'
-    };
-    this.authenticate(usernameForLogin).subscribe();
-    localStorage.setItem('currentUser', JSON.stringify(this.user));
+
+    this.authenticate(usernameForLogin).subscribe(res => {
+      this.user = {
+        username: usernameForLogin,
+        role: Role.User,
+        firstName: 'Maria',
+        lastName: 'Andrade'
+      };
+      localStorage.setItem('currentUser', JSON.stringify(this.user));
+    }, err => {
+      localStorage.setItem('authenticationError', 'yes');
+    });
     // this.currentUserSubject.next(this.user);
 
   }

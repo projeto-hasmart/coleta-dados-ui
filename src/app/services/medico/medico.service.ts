@@ -58,17 +58,25 @@ handleError(error: HttpErrorResponse) {
 }
 login(crmLogin: string) {
 
-  this.authenticate('medico').subscribe();
-  this.getMedicoById(crmLogin).subscribe(data => {
-    this.user = {
-      username: crmLogin,
-      crm: crmLogin,
-      role: Role.Medico,
-      firstName: data.nome
-    };
-    localStorage.setItem('currentUser', JSON.stringify(this.user));
-    this.router.navigate(['medico/visualizar']);
-  });
+  this.authenticate('medico').subscribe(date => {
+    this.getMedicoById(crmLogin).subscribe(data => {
+      this.user = {
+        username: crmLogin,
+        crm: crmLogin,
+        role: Role.Medico,
+        firstName: data.nome
+      };
+      localStorage.setItem('currentUser', JSON.stringify(this.user));
+      this.router.navigate(['medico/visualizar']);
+    }, err => {
+      localStorage.setItem('crmError', 'yes');
+    });
+  }, err => {
+    localStorage.setItem('authenticationError', 'yes');
+
+  }
+  );
+
 
 
 

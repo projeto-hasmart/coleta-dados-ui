@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot,
   UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { User } from '../models/user';
+import { Role } from '../models/role';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +15,19 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const currentUser = this.apiService.user;
-      if (currentUser) {
-          // check if route is restricted by role
-          if (next.data.roles && next.data.roles.indexOf(currentUser.role) === -1) {
-              // role not authorised so redirect to home page
-              this.router.navigate(['/inicio']);
-              return false;
-          }
-
-          // authorised so return true
-          return true;
+      const currentUser = JSON.parse(localStorage.getItem('currentUser')) as User;
+      if (currentUser !== null) {
+        if (currentUser.role !== Role.Medico || currentUser === null || currentUser === undefined) {
+          this.router.navigate(['login/medico']);
+          return false;
       } else {
         return true;
       }
+      } else {
+        this.router.navigate(['login/medico']);
+        return false;
+      }
+
       // // not logged in so redirect to login page with the return url
       // this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       // return false;

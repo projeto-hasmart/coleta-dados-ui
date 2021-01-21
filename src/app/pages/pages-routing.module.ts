@@ -29,7 +29,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'medico', component: PaginaMedicComponent, children: [
+    path: 'medico', component: PaginaMedicComponent, canActivate: [AuthGuard], children: [
       {path: 'visualizar', component: PaginaMedicMainComponent},
       {path: 'visualizar/cidadao', component: PaginaMedicVisualizacaoComponent}
     ]
