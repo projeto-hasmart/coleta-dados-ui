@@ -1,3 +1,4 @@
+import { Medico } from 'src/app/models/medico';
 import { environment } from './../../environments/environment';
 import { Router, RouterState } from '@angular/router';
 import { Cidadao } from './../models/cidadao';
@@ -42,7 +43,7 @@ public createCidadao(cidadao: Cidadao): Observable<Cidadao> {
 }
 
 // API: GET /cidadaos/:id
-public getCidadaoById(cidadaoId: number): Observable<Cidadao> {
+public getCidadaoById(cidadaoId: string): Observable<Cidadao> {
   return this.httpClient.get<Cidadao>(environment.api + '/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
     .pipe(
       retry(2),
@@ -50,14 +51,24 @@ public getCidadaoById(cidadaoId: number): Observable<Cidadao> {
 }
 
 // API: PUT /cidadaos/:id
-public updateCidadao(cidadao: CidadaoEdit, id: number): Observable<any> {
+public updateCidadao(cidadao: CidadaoEdit, id: string): Observable<any> {
   return this.httpClient.put((environment.api + '/hasmart/api/Cidadaos/' + id), cidadao, this.httpOptions)
     .pipe(
     retry(2),
     catchError(this.handleError));
 }
 
-
+public authenticate(op: Medico): Observable<Medico> {
+    this.httpClient.post<Medico>((environment.api + '/hasmart/api/Medico/operador'), op, this.httpOptions).subscribe(res => {
+      localStorage.setItem('currentUser', JSON.stringify(res));
+      return res;
+    }, err => {
+      this.handleError(err);
+    });
+    return this.httpClient.post<Medico>((environment.api + '/hasmart/api/Medico/operador'), op, this.httpOptions) .pipe(
+      retry(2),
+      catchError(this.handleError));
+  }
 handleError(error: HttpErrorResponse) {
   let errorMessage = '';
   if (error.error instanceof ErrorEvent) {
@@ -72,29 +83,34 @@ handleError(error: HttpErrorResponse) {
   this.statusCode = error.status;
   return throwError(error);
 }
-login(usernameForLogin?: string, password?: string) {
-  if (usernameForLogin === 'admin') {
-    this.authenticate(usernameForLogin).subscribe(date => {
+login(usernameForLogin: string, passwordForLogin: string) {
+  // if (usernameForLogin === 'admin') {
+  //   this.authenticate(usernameForLogin).subscribe(date => {
+  //     this.user = {
+  //       username: usernameForLogin,
+  //       role: Role.Admin,
+  //       firstName: 'Fábio',
+  //       lastName: 'Martins'
+  //     };
+  //     localStorage.setItem('currentUser', JSON.stringify(this.user));
+  //   }, err => {
+  //     localStorage.setItem('authenticationError', 'yes');
+
+  //   });
+  //   // this.router.navigate(['/admin']);
+  // }
+    const op: Medico = {
+      nome: usernameForLogin,
+      senha: passwordForLogin
+    };
+    this.authenticate(op).subscribe(res => {
       this.user = {
         username: usernameForLogin,
-        role: Role.Admin,
-        firstName: 'Fábio',
-        lastName: 'Martins'
-      };
-      localStorage.setItem('currentUser', JSON.stringify(this.user));
-    }, err => {
-      localStorage.setItem('authenticationError', 'yes');
-
-    });
-    // this.router.navigate(['/admin']);
-  } else if (usernameForLogin === 'user') {
-
-    this.authenticate(usernameForLogin).subscribe(res => {
-      this.user = {
-        username: usernameForLogin,
+        id: res.id,
+        password: passwordForLogin,
         role: Role.User,
-        firstName: 'Maria',
-        lastName: 'Andrade'
+        firstName: res.nome
+        // ,lastName: 'Andrade'
       };
       localStorage.setItem('currentUser', JSON.stringify(this.user));
     }, err => {
@@ -102,31 +118,8 @@ login(usernameForLogin?: string, password?: string) {
     });
     // this.currentUserSubject.next(this.user);
 
-  }
+
 }
 
-authenticate(role: string): Observable<any> {
-const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
-const body = new URLSearchParams();
-body.set('grant_type', 'client_credentials');
-if (role === 'admin') {
 
-  body.set('client_id', 'admin');
-  body.set('client_secret', 'admin');
-} else {
-
-body.set('client_id', 'atendente');
-body.set('client_secret', 'atendente');
-}
-
-return this.httpClient.post<any>(environment.auth + '/connect/token', body.toString(), {
-  headers
-}).pipe(
-  map(jwt => {
-    if (jwt && jwt.access_token) {
-      localStorage.setItem('token', jwt.access_token.toString());
-    }
-  })
-);
-}
 }

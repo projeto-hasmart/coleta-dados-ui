@@ -7,16 +7,16 @@
     <mat-card id="material-card">
         <mat-card-content>
             <div class="form-group has-feedback">
-                <input class="form-control" placeholder="Email" type="email" id="emailLabel" [(ngModel)]="user" (keyup.enter)="createRole()">
+                <input class="form-control" placeholder="Nome" type="email" id="emailLabel" [(ngModel)]="user" (keyup.enter)="createRole()">
                 <!-- <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
             </div>
             <div class="form-group has-feedback">
-                <input class="form-control" placeholder="Senha" [type]="hide ? 'password' : 'text'" id="senhaLabel" (keyup.enter)="createRole()">
+                <input class="form-control" placeholder="Senha" [type]="hide ? 'password' : 'text'" [(ngModel)]="pw" id="senhaLabel" (keyup.enter)="createRole()">
                 <span style="position:absolute; right:8px;top:15px;"><mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></span>
             </div>
 
             <div id='checkboxRemember' style="margin-left: 10px;">
-                <mat-checkbox [(ngModel)]="showPw"><label id="checkboxLabel">Manter-me conectado</label></mat-checkbox>
+                <label id="checkboxLabel" *ngIf="notFound">Dados incorretos, por favor verifique!</label>
             </div>
             <!-- /.col -->
             <!--[routerLink]="'/inicio'"-->
@@ -24,11 +24,12 @@
             <!-- /.col -->
         </mat-card-content>
 
+<!--
         <mat-card-footer>
-            <!-- /.social-auth-links -->
+            
             <a href="#" id="forgotPassword">Esqueceu sua senha?</a><br>
-        </mat-card-footer>
-    </mat-card>
+        </mat-card-footer>-->
+    </mat-card> 
 
     <!-- /.login-box-body -->
 

@@ -12,7 +12,7 @@ import { environment } from './../../../environments/environment';
   providedIn: 'root'
 })
 export class MedicaoServiceService {
-  selecionadoId: number;
+  selecionadoId: string;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('token') })
   };
@@ -30,7 +30,7 @@ export class MedicaoServiceService {
 
 
   }
-  public createMedicao(medicao: Medicao, id: number): Observable<Medicao> {
+  public createMedicao(medicao: Medicao, id: string): Observable<Medicao> {
     return this.httpClient.post<Medicao>((environment.api + '/hasmart/api/Farmacia/medicoes?cidadaoId=' + id), medicao, this.httpOptions)
       .pipe(
         catchError(this.handleError));

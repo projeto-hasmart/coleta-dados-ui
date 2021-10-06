@@ -1,4 +1,4 @@
-import { Medicao } from './medicao';
+import { Medico } from 'src/app/models/medico';
 import { DadosPessoais } from './dadosPessoais';
 import { IndicadorRiscoHAS } from './indicadorRiscoHAS';
 import { Dispensacao } from './dispensacao';
@@ -19,7 +19,8 @@ export interface Cidadao {
   podeRealizarDispensacao?: boolean;
   dataProximaDispensacao?: string;
   dataUltimaDispensacao?: string;
-  id?: number;
+  id?: string;
+  medicoAtual?: Medico;
 }
 /* {
   "nome": "string",

@@ -52,7 +52,7 @@ export class PaginaCidadaosComponent implements OnInit {
     // tslint:disable-next-line: radix
     if (parseInt(localStorage.getItem('citizen')) !== undefined) {
       // tslint:disable-next-line: radix
-      this.cidadaoService.jaTemosCidadao(parseInt(localStorage.getItem('citizen')));
+      this.cidadaoService.jaTemosCidadao(localStorage.getItem('citizen'));
     }
     }
 

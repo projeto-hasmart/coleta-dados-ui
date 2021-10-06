@@ -148,6 +148,8 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     };
     this.apiService.updateCidadao(this.cidadaoEditado, this.oNossoCidadao.id).subscribe();
     this.verCep();
+    setTimeout(() => {
+   }, 500);
     window.location.reload();
   }
 

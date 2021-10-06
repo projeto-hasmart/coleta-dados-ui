@@ -102,8 +102,7 @@
 }
 
 #checkboxRemember {
-    position: relative;
-    left: 140px;
+    text-align: center;
 }
 
 #checkboxLabel {
@@ -114,9 +113,7 @@
     line-height: 19px;
     /* identical to box height */
     /* Ênfase Média */
-    color: rgba(0, 0, 0, 0.6);
-    margin-left: 0px;
-    /* Inside Auto Layout */
+    color: red;
 }
 
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,

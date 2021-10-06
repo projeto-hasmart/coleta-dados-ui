@@ -1,3 +1,4 @@
+import { Medico } from 'src/app/models/medico';
 import { User } from './../../models/user';
 import { CidadaoServiceService } from './../../services/cidadao/cidadao-service.service';
 import { Cidadao } from './../../models/cidadao';
@@ -50,7 +51,7 @@ export class PaginaInicio implements OnInit {
   errorBye = false;
   router: Router;
   mask: string;
-  user: User;
+  user: Medico;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -81,7 +82,7 @@ export class PaginaInicio implements OnInit {
   }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('currentUser')) as User;
+    this.user = JSON.parse(localStorage.getItem('currentUser')) as Medico;
   }
   checkIt(groupValue: string) {
     if (groupValue === 'cpf') {

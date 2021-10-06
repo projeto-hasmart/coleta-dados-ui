@@ -15,7 +15,7 @@ export class CidadaoServiceService {
   cidadano: Cidadao;
   constructor(private httpClient: HttpClient, private router: Router) {
    }
-   selecionadoId: number;
+   selecionadoId: string;
    httpOptions = {
      headers: new HttpHeaders({ 'Content-Type': 'application/json;', Authorization: 'Bearer ' + localStorage.getItem('token') })
    };
@@ -40,13 +40,13 @@ export class CidadaoServiceService {
          catchError(this.handleError));
    }
 
-   public getCidadaoById(cidadaoId: number): Observable<Cidadao> {
+   public getCidadaoById(cidadaoId: string): Observable<Cidadao> {
      return this.httpClient.get<Cidadao>(environment.api + '/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
        .pipe(
          retry(2),
          catchError(this.handleError));
    }
-   jaTemosCidadao(id: number) {
+   jaTemosCidadao(id: string) {
      this.getCidadaoById(id).subscribe(cidadao => {
        this.cidadano = cidadao as Cidadao;
        this.selecionadoId = cidadao.id;

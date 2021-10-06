@@ -18,7 +18,7 @@ export class SideNavComponent implements OnInit {
   routeData;
   user: User;
   // tslint:disable-next-line: radix
-  idk: number = parseInt(localStorage.getItem('citizen'));
+  idk: string = localStorage.getItem('citizen');
   constructor( private router: Router,
                private activatedRoute: ActivatedRoute,
                idk: CidadaoServiceService) {

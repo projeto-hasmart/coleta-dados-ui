@@ -75,7 +75,8 @@ export class PaginaMedicaoComponent implements OnInit {
     {Nome: 'Espironolactona', apresentacao: 'Comprimido 25mg'},
     {Nome: 'Furosemida', apresentacao: 'Comprimido 40mg'},
     {Nome: 'Hidroclorotiazida', apresentacao: 'Comprimido 25mg'},
-    {Nome: 'Metildopa', apresentacao: 'Comprimido 250mg'}
+    {Nome: 'Metildopa', apresentacao: 'Comprimido 250mg'},
+    {Nome: 'Outros'}
   ];
   // filteredMedicine: Observable<Medicamento[]>;
   genero: string;

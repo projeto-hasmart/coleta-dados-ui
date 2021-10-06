@@ -40,7 +40,14 @@ public createMedico(medico: Medico): Observable<Medico> {
   .pipe(
     catchError(this.handleError));
 }
-
+// API: POST /HaSmart/api/medico/{id}/Cidadaos
+public addCitizenToMedico(id: string, cpf: string): Observable<Medico> {
+  let cpfs: string[] = [];
+  cpfs.push(cpf);
+  return this.httpClient.post<Medico>((environment.api + '/hasmart/api/Medico/' + id + '/Cidadaos'), cpfs, this.httpOptions)
+  .pipe(
+    catchError(this.handleError));
+}
 
 handleError(error: HttpErrorResponse) {
   let errorMessage = '';

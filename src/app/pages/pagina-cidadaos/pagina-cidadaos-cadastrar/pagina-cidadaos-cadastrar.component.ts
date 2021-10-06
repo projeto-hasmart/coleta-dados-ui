@@ -1,3 +1,5 @@
+import { MedicoService } from './../../../services/medico/medico.service';
+import { Medico } from 'src/app/models/medico';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { CidadaoServiceService } from 'src/app/services/cidadao/cidadao-service.service';
@@ -31,7 +33,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   apiService: ApiService;
   cz: CidadaoServiceService;
   mz: MedicaoServiceService;
-  dz: DispensacaoServiceService;
+  dz: MedicoService;
   oNovoCidadao: Cidadao;
   historicoAvc = 0;
   doencaRenal = 0;
@@ -59,8 +61,10 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   invalidAltura = false;
   valid = false;
   errorBye = false;
+  user: Medico;
 
-  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService,
+
+  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: MedicoService, apiService: ApiService,
               private router: Router) {
     this.cz = cz;
     this.mz = mz;
@@ -86,6 +90,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     {value: 3, viewValue: 'Ex-Fumante'}
   ];
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('currentUser')) as Medico;
     if (localStorage.getItem('newCpf') !== null) {
       this.cpf = localStorage.getItem('newCpf');
       localStorage.removeItem('newCpf');
@@ -161,7 +166,12 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
       err => {
         this.errorBye = true;
         this.valid = false;
-        console.log(err.error.errors.Cidadão[0]);
+      });
+    this.dz.addCitizenToMedico(this.user.id, this.cpf).subscribe(res => {
+      },
+      err => {
+        this.errorBye = true;
+        this.valid = false;
       });
 
   }

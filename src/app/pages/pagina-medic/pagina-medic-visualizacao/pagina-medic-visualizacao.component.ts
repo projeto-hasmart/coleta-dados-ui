@@ -107,16 +107,16 @@ ngOnInit() {
     this.selectedCitizen = JSON.parse(localStorage.getItem('medicCitizen')) as Cidadao;
     this.innerWidth = window.innerWidth;
     this.ELEMENT_DATA = [];
-    localStorage.setItem('citizen', '1');
-    this.apiService.getCidadaoById(1).subscribe(cidadao => {
-    this.oNossoCidadao = cidadao as Cidadao;
-    this.cidadao$ = this.apiService.getCidadaoById(this.selectedCitizen.id);
-    this.getMedicoes();
-    this.genero = this.oNossoCidadao.dadosPessoais.genero;
-    this.verCpf();
-    this.verCep();
-    this.verTelefone();
-  });
+  //   localStorage.setItem('citizen', '1');
+  //   this.apiService.getCidadaoById(1).subscribe(cidadao => {
+  //   this.oNossoCidadao = cidadao as Cidadao;
+  //   this.cidadao$ = this.apiService.getCidadaoById(this.selectedCitizen.id);
+  //   this.getMedicoes();
+  //   this.genero = this.oNossoCidadao.dadosPessoais.genero;
+  //   this.verCpf();
+  //   this.verCep();
+  //   this.verTelefone();
+  // });
 
 
 }

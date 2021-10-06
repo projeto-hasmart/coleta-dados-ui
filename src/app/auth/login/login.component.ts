@@ -1,3 +1,4 @@
+import { Medico } from 'src/app/models/medico';
 import { ResolveStart, Router } from '@angular/router';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -19,6 +20,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   cidadaos$: Observable<any[]>;
   apiService: ApiService;
   user: string;
+  pw: string;
+  operador: Medico;
+  notFound: boolean = false;
 
   constructor(apiService: ApiService, private router: Router) {
     this.apiService = apiService;
@@ -45,8 +49,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     localStorage.clear();
   }
   createRole() {
-    this.apiService.login(this.user);
-    this.router.navigate(['/inicio']);
+    this.operador = {
+      nome: this.user,
+      senha: this.pw
+    }
+    this.apiService.authenticate(this.operador).subscribe(op => {
+      this.operador = op as Medico;
+      this.router.navigate(['/inicio']);
+    }, err => {
+      this.notFound = true
+    });
   }
   // tryAuth() {
   //   // this.apiService.authenticate(this.username, this.password);
