@@ -6,9 +6,11 @@ export const environment = {
   production: false,
 
   // URL of development API
-  api: '/do',
+  // api: '/do',
+  api: 'http://161.35.118.91:80',
   auth: '/auth',
-  BASE_URL: '/do'
+  // BASE_URL: '/do'
+  BASE_URL: 'http://161.35.118.91:80'
 };
 
 /*

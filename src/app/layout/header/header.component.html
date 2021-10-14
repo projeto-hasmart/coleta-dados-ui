@@ -71,15 +71,15 @@
                         <img alt="User Image" class="user-image" src="assets/dist/img/user2-160x160.jpg" style="margin-left: -10px;" *ngIf="user.role === 'Admin'">
                         <img alt="User Image" class="user-image" src="assets/dist/img/user7-128x128.jpg" style="margin-left: -10px;" *ngIf="user.role === 'User'">
 
-                        <span class="hidden-md" style="margin-top: -12px;">{{user.nome}} <small *ngIf="user.role !== 'Médico'"><i class="fa fa-angle-down pull-right" style="color: grey; padding-left: 25px;" ></i></small></span>
+                        <span class="hidden-md" style="margin-top: -12px;">{{user.username}} <small><i class="fa fa-angle-down pull-right" style="color: grey; padding-left: 25px;" ></i></small></span>
                         <span id="role" style="margin-bottom: 14px;">{{user.role}}</span> <span *ngIf="user.role === 'Médico'" id="role" style="margin-bottom: 14px;">| CRM {{user.crm}}</span>
 
                     </a>
                     <a class="dropdown-toggle" data-toggle="modal" data-target="#logoutmodal" *ngIf="user.role === 'Médico'">
-                        <img alt="User Image" class="user-image" src="assets/dist/img/user2-160x160.jpg" style="margin-left: -10px;" *ngIf="user.role === 'Admin'">
-                        <img alt="User Image" class="user-image" src="assets/dist/img/user7-128x128.jpg" style="margin-left: -10px;" *ngIf="user.role === 'User'">
+                        <!--<img alt="User Image" class="user-image" src="assets/dist/img/user2-160x160.jpg" style="margin-left: -10px;" *ngIf="user.role === 'Admin'">
+                        <img alt="User Image" class="user-image" src="assets/dist/img/user7-128x128.jpg" style="margin-left: -10px;" *ngIf="user.role === 'User'">-->
 
-                        <span class="hidden-md" style="margin-top: -12px;">{{user.nome}}<small *ngIf="user.role !== 'Médico'"><i class="fa fa-angle-down pull-right" style="color: grey; padding-left: 25px;" ></i></small></span>
+                        <span class="hidden-md" style="margin-top: -12px;">{{user.username}}<small *ngIf="user.role !== 'Médico'"><i class="fa fa-angle-down pull-right" style="color: grey; padding-left: 25px;" ></i></small></span>
                         <span id="role" style="margin-bottom: 14px;">{{user.role}}</span> <span *ngIf="user.role === 'Médico'" id="role" style="margin-bottom: 14px;">| CRM {{user.crm}}</span>
 
                     </a>
@@ -90,7 +90,7 @@
                             <img alt="User Image" class="img-circle" src="assets/dist/img/user2-160x160.jpg" *ngIf="user.role === 'Admin'">
                             <img alt="User Image" class="img-circle" src="assets/dist/img/user7-128x128.jpg" *ngIf="user.role === 'User'">
                             <p>
-                                {{user.nome}} 
+                                {{user.username}} 
                                 <!--<small>Member since Nov. 2012</small>-->
                             </p>
                         </li>

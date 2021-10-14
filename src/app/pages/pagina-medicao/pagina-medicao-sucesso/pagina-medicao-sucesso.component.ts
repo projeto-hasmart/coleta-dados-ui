@@ -19,8 +19,8 @@ export class PaginaMedicaoSucessoComponent implements OnInit {
 
   ngOnInit() {
   }
-  goToView(groupValue: string) {
-    this.selecionaCidadao(this.oNossoCidadao.cpf, groupValue);
+  goToView() {
+    this.selecionaCidadao(this.oNossoCidadao.cpf, 'cpf');
   }
   selecionaCidadao(digitado: string, groupValue?: string) {
     if (groupValue === 'cpf') {
