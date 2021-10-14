@@ -27,13 +27,13 @@ export class PaginaMedicaoSucessoComponent implements OnInit {
       this.cz.getAllCidadaos(digitado).subscribe(cidadao => {
         this.cz.cidadaos = cidadao as Cidadao[];
         this.cz.selecionadoId = cidadao[0].id;
-        this.router.navigate(['/cidadaos/visualizar']);
+        this.router.navigate(['/cidadaos/visualizar/' + this.cz.selecionadoId]);
       });
     } else if (groupValue === 'rg') {
       this.cz.getCidadaos(digitado).subscribe(cidadao => {
         this.cz.cidadaos = cidadao as Cidadao[];
         this.cz.selecionadoId = cidadao[0].id;
-        this.router.navigate(['/cidadaos/visualizar']);
+        this.router.navigate(['/cidadaos/visualizar/' + this.cz.selecionadoId]);
       });
     }
   }

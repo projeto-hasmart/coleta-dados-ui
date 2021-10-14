@@ -185,7 +185,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     this.cz.getAllCidadaos(this.oNovoCidadao.cpf).subscribe(cidadao => {
       this.cz.cidadaos = cidadao as Cidadao[];
       this.cz.selecionadoId = cidadao[0].id;
-      this.router.navigate(['/cidadaos/visualizar']);
+      this.router.navigate(['/cidadaos/visualizar/' + this.cz.selecionadoId]);
     });
   }
 }

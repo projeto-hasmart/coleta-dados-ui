@@ -309,7 +309,6 @@ table {
     padding: 10px 16px;
     width: 172px;
     height: 34px;
-    margin-left: 15px;
     /* 700 */
     background: #245E33;
     /* Button Shadow */
@@ -1357,4 +1356,241 @@ input {
 
 #buttonNoCom.selectedNo {
     background-color: #C32240;
+}
+
+#modalText {
+    position: static;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+    /* Body 1 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(0, 0, 0, 0.6);
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    margin: 0px 8px;
+}
+
+#okbutton {
+    height: 36px;
+    width: 57px;
+    padding: 10px 16px;
+    left: 12%;
+    margin-top: 15%;
+    bottom: 0%;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    /* Inside Auto Layout */
+    margin: 16px 0px;
+}
+
+#oklabel {
+    margin-bottom: 20px;
+    width: 25px;
+    height: 16px;
+    left: 16px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+}
+
+#titleModal {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    color: #000000;
+}
+
+#errorLabel {
+    font-size: 12px;
+    margin-left: 2%;
+    height: 13px;
+    color: red;
+    font-family: 'Roboto';
+}
+
+#labelBackground {
+    margin-top: 1%;
+    background: #FFFFFF;
+    border-radius: 4px;
+    width: 100%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+    color: #000000;
+    padding-left: 10px;
+}
+
+#errorLabel {
+    font-size: 12px;
+    margin-left: 2%;
+    height: 13px;
+    color: red;
+    font-family: 'Roboto';
+}
+
+.errorInput {
+    border: 1px solid red;
+    outline: none;
+}
+
+::ng-deep .cdk-overlay-container {
+    z-index: 9999;
+}
+
+#adicionarButtonLabel {
+    position: static;
+    width: 74px;
+    height: 16px;
+    left: 16px;
+    top: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: center;
+    margin: 10px 0px;
+}
+
+#adicionarButton {
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: flex-start;
+    margin: 16px 0px;
+}
+
+#naoAdicionarButtonLabel {
+    /* Label */
+    position: static;
+    width: 72px;
+    height: 16px;
+    left: 16px;
+    top: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    /* 700 */
+    color: #245E33;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: center;
+    margin: 10px 0px;
+}
+
+#naoAdicionarButton {
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 4px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: flex-start;
+    margin: 16px 0px;
+}
+
+#finalizarButton {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 16px;
+    width: 155px;
+    height: 34px;
+    position: absolute;
+    right: 2.5%;
+    margin-top: 100px;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+#finalizarButtonBlocked {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 16px;
+    width: 155px;
+    height: 34px;
+    position: absolute;
+    right: 2.5%;
+    margin-top: 100px;
+    /* 700 */
+    background: #E0E0E0;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+#retornoCidadaoButton {
+    padding: 10px 16px;
+    position: absolute;
+    right: 2.5%;
+    width: 227px;
+    height: 34px;
+    top: 100px;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    @media (max-width: 1260px) {
+        top: 200px;
+        left: 50%;
+    }
+}
+
+#retornoCidadaoButtonLabel {
+    position: absolute;
+    width: 118px;
+    height: 14px;
+    left: 16px;
+    bottom: 0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: center;
+    margin: 10px 0px;
 }

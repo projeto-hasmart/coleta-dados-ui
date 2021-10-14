@@ -35,6 +35,9 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
 import { PaginaMedicVisualizacaoComponent } from './pagina-medic/pagina-medic-visualizacao/pagina-medic-visualizacao.component';
 import { PaginaMedicMainComponent } from './pagina-medic/pagina-medic-main/pagina-medic-main.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { PaginaCidadaoRelatorioComponent } from './pagina-cidadaos/pagina-cidadao-relatorio/pagina-cidadao-relatorio.component';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
+
 
 // npm install mdbootstrap
 @NgModule({
@@ -51,7 +54,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     PaginaFarmaciaComponent,
     PaginaMedicComponent,
     PaginaMedicVisualizacaoComponent,
-    PaginaMedicMainComponent
+    PaginaMedicMainComponent,
+    PaginaCidadaoRelatorioComponent
     ],
   imports: [
     CommonModule,
@@ -74,8 +78,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatAutocompleteModule,
     NgxMaskModule.forRoot(),
     DeviceDetectorModule.forRoot(),
-    MatTabsModule
-
+    MatTabsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     Global

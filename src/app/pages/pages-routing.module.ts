@@ -14,6 +14,7 @@ import { PaginaCidadaosVisualizarComponent } from './pagina-cidadaos/pagina-cida
 import { PaginaMedicaoSucessoComponent } from './pagina-medicao/pagina-medicao-sucesso/pagina-medicao-sucesso.component';
 import { PaginaMedicamentosComponent } from './pagina-medicamentos/pagina-medicamentos.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { PaginaCidadaoRelatorioComponent } from './pagina-cidadaos/pagina-cidadao-relatorio/pagina-cidadao-relatorio.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
       { path: 'inicio', component:  PaginaInicio },
       { path: 'cidadaos', component: PaginaCidadaosComponent},
         {path: 'cidadaos/cadastrar', component: PaginaCidadaosCadastrarComponent},
-        {path: 'cidadaos/visualizar', component: PaginaCidadaosVisualizarComponent},
+        {path: 'cidadaos/visualizar/:id', component: PaginaCidadaosVisualizarComponent},
+        {path: 'cidadaos/visualizar/:id/relatorio', component: PaginaCidadaoRelatorioComponent},
       { path: 'medicao', component: PaginaMedicaoComponent},
       {path: 'medicao/sucesso', component: PaginaMedicaoSucessoComponent},
       {path: 'admin/farmacia', component: PaginaFarmaciaComponent},

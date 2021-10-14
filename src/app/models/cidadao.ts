@@ -2,6 +2,7 @@ import { Medico } from 'src/app/models/medico';
 import { DadosPessoais } from './dadosPessoais';
 import { IndicadorRiscoHAS } from './indicadorRiscoHAS';
 import { Dispensacao } from './dispensacao';
+import { RelatorioOpiniao } from './relatorioOpiniao';
 
 export interface Cidadao {
   nome: string;
@@ -19,6 +20,7 @@ export interface Cidadao {
   podeRealizarDispensacao?: boolean;
   dataProximaDispensacao?: string;
   dataUltimaDispensacao?: string;
+  relatorios?: Array<RelatorioOpiniao>;
   id?: string;
   medicoAtual?: Medico;
 }

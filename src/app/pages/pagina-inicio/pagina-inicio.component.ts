@@ -100,7 +100,7 @@ export class PaginaInicio implements OnInit {
       this.cidadaoService.getAllCidadaos(this.buscado).subscribe(cidadao => {
         this.cidadaoService.cidadaos = cidadao as Cidadao[];
         this.cidadaoService.selecionadoId = cidadao[0].id;
-        this.router.navigate(['/cidadaos/visualizar']);
+        this.router.navigate(['/cidadaos/visualizar/' + cidadao[0].id]);
       },
       err => {
         if (err.error.status === 404) {
@@ -111,7 +111,7 @@ export class PaginaInicio implements OnInit {
       this.cidadaoService.getCidadaos(digitado).subscribe(cidadao => {
         this.cidadaoService.cidadaos = cidadao as Cidadao[];
         this.cidadaoService.selecionadoId = cidadao[0].id;
-        this.router.navigate(['/cidadaos/visualizar']);
+        this.router.navigate(['/cidadaos/visualizar/' + cidadao[0].id]);
       }, err => {
         if (err.error.status === 404) {
           this.errorBye = true;

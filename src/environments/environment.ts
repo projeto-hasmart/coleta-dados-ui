@@ -6,9 +6,9 @@ export const environment = {
   production: false,
 
   // URL of development API
-  api: '/api',
+  api: '/do',
   auth: '/auth',
-  BASE_URL: '/api'
+  BASE_URL: '/do'
 };
 
 /*

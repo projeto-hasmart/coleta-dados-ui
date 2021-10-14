@@ -25,6 +25,8 @@ let ELEMENT_DATA: any[] = [
 ];
 let ELEMENTS_DATA: any[] = [
 ];
+let ELEMENTZ_DATA: any[] = [];
+
 const MEDICAO: Medicao[] = [];
 
 @Component({
@@ -55,6 +57,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   j: number;
   sendingCpf: string;
   weight;
+  relatorioCidadao: string;
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
     this.cz = cz;
     this.mz = mz;
@@ -65,6 +68,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
   dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
   dataSourceMedi = new MatTableDataSource<any>(ELEMENTS_DATA);
+  dataSourceRel = new MatTableDataSource<any>(ELEMENTZ_DATA);
   selection = new SelectionModel<any>(true, []);
   /* declarando um nome pro property binding do nome dinâmico */
 
@@ -89,12 +93,10 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
   ];
   gotDate() {
     const dateComingFromServer = new DatePipe('dd/MM/yyyy').transform(this.oNossoCidadao.dataNascimento, 'mm-dd-yyyy');
-    console.log(dateComingFromServer);
     this.oNossoCidadao.dataNascimento = dateComingFromServer;
   }
   checkDate() {
     const dateSendingToServer = new DatePipe('en-US').transform(this.oNossoCidadao.dataNascimento, 'dd/MM/yyyy');
-    console.log(dateSendingToServer);
     this.oNossoCidadao.dataNascimento = dateSendingToServer;
   }
   /** Whether the number of selected elements matches the total number of rows. */
@@ -158,6 +160,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
       this.router.navigate(['/cidadaos']);
     } else {
       ELEMENT_DATA = [];
+      ELEMENTZ_DATA = [];
       localStorage.setItem('citizen', this.cz.selecionadoId.toString());
       if ((localStorage.getItem('citizen')) !== undefined) {
       this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
@@ -237,23 +240,37 @@ verCpf() {
 }
 getMedicoes() {
   ELEMENT_DATA = [];
+  ELEMENTZ_DATA = [];
   for (const med of this.oNossoCidadao.medicoes) {
     ELEMENT_DATA.push(med);
   }
-  // for (const disp of this.oNossoCidadao.dispensacoes) {
-  //   ELEMENT_DATA.push(disp);
-  // }
+  for (const rel of this.oNossoCidadao.relatorios) {
+    ELEMENTZ_DATA.push(rel);
+  }
 
   ELEMENT_DATA.sort((a, b) => {
     return (new Date(b.dataHora.split('/').reverse().join('-')) as any) - (new Date(a.dataHora.split('/').reverse().join('-')) as any);
   });
-  this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
 
+  ELEMENTZ_DATA.sort((a, b) => {
+    return (new Date(b.dataRelatorio.split('/').reverse().join('-')) as any) -
+      (new Date(a.dataRelatorio.split('/').reverse().join('-')) as any);
+  });
+
+  this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+  this.dataSourceRel = new MatTableDataSource<any>(ELEMENTZ_DATA);
 }
 
 
 goToView() {
   this.mz.selecionaCidadao(this.oNossoCidadao.cpf);
+}
+reportToView() {
+  this.cz.getAllCidadaos(this.oNossoCidadao.cpf).subscribe(cidadao => {
+    this.cz.cidadaos = cidadao as Cidadao[];
+    this.cz.selecionadoId = cidadao[0].id;
+    this.router.navigate(['/cidadaos/visualizar/' + this.cz.selecionadoId + '/relatorio']);
+  });
 }
 // searchToView() {
 //   this.cz.selecionaCidadao(this.buscado);
@@ -271,6 +288,15 @@ medicaoDe(dataHora: string) {
         this.dataSourceMedi = new MatTableDataSource(ELEMENTS_DATA);
 
       }
+    }
+  }
+}
+
+relatorioDe(dataHora: string) {
+  for (const rel of ELEMENTZ_DATA) {
+    if (rel.dataRelatorio === dataHora) {
+      this.relatorioCidadao = rel.relatorioCidadao;
+      this.ultimaMedicao = dataHora;
     }
   }
 }

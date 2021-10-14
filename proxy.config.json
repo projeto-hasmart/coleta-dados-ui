@@ -18,5 +18,15 @@
             "^/auth": ""
         }
 
+    },
+    "/do": {
+        "target": "http://161.35.118.91:80",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/do": ""
+        }
+
     }
 }

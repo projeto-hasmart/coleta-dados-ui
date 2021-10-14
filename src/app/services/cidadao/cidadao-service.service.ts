@@ -1,3 +1,4 @@
+import { RelatorioOpiniao } from './../../models/relatorioOpiniao';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Cidadao } from 'src/app/models/cidadao';
@@ -46,11 +47,20 @@ export class CidadaoServiceService {
          retry(2),
          catchError(this.handleError));
    }
+
+   // API: POST /HaSmart/api/cidadaos/Relatorio/{id}
+public createRelatorio(cidadaoId: string, relatorio: RelatorioOpiniao): Observable<RelatorioOpiniao> {
+  // tslint:disable-next-line: max-line-length
+  return this.httpClient.post<RelatorioOpiniao>((environment.api + '/hasmart/api/Cidadaos/Relatorio/' + cidadaoId), relatorio, this.httpOptions)
+  .pipe(
+    catchError(this.handleError));
+}
+
    jaTemosCidadao(id: string) {
      this.getCidadaoById(id).subscribe(cidadao => {
        this.cidadano = cidadao as Cidadao;
        this.selecionadoId = cidadao.id;
-       this.router.navigate(['/cidadaos/visualizar']);
+       this.router.navigate(['/cidadaos/visualizar/' + id]);
 
      });
 
