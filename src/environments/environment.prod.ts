@@ -2,6 +2,6 @@ export const environment = {
   production: true,
 
   // URL of production API
-  api: '/api',
+  api: '/do',
   auth: '/auth'
 };
