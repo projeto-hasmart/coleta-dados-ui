@@ -29,7 +29,7 @@ cidadaos: Array<Cidadao>;
 
 // API: GET /cidadaos
 getAllCidadaos(): Observable<Cidadao[]> {
-  return this.httpClient.get<Cidadao[]>(environment.api + '/hasmart/api/Cidadaos', this.httpOptions)
+  return this.httpClient.get<Cidadao[]>(environment.rest.host + '/hasmart/api/Cidadaos', this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError));
@@ -37,14 +37,14 @@ getAllCidadaos(): Observable<Cidadao[]> {
 
 // API: POST /HaSmart/api/cidadaos
 public createCidadao(cidadao: Cidadao): Observable<Cidadao> {
-  return this.httpClient.post<Cidadao>((environment.api + '/hasmart/api/Cidadaos'), cidadao, this.httpOptions)
+  return this.httpClient.post<Cidadao>((environment.rest.host + '/hasmart/api/Cidadaos'), cidadao, this.httpOptions)
   .pipe(
     catchError(this.handleError));
 }
 
 // API: GET /cidadaos/:id
 public getCidadaoById(cidadaoId: string): Observable<Cidadao> {
-  return this.httpClient.get<Cidadao>(environment.api + '/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
+  return this.httpClient.get<Cidadao>(environment.rest.host + '/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError));
@@ -52,20 +52,20 @@ public getCidadaoById(cidadaoId: string): Observable<Cidadao> {
 
 // API: PUT /cidadaos/:id
 public updateCidadao(cidadao: CidadaoEdit, id: string): Observable<any> {
-  return this.httpClient.put((environment.api + '/hasmart/api/Cidadaos/' + id), cidadao, this.httpOptions)
+  return this.httpClient.put((environment.rest.host + '/hasmart/api/Cidadaos/' + id), cidadao, this.httpOptions)
     .pipe(
     retry(2),
     catchError(this.handleError));
 }
 
 public authenticate(op: Medico): Observable<Medico> {
-    this.httpClient.post<Medico>((environment.api + '/hasmart/api/Medico/operador'), op, this.httpOptions).subscribe(res => {
+    this.httpClient.post<Medico>((environment.rest.host + '/hasmart/api/Medico/operador'), op, this.httpOptions).subscribe(res => {
       localStorage.setItem('currentUser', JSON.stringify(res));
       return res;
     }, err => {
       this.handleError(err);
     });
-    return this.httpClient.post<Medico>((environment.api + '/hasmart/api/Medico/operador'), op, this.httpOptions) .pipe(
+    return this.httpClient.post<Medico>((environment.rest.host + '/hasmart/api/Medico/operador'), op, this.httpOptions) .pipe(
       retry(2),
       catchError(this.handleError));
   }

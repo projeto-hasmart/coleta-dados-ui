@@ -23,7 +23,7 @@ export class CidadaoServiceService {
 
    // API: GET /cidadaos
    getAllCidadaos(cpf: string): Observable<Cidadao[]> {
-     return this.httpClient.get<Cidadao[]>(environment.api + '/hasmart/api/Cidadaos?cpf=' + cpf, this.httpOptions)
+     return this.httpClient.get<Cidadao[]>(environment.rest.host + '/hasmart/api/Cidadaos?cpf=' + cpf, this.httpOptions)
        .pipe(
          map((data: Cidadao[]) => {
            return data;
@@ -32,7 +32,7 @@ export class CidadaoServiceService {
          catchError(this.handleError));
    }
    getCidadaos(rg: string): Observable<Cidadao[]> {
-     return this.httpClient.get<Cidadao[]>(environment.api + '/hasmart/api/Cidadaos?rg=' + rg, this.httpOptions)
+     return this.httpClient.get<Cidadao[]>(environment.rest.host + '/hasmart/api/Cidadaos?rg=' + rg, this.httpOptions)
        .pipe(
          map((data: Cidadao[]) => {
            return data;
@@ -42,7 +42,7 @@ export class CidadaoServiceService {
    }
 
    public getCidadaoById(cidadaoId: string): Observable<Cidadao> {
-     return this.httpClient.get<Cidadao>(environment.api + '/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
+     return this.httpClient.get<Cidadao>(environment.rest.host + '/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
        .pipe(
          retry(2),
          catchError(this.handleError));
@@ -51,7 +51,7 @@ export class CidadaoServiceService {
    // API: POST /HaSmart/api/cidadaos/Relatorio/{id}
 public createRelatorio(cidadaoId: string, relatorio: RelatorioOpiniao): Observable<RelatorioOpiniao> {
   // tslint:disable-next-line: max-line-length
-  return this.httpClient.post<RelatorioOpiniao>((environment.api + '/hasmart/api/Cidadaos/Relatorio/' + cidadaoId), relatorio, this.httpOptions)
+  return this.httpClient.post<RelatorioOpiniao>((environment.rest.host + '/hasmart/api/Cidadaos/Relatorio/' + cidadaoId), relatorio, this.httpOptions)
   .pipe(
     catchError(this.handleError));
 }

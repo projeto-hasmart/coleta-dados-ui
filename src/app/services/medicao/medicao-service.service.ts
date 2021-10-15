@@ -22,7 +22,7 @@ export class MedicaoServiceService {
 
   // API: GET /cidadaos
   getAllCidadaos(cpf: string): Observable<Cidadao[]> {
-    return this.httpClient.get<Cidadao[]>(environment.api + '/hasmart/api/Cidadaos?cpf=' + cpf, this.httpOptions)
+    return this.httpClient.get<Cidadao[]>(environment.rest.host + '/hasmart/api/Cidadaos?cpf=' + cpf, this.httpOptions)
       .pipe(
         catchError(this.handleError));
   }
@@ -31,7 +31,8 @@ export class MedicaoServiceService {
 
   }
   public createMedicao(medicao: Medicao, id: string): Observable<Medicao> {
-    return this.httpClient.post<Medicao>((environment.api + '/hasmart/api/Farmacia/medicoes?cidadaoId=' + id), medicao, this.httpOptions)
+    return this.httpClient.post<Medicao>((environment.rest.host + '/hasmart/api/Farmacia/medicoes?cidadaoId=' + id)
+      , medicao, this.httpOptions)
       .pipe(
         catchError(this.handleError));
   }

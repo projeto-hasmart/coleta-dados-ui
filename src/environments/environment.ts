@@ -10,7 +10,12 @@ export const environment = {
   api: 'http://161.35.118.91:80',
   auth: '/auth',
   // BASE_URL: '/do'
-  BASE_URL: 'http://161.35.118.91:80'
+  BASE_URL: 'http://161.35.118.91:80',
+  rest: {
+    ssl: false,
+    host: '/do'
+  }
+
 };
 
 /*

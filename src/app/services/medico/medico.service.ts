@@ -28,7 +28,7 @@ statusCode: number;
 
 // API: GET /medico
 getMedicoById(crm: string): Observable<Medico> {
-  return this.httpClient.get<Medico>(environment.api + '/hasmart/api/Medico?crm=' + crm, this.httpOptions)
+  return this.httpClient.get<Medico>(environment.rest.host + '/hasmart/api/Medico?crm=' + crm, this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError));
@@ -36,7 +36,7 @@ getMedicoById(crm: string): Observable<Medico> {
 
 // API: POST /HaSmart/api/medico
 public createMedico(medico: Medico): Observable<Medico> {
-  return this.httpClient.post<Medico>((environment.api + '/hasmart/api/Medico'), medico, this.httpOptions)
+  return this.httpClient.post<Medico>((environment.rest.host + '/hasmart/api/Medico'), medico, this.httpOptions)
   .pipe(
     catchError(this.handleError));
 }
@@ -44,7 +44,7 @@ public createMedico(medico: Medico): Observable<Medico> {
 public addCitizenToMedico(id: string, cpf: string): Observable<Medico> {
   let cpfs: string[] = [];
   cpfs.push(cpf);
-  return this.httpClient.post<Medico>((environment.api + '/hasmart/api/Medico/' + id + '/Cidadaos'), cpfs, this.httpOptions)
+  return this.httpClient.post<Medico>((environment.rest.host + '/hasmart/api/Medico/' + id + '/Cidadaos'), cpfs, this.httpOptions)
   .pipe(
     catchError(this.handleError));
 }
