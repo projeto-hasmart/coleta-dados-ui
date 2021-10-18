@@ -23,7 +23,7 @@ export class MedicoService {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Response-Type': 'text',
   Authorization: 'Bearer ' + localStorage.getItem('token'),
   'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Allow-Methods': 'GET',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
   'Access-Control-Allow-Origin': '*' } )
 };
 statusCode: number;
