@@ -7,13 +7,13 @@ export const environment = {
 
   // URL of development API
   // api: '/do',
-  api: 'http://161.35.118.91:80',
+  api: 'http://hasmartapi-env.eba-xvt5vbmt.us-east-1.elasticbeanstalk.com',
   auth: '/auth',
   // BASE_URL: '/do'
-  BASE_URL: 'http://161.35.118.91:80',
+  BASE_URL: 'http://hasmartapi-env.eba-xvt5vbmt.us-east-1.elasticbeanstalk.com',
   rest: {
     ssl: false,
-    host: '/do'
+    host: 'http://hasmartapi-env.eba-xvt5vbmt.us-east-1.elasticbeanstalk.com'
   }
 
 };

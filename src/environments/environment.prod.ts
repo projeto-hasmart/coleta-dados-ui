@@ -2,10 +2,10 @@ export const environment = {
   production: true,
 
   // URL of production API
-  api: 'http://161.35.118.91:80',
+  api: 'http://hasmartapi-env.eba-xvt5vbmt.us-east-1.elasticbeanstalk.com',
   auth: '/auth',
   rest: {
     ssl: false,
-    host: '/do'
+    host: 'http://hasmartapi-env.eba-xvt5vbmt.us-east-1.elasticbeanstalk.com'
   }
 };
