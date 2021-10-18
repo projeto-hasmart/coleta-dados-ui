@@ -21,7 +21,10 @@ export class MedicoService {
   constructor(private httpClient: HttpClient, private router: Router) { }
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Response-Type': 'text',
-  Authorization: 'Bearer ' + localStorage.getItem('token') } )
+  Authorization: 'Bearer ' + localStorage.getItem('token'),
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'GET',
+  'Access-Control-Allow-Origin': '*' } )
 };
 statusCode: number;
 

@@ -14,7 +14,10 @@ import { environment } from './../../../environments/environment';
 export class MedicaoServiceService {
   selecionadoId: string;
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('token') })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('token'),
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET',
+    'Access-Control-Allow-Origin': '*' })
   };
   cidadaos: Array<Cidadao>;
   constructor(private httpClient: HttpClient, private router: Router) {
