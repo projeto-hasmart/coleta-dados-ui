@@ -19,13 +19,13 @@
         }
 
     },
-    "/do": {
-        "target": "http://161.35.118.91:80",
-        "secure": false,
+    "/amazon": {
+        "target": "https://api.projetohasmart.com",
+        "secure": true,
         "logLevel": "debug",
         "changeOrigin": true,
         "pathRewrite": {
-            "^/do": ""
+            "^/amazon": ""
         }
 
     }

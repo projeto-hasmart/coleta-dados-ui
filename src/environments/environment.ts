@@ -7,13 +7,12 @@ export const environment = {
 
   // URL of development API
   // api: '/do',
-  api: 'http://hasmartapi-env.eba-xvt5vbmt.us-east-1.elasticbeanstalk.com',
+  api: 'https://api.projetohasmart.com',
   auth: '/auth',
   // BASE_URL: '/do'
-  BASE_URL: 'http://hasmartapi-env.eba-xvt5vbmt.us-east-1.elasticbeanstalk.com',
+  BASE_URL: 'https://api.projetohasmart.com',
   rest: {
-    ssl: false,
-    host: 'http://hasmartapi-env.eba-xvt5vbmt.us-east-1.elasticbeanstalk.com'
+    host: 'https://api.projetohasmart.com' // mudar para /amazon no local host
   }
 
 };
