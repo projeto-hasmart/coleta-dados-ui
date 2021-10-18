@@ -45,7 +45,7 @@ public createMedico(medico: Medico): Observable<Medico> {
 }
 // API: POST /HaSmart/api/medico/{id}/Cidadaos
 public addCitizenToMedico(id: string, cpf: string): Observable<Medico> {
-  let cpfs: string[] = [];
+  const cpfs: string[] = [];
   cpfs.push(cpf);
   return this.httpClient.post<Medico>((environment.rest.host + '/hasmart/api/Medico/' + id + '/Cidadaos'), cpfs, this.httpOptions)
   .pipe(
