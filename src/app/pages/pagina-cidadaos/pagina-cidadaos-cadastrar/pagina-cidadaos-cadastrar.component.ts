@@ -1,6 +1,6 @@
 import { MedicoService } from './../../../services/medico/medico.service';
 import { Medico } from 'src/app/models/medico';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { CidadaoServiceService } from 'src/app/services/cidadao/cidadao-service.service';
 import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
@@ -10,6 +10,7 @@ import { Cidadao } from 'src/app/models/cidadao';
 import { DatePipe } from '@angular/common';
 import { map } from 'rxjs/operators';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { ViewChild, ElementRef} from '@angular/core';
 
 interface Diabetes {
   value: number;
@@ -28,6 +29,9 @@ interface Fumante {
 })
 
 export class PaginaCidadaosCadastrarComponent implements OnInit {
+  // tslint:disable-next-line: no-output-native
+  @Output() close = new EventEmitter<boolean>();
+  @ViewChild('closeModalBtn', {static: false}) closeModalBtn: ElementRef;
   checked: true;
   disabled: false;
   apiService: ApiService;
@@ -62,7 +66,8 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   valid = false;
   errorBye = false;
   user: Medico;
-
+  exists = false;
+  unknownError = false;
 
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: MedicoService, apiService: ApiService,
               private router: Router) {
@@ -105,7 +110,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   }
   checkEmpt() {
     this.checkDate();
-    if ((parseFloat(this.altura) < 3 && parseFloat(this.altura) > 0.5) || this.altura === undefined) {
+    if ((parseFloat(this.altura) < 2.7 && parseFloat(this.altura) > 0.5) || this.altura === undefined) {
     if (this.nome === undefined || this.dataReal === undefined || this.cpf === undefined || this.rg === undefined
       || this.cidade === undefined || this.estado === undefined || this.cep === undefined || this.rua === undefined
       || this.numero === undefined || this.email === undefined || this.telefone === undefined || this.altura === undefined) {
@@ -162,14 +167,21 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     };
     this.apiService.createCidadao(this.oNovoCidadao).subscribe(
       res => {
+        this.dz.addCitizenToMedico(this.user.id, this.cpf).subscribe(resp => {
+        },
+        err => {
+          this.closeModalBtn.nativeElement.click();
+          this.errorBye = true;
+          this.valid = false;
+        });
       },
       err => {
-        this.errorBye = true;
-        this.valid = false;
-      });
-    this.dz.addCitizenToMedico(this.user.id, this.cpf).subscribe(res => {
-      },
-      err => {
+        if (err.status === 400) {
+          this.exists = true;
+        } else {
+          this.unknownError = true;
+        }
+        this.closeModalBtn.nativeElement.click();
         this.errorBye = true;
         this.valid = false;
       });
@@ -182,7 +194,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     }
   }
   goToView() {
-    this.cz.getAllCidadaos(this.oNovoCidadao.cpf).subscribe(cidadao => {
+    this.cz.getAllCidadaos(this.cpf).subscribe(cidadao => {
       this.cz.cidadaos = cidadao as Cidadao[];
       this.cz.selecionadoId = cidadao[0].id;
       this.router.navigate(['/cidadaos/visualizar/' + this.cz.selecionadoId]);

@@ -6,10 +6,39 @@
   </a> -->
     <!-- Header Navbar: style can be found in header.less  class="navbar navbar-static-top" -->
     <nav>
-        <!-- Sidebar toggle button-->
+        
+         <div class="pull-right" style="margin-top: 2%; margin-right: 3%">
+                                <a class="btn btn-default btn-flat" data-toggle="modal" data-target="#logoutmodal">Sair</a>
+                            </div>
+    </nav>
+</header>
+<div class="modal fade" id="logoutmodal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="titleModal">Fazer Logout</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <label id="modalText">Deseja sair do sistema?</label>
+
+            </div>
+            <div class="modal-footer">
+                <button mat-button id="naobutton" data-dismiss="modal"><label id="naolabel">NÃO</label></button>
+                <button mat-button id="simbutton" routerLink="/" data-dismiss="modal"><label id="simlabel">SIM</label></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ABAIXO DAQUI É CÓDIGO VELHO QUE EU APAGUEI, ESTÁ AQUI CASO DESEJE IMPLEMENTAR DROPDOWN PRO LOGOUT-->
+<!-- Sidebar toggle button-->
 
 
-        <div class="navbar-custom-menu">
+        <div class="navbar-custom-menu" *ngIf="mostraVelho">
 
             <ul class="nav navbar-nav">
                 <li>
@@ -113,9 +142,7 @@
                             <!--<div class="pull-left">
                                 <a class="btn btn-default btn-flat" href="#">Profile</a>
                             </div>-->
-                            <div class="pull-right">
-                                <a class="btn btn-default btn-flat" routerLink="/">Log out</a>
-                            </div>
+                           
                         </li>
                     </ul>
                 </li>
@@ -125,26 +152,3 @@
         </li> -->
             </ul>
         </div>
-    </nav>
-</header>
-<div class="modal fade" id="logoutmodal">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title" id="titleModal">Fazer Logout</h4>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <label id="modalText">Deseja sair do sistema?</label>
-
-            </div>
-            <div class="modal-footer">
-                <button mat-button id="naobutton" data-dismiss="modal"><label id="naolabel">NÃO</label></button>
-                <button mat-button id="simbutton" routerLink="/login/medico" data-dismiss="modal"><label id="simlabel">SIM</label></button>
-            </div>
-        </div>
-    </div>
-</div>

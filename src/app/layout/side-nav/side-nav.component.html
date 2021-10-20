@@ -91,13 +91,32 @@
 
 
             </ul>
-            <div id="suporteDiv">
-                <a routerLink="/inicio">
-                    <button id="suporteButton" *ngIf="ativo" (click)="ativo = !ativo">SUPORTE<img src="assets/dist/img/help.png" style="padding-left: 10px;"></button>
-                    <button id="suporteButtonPequeno" *ngIf="!ativo" (click)="ativo = !ativo"><img src="assets/dist/img/green_help.png" ></button>
-                </a>
+            <div id="suporteDiv" *ngIf="decidirArrumarSuporte">
+                    <button id="suporteButton" *ngIf="ativo" (click)="ativo = !ativo" data-toggle="modal" data-target="#helpmodal">SUPORTE<img src="assets/dist/img/help.png" style="padding-left: 10px;"></button>
+                    <button id="suporteButtonPequeno" *ngIf="!ativo" (click)="ativo = !ativo" data-toggle="modal" data-target="#helpmodal"><img src="assets/dist/img/green_help.png" ></button>
             </div>
         </nav>
+        <div class="modal fade" id="helpmodal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="titleModal">Suporte <button type="button" class="close pull-right" data-dismiss="modal" style="top: 15px; right: 5px">&times;</button></h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <label id="modalText">Caso deseje ajuda, contate um dos desenvolvedores do sistema ou o email oficial do projeto.</label>
+                <label id="modalText">projetohasmart@unifor.br</label>
+            </div>
+            <!--<div class="modal-footer">
+                <button mat-button id="naobutton" data-dismiss="modal"><label id="naolabel">NÃO</label></button>
+                <button mat-button id="simbutton" routerLink="/" data-dismiss="modal"><label id="simlabel">SIM</label></button>
+            </div>-->
+        </div>
+    </div>
+</div>
     </section>
     <!-- /.sidebar -->
 </aside>

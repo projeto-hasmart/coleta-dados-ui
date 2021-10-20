@@ -114,13 +114,13 @@
                                 <table mat-table [dataSource]="dataSourceMedi" class="mat-elevation-z1">
 
                                     <!-- Position Column -->
-                                    <ng-container matColumnDef="data">
+                                    <ng-container matColumnDef="sistolica">
                                         <th mat-header-cell *matHeaderCellDef> Pressão Sistólica </th>
                                         <td mat-cell *matCellDef="let element"> {{element.sistolica}} </td>
                                     </ng-container>
 
                                     <!-- Name Column -->
-                                    <ng-container matColumnDef="servico">
+                                    <ng-container matColumnDef="diastolica">
                                         <th mat-header-cell *matHeaderCellDef> Pressão Diastólica </th>
                                         <td mat-cell *matCellDef="let element"> {{element.diastolica}} </td>
                                     </ng-container>
@@ -139,8 +139,8 @@
                                         </td>
                                     </ng-container>
 
-                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsAfer"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsAfer;" (click)="selection.toggle(row)">
                                     </tr>
                                 </table>
                             </div>
@@ -430,16 +430,20 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label id="dadoLabel">ALTURA</label>
-                            <label id="dadoResult">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.altura!==0">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.altura===0">Não informada</label>
                             <label id="dadoLabel">DOENÇA RENAL CRÔNICA</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1">Não</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 0">Não informado</label>
                             <label id="dadoLabel">HISTÓRICO DE AVC</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 2">Sim</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 0">Não informado</label>
                         </div>
                         <div class="col-md-4">
                             <label id="dadoLabel">DIABETES</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 0">Não informado</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
@@ -448,6 +452,7 @@
                             <label id="dadoLabel">INSUFICIÊNCIA CARDÍACA</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 2">Sim</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 0">Não informado</label>
                             <label id="dadoLabel">DOENÇA ARTERIAL OBSTRUTIVA PERIFÉRICA</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 2">Sim</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1">Não</label>
@@ -456,6 +461,7 @@
                         </div>
                         <div class="col-md-4">
                             <label id="dadoLabel">FUMANTE</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 0">Não informado</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
@@ -463,6 +469,7 @@
                             <label id="dadoLabel">HISTÓRICO DE INFARTO</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 2">Sim</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 0">Não Informado</label>
 
                             <label id="dadoLabel">RETINOPATIA HIPERTENSIVA</label>
                             <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 2">Sim</label>
@@ -482,7 +489,7 @@
             </div>
             <div id="tabela" *ngIf="(cidadao$ | async)">
                 <!-- TABELA-->
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z0" *ngIf="cidadao$ | async">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z0" *ngIf="!!dataSource">
 
                     <!-- Checkbox Column -->
                     <ng-container matColumnDef="select">
@@ -497,13 +504,13 @@
                     </ng-container>
 
                     <!-- Position Column -->
-                    <ng-container matColumnDef="data" *ngIf="(cidadao$ | async)">
+                    <ng-container matColumnDef="dataHora" *ngIf="!!dataSource">
                         <th mat-header-cell *matHeaderCellDef> Data </th>
                         <td mat-cell *matCellDef="let element"> {{element.dataHora}} </td>
                     </ng-container>
 
                     <!-- Name Column -->
-                    <ng-container matColumnDef="servico" *ngIf="(cidadao$ | async)">
+                    <ng-container matColumnDef="servico" *ngIf="!!dataSource">
                         <th mat-header-cell *matHeaderCellDef> Serviço </th>
                         <td mat-cell *matCellDef="let element"> Medição </td>
                         <!--{{element.name}}-->
@@ -521,7 +528,7 @@
                     <ng-container matColumnDef="info" stickyEnd>
                         <th mat-header-cell *matHeaderCellDef></th>
                         <td mat-cell *matCellDef="let element">
-                            <button data-toggle="modal" data-target="#verMedicao" id="infoButton" (click)="medicaoDe(element.dataHora)"><mat-icon>info</mat-icon></button>
+                            <button data-toggle="modal" data-target="#verMedicao" id="infoButton" (click)="medicaoDe(element.id)"><mat-icon>info</mat-icon></button>
                             <!--*ngIf='element.name === ""' -->
                             <!-- <button *ngIf='element.name === "Helium"' data-toggle="modal" data-target="#verDispensacao" id="infoButton"><mat-icon>info</mat-icon></button> -->
                         </td>
@@ -541,7 +548,7 @@
             </div>
             <div id="tabela" *ngIf="(cidadao$ | async)">
                 <!-- TABELA-->
-                <table mat-table [dataSource]="dataSourceRel" class="mat-elevation-z0" *ngIf="cidadao$ | async">
+                <table mat-table [dataSource]="dataSourceRel" class="mat-elevation-z0" *ngIf="!!dataSourceRel">
 
                     <!-- Checkbox Column -->
                     <ng-container matColumnDef="select">
@@ -556,13 +563,13 @@
                     </ng-container>
 
                     <!-- Position Column -->
-                    <ng-container matColumnDef="data" *ngIf="(cidadao$ | async)">
+                    <ng-container matColumnDef="dataRelatorio" *ngIf="!!dataSourceRel">
                         <th mat-header-cell *matHeaderCellDef> Data </th>
                         <td mat-cell *matCellDef="let element"> {{element.dataRelatorio}} </td>
                     </ng-container>
 
                     <!-- Name Column -->
-                    <ng-container matColumnDef="servico" *ngIf="(cidadao$ | async)">
+                    <ng-container matColumnDef="servico" *ngIf="!!dataSourceRel">
                         <th mat-header-cell *matHeaderCellDef> Serviço </th>
                         <td mat-cell *matCellDef="let element"> Relatório </td>
                         <!--{{element.name}}-->
@@ -580,14 +587,14 @@
                     <ng-container matColumnDef="info" stickyEnd>
                         <th mat-header-cell *matHeaderCellDef></th>
                         <td mat-cell *matCellDef="let element">
-                            <button data-toggle="modal" data-target="#verRelatorio" id="infoButton" (click)="relatorioDe(element.dataRelatorio)"><mat-icon>info</mat-icon></button>
+                            <button data-toggle="modal" data-target="#verRelatorio" id="infoButton" (click)="relatorioDe(element.id)"><mat-icon>info</mat-icon></button>
                             <!--*ngIf='element.name === ""' -->
                             <!-- <button *ngIf='element.name === "Helium"' data-toggle="modal" data-target="#verDispensacao" id="infoButton"><mat-icon>info</mat-icon></button> -->
                         </td>
                     </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsRel"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsRel;" (click)="selection.toggle(row)">
                     </tr>
                 </table>
             </div>

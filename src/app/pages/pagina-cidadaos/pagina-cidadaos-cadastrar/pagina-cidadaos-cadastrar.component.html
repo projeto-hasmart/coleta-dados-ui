@@ -2,6 +2,7 @@
     <label id="titleLabel">Novo Cidadão</label>
     <label id="subtitleLabel">Preencha as informações abaixo para cadastrar um cidadão</label>
     <label id="obrigatorio">*Campos obrigatórios</label>
+    <label id="errorLabel" *ngIf="unknownError">Um erro desconhecido aconteceu ao cadastrar o cidadão...</label>
 </section>
 <section class="content">
     <div class="box box-solid box-default" id="boxInformacoes">
@@ -25,12 +26,14 @@
         </div>
         <div class='row' style="margin-left: -0.5%;">
             <div class="col-md-6" style="width: 49.5%;">
-                <input type="text" placeholder="CPF*" id="inputCpf" [(ngModel)]="cpf" name="cpf" #inputCpf="ngModel" [class.errorInput]="cpf === undefined && checkEmpty" required mask="000.000.000-00">
+                <input type="text" placeholder="CPF*" id="inputCpf" [(ngModel)]="cpf" name="cpf" #inputCpf="ngModel" [class.errorInput]="(cpf === undefined && checkEmpty) || exists" required mask="000.000.000-00">
                 <label id="errorLabel" *ngIf="(cpf === undefined && checkEmpty)  || (cpf !== undefined && cpf.length < 11 && checkEmpty)">O campo CPF deve ser composto por 11 números e é obrigatório.</label>
+                <label id="errorLabel" *ngIf="exists">É possível que um cidadão com este CPF já exista.</label>
             </div>
             <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
-                <input type="text" placeholder="RG*" id="inputRg" [(ngModel)]="rg" name="rg" #inputRg="ngModel" [class.errorInput]="rg === undefined && checkEmpty" mask="00000000000000" required>
+                <input type="text" placeholder="RG*" id="inputRg" [(ngModel)]="rg" name="rg" #inputRg="ngModel" [class.errorInput]="(rg === undefined && checkEmpty) || exists" mask="00000000000000" required>
                 <label id="errorLabel" *ngIf="rg === undefined && checkEmpty">O campo RG deve ser composto apenas por números e é obrigatório.</label>
+                <label id="errorLabel" *ngIf="exists">É possível que um cidadão com este RG já exista.</label>
             </div>
         </div>
         <div class='row' style="margin-left: -0.5%;">
@@ -93,8 +96,8 @@
         <label id="informacoesEstaticasLabel">Informações de Hipertensão Arterial</label>
         <div class='row'>
             <div class="col-sm-4">
-                <input type="number" class="form-control input-sm" placeholder="Altura*" id="inputAltura" [(ngModel)]="altura" name="altura" #inputAltura="ngModel" [class.errorInput]="altura === undefined && checkEmpty" required>
-                <label id="errorLabel" *ngIf="altura === undefined && checkEmpty || invalidAltura">O campo altura deve estar no intervalo entre 0.5 e 3.0 metros</label>
+                <input type="number" class="form-control input-sm" placeholder="Altura* (Ex.: 1.70)" id="inputAltura" [(ngModel)]="altura" name="altura" #inputAltura="ngModel" [class.errorInput]="altura === undefined && checkEmpty" required>
+                <label id="errorLabel" *ngIf="altura === undefined && checkEmpty || invalidAltura">O campo altura deve estar no intervalo entre 0.5 e 2.7 metros</label>
 
             </div>
             <div class="col-sm-4">
@@ -169,6 +172,7 @@
             </div>
         </div>
     </div>
+    <label id="errorLabel" *ngIf="unknownError">Um erro desconhecido aconteceu ao cadastrar o cidadão...</label>
     <button mat-button id="cadastraButton" data-toggle="modal" data-target="#okcidadao" class="pull-right" (click)="checkEmpt()">
         <label id="cadastraButtonLabel">CADASTRAR CIDADÃO</label></button>
     <div class="modal fade" id="okcidadao" *ngIf="valid && !errorBye">
@@ -177,7 +181,7 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title" id="titleModal">Sucesso!</h4>
+                    <h4 class="modal-title" id="titleModal">Sucesso!<button #closeModalBtn type="button" data-dismiss="modal" class="close pull-right"></button></h4>
                 </div>
 
                 <!-- Modal body -->
@@ -188,4 +192,5 @@
             </div>
         </div>
     </div>
+    
 </section>

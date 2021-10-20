@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user';
 })
 export class HeaderComponent implements OnInit {
   user: User;
+  mostraVelho = false;
   constructor() {
   }
 

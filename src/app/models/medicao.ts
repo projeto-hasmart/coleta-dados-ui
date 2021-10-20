@@ -5,9 +5,9 @@ export interface Medicao {
   afericoes: Afericao[];
   peso:	number;
   dataHora?: string;
-  estabelecimentoId?: number;
+  estabelecimentoId?: any;
   cidadaoId?: number;
-  id?: number;
+  id?: string;
   medicamentos?: Medicamento[];
 }
 

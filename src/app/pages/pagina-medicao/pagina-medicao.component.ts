@@ -42,8 +42,8 @@ export class PaginaMedicaoComponent implements OnInit {
   medido: Medicao;
   router: Router;
   peso: number;
-  data = Object.assign( ELEMENT_DATA);
-  datum = Object.assign( ELEMENTS_DATA);
+  data = Object.assign(ELEMENT_DATA);
+  datum = Object.assign(ELEMENTS_DATA);
   error = false;
   direitoOK: boolean;
   esquerdoOK: boolean;
@@ -138,19 +138,21 @@ export class PaginaMedicaoComponent implements OnInit {
   // }
 
   excluirAfericao(row) {
-    const index = this.dataSource.data.indexOf(row.id);
+    const index = this.dataSource.data.indexOf(row);
     this.dataSource.data.splice(index, 1);
     this.dataSource._updateChangeSubscription();
   }
   deleteThisMedicine(row) {
-    const index = this.dataSourcem.data.indexOf(row.id);
+    const index = this.dataSourcem.data.indexOf(row);
     this.dataSourcem.data.splice(index, 1);
     this.dataSourcem._updateChangeSubscription();
   }
-  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
+  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService,
+              router: Router) {
     this.cz = cz;
     this.mz = mz;
     this.dz = dz;
+    this.router = router;
     this.apiService = apiService;
     this.myControl = new FormControl();
     this.myControl.valueChanges.subscribe(newValue => {
@@ -164,7 +166,7 @@ export class PaginaMedicaoComponent implements OnInit {
 
 ngOnInit() {
   if (this.cz.selecionadoId === undefined) {
-    this.router.navigate(['/cidadaos']);
+    this.router.navigate(['/inicio']);
   } else {
   this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
     ELEMENT_DATA = [];
@@ -231,22 +233,19 @@ addRowm() {
   this.dataSourcem = new MatTableDataSource(this.sentMedicamentos);
 }
 removeSelectedRows() {
-
   this.selection.selected.forEach(item => {
-    const index: number = this.data.findIndex(d => d === item);
-    console.log(this.data.findIndex(d => d === item));
-    this.data.splice(index, 1);
-    this.dataSource = new MatTableDataSource<Afericao>(this.data);
+    const index: number = this.dataSource.data.indexOf(item);
+    this.dataSource.data.splice(index, 1);
+    this.dataSource = new MatTableDataSource<Afericao>(this.dataSource.data);
   });
   this.selection = new SelectionModel<Afericao>(true, []);
 }
 removeSelectedMows() {
 
   this.selections.selected.forEach(item => {
-    const index: number = this.datum.findIndex(d => d === item);
-    console.log(this.datum.findIndex(d => d === item));
-    this.datum.splice(index, 1);
-    this.dataSourced = new MatTableDataSource<Afericao>(this.datum);
+    const index: number = this.dataSourced.data.indexOf(item);
+    this.dataSourced.data.splice(index, 1);
+    this.dataSourced = new MatTableDataSource<Afericao>(this.dataSourced.data);
   });
   this.selections = new SelectionModel<Afericao>(true, []);
 }
