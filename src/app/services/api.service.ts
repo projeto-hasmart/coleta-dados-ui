@@ -1,10 +1,11 @@
+import { CsvFile } from './../models/csvFile';
 import { Medico } from 'src/app/models/medico';
 import { environment } from './../../environments/environment';
 import { Router, RouterState } from '@angular/router';
 import { Cidadao } from './../models/cidadao';
 import { User } from './../models/user';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { CidadaoEdit } from '../models/cidadaoEdit';
@@ -59,6 +60,22 @@ public updateCidadao(cidadao: CidadaoEdit, id: string): Observable<any> {
     .pipe(
     retry(2),
     catchError(this.handleError));
+}
+
+public uploadFile(file: CsvFile): Observable<Cidadao[]> {
+
+  const formData = new FormData();
+  console.log(file);
+  formData.append('file', file.File);
+  const headersToSend = new HttpHeaders();
+  /** In Angular 5, including the header Content-Type can invalidate your request */
+  const optionsUpload = {
+    headers: headersToSend
+  };
+  return this.httpClient.post<Array<Cidadao>>(`${environment.rest.host}/hasmart/api/Cidadaos/CSV`, formData, optionsUpload).pipe(
+    retry(2),
+    catchError(this.handleError));
+
 }
 
 public authenticate(op: Medico): Observable<Medico> {

@@ -6,5 +6,6 @@ export const environment = {
   auth: '/auth',
   rest: {
     host: 'https://api.projetohasmart.com'
+    // host: '/api'
   }
 };

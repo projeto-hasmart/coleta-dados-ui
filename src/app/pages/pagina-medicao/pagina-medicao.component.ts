@@ -277,8 +277,11 @@ checkMedicao() {
   }
 }
 verTelefone() {
-  this.i = 0;
-  while (this.i < 11) {
+  if (this.oNossoCidadao.dadosPessoais.telefone.includes('(') && this.oNossoCidadao.dadosPessoais.telefone.includes(')') ) {
+    this.showingPhone = this.oNossoCidadao.dadosPessoais.telefone;
+  } else {
+    this.i = 0;
+    while (this.i < 11) {
     if (this.i === 0) {
       this.showingPhone = '(' + this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
       this.i++;
@@ -293,6 +296,7 @@ verTelefone() {
       this.i++;
     }
   }
+}
   }
 verCep() {
   this.i = 0;

@@ -29,7 +29,7 @@
             <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="goToView(group.value)">
 <i class="fa fa-search"></i> </button>
         </div>
-        <a routerLink="/cidadaos/cadastrar" *ngIf="!errorBye">
+        <a routerLink="/cidadaos/cadastrar">
             <button mat-button id="novoCidadaoButton" class="pull-right">
 
       <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
@@ -37,8 +37,20 @@
 
     </button>
         </a>
+        <div>
+        <button mat-button id="novoCidadaoButton" style="margin-top:1%" class="pull-right" (click)="fileInput.click()"><mat-icon aria-hidden="false" aria-label="Example home icon" id="novoCidadaoImg" style="color:white">attachment</mat-icon>
+      <label id="novoCidadaoLabel">IMPORTAR CSV</label></button>
+        <input hidden type="file" #fileInput (change)="selectFile($event)" accept=".csv" style="display:none">
+        <div style="margin-top:8%" class="pull-right">
+        <label style="font-family:Roboto;font-size:14px;color:#000000" *ngIf="uploading">Realizando upload do arquivo...</label>
+            <label style="font-family:Roboto;font-size:14px;color:#000000" *ngIf="uploadCompleted">Upload concluído!</label>
+            <label style="font-family:Roboto;font-size:14px;color:#000000" *ngIf="uploadCompleted"> Foram alterados/adicionados cidadãos {{countOfUploaded}} vezes</label>
+            <label style="font-family:Roboto;font-size:14px;color:red" *ngIf="uploadError && errorBye">{{uploadError}}</label>
+        </div>
+            
+        </div>
     </div>
-    <div id="cidadaoNaoEncontrado" *ngIf="errorBye">
+    <div id="cidadaoNaoEncontrado" *ngIf="errorBye && searchError">
         <div>
             <label id="naoEncontradoTitulo">
       Cidadão não cadastrado
