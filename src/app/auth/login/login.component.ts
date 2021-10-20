@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   user: string;
   pw: string;
   operador: Medico;
-  notFound: boolean = false;
+  notFound = false;
 
   constructor(apiService: ApiService, private router: Router) {
     this.apiService = apiService;
@@ -52,12 +52,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.operador = {
       nome: this.user,
       senha: this.pw
-    }
+    };
     this.apiService.authenticate(this.operador).subscribe(op => {
       this.operador = op as Medico;
       this.router.navigate(['/inicio']);
     }, err => {
-      this.notFound = true
+      this.notFound = true;
     });
   }
   // tryAuth() {

@@ -1,3 +1,4 @@
+import { RelatorioOpiniao } from './../../../models/relatorioOpiniao';
 import { MedicaoServiceService } from './../../../services/medicao/medicao-service.service';
 import { Observable } from 'rxjs';
 import { ApiService } from './../../../services/api.service';
@@ -21,11 +22,11 @@ interface Fumante {
   value: number;
   viewValue: string;
 }
-let ELEMENT_DATA: any[] = [
+let ELEMENT_DATA: Medicao[] = [
 ];
 let ELEMENTS_DATA: any[] = [
 ];
-let ELEMENTZ_DATA: any[] = [];
+let ELEMENTZ_DATA: RelatorioOpiniao[] = [];
 
 const MEDICAO: Medicao[] = [];
 
@@ -34,7 +35,7 @@ const MEDICAO: Medicao[] = [];
   templateUrl: './pagina-cidadaos-visualizar.component.html',
   styleUrls: ['./pagina-cidadaos-visualizar.component.scss']
 })
-export class PaginaCidadaosVisualizarComponent implements OnInit {
+export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit {
   checked = false;
   disabled = false;
   dispensacao = 1234567;
@@ -65,21 +66,26 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     this.apiService = apiService;
     this.router = router;
    }
-  displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
-  dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
-  dataSourceMedi = new MatTableDataSource<any>(ELEMENTS_DATA);
-  dataSourceRel = new MatTableDataSource<any>(ELEMENTZ_DATA);
+  displayedColumns: string[] = ['dataHora', 'servico', 'responsavel', 'info'];
+  displayedColumnsAfer: string[] = ['sistolica', 'diastolica'];
+  displayedColumnsRel: string[] = ['dataRelatorio', 'servico', 'info'];
+
+  dataSource;
+  dataSourceMedi;
+  dataSourceRel;
   selection = new SelectionModel<any>(true, []);
   /* declarando um nome pro property binding do nome dinâmico */
 
   color = 'green';
   diabetess: Diabetes[] = [
+    {value: 0, viewValue: 'Não informado'},
     {value: 1, viewValue: 'Não'},
     {value: 2, viewValue: 'Tipo 1'},
     {value: 3, viewValue: 'Tipo 2'},
     {value: 4, viewValue: 'Diabetes Gestante'}
   ];
   fumantes: Fumante[] = [
+    {value: 0, viewValue: 'Não informado'},
     {value: 1, viewValue: 'Não fumante'},
     {value: 2, viewValue: 'Fumante'},
     {value: 3, viewValue: 'Ex-Fumante'}
@@ -176,6 +182,11 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
   }
 }
+ngAfterViewInit() {
+  this.dataSource = new MatTableDataSource<Medicao>(ELEMENT_DATA);
+  this.dataSourceMedi = new MatTableDataSource<any>(ELEMENTS_DATA);
+  this.dataSourceRel = new MatTableDataSource<RelatorioOpiniao>(ELEMENTZ_DATA);
+}
 verificaCep(cep: string) {
   if (cep.length === 8) {
     this.cz.pegaremosCep(cep).subscribe(data => {
@@ -257,8 +268,8 @@ getMedicoes() {
       (new Date(a.dataRelatorio.split('/').reverse().join('-')) as any);
   });
 
-  this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
-  this.dataSourceRel = new MatTableDataSource<any>(ELEMENTZ_DATA);
+  this.dataSource = new MatTableDataSource<Medicao>(ELEMENT_DATA);
+  this.dataSourceRel = new MatTableDataSource<RelatorioOpiniao>(ELEMENTZ_DATA);
 }
 
 
@@ -276,27 +287,26 @@ reportToView() {
 //   this.cz.selecionaCidadao(this.buscado);
 
 // }
-medicaoDe(dataHora: string) {
+medicaoDe(id: string) {
   for (const med of ELEMENT_DATA) {
-    if (med.dataHora === dataHora) {
+    if (med.id === id) {
       ELEMENTS_DATA = [];
-      this.ultimaMedicao = dataHora;
+      this.ultimaMedicao = med.dataHora;
       this.responsavel = med.estabelecimentoId;
       this.weight = med.peso;
       for (const af of med.afericoes) {
         ELEMENTS_DATA.push(af);
         this.dataSourceMedi = new MatTableDataSource(ELEMENTS_DATA);
-
       }
     }
   }
 }
 
-relatorioDe(dataHora: string) {
+relatorioDe(id: string) {
   for (const rel of ELEMENTZ_DATA) {
-    if (rel.dataRelatorio === dataHora) {
+    if (rel.id === id) {
       this.relatorioCidadao = rel.relatorioCidadao;
-      this.ultimaMedicao = dataHora;
+      this.ultimaMedicao = rel.dataRelatorio;
     }
   }
 }

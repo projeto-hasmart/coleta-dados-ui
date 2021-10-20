@@ -15,6 +15,7 @@ export class SideNavComponent implements OnInit {
   ativo = true;
   atual: string;
   doWeHaveCitizen = false;
+  decidirArrumarSuporte = false;
   routeData;
   user: User;
   // tslint:disable-next-line: radix
