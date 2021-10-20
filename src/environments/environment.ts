@@ -13,6 +13,7 @@ export const environment = {
   BASE_URL: 'https://api.projetohasmart.com',
   rest: {
     host: 'https://api.projetohasmart.com' // mudar para /amazon no local host
+    // host: '/api'
   }
 
 };

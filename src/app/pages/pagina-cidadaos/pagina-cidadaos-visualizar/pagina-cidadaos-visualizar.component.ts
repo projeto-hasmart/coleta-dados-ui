@@ -198,20 +198,24 @@ verificaCep(cep: string) {
 
 }
 verTelefone() {
-this.i = 0;
-while (this.i < 11) {
-  if (this.i === 0) {
-    this.showingPhone = '(' + this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
-    this.i++;
-  } else if (this.i === 1) {
-    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + ')';
-    this.i++;
-  } else if (this.i === 6) {
-    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + '-';
-    this.i++;
+  if (this.oNossoCidadao.dadosPessoais.telefone.includes('(') && this.oNossoCidadao.dadosPessoais.telefone.includes(')') ) {
+    this.showingPhone = this.oNossoCidadao.dadosPessoais.telefone;
   } else {
-    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
-    this.i++;
+    this.i = 0;
+    while (this.i < 11) {
+    if (this.i === 0) {
+      this.showingPhone = '(' + this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
+      this.i++;
+    } else if (this.i === 1) {
+      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + ')';
+      this.i++;
+    } else if (this.i === 6) {
+      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + '-';
+      this.i++;
+    } else {
+      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
+      this.i++;
+    }
   }
 }
 }

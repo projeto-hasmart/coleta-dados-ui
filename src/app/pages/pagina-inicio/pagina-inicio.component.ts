@@ -1,3 +1,4 @@
+import { CsvFile } from './../../models/csvFile';
 import { Medico } from 'src/app/models/medico';
 import { User } from './../../models/user';
 import { CidadaoServiceService } from './../../services/cidadao/cidadao-service.service';
@@ -10,6 +11,7 @@ import { Observable } from 'rxjs';
 import { Global } from 'src/app/models/globalConstants';
 import { Router } from '@angular/router';
 import { HostListener } from '@angular/core';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 export interface PeriodicElement {
   name: string;
@@ -52,6 +54,11 @@ export class PaginaInicio implements OnInit {
   router: Router;
   mask: string;
   user: Medico;
+  uploading = false;
+  uploadCompleted = false;
+  countOfUploaded = 0;
+  uploadError;
+  searchError;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -105,6 +112,7 @@ export class PaginaInicio implements OnInit {
       err => {
         if (err.error.status === 404) {
           this.errorBye = true;
+          this.searchError = 'Cidadão não encontrado!';
         }
       });
     } else if (groupValue === 'rg') {
@@ -115,6 +123,7 @@ export class PaginaInicio implements OnInit {
       }, err => {
         if (err.error.status === 404) {
           this.errorBye = true;
+          this.searchError = 'Cidadão não encontrado!';
         }
       });
     }
@@ -127,5 +136,63 @@ export class PaginaInicio implements OnInit {
     } else if (groupValue === 'rg') {
       localStorage.setItem('newRg', this.buscado);
     }
+  }
+  // At the drag drop area
+  // (drop)="onDropFile($event)"
+  // onDropFile(event: DragEvent) {
+  //   event.preventDefault();
+  //   this.uploadFile(event.dataTransfer.files);
+  // }
+
+  // // At the drag drop area
+  // // (dragover)="onDragOverFile($event)"
+  // onDragOverFile(event) {
+  //   event.stopPropagation();
+  //   event.preventDefault();
+  // }
+
+  // At the file input element
+  // (change)="selectFile($event)"
+  selectFile(event) {
+    this.uploadFile(event.target.files);
+  }
+
+  uploadingFileToServer() {
+    this.uploading = true;
+  }
+
+  uploadFile(files: FileList) {
+    this.uploadCompleted = false;
+    if (files.length === 0) {
+      return;
+    }
+    const fileToUpload: File = files[0];
+    const csv: CsvFile = {
+      File: fileToUpload
+    };
+    this.uploadingFileToServer();
+    this.apiService.uploadFile(csv)
+      .subscribe(
+        res => {
+          this.uploadCompleted = true;
+          this.uploading = false;
+          this.countOfUploaded = res.length;
+        },
+        err => {
+          this.uploading = false;
+          this.errorBye = true;
+          if (err.status === 500) { // api deveria retornar o que está errado
+            this.uploadError = ('Erro no upload, por favor verifique se o arquivo segue o padrão adotado pelo projeto.\n'
+              + 'Caso siga, entre em contato com os desenvolvedores e informe erro 500 e tire uma foto do que está abaixo: \n'
+              + 'Mensagem: ' + err.message
+              + '\nNome do erro: ' + err.name);
+          } else {
+            this.uploadError = ('Erro desconhecido no upload.\n'
+              + 'Entre em contato com os desenvolvedores e informe o erro e tire uma foto do que está abaixo:\n '
+              + 'Mensagem: ' + err.message
+              + '\nNome do erro: ' + err.name);
+          }
+        }
+      );
   }
 }
