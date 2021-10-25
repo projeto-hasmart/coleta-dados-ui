@@ -25,8 +25,8 @@ const routes: Routes = [
         {path: 'cidadaos/cadastrar', component: PaginaCidadaosCadastrarComponent},
         {path: 'cidadaos/visualizar/:id', component: PaginaCidadaosVisualizarComponent},
         {path: 'cidadaos/visualizar/:id/relatorio', component: PaginaCidadaoRelatorioComponent},
-      { path: 'medicao', component: PaginaMedicaoComponent},
-      {path: 'medicao/sucesso', component: PaginaMedicaoSucessoComponent},
+      { path: 'medicao/:id', component: PaginaMedicaoComponent},
+      {path: 'medicao/:id/sucesso', component: PaginaMedicaoSucessoComponent},
       {path: 'admin/farmacia', component: PaginaFarmaciaComponent},
     ]
   },

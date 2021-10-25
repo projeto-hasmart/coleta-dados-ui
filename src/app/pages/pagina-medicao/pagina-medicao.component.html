@@ -189,13 +189,13 @@
                             <!-- sistolica Column -->
                             <ng-container matColumnDef="sistolica">
                                 <th mat-header-cell *matHeaderCellDef> Pressão Sistólica </th>
-                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.sistolica" [class.errorInput]="(!direitoOK && error) || (element.diastolica > element.sistolica)" placeholder="Digite um valor"> </td>
+                                <td mat-cell *matCellDef="let element"> <input matInput type="number"type="number" min="1" max="300" maxlength = "3" [(ngModel)]="element.sistolica" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" [class.errorInput]="(!direitoOK && error) || (element.diastolica > element.sistolica)" placeholder="Digite um valor. Ex.: 120, para uma pressão 120/80"> </td>
                             </ng-container>
 
                             <!-- diastolica Column -->
                             <ng-container matColumnDef="diastolica">
                                 <th mat-header-cell *matHeaderCellDef> Pressão diastólica </th>
-                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.diastolica" [class.errorInput]="(!direitoOK && error) || (element.diastolica > element.sistolica)" placeholder="Digite um valor">
+                                <td mat-cell *matCellDef="let element"> <input matInput type="number" type="number" min="1" max="300" maxlength = "3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" [(ngModel)]="element.diastolica" [class.errorInput]="(!direitoOK && error) || (element.diastolica > element.sistolica)" placeholder="Digite um valor. Ex.: 80, para uma pressão 120/80">
                                 </td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -204,7 +204,7 @@
 
                         </table>
                         <button id="novaAfericao" (click)="addRow()"><mat-icon id="iconplus">add</mat-icon><label id="afericaobuttonlabel">Nova aferição</label></button>
-                        <label id="errorLabel" *ngIf="!direitoOK && error">A pressão diastólica deve ser inferior à sistólica</label>
+                        <label id="errorLabel" *ngIf="!direitoOK && error">A pressão diastólica deve ser inferior à sistólica e ambas devem ter valor entre 1 e 300.</label>
 
                     </div>
                 </div>
@@ -233,13 +233,13 @@
                             <!-- sistolica Column -->
                             <ng-container matColumnDef="sistolica">
                                 <th mat-header-cell *matHeaderCellDef> Pressão Sistólica </th>
-                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.sistolica" placeholder="Digite um valor" [class.errorInput]="(!esquerdoOK && error) || (element.diastolica > element.sistolica)"> </td>
+                                <td mat-cell *matCellDef="let element"> <input matInput type="number" min="1" max="300" maxlength = "3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" [(ngModel)]="element.sistolica" placeholder="Digite um valor. Ex.: 120, para uma pressão 120/80" [class.errorInput]="(!esquerdoOK && error) || (element.diastolica > element.sistolica)"> </td>
                             </ng-container>
 
                             <!-- diastolica Column -->
                             <ng-container matColumnDef="diastolica">
                                 <th mat-header-cell *matHeaderCellDef> Pressão diastólica </th>
-                                <td mat-cell *matCellDef="let element"> <input matInput type="number" [(ngModel)]="element.diastolica" placeholder="Digite um valor" [class.errorInput]="(!esquerdoOK && error) || (element.diastolica > element.sistolica)">
+                                <td mat-cell *matCellDef="let element"> <input matInput type="number" min="1" max="300" maxlength = "3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" [(ngModel)]="element.diastolica" placeholder="Digite um valor. Ex.: 80, para uma pressão 120/80" [class.errorInput]="(!esquerdoOK && error) || (element.diastolica > element.sistolica)">
                                 </td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -247,7 +247,7 @@
                             </tr>
                         </table>
                         <button id="novaAfericao" (click)="addRowd()"><mat-icon id="iconplus" >add</mat-icon><label id="afericaobuttonlabel">Nova aferição</label></button>
-                        <label id="errorLabel" *ngIf="!direitoOK && error">A pressão diastólica deve ser inferior à sistólica</label>
+                        <label id="errorLabel" *ngIf="!esquerdoOK && error">A pressão diastólica deve ser inferior à sistólica e ambas devem ter valor entre 1 e 300.</label>
                     </div>
                 </div>
                 <div id="passotres">
@@ -256,9 +256,9 @@
                         <label id="medicaoTitleLabel">Realize a aferição do peso</label>
                         <!-- <button mat-icon-button id="deleteButton" data-toggle="modal" data-target="#excluirmedicao" class="pull-right"><mat-icon>delete</mat-icon></button> -->
                     </div>
-                    <input type="number" class="input-control" placeholder="Peso" id="pesoinput" [(ngModel)]="peso">
+                    <input type="number" class="input-control" placeholder="Peso" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "3" id="pesoinput" min="30" max="400" [(ngModel)]="peso">
                     <!--(keyup)="onKey($event)"-->
-                    <label id="errorLabel" *ngIf="(peso < 30 || peso > 400) && error">O campo 'Peso' deve estar entre 30 e 400 kg</label>
+                    <label id="errorLabel" *ngIf="(peso < 30 || peso > 400) && error">O campo 'Peso' deve estar entre 30 e 400 kg.</label>
 
                 </div>
                 <div class="modal fade" id="adicionarMedicamento">
@@ -328,8 +328,7 @@
                 </div>
             </div>
         </div>
-        <a routerLink="/medicao/sucesso">
-            <button mat-button id="finalizarButton" (click)="checkMedicao()" *ngIf="peso"><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button></a>
+            <button mat-button id="finalizarButton" (click)="checkMedicao()" *ngIf="peso"><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button>
         <!--*ngIf=peso -->
         <button mat-button id="finalizarButtonBlocked" *ngIf="!peso"><label id="retornoCidadaoButtonLabel">FINALIZAR MEDIÇÃO</label></button>
     </div>
