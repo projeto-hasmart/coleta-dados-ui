@@ -1,4 +1,3 @@
-import { RelatorioOpiniao } from './../../../models/relatorioOpiniao';
 import { MedicaoServiceService } from './../../../services/medicao/medicao-service.service';
 import { Observable } from 'rxjs';
 import { ApiService } from './../../../services/api.service';
@@ -22,11 +21,11 @@ interface Fumante {
   value: number;
   viewValue: string;
 }
-let ELEMENT_DATA: Medicao[] = [
+let ELEMENT_DATA: any[] = [
 ];
 let ELEMENTS_DATA: any[] = [
 ];
-let ELEMENTZ_DATA: RelatorioOpiniao[] = [];
+let ELEMENTZ_DATA: any[] = [];
 
 const MEDICAO: Medicao[] = [];
 
@@ -35,7 +34,8 @@ const MEDICAO: Medicao[] = [];
   templateUrl: './pagina-cidadaos-visualizar.component.html',
   styleUrls: ['./pagina-cidadaos-visualizar.component.scss']
 })
-export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit {
+export class PaginaCidadaosVisualizarComponent implements OnInit {
+  hide = true;
   checked = false;
   disabled = false;
   dispensacao = 1234567;
@@ -66,26 +66,21 @@ export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit 
     this.apiService = apiService;
     this.router = router;
    }
-  displayedColumns: string[] = ['dataHora', 'servico', 'responsavel', 'info'];
-  displayedColumnsAfer: string[] = ['sistolica', 'diastolica'];
-  displayedColumnsRel: string[] = ['dataRelatorio', 'servico', 'info'];
-
-  dataSource;
-  dataSourceMedi;
-  dataSourceRel;
+  displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
+  dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+  dataSourceMedi = new MatTableDataSource<any>(ELEMENTS_DATA);
+  dataSourceRel = new MatTableDataSource<any>(ELEMENTZ_DATA);
   selection = new SelectionModel<any>(true, []);
   /* declarando um nome pro property binding do nome dinâmico */
 
   color = 'green';
   diabetess: Diabetes[] = [
-    {value: 0, viewValue: 'Não informado'},
     {value: 1, viewValue: 'Não'},
     {value: 2, viewValue: 'Tipo 1'},
     {value: 3, viewValue: 'Tipo 2'},
     {value: 4, viewValue: 'Diabetes Gestante'}
   ];
   fumantes: Fumante[] = [
-    {value: 0, viewValue: 'Não informado'},
     {value: 1, viewValue: 'Não fumante'},
     {value: 2, viewValue: 'Fumante'},
     {value: 3, viewValue: 'Ex-Fumante'}
@@ -182,11 +177,6 @@ export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit 
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
   }
 }
-ngAfterViewInit() {
-  this.dataSource = new MatTableDataSource<Medicao>(ELEMENT_DATA);
-  this.dataSourceMedi = new MatTableDataSource<any>(ELEMENTS_DATA);
-  this.dataSourceRel = new MatTableDataSource<RelatorioOpiniao>(ELEMENTZ_DATA);
-}
 verificaCep(cep: string) {
   if (cep.length === 8) {
     this.cz.pegaremosCep(cep).subscribe(data => {
@@ -198,24 +188,20 @@ verificaCep(cep: string) {
 
 }
 verTelefone() {
-  if (this.oNossoCidadao.dadosPessoais.telefone.includes('(') && this.oNossoCidadao.dadosPessoais.telefone.includes(')') ) {
-    this.showingPhone = this.oNossoCidadao.dadosPessoais.telefone;
+this.i = 0;
+while (this.i < 11) {
+  if (this.i === 0) {
+    this.showingPhone = '(' + this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
+    this.i++;
+  } else if (this.i === 1) {
+    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + ')';
+    this.i++;
+  } else if (this.i === 6) {
+    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + '-';
+    this.i++;
   } else {
-    this.i = 0;
-    while (this.i < 11) {
-    if (this.i === 0) {
-      this.showingPhone = '(' + this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
-      this.i++;
-    } else if (this.i === 1) {
-      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + ')';
-      this.i++;
-    } else if (this.i === 6) {
-      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + '-';
-      this.i++;
-    } else {
-      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
-      this.i++;
-    }
+    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
+    this.i++;
   }
 }
 }
@@ -272,8 +258,8 @@ getMedicoes() {
       (new Date(a.dataRelatorio.split('/').reverse().join('-')) as any);
   });
 
-  this.dataSource = new MatTableDataSource<Medicao>(ELEMENT_DATA);
-  this.dataSourceRel = new MatTableDataSource<RelatorioOpiniao>(ELEMENTZ_DATA);
+  this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+  this.dataSourceRel = new MatTableDataSource<any>(ELEMENTZ_DATA);
 }
 
 
@@ -291,26 +277,27 @@ reportToView() {
 //   this.cz.selecionaCidadao(this.buscado);
 
 // }
-medicaoDe(id: string) {
+medicaoDe(dataHora: string) {
   for (const med of ELEMENT_DATA) {
-    if (med.id === id) {
+    if (med.dataHora === dataHora) {
       ELEMENTS_DATA = [];
-      this.ultimaMedicao = med.dataHora;
+      this.ultimaMedicao = dataHora;
       this.responsavel = med.estabelecimentoId;
       this.weight = med.peso;
       for (const af of med.afericoes) {
         ELEMENTS_DATA.push(af);
         this.dataSourceMedi = new MatTableDataSource(ELEMENTS_DATA);
+
       }
     }
   }
 }
 
-relatorioDe(id: string) {
+relatorioDe(dataHora: string) {
   for (const rel of ELEMENTZ_DATA) {
-    if (rel.id === id) {
+    if (rel.dataRelatorio === dataHora) {
       this.relatorioCidadao = rel.relatorioCidadao;
-      this.ultimaMedicao = rel.dataRelatorio;
+      this.ultimaMedicao = dataHora;
     }
   }
 }
