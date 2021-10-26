@@ -6,6 +6,7 @@ import { RelatorioOpiniao } from './relatorioOpiniao';
 
 export interface Cidadao {
   nome: string;
+  anonimoNome?: string;
   cpf: string;
   rg: string;
   dataNascimento: string;

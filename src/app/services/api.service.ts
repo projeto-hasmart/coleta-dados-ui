@@ -65,7 +65,6 @@ public updateCidadao(cidadao: CidadaoEdit, id: string): Observable<any> {
 public uploadFile(file: CsvFile): Observable<Cidadao[]> {
 
   const formData = new FormData();
-  console.log(file);
   formData.append('file', file.File);
   const headersToSend = new HttpHeaders();
   /** In Angular 5, including the header Content-Type can invalidate your request */

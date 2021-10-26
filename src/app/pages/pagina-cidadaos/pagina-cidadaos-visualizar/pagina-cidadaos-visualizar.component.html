@@ -1,645 +1,607 @@
-<section class="content-header" *ngIf="(cidadao$ | async)">
-  <div id="divtitle">
-      <label id="labelNome" *ngIf="hide==true">{{oNossoCidadao.nome}}</label>
-      <label id="labelNome" *ngIf="hide==!true">XXXX XXXX</label>
-      <div id="divcpf"><label id="labelCpf" *ngIf="hide==true"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{showingCpf}}</label></div>
-      <div id="divcpf"><label id="labelCpf" *ngIf="hide==false"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;xxxxxxxxxxx</label></div>
-      <label id="labelVisualize" *ngIf="hide==true">Visualize autorizações e dados de {{oNossoCidadao.nome}}, ou inicie processos de medição ou adicionar relatório</label>
-      <label id="labelVisualize" *ngIf="hide==false">Visualize autorizações e dados de XXXX XXXX, ou inicie processos de medição ou adicionar relatório</label>
-      <span style="position:absolute; right:8px;top:15px;"><mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></span>
-  </div>
-  <!-- <div id="searchboxtoggle" class="row">
 
-      <mat-button-toggle-group id="cpfrgtoggle">
-          <mat-button-toggle value="cpf" id="togglebutton">
-              CPF
-          </mat-button-toggle>
-          <mat-button-toggle value="rg" id="togglebutton">
-              RG
-          </mat-button-toggle>
-      </mat-button-toggle-group>
-      <div class="search-bar">
-          <input type="text" class="searchTerm" placeholder="Buscar cidadão..." (keydown.enter)="searchToView()" id="searchBox" [(ngModel)]="buscado">
-          <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="searchToView()">
+<section class="content-header" *ngIf="(cidadao$ | async)">
+    <div id="divtitle">
+        <label id="labelNome" *ngIf="!hide">{{oNossoCidadao.nome}}</label>
+        <label id="labelNome" *ngIf="hide">{{oNossoCidadao.anonimoNome}}</label>
+        <div id="divcpf" *ngIf="!hide"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{showingCpf}}</label></div>
+        <div id="divcpf" *ngIf="hide"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;XXX.XXX.XXX-XX</label></div>
+        <label id="labelVisualize" *ngIf="!hide">Visualize autorizações e dados de {{oNossoCidadao.nome}}, ou inicie processos de medição ou adicionar relatório</label>
+        <label id="labelVisualize" *ngIf="hide">Visualize autorizações e dados de {{oNossoCidadao.anonimoNome}}, ou inicie processos de medição ou adicionar relatório</label>
+        <span style="margin-left:1%"><mat-icon matSuffix (click)="checkAnonymous()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></span>
+    </div>
+    <!-- <div id="searchboxtoggle" class="row">
+        <mat-button-toggle-group id="cpfrgtoggle">
+            <mat-button-toggle value="cpf" id="togglebutton">
+                CPF
+            </mat-button-toggle>
+            <mat-button-toggle value="rg" id="togglebutton">
+                RG
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+        <div class="search-bar">
+            <input type="text" class="searchTerm" placeholder="Buscar cidadão..." (keydown.enter)="searchToView()" id="searchBox" [(ngModel)]="buscado">
+            <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="searchToView()">
 <i class="fa fa-search"></i> </button>
-      </div>
-  </div> -->
+        </div>
+    </div> -->
 </section>
 <section class="content" *ngIf="(cidadao$ | async)">
-  <div class="container">
-      <div class="box box-default" id="box">
-          <label id="autorizacoesLabel">Autorizações</label>
-          <div class="row">
-              <div class='col-md-12'>
-                  <mat-card id="medicaoCard" *ngIf="oNossoCidadao.podeRealizarMedicao">
-                      <div class='row'>
-                          <div class="col-md-2">
-                              <img src="assets/dist/img/logo_maior.png" id="cardImg">
-                          </div>
-                          <div class="col-md-10">
-                              <div class="row">
-                                  <mat-card-title id="cardTitle">Medição</mat-card-title>
-                              </div>
-                              <div class="row">
-                                  <label id="ultimaMedicao" *ngIf="oNossoCidadao.medicoes[0] !== undefined">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
-                                  <label id="semMedicao" *ngIf="oNossoCidadao.medicoes[0] === undefined">O Cidadão não tem medições cadastradas</label>
-                              </div>
-                              <div class="row">
-                                  <label id="autorizacaoMedicao">O paciente está autorizado a realizar uma medição de pressão arterial neste período.</label>
-                              </div>
-                              <a><button mat-button id="medicaoButton" class="pull-right" (click)="goToView()">
-              <label id="medicaoButtonLabel">REALIZAR MEDIÇÃO</label></button></a>
-              <a><button mat-button id="medicaoButton" class="pull-right" (click)="reportToView()">
-              <label id="medicaoButtonLabel">ADICIONAR RELATÓRIO</label></button></a>
-              </div>
-                      </div>
-                  </mat-card>
-                  <mat-card id="medicaoCardNao" *ngIf="!oNossoCidadao.podeRealizarMedicao">
-                      <div class='row'>
-                          <div class="col-sm-3">
-                              <img src="assets/dist/img/red_heart.png" id="cardImg">
-                          </div>
-                          <div class="col-sm-9">
-                              <mat-card-title id="cardTitleNao">Medição</mat-card-title>
-                              <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
-                              <label id="autorizacaoMedicaoNao">O paciente não está autorizado a realizar uma medição de pressão arterial neste período.</label>
-                              <label id="autorizacaoMedicaoNao">Próxima medição está autorizada para {{oNossoCidadao.dataProximaMedicao}}</label>
-                          </div>
-                      </div>
-                  </mat-card>
-              </div>
-          </div>
-      </div>
-      <div class="box box-default" id="infoBox">
-          <div class="box-header with-border">
-              <h3 class="box-title" id="labelInformacoes">Informações
-              </h3>
-              <div class="box-tools pull-right">
-
-                  <button mat-icon-button data-toggle="modal" data-target="#editarCidadao" *ngIf="isCollapsed"><mat-icon aria-hidden="false">edit</mat-icon></button>
-                  <button class="btn btn-box-tool" data-widget="collapse" (click)="isCollapsed = !isCollapsed"><i class="fa fa-angle-down"></i></button>
-              </div>
-          </div>
-          <!--MODAL MEDIÇÃO-->
-          <div class="modal fade" id="verMedicao">
-              <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                      <!-- Modal Header -->
-                      <div class="modal-header">
-                          <h4 class="modal-title" id="titleModal">VISUALIZAR MEDIÇÃO <button type="button" class="close pull-right" data-dismiss="modal" style="top: 15px; right: 5px">&times;</button></h4>
-
-                      </div>
-
-                      <!-- Modal body -->
-                      <div class="modal-body">
-                          <label id="informacoesPessoais" style="top: -15px;">Informações</label>
-                          <div class="container" style="width: 97.5%; margin-left: 1%;">
-
-                              <!-- class='row'-->
-                              <div class='row' style="background-color: white; border-radius: 4px;">
-                                  <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
-                                      <label id="dataRealizacaoLabel">DATA DE REALIZAÇÃO</label>
-                                      <label id="dataRealizacaoResult">{{ultimaMedicao}}</label>
-                                      <label id="servicoLabel">SERVIÇO</label>
-                                      <label id="servicoResult">Medição</label>
-                                  </div>
-                                  <!-- <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
-                                      <label id="responsavelLabel">RESPONSÁVEL</label>
-                                      <label id="responsavelResult">{{responsavel}}</label>
-
-                                  </div> -->
-                              </div>
-
-                          </div>
-                          <label id="informacoesPessoais">Aferições</label>
-                          <label id="informacoesPessoais" style="font-size: 14px;">Pressão Arterial</label>
-                          <div id="tabela" style="width: 98%;" *ngIf="cidadao$ | async">
-                              <!-- TABELA-->
-                              <table mat-table [dataSource]="dataSourceMedi" class="mat-elevation-z1">
-
-                                  <!-- Position Column -->
-                                  <ng-container matColumnDef="data">
-                                      <th mat-header-cell *matHeaderCellDef> Pressão Sistólica </th>
-                                      <td mat-cell *matCellDef="let element"> {{element.sistolica}} </td>
-                                  </ng-container>
-
-                                  <!-- Name Column -->
-                                  <ng-container matColumnDef="servico">
-                                      <th mat-header-cell *matHeaderCellDef> Pressão Diastólica </th>
-                                      <td mat-cell *matCellDef="let element"> {{element.diastolica}} </td>
-                                  </ng-container>
-
-                                  <!-- Weight Column -->
-                                  <ng-container matColumnDef="responsavel">
-                                      <th mat-header-cell *matHeaderCellDef> </th>
-                                      <td mat-cell *matCellDef="let element"> </td>
-                                  </ng-container>
-
-                                  <!-- Symbol Column -->
-                                  <ng-container matColumnDef="info" stickyEnd>
-                                      <th mat-header-cell *matHeaderCellDef></th>
-                                      <td mat-cell *matCellDef="let element">
-
-                                      </td>
-                                  </ng-container>
-
-                                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
-                                  </tr>
-                              </table>
-                          </div>
-                          <div>
-                              <label id="informacoesPessoais">Peso</label>
-
-                              <input type="text" readonly="readonly" class="input-control" [(ngModel)]="weight" id="inputNascimento" style="margin-left: 1%; width: 97.5%; margin-top: 10px; margin-bottom: 10px;">
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <!--MODAL RELATÓRIOS-->
-          <div class="modal fade" id="verRelatorio">
-              <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                      <!-- Modal Header -->
-                      <div class="modal-header">
-                          <h4 class="modal-title" id="titleModal">VISUALIZAR RELATÓRIO <button type="button" class="close pull-right" data-dismiss="modal" style="top: 15px; right: 5px">&times;</button></h4>
-
-                      </div>
-
-                      <!-- Modal body -->
-                      <div class="modal-body">
-                          <label id="informacoesPessoais" style="top: -15px;">Informações</label>
-                          <div class="container" style="width: 97.5%; margin-left: 1%;">
-
-                              <!-- class='row'-->
-                              <div class='row' style="background-color: white; border-radius: 4px;">
-                                  <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
-                                      <label id="dataRealizacaoLabel">DATA DE REALIZAÇÃO</label>
-                                      <label id="dataRealizacaoResult">{{ultimaMedicao}}</label>
-                                      <label id="servicoLabel">SERVIÇO</label>
-                                      <label id="servicoResult">Relatório</label>
-                                  </div>
-                                  <!-- <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
-                                      <label id="responsavelLabel">RESPONSÁVEL</label>
-                                      <label id="responsavelResult">{{responsavel}}</label>
-
-                                  </div> -->
-                              </div>
-
-                          </div>
-
-                          <div>
-                              <label id="informacoesPessoais">Relatório</label>
-
-                              <input type="text" readonly="readonly" class="input-control" [(ngModel)]="relatorioCidadao" id="inputNascimento" style="margin-left: 1%; width: 97.5%; margin-top: 10px; margin-bottom: 10px;">
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <!--MODAL EDIT-->
-          <div class="modal fade" id="editarCidadao">
-              <div class="modal-dialog modal-xl">
-                  <div class="modal-content">
-
-                      <!-- Modal Header -->
-                      <div class="modal-header">
-                          <h4 class="modal-title" id="titleModal" style="margin-left: 10px;">ATUALIZAR INFORMAÇÕES DO CIDADÃO</h4>
-                          <label class="modal-title" id="secondTitleModal" style="margin-left: 10px;">Você está atualizando informações de {{oNossoCidadao.nome}}</label>
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      </div>
-
-                      <!-- Modal body -->
-                      <div class="modal-body">
-                          <label id="informacoesPessoais">Informações pessoais</label>
-                          <label id="obrigatorio">* Campos obrigatórios</label>
-                          <div class="row">
-                              <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-12" style="width: 98.5%;">
-                                      <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="oNossoCidadao.nome">
-                                  </div>
-                              </div>
-                              <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-6" style="width: 49%;">
-                                      <input type="date" class="input-control" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="oNossoCidadao.dataNascimento">
-                                  </div>
-                                  <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
-                                      <input type="text" class="input-control" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="oNossoCidadao.dadosPessoais.telefone" mask="(00)00000-0000">
-                                  </div>
-                              </div>
-                              <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-6" style="width: 49%;">
-                                      <input type="text" class="input-control" placeholder="CPF*" id="inputCpf" [(ngModel)]="oNossoCidadao.cpf" mask="000.000.000-00">
-                                  </div>
-                                  <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
-                                      <input type="text" class="input-control" placeholder="RG*" id="inputRg" [(ngModel)]="oNossoCidadao.rg">
-                                  </div>
-                              </div>
-                              <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-6" style="width: 49%;">
-                                      <input type="text" class="input-control" placeholder="Email" id="inputRg" [(ngModel)]="oNossoCidadao.dadosPessoais.email">
-                                  </div>
-                                  <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
-                                      <div class="row" id="genero">
-                                          <label>Gênero*</label>
-                                      </div>
-                                      <div class="row" id="genero" style="margin-top: 0.5%; margin-left: -0.25%;">
-                                          <mat-radio-group id="generoRadio" [(ngModel)]="genero" name="genero" #generoRadio="ngModel" required>
-                                              <mat-radio-button class="example-radio-button" *ngFor="let gender of generos" [value]="gender">{{gender}}</mat-radio-button>
-                                          </mat-radio-group>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <label id="informacoesEstaticasLabel">Endereço</label>
-                          <div class="row" id='estaticas'>
-                              <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-3"> <input type="text" class="input-control" placeholder="CEP*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cep" mask="00000-000" (keyup)="verificaCep(oNossoCidadao.dadosPessoais.endereco.cep)">
-                                  </div>
-                                  <div class="col-md-7" style="width: 56.5%;">
-                                      <input type="text" placeholder="Logradouro*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.rua" name="rua" #inputRua="ngModel" required>
-                                  </div>
-                                  <div class="col-md-2">
-                                      <input type="text" placeholder="Número*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.numero" name="numero" #inputRua="ngModel" required>
-                                  </div>
-
-                              </div>
-                              <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-12" style="width: 98.5%;">
-                                      <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.complemento">
-
-                                  </div>
-
-                              </div>
-                              <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-6" style="width: 48.75%;">
-                                      <input type="text" class="input-control" placeholder="Cidade*" id="inputCidade" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cidade">
-
-                                  </div>
-                                  <div class="col-md-6" style="width: 48.75%;margin-left: 0.5%;">
-                                      <input type="text" class="input-control" placeholder="Estado*" id="inputEstado" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.estado">
-
-                                  </div>
-                              </div>
-
-                          </div>
-                          <label id="informacoesEstaticasLabel">Informações de Hipertensão Arterial</label>
-                          <div class="row" id='estaticas'>
-                              <div class="col-sm-4">
-                                  <input type="text" class="form-control input-sm" placeholder="Altura" id="inputAltura" [(ngModel)]="oNossoCidadao.indicadorRiscoHAS.altura">
-
-
-                              </div>
-                              <div class="col-sm-4">
-                                  <mat-form-field id="fumanteDrop">
-                                      <mat-label>Fumante</mat-label>
-                                      <mat-select style="width: 248px; height: 56px;" [(ngModel)]="oNossoCidadao.indicadorRiscoHAS.fumante" name="fumante" #inputFumante="ngModel">
-                                          <mat-option *ngFor="let fumante of fumantes" [value]="fumante.value">
-                                              {{fumante.viewValue}}
-                                          </mat-option>
-                                      </mat-select>
-                                  </mat-form-field>
-
-                              </div>
-                              <div class="col-sm-4">
-                                  <mat-form-field id="diabetesDrop">
-                                      <mat-label>Diabetes</mat-label>
-                                      <mat-select style="width: 238px; height: 56px;" [(ngModel)]="oNossoCidadao.indicadorRiscoHAS.diabetico" name="diabetes" #inputDiabetes="ngModel">
-                                          <mat-option *ngFor="let diabetes of diabetess" [value]="diabetes.value">
-                                              {{diabetes.viewValue}}
-                                          </mat-option>
-                                      </mat-select>
-                                  </mat-form-field>
-                              </div>
-                          </div>
-                          <label id="informacoesEstaticasLabel">Comorbidades</label>
-                          <div class="row">
-                              <div class="col-sm-4">
-                                  <label id='labelBackground' style="margin-left: 2%; width: 98%;">
-                              <label id="text">Doença Renal Crônica*</label>
-                                  <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1" (click)="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-
-                                  <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 2" (click)="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
-                                  </label>
-                              </div>
-                              <div class="col-sm-4">
-                                  <label id='labelBackground'>
-                                    <label id="text">Insuficiência Cardíaca*</label>
-                                  <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1" (click)="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-                                  <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 2" (click)="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
-                                  </label>
-                              </div>
-                              <div class="col-sm-4">
-                                  <label id='labelBackground'>
-                                    <label id="text">Histórico de Infarto*</label>
-                                  <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1" (click)="oNossoCidadao.indicadorRiscoHAS.historicoInfarto = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-                                  <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 2" (click)="oNossoCidadao.indicadorRiscoHAS.historicoInfarto = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
-                                  </label>
-                              </div>
-                          </div>
-                          <div class="row">
-
-                              <div class="col-sm-4">
-                                  <label id='labelBackground' style="margin-left: 2%; width: 98%;">
-                                    <label id="text">Histórico de AVC*</label>
-                                  <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1" (click)="oNossoCidadao.indicadorRiscoHAS.historicoAvc = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-                                  <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 2" (click)="oNossoCidadao.indicadorRiscoHAS.historicoAvc = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
-
-                                  </label>
-                              </div>
-                              <div class="col-sm-4">
-                                  <label id='labelBackground'>
-                                    <label id="text">Doença Arterial Obstrutiva Periférica</label>
-                                  <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1" (click)="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-                                  <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 2" (click)="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
-                                  </label>
-                              </div>
-                              <div class="col-sm-4">
-                                  <label id='labelBackground'>
-                                    <label id="text">Retinopatia Hipertensiva</label>
-                                  <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 1" (click)="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-                                  <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 2" (click)="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
-                                  </label>
-                              </div>
-                          </div>
-                          <div id="buttons-modal">
-                              <button mat-button id="cancel" data-dismiss="modal"><label id="cancellabel">CANCELAR</label></button>
-                              <button mat-button id="update" (click)="updateCz()" data-dismiss="modal"><label id="updatelabel">ATUALIZAR</label></button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <!-- /.box-tools -->
-
-          <!-- /.box-header -->
-          <div class="box-body" *ngIf="isCollapsed">
-              <div class="box box-default" id="infoBoxPessoal" *ngIf="cidadao$ | async">
-                  <label id="pessoaisLabel">Pessoais</label>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <label id="dadoLabel">NOME</label>
-                          <label id="dadoResult" *ngIf="hide == true">{{oNossoCidadao.nome}}</label>
-                          <label id="dadoResult" *ngIf="hide == !true">XXXX XXXX</label>
-                          <label id="dadoLabel">CPF</label>
-                          <label id="dadoResult" *ngIf="hide == true">{{showingCpf}}</label>
-                          <label id="dadoResult" *ngIf="hide == !true">xxx.xxx.xxx-xx</label>
-                          <label id="dadoLabel">GÊNERO</label>
-                          <label id="dadoResult" *ngIf="hide == true">{{oNossoCidadao.dadosPessoais.genero}}</label>
-                          <label id="dadoResult" *ngIf="hide == !true">xxxxxxx</label>
-                      </div>
-                      <div class="col-md-4">
-                          <label id="dadoLabel">DATA DE NASCIMENTO</label>
-                          <label id="dadoResult" *ngIf="hide == true">{{oNossoCidadao.dataNascimento}}</label>
-                          <label id="dadoResult" *ngIf="hide == !true">XX/XX/XXXX</label>
-                          <label id="dadoLabel">RG</label>
-                          <label id="dadoResult" *ngIf="hide == true">{{oNossoCidadao.rg}}</label>
-                          <label id="dadoResult" *ngIf="hide == !true">xxxxxxxxxxx</label>
-                      </div>
-                      <div class="col-md-4">
-                          <label id="dadoLabel">TELEFONE</label>
-                          <label id="dadoResult" *ngIf="hide == true">{{showingPhone}}</label>
-                          <label id="dadoResult" *ngIf="hide == !true">(xx)xxxxx-xxxx</label>
-                          <label id="dadoLabel">E-MAIL</label>
-                          <label id="dadoResult" *ngIf="hide == true">{{oNossoCidadao.dadosPessoais.email}}</label>
-                          <label id="dadoResult" *ngIf="hide == !true">xxxxxxxxxxx</label>
-
-                      </div>
-                  </div>
-              </div>
-              <div class="box box-default" id="infoBoxEstaticas">
-
-                  <label id="estaticasLabel">Endereço</label>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <label id="dadoLabel">CEP</label>
-                          <label id="dadoResult" *ngIf="hide==true">{{showingCep}}</label>
-                          <label id="dadoResult" *ngIf="hide==!true">XXXXX-XXX</label>
-                          <label id="dadoLabel">ESTADO</label>
-                          <label id="dadoResult" *ngIf="hide==true">{{oNossoCidadao.dadosPessoais.endereco.estado}}</label>
-                          <label id="dadoResult" *ngIf="hide==!true">xxxxxxxx</label>
-                      </div>
-                      <div class="col-md-4">
-                          <label id="dadoLabel">ENDEREÇO</label>
-                          <label id="dadoResult" *ngIf="hide==true">{{oNossoCidadao.dadosPessoais.endereco.rua}}, {{oNossoCidadao.dadosPessoais.endereco.numero}}</label>
-                          <label id="dadoResult" *ngIf="hide==!true">XXXXXXXXX, XX</label>
-                          <label id="dadoLabel">COMPLEMENTO</label>
-                          <label id="dadoResult" *ngIf="hide==true">{{oNossoCidadao.dadosPessoais.endereco.complemento}}</label>
-                          <label id="dadoResult" *ngIf="hide==!true">xxxxxxxxxxx</label>
-                      </div>
-                      <div class="col-md-4">
-
-                          <label id="dadoLabel">CIDADE</label>
-                          <label id="dadoResult" *ngIf="hide==true">{{oNossoCidadao.dadosPessoais.endereco.cidade}}</label>
-                          <label id="dadoResult" *ngIf="hide==!true">xxxxxxxxx</label>
-
-                      </div>
-                  </div>
-              </div>
-              <div class="box box-default" id="infoBoxEstaticas">
-
-                  <label id="estaticasLabel">Estáticas</label>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <label id="dadoLabel">ALTURA</label>
-                          <label id="dadoResult" *ngIf="hide==true">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
-                          <label id="dadoResult" *ngIf="hide==!true">X.XX m</label>
-                          <label id="dadoLabel">DOENÇA RENAL CRÔNICA</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1 && hide == true">Não</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 2 && hide == true">Sim</label>
-
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1 && hide == !true">XXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 2 && hide == !true">XXX</label>
-
-                          <label id="dadoLabel">HISTÓRICO DE AVC</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 2 && hide == true">Sim</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1 && hide == true">Não</label>
-
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 2 && hide == !true">XXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1 && hide == !true">XXX</label>
-
-                      </div>
-                      <div class="col-md-4">
-                          <label id="dadoLabel">DIABETES</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1 && hide == true">Não</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2 && hide == true">Tipo 1</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3 && hide == true">Tipo 2</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 4 && hide == true">Diabetes Gestante</label>
-
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1 && hide == !true">XXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2 && hide == !true">XXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3 && hide == !true">XXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 4 && hide == !true">XXXXXX</label>
-
-                          <label id="dadoLabel">INSUFICIÊNCIA CARDÍACA</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 2 && hide == true">Sim</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1 && hide == true">Não</label>
-
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 2 && hide == !true">XXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1 && hide == !true">XXX</label>
-
-                          <label id="dadoLabel">DOENÇA ARTERIAL OBSTRUTIVA PERIFÉRICA</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 2 && hide == true">Sim</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1 && hide == true">Não</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 0 && hide == true">Não Informado</label>
-
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 2 && hide == !true">XXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1 && hide == !true">XXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 0 && hide == !true">XXXXX</label>
-
-                      </div>
-                      <div class="col-md-4">
-                          <label id="dadoLabel">FUMANTE</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1 && hide == true">Não fumante</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2 && hide == true">Fumante</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3 && hide == true">Ex-fumante</label>
-
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1 && hide == !true">XXXXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2 && hide == !true">XXXXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3 && hide == !true">XXXXX</label>
-
-                          <label id="dadoLabel">HISTÓRICO DE INFARTO</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 2 && hide == true">Sim</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1 && hide == true">Não</label>
-
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 2 && hide == !true">XXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1 && hide == !true">XXX</label>
-
-                          <label id="dadoLabel">RETINOPATIA HIPERTENSIVA</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 2 && hide == true">Sim</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 1 && hide == true">Não</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 0 && hide == true">Não Informado</label>
-
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 2 && hide == !true">XXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 1 && hide == !true">XXX</label>
-                          <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 0 && hide == !true">XXXX</label>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="box box-default" id="medicaoBox">
-          <div>
-
-              <label id="medicaoTitleLabel">Registros
-      </label>
-          </div>
-          <div id="tabela" *ngIf="(cidadao$ | async)">
-              <!-- TABELA-->
-              <table mat-table [dataSource]="dataSource" class="mat-elevation-z0" *ngIf="cidadao$ | async">
-
-                  <!-- Checkbox Column -->
-                  <ng-container matColumnDef="select">
-                      <th mat-header-cell *matHeaderCellDef>
-                          <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-                          </mat-checkbox>
-                      </th>
-                      <td mat-cell *matCellDef="let row">
-                          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
-                          </mat-checkbox>
-                      </td>
-                  </ng-container>
-
-                  <!-- Position Column -->
-                  <ng-container matColumnDef="data" *ngIf="(cidadao$ | async)">
-                      <th mat-header-cell *matHeaderCellDef> Data </th>
-                      <td mat-cell *matCellDef="let element"> {{element.dataHora}} </td>
-                  </ng-container>
-
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="servico" *ngIf="(cidadao$ | async)">
-                      <th mat-header-cell *matHeaderCellDef> Serviço </th>
-                      <td mat-cell *matCellDef="let element"> Medição </td>
-                      <!--{{element.name}}-->
-                  </ng-container>
-
-                  <!-- Weight Column -->
-                  <ng-container matColumnDef="responsavel">
-                      <th mat-header-cell *matHeaderCellDef> </th>
-                      <!--Responsável-->
-                      <td mat-cell *matCellDef="let element"> </td>
-                      <!--{{element.estabelecimentoId}}-->
-                  </ng-container>
-
-                  <!-- Symbol Column -->
-                  <ng-container matColumnDef="info" stickyEnd>
-                      <th mat-header-cell *matHeaderCellDef></th>
-                      <td mat-cell *matCellDef="let element">
-                          <button data-toggle="modal" data-target="#verMedicao" id="infoButton" (click)="medicaoDe(element.dataHora)"><mat-icon>info</mat-icon></button>
-                          <!--*ngIf='element.name === ""' -->
-                          <!-- <button *ngIf='element.name === "Helium"' data-toggle="modal" data-target="#verDispensacao" id="infoButton"><mat-icon>info</mat-icon></button> -->
-                      </td>
-                  </ng-container>
-
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
-                  </tr>
-              </table>
-          </div>
-      </div>
-      <div class="box box-default" id="medicaoBox">
-          <div>
-
-              <label id="medicaoTitleLabel">Relatórios
-      </label>
-          </div>
-          <div id="tabela" *ngIf="(cidadao$ | async)">
-              <!-- TABELA-->
-              <table mat-table [dataSource]="dataSourceRel" class="mat-elevation-z0" *ngIf="cidadao$ | async">
-
-                  <!-- Checkbox Column -->
-                  <ng-container matColumnDef="select">
-                      <th mat-header-cell *matHeaderCellDef>
-                          <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-                          </mat-checkbox>
-                      </th>
-                      <td mat-cell *matCellDef="let row">
-                          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
-                          </mat-checkbox>
-                      </td>
-                  </ng-container>
-
-                  <!-- Position Column -->
-                  <ng-container matColumnDef="data" *ngIf="(cidadao$ | async)">
-                      <th mat-header-cell *matHeaderCellDef> Data </th>
-                      <td mat-cell *matCellDef="let element"> {{element.dataRelatorio}} </td>
-                  </ng-container>
-
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="servico" *ngIf="(cidadao$ | async)">
-                      <th mat-header-cell *matHeaderCellDef> Serviço </th>
-                      <td mat-cell *matCellDef="let element"> Relatório </td>
-                      <!--{{element.name}}-->
-                  </ng-container>
-
-                  <!-- Weight Column -->
-                  <ng-container matColumnDef="responsavel">
-                      <th mat-header-cell *matHeaderCellDef> </th>
-                      <!--Responsável-->
-                      <td mat-cell *matCellDef="let element"> </td>
-                      <!--{{element.estabelecimentoId}}-->
-                  </ng-container>
-
-                  <!-- Symbol Column -->
-                  <ng-container matColumnDef="info" stickyEnd>
-                      <th mat-header-cell *matHeaderCellDef></th>
-                      <td mat-cell *matCellDef="let element">
-                          <button data-toggle="modal" data-target="#verRelatorio" id="infoButton" (click)="relatorioDe(element.dataRelatorio)"><mat-icon>info</mat-icon></button>
-                          <!--*ngIf='element.name === ""' -->
-                          <!-- <button *ngIf='element.name === "Helium"' data-toggle="modal" data-target="#verDispensacao" id="infoButton"><mat-icon>info</mat-icon></button> -->
-                      </td>
-                  </ng-container>
-
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
-                  </tr>
-              </table>
-          </div>
-      </div>
-  </div>
+    <div class="container">
+        <div class="box box-default" id="box">
+            <label id="autorizacoesLabel">Autorizações</label>
+            <div class="row">
+                <div class='col-md-12'>
+                    <mat-card id="medicaoCard" *ngIf="oNossoCidadao.podeRealizarMedicao">
+                        <div class='row'>
+                            <div class="col-md-2">
+                                <img src="assets/dist/img/logo_maior.png" id="cardImg">
+                            </div>
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <mat-card-title id="cardTitle">Medição</mat-card-title>
+                                </div>
+                                <div class="row">
+                                    <label id="ultimaMedicao" *ngIf="oNossoCidadao.medicoes[0] !== undefined">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                                    <label id="semMedicao" *ngIf="oNossoCidadao.medicoes[0] === undefined">O Cidadão não tem medições cadastradas</label>
+                                </div>
+                                <div class="row">
+                                    <label id="autorizacaoMedicao">O paciente está autorizado a realizar medições de pressão arterial neste período.</label>
+                                </div>
+                                <a><button mat-button id="medicaoButton" class="pull-right" (click)="goToView()">
+                <label id="medicaoButtonLabel">REALIZAR MEDIÇÃO</label></button></a>
+                <!--<a><button mat-button id="medicaoButton" class="pull-right" (click)="reportToView()">
+                <label id="medicaoButtonLabel">ADICIONAR RELATÓRIO</label></button></a>--> <!--relato-->
+                <button *ngIf="!possuiAnonimo" mat-button id="medicaoButton" class="pull-right" (click)="addAnonymous()">
+                <label id="medicaoButtonLabel">ANONIMIZAR CIDADÃO</label></button>
+                </div>
+                        </div>
+                    </mat-card>
+                    <mat-card id="medicaoCardNao" *ngIf="!oNossoCidadao.podeRealizarMedicao">
+                        <div class='row'>
+                            <div class="col-sm-3">
+                                <img src="assets/dist/img/red_heart.png" id="cardImg">
+                            </div>
+                            <div class="col-sm-9">
+                                <mat-card-title id="cardTitleNao">Medição</mat-card-title>
+                                <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                                <label id="autorizacaoMedicaoNao">O paciente não está autorizado a realizar uma medição de pressão arterial neste período.</label>
+                                <label id="autorizacaoMedicaoNao">Próxima medição está autorizada para {{oNossoCidadao.dataProximaMedicao}}</label>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <div class="box box-default" id="infoBox" *ngIf="!hide">
+            <div class="box-header with-border">
+                <h3 class="box-title" id="labelInformacoes">Informações
+                </h3>
+                <div class="box-tools pull-right">
+
+                    <button mat-icon-button data-toggle="modal" data-target="#editarCidadao" *ngIf="isCollapsed"><mat-icon aria-hidden="false">edit</mat-icon></button>
+                    <button class="btn btn-box-tool" data-widget="collapse" (click)="isCollapsed = !isCollapsed"><i class="fa fa-angle-down"></i></button>
+                </div>
+            </div>
+            <!--MODAL MEDIÇÃO-->
+            <div class="modal fade" id="verMedicao">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="titleModal">VISUALIZAR MEDIÇÃO <button type="button" class="close pull-right" data-dismiss="modal" style="top: 15px; right: 5px">&times;</button></h4>
+
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <label id="informacoesPessoais" style="top: -15px;">Informações</label>
+                            <div class="container" style="width: 97.5%; margin-left: 1%;">
+
+                                <!-- class='row'-->
+                                <div class='row' style="background-color: white; border-radius: 4px;">
+                                    <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
+                                        <label id="dataRealizacaoLabel">DATA DE REALIZAÇÃO</label>
+                                        <label id="dataRealizacaoResult">{{ultimaMedicao}}</label>
+                                        <label id="servicoLabel">SERVIÇO</label>
+                                        <label id="servicoResult">Medição</label>
+                                    </div>
+                                    <!-- <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
+                                        <label id="responsavelLabel">RESPONSÁVEL</label>
+                                        <label id="responsavelResult">{{responsavel}}</label>
+                                    </div> -->
+                                </div>
+
+                            </div>
+                            <label id="informacoesPessoais">Aferições</label>
+                            <label id="informacoesPessoais" style="font-size: 14px;">Pressão Arterial</label>
+                            <div id="tabela" style="width: 98%;" *ngIf="cidadao$ | async">
+                                <!-- TABELA-->
+                                <table mat-table [dataSource]="dataSourceMedi" class="mat-elevation-z1">
+
+                                    <!-- Position Column -->
+                                    <ng-container matColumnDef="sistolica">
+                                        <th mat-header-cell *matHeaderCellDef> Pressão Sistólica </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.sistolica}} </td>
+                                    </ng-container>
+
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="diastolica">
+                                        <th mat-header-cell *matHeaderCellDef> Pressão Diastólica </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.diastolica}} </td>
+                                    </ng-container>
+
+                                    <!-- Weight Column -->
+                                    <ng-container matColumnDef="responsavel">
+                                        <th mat-header-cell *matHeaderCellDef> </th>
+                                        <td mat-cell *matCellDef="let element"> </td>
+                                    </ng-container>
+
+                                    <!-- Symbol Column -->
+                                    <ng-container matColumnDef="info" stickyEnd>
+                                        <th mat-header-cell *matHeaderCellDef></th>
+                                        <td mat-cell *matCellDef="let element">
+
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsAfer"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsAfer;" (click)="selection.toggle(row)">
+                                    </tr>
+                                </table>
+                            </div>
+                            <div>
+                                <label id="informacoesPessoais">Peso</label>
+
+                                <input type="text" readonly="readonly" class="input-control" [(ngModel)]="weight" id="inputNascimento" style="margin-left: 1%; width: 97.5%; margin-top: 10px; margin-bottom: 10px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--MODAL RELATÓRIOS-->
+            <div class="modal fade" id="verRelatorio">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="titleModal">VISUALIZAR RELATÓRIO <button type="button" class="close pull-right" data-dismiss="modal" style="top: 15px; right: 5px">&times;</button></h4>
+
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <label id="informacoesPessoais" style="top: -15px;">Informações</label>
+                            <div class="container" style="width: 97.5%; margin-left: 1%;">
+
+                                <!-- class='row'-->
+                                <div class='row' style="background-color: white; border-radius: 4px;">
+                                    <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
+                                        <label id="dataRealizacaoLabel">DATA DE REALIZAÇÃO</label>
+                                        <label id="dataRealizacaoResult">{{ultimaMedicao}}</label>
+                                        <label id="servicoLabel">SERVIÇO</label>
+                                        <label id="servicoResult">Relatório</label>
+                                    </div>
+                                    <!-- <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
+                                        <label id="responsavelLabel">RESPONSÁVEL</label>
+                                        <label id="responsavelResult">{{responsavel}}</label>
+                                    </div> -->
+                                </div>
+
+                            </div>
+                            
+                            <div>
+                                <label id="informacoesPessoais">Relatório</label>
+
+                                <input type="text" readonly="readonly" class="input-control" [(ngModel)]="relatorioCidadao" id="inputNascimento" style="margin-left: 1%; width: 97.5%; margin-top: 10px; margin-bottom: 10px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--MODAL EDIT-->
+            <div class="modal fade" id="editarCidadao">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="titleModal" style="margin-left: 10px;">ATUALIZAR INFORMAÇÕES DO CIDADÃO</h4>
+                            <label class="modal-title" id="secondTitleModal" style="margin-left: 10px;">Você está atualizando informações de {{oNossoCidadao.nome}}</label>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <label id="informacoesPessoais">Informações pessoais</label>
+                            <label id="obrigatorio">* Campos obrigatórios</label>
+                            <div class="row">
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-12" style="width: 98.5%;">
+                                        <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="oNossoCidadao.nome">
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-6" style="width: 49%;">
+                                        <input type="date" class="input-control" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="oNossoCidadao.dataNascimento">
+                                    </div>
+                                    <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
+                                        <input type="text" class="input-control" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="oNossoCidadao.dadosPessoais.telefone" mask="(00)00000-0000">
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-6" style="width: 49%;">
+                                        <input type="text" class="input-control" placeholder="CPF*" id="inputCpf" [(ngModel)]="oNossoCidadao.cpf" mask="000.000.000-00">
+                                    </div>
+                                    <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
+                                        <input type="text" class="input-control" placeholder="RG*" id="inputRg" [(ngModel)]="oNossoCidadao.rg">
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-6" style="width: 49%;">
+                                        <input type="text" class="input-control" placeholder="Email" id="inputRg" [(ngModel)]="oNossoCidadao.dadosPessoais.email">
+                                    </div>
+                                    <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
+                                        <div class="row" id="genero">
+                                            <label>Gênero*</label>
+                                        </div>
+                                        <div class="row" id="genero" style="margin-top: 0.5%; margin-left: -0.25%;">
+                                            <mat-radio-group id="generoRadio" [(ngModel)]="genero" name="genero" #generoRadio="ngModel" required>
+                                                <mat-radio-button class="example-radio-button" *ngFor="let gender of generos" [value]="gender">{{gender}}</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label id="informacoesEstaticasLabel">Endereço</label>
+                            <div class="row" id='estaticas'>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-3"> <input type="text" class="input-control" placeholder="CEP*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cep" mask="00000-000" (keyup)="verificaCep(oNossoCidadao.dadosPessoais.endereco.cep)">
+                                    </div>
+                                    <div class="col-md-7" style="width: 56.5%;">
+                                        <input type="text" placeholder="Logradouro*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.rua" name="rua" #inputRua="ngModel" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Número*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.numero" name="numero" #inputRua="ngModel" required>
+                                    </div>
+
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-12" style="width: 98.5%;">
+                                        <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.complemento">
+
+                                    </div>
+
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-6" style="width: 48.75%;">
+                                        <input type="text" class="input-control" placeholder="Cidade*" id="inputCidade" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cidade">
+
+                                    </div>
+                                    <div class="col-md-6" style="width: 48.75%;margin-left: 0.5%;">
+                                        <input type="text" class="input-control" placeholder="Estado*" id="inputEstado" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.estado">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <label id="informacoesEstaticasLabel">Informações de Hipertensão Arterial</label>
+                            <div class="row" id='estaticas'>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control input-sm" placeholder="Altura" id="inputAltura" [(ngModel)]="oNossoCidadao.indicadorRiscoHAS.altura">
+
+
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field id="fumanteDrop">
+                                        <mat-label>Fumante</mat-label>
+                                        <mat-select style="width: 248px; height: 56px;" [(ngModel)]="oNossoCidadao.indicadorRiscoHAS.fumante" name="fumante" #inputFumante="ngModel">
+                                            <mat-option *ngFor="let fumante of fumantes" [value]="fumante.value">
+                                                {{fumante.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field id="diabetesDrop">
+                                        <mat-label>Diabetes</mat-label>
+                                        <mat-select style="width: 238px; height: 56px;" [(ngModel)]="oNossoCidadao.indicadorRiscoHAS.diabetico" name="diabetes" #inputDiabetes="ngModel">
+                                            <mat-option *ngFor="let diabetes of diabetess" [value]="diabetes.value">
+                                                {{diabetes.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <label id="informacoesEstaticasLabel">Comorbidades</label>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label id='labelBackground' style="margin-left: 2%; width: 98%;">
+                                <label id="text">Doença Renal Crônica*</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1" (click)="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+
+                                    <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 2" (click)="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                                    </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label id='labelBackground'>
+                                      <label id="text">Insuficiência Cardíaca*</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1" (click)="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                                    <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 2" (click)="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                                    </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label id='labelBackground'>
+                                      <label id="text">Histórico de Infarto*</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1" (click)="oNossoCidadao.indicadorRiscoHAS.historicoInfarto = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                                    <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 2" (click)="oNossoCidadao.indicadorRiscoHAS.historicoInfarto = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-sm-4">
+                                    <label id='labelBackground' style="margin-left: 2%; width: 98%;">
+                                      <label id="text">Histórico de AVC*</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1" (click)="oNossoCidadao.indicadorRiscoHAS.historicoAvc = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                                    <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 2" (click)="oNossoCidadao.indicadorRiscoHAS.historicoAvc = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+
+                                    </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label id='labelBackground'>
+                                      <label id="text">Doença Arterial Obstrutiva Periférica</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1" (click)="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                                    <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 2" (click)="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                                    </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label id='labelBackground'>
+                                      <label id="text">Retinopatia Hipertensiva</label>
+                                    <button id="buttonNoCom" [class.selectedNo]="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 1" (click)="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
+                                    <button id="buttonYesCom" [class.selectedYes]="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 2" (click)="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="buttons-modal">
+                                <button mat-button id="cancel" data-dismiss="modal"><label id="cancellabel">CANCELAR</label></button>
+                                <button mat-button id="update" (click)="updateCz()" data-dismiss="modal"><label id="updatelabel">ATUALIZAR</label></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /.box-tools -->
+
+            <!-- /.box-header -->
+            <div class="box-body" *ngIf="isCollapsed">
+                <div class="box box-default" id="infoBoxPessoal" *ngIf="cidadao$ | async">
+                    <label id="pessoaisLabel">Pessoais</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label id="dadoLabel">NOME</label>
+                            <label id="dadoResult">{{oNossoCidadao.nome}}</label>
+                            <label id="dadoLabel">CPF</label>
+                            <label id="dadoResult">{{showingCpf}}</label>
+                            <label id="dadoLabel">GÊNERO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.genero}}</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">DATA DE NASCIMENTO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dataNascimento}}</label>
+                            <label id="dadoLabel">RG</label>
+                            <label id="dadoResult">{{oNossoCidadao.rg}}</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">TELEFONE</label>
+                            <label id="dadoResult">{{showingPhone}}</label>
+                            <label id="dadoLabel">E-MAIL</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.email}}</label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-default" id="infoBoxEstaticas">
+
+                    <label id="estaticasLabel">Endereço</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label id="dadoLabel">CEP</label>
+                            <label id="dadoResult">{{showingCep}}</label>
+                            <label id="dadoLabel">ESTADO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.estado}}</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">ENDEREÇO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.rua}}, {{oNossoCidadao.dadosPessoais.endereco.numero}}</label>
+                            <label id="dadoLabel">COMPLEMENTO</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.complemento}}</label>
+                        </div>
+                        <div class="col-md-4">
+
+                            <label id="dadoLabel">CIDADE</label>
+                            <label id="dadoResult">{{oNossoCidadao.dadosPessoais.endereco.cidade}}</label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-default" id="infoBoxEstaticas">
+
+                    <label id="estaticasLabel">Estáticas</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label id="dadoLabel">ALTURA</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.altura!==0">{{oNossoCidadao.indicadorRiscoHAS.altura}} m</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.altura===0">Não informada</label>
+                            <label id="dadoLabel">DOENÇA RENAL CRÔNICA</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaRenalCronica === 0">Não informado</label>
+                            <label id="dadoLabel">HISTÓRICO DE AVC</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoAvc === 0">Não informado</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">DIABETES</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 0">Não informado</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 2">Tipo 1</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 3">Tipo 2</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.diabetico === 4">Diabetes Gestante</label>
+
+                            <label id="dadoLabel">INSUFICIÊNCIA CARDÍACA</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.insuficienciaCardiaca === 0">Não informado</label>
+                            <label id="dadoLabel">DOENÇA ARTERIAL OBSTRUTIVA PERIFÉRICA</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.doencaArterialObstrutivaPeriferica === 0">Não Informado</label>
+
+                        </div>
+                        <div class="col-md-4">
+                            <label id="dadoLabel">FUMANTE</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 0">Não informado</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 1">Não fumante</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 2">Fumante</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.fumante === 3">Ex-fumante</label>
+
+                            <label id="dadoLabel">HISTÓRICO DE INFARTO</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.historicoInfarto === 0">Não Informado</label>
+
+                            <label id="dadoLabel">RETINOPATIA HIPERTENSIVA</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 2">Sim</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 1">Não</label>
+                            <label id="dadoResult" *ngIf="oNossoCidadao.indicadorRiscoHAS.retinopatiaHipertensiva === 0">Não Informado</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box box-default" id="medicaoBox">
+            <div>
+
+                <label id="medicaoTitleLabel">Registros de Medições
+        </label>
+            </div>
+            <div id="tabela" *ngIf="(cidadao$ | async)">
+                <!-- TABELA-->
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z0" *ngIf="!!dataSource">
+
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                            </mat-checkbox>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                            </mat-checkbox>
+                        </td>
+                    </ng-container>
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="dataHora" *ngIf="!!dataSource">
+                        <th mat-header-cell *matHeaderCellDef> Data </th>
+                        <td mat-cell *matCellDef="let element"> {{element.dataHora}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="servico" *ngIf="!!dataSource">
+                        <th mat-header-cell *matHeaderCellDef> Serviço </th>
+                        <td mat-cell *matCellDef="let element"> Medição </td>
+                        <!--{{element.name}}-->
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="responsavel">
+                        <th mat-header-cell *matHeaderCellDef> </th>
+                        <!--Responsável-->
+                        <td mat-cell *matCellDef="let element"> </td>
+                        <!--{{element.estabelecimentoId}}-->
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="info" stickyEnd>
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element">
+                            <button data-toggle="modal" data-target="#verMedicao" id="infoButton" (click)="medicaoDe(element.id)"><mat-icon>info</mat-icon></button>
+                            <!--*ngIf='element.name === ""' -->
+                            <!-- <button *ngIf='element.name === "Helium"' data-toggle="modal" data-target="#verDispensacao" id="infoButton"><mat-icon>info</mat-icon></button> -->
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="box box-default" id="medicaoBox">
+            <div>
+
+                <label id="medicaoTitleLabel">Contatos
+        </label>
+            </div>
+            <div id="tabela" *ngIf="(cidadao$ | async)">
+                <!-- TABELA-->
+                <table mat-table [dataSource]="dataSourceRel" class="mat-elevation-z0" *ngIf="!!dataSourceRel">
+
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                            </mat-checkbox>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                            </mat-checkbox>
+                        </td>
+                    </ng-container>
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="dataRelatorio" *ngIf="!!dataSourceRel">
+                        <th mat-header-cell *matHeaderCellDef> Data </th>
+                        <td mat-cell *matCellDef="let element"> {{element.dataRelatorio}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="servico" *ngIf="!!dataSourceRel">
+                        <th mat-header-cell *matHeaderCellDef> Serviço </th>
+                        <td mat-cell *matCellDef="let element"> Relatório </td>
+                        <!--{{element.name}}-->
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="responsavel">
+                        <th mat-header-cell *matHeaderCellDef> </th>
+                        <!--Responsável-->
+                        <td mat-cell *matCellDef="let element"> </td>
+                        <!--{{element.estabelecimentoId}}-->
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="info" stickyEnd>
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element">
+                            <button data-toggle="modal" data-target="#verRelatorio" id="infoButton" (click)="relatorioDe(element.id)"><mat-icon>info</mat-icon></button>
+                            <!--*ngIf='element.name === ""' -->
+                            <!-- <button *ngIf='element.name === "Helium"' data-toggle="modal" data-target="#verDispensacao" id="infoButton"><mat-icon>info</mat-icon></button> -->
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsRel"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsRel;" (click)="selection.toggle(row)">
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </section>

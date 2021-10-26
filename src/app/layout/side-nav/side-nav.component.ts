@@ -33,6 +33,10 @@ export class SideNavComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('currentUser')) as User;
   }
 
+  removeCitizen() {
+    localStorage.removeItem('citizen');
+  }
+
   refresh(): void {
     window.location.reload();
 }

@@ -51,14 +51,31 @@ export class CidadaoServiceService {
          catchError(this.handleError));
    }
 
-   // API: POST /HaSmart/api/cidadaos/Relatorio/{id}
-public createRelatorio(cidadaoId: string, relatorio: RelatorioOpiniao): Observable<RelatorioOpiniao> {
-  // tslint:disable-next-line: max-line-length
-  return this.httpClient.post<RelatorioOpiniao>((environment.rest.host + '/hasmart/api/Cidadaos/Relatorio/' + cidadaoId), relatorio, this.httpOptions)
-  .pipe(
-    catchError(this.handleError));
-}
-
+   public getCidadaoByNome(nome: string): Observable<Cidadao[]> {
+    return this.httpClient.get<Cidadao[]>(environment.rest.host + '/hasmart/api/Cidadaos/nome/' + nome, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+  public getCidadaoByNomeAnonimo(nomeAnonimo: string): Observable<Cidadao[]> {
+    return this.httpClient.get<Cidadao[]>(environment.rest.host + '/hasmart/api/Cidadaos/nome/' +
+      nomeAnonimo + '/anonimo', this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+  public deleteCidadaoById(cidadaoId: string): Observable<Cidadao> {
+    return this.httpClient.delete<Cidadao>(environment.rest.host + '/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+  public postAnonimoToCidadao(cidadaoId: string): Observable<Cidadao> {
+    return this.httpClient.post<Cidadao>(environment.rest.host + '/hasmart/api/Cidadaos/' + cidadaoId + '/anonimizar', this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
    jaTemosCidadao(id: string) {
      this.getCidadaoById(id).subscribe(cidadao => {
        this.cidadano = cidadao as Cidadao;
@@ -85,7 +102,6 @@ public createRelatorio(cidadaoId: string, relatorio: RelatorioOpiniao): Observab
        // Erro ocorreu no lado do servidor
        errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
      }
-     console.log(error);
      return throwError(error);
    }
 }

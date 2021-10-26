@@ -11,6 +11,7 @@ import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensa
 import { Medicao } from 'src/app/models/medicao';
 import { DatePipe } from '@angular/common';
 import { CidadaoEdit } from 'src/app/models/cidadaoEdit';
+import { RelatorioOpiniao } from 'src/app/models/relatorioOpiniao';
 
 
 interface Diabetes {
@@ -21,11 +22,11 @@ interface Fumante {
   value: number;
   viewValue: string;
 }
-let ELEMENT_DATA: any[] = [
+let ELEMENT_DATA: Medicao[] = [
 ];
 let ELEMENTS_DATA: any[] = [
 ];
-let ELEMENTZ_DATA: any[] = [];
+let ELEMENTZ_DATA: RelatorioOpiniao[] = [];
 
 const MEDICAO: Medicao[] = [];
 
@@ -34,8 +35,9 @@ const MEDICAO: Medicao[] = [];
   templateUrl: './pagina-cidadaos-visualizar.component.html',
   styleUrls: ['./pagina-cidadaos-visualizar.component.scss']
 })
-export class PaginaCidadaosVisualizarComponent implements OnInit {
-  hide = true;
+export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit {
+  hide = false;
+  possuiAnonimo = true;
   checked = false;
   disabled = false;
   dispensacao = 1234567;
@@ -66,21 +68,26 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
     this.apiService = apiService;
     this.router = router;
    }
-  displayedColumns: string[] = ['data', 'servico', 'responsavel', 'info'];
-  dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
-  dataSourceMedi = new MatTableDataSource<any>(ELEMENTS_DATA);
-  dataSourceRel = new MatTableDataSource<any>(ELEMENTZ_DATA);
-  selection = new SelectionModel<any>(true, []);
+   displayedColumns: string[] = ['dataHora', 'servico', 'responsavel', 'info'];
+   displayedColumnsAfer: string[] = ['sistolica', 'diastolica'];
+   displayedColumnsRel: string[] = ['dataRelatorio', 'servico', 'info'];
+
+   dataSource;
+   dataSourceMedi;
+   dataSourceRel;
+   selection = new SelectionModel<any>(true, []);
   /* declarando um nome pro property binding do nome dinâmico */
 
   color = 'green';
   diabetess: Diabetes[] = [
+    {value: 0, viewValue: 'Não informado'},
     {value: 1, viewValue: 'Não'},
     {value: 2, viewValue: 'Tipo 1'},
     {value: 3, viewValue: 'Tipo 2'},
     {value: 4, viewValue: 'Diabetes Gestante'}
   ];
   fumantes: Fumante[] = [
+    {value: 0, viewValue: 'Não informado'},
     {value: 1, viewValue: 'Não fumante'},
     {value: 2, viewValue: 'Fumante'},
     {value: 3, viewValue: 'Ex-Fumante'}
@@ -166,6 +173,11 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
       if ((localStorage.getItem('citizen')) !== undefined) {
       this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
       this.oNossoCidadao = cidadao as Cidadao;
+      if (this.oNossoCidadao.anonimoNome !== undefined && this.oNossoCidadao.anonimoNome !== '' &&
+          this.oNossoCidadao.anonimoNome !== null) {
+        this.hide = true;
+      }
+      this.checkAnonymous();
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
       this.getMedicoes();
       this.genero = this.oNossoCidadao.dadosPessoais.genero;
@@ -177,6 +189,26 @@ export class PaginaCidadaosVisualizarComponent implements OnInit {
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
   }
 }
+ngAfterViewInit() {
+  this.dataSource = new MatTableDataSource<Medicao>(ELEMENT_DATA);
+  this.dataSourceMedi = new MatTableDataSource<any>(ELEMENTS_DATA);
+  this.dataSourceRel = new MatTableDataSource<RelatorioOpiniao>(ELEMENTZ_DATA);
+}
+checkAnonymous() {
+  if (this.oNossoCidadao.anonimoNome !== undefined && this.oNossoCidadao.anonimoNome !== '' &&
+  this.oNossoCidadao.anonimoNome !== null) {
+    this.possuiAnonimo = true;
+    this.hide = !this.hide;
+  } else {
+    this.possuiAnonimo = false;
+  }
+}
+
+addAnonymous() {
+  this.cz.postAnonimoToCidadao(this.oNossoCidadao.id).subscribe(res => {
+    window.location.reload();
+  });
+}
 verificaCep(cep: string) {
   if (cep.length === 8) {
     this.cz.pegaremosCep(cep).subscribe(data => {
@@ -185,25 +217,29 @@ verificaCep(cep: string) {
       this.oNossoCidadao.dadosPessoais.endereco.estado = data.uf;
     });
   }
-
 }
 verTelefone() {
-this.i = 0;
-while (this.i < 11) {
-  if (this.i === 0) {
-    this.showingPhone = '(' + this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
-    this.i++;
-  } else if (this.i === 1) {
-    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + ')';
-    this.i++;
-  } else if (this.i === 6) {
-    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + '-';
-    this.i++;
+if (this.oNossoCidadao.dadosPessoais.telefone.includes('(') && this.oNossoCidadao.dadosPessoais.telefone.includes(')') ) {
+  this.showingPhone = this.oNossoCidadao.dadosPessoais.telefone;
   } else {
-    this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
-    this.i++;
+  this.i = 0;
+  while (this.i < 11) {
+    if (this.i === 0) {
+      this.showingPhone = '(' + this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
+      this.i++;
+    } else if (this.i === 1) {
+      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + ')';
+      this.i++;
+    } else if (this.i === 6) {
+      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i) + '-';
+      this.i++;
+    } else {
+      this.showingPhone += this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
+      this.i++;
+    }
   }
 }
+
 }
 verCep() {
   this.i = 0;
@@ -258,8 +294,8 @@ getMedicoes() {
       (new Date(a.dataRelatorio.split('/').reverse().join('-')) as any);
   });
 
-  this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
-  this.dataSourceRel = new MatTableDataSource<any>(ELEMENTZ_DATA);
+  this.dataSource = new MatTableDataSource<Medicao>(ELEMENT_DATA);
+  this.dataSourceRel = new MatTableDataSource<RelatorioOpiniao>(ELEMENTZ_DATA);
 }
 
 
@@ -277,27 +313,26 @@ reportToView() {
 //   this.cz.selecionaCidadao(this.buscado);
 
 // }
-medicaoDe(dataHora: string) {
+medicaoDe(id: string) {
   for (const med of ELEMENT_DATA) {
-    if (med.dataHora === dataHora) {
+    if (med.id === id) {
       ELEMENTS_DATA = [];
-      this.ultimaMedicao = dataHora;
+      this.ultimaMedicao = med.dataHora;
       this.responsavel = med.estabelecimentoId;
       this.weight = med.peso;
       for (const af of med.afericoes) {
         ELEMENTS_DATA.push(af);
         this.dataSourceMedi = new MatTableDataSource(ELEMENTS_DATA);
-
       }
     }
   }
 }
 
-relatorioDe(dataHora: string) {
+relatorioDe(id: string) {
   for (const rel of ELEMENTZ_DATA) {
-    if (rel.dataRelatorio === dataHora) {
+    if (rel.id === id) {
       this.relatorioCidadao = rel.relatorioCidadao;
-      this.ultimaMedicao = dataHora;
+      this.ultimaMedicao = rel.dataRelatorio;
     }
   }
 }
