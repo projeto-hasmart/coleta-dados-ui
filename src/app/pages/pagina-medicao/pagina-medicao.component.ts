@@ -189,6 +189,9 @@ filterValues(search: string) {
 goToView() {
   this.selecionaCidadao(this.oNossoCidadao.cpf, 'cpf');
 }
+goBackToView() {
+  this.selecionaCidadao(this.oNossoCidadao.cpf, 'back');
+}
 selecionaCidadao(digitado: string, groupValue?: string) {
   if (groupValue === 'cpf') {
     this.cz.getAllCidadaos(digitado).subscribe(cidadao => {
@@ -205,6 +208,15 @@ selecionaCidadao(digitado: string, groupValue?: string) {
       this.cz.cidadaos = cidadao as Cidadao[];
       this.cz.selecionadoId = cidadao[0].id;
       this.router.navigate(['/medicao/' + this.cz.selecionadoId + '/sucesso']);
+    }, err => {
+      this.errorBye = true;
+      console.log(err.error.errors.Cidadão[0]);
+    });
+  } else if (groupValue === 'back') {
+    this.cz.getCidadaos(digitado).subscribe(cidadao => {
+      this.cz.cidadaos = cidadao as Cidadao[];
+      this.cz.selecionadoId = cidadao[0].id;
+      this.router.navigate(['/cidadao/visualizar/' + this.cz.selecionadoId]);
     }, err => {
       this.errorBye = true;
       console.log(err.error.errors.Cidadão[0]);
