@@ -178,7 +178,6 @@ export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit 
           this.oNossoCidadao.anonimoNome !== null) {
         this.hide = true;
       }
-      this.checkAnonymous();
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
       this.getMedicoes();
       this.genero = this.oNossoCidadao.dadosPessoais.genero;
