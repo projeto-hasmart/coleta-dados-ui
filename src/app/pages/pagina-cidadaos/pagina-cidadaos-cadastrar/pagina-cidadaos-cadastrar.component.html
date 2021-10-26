@@ -15,12 +15,12 @@
             </div>
         </div>
         <div class='row' style="margin-left: -0.5%;">
-            <div class="col-md-6" style="width: 49.5%;">
-                <input type="date" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="nascimento" name="nascimento" #inputNascimento="ngModel" [class.errorInput]="nascimento === undefined && checkEmpty" required>
+            <div class="col-md-6" style="width: 49.5%;"> <!--datetime-local-->
+                <input type="date" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="nascimento" min="1900-01-01" max="2021-10-25" name="nascimento" #inputNascimento="ngModel" [class.errorInput]="nascimento === undefined && checkEmpty" required>
                 <label id="errorLabel" *ngIf="nascimento === undefined && checkEmpty">O cidadão deve ter pelo menos 18 anos de idade</label>
             </div>
             <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
-                <input type="text" placeholder="Telefone*" id="inputTelefone" [(ngModel)]="telefone" name="telefone" #inputTelefone="ngModel" [class.errorInput]="telefone === undefined && checkEmpty" mask="(00)00000-0000" required>
+                <input type="text" placeholder="Telefone* (Ex.: (85)91234-0000)" id="inputTelefone" [(ngModel)]="telefone" name="telefone" #inputTelefone="ngModel" [class.errorInput]="telefone === undefined && checkEmpty" mask="(00)00000-0000" required>
                 <label id="errorLabel" *ngIf="telefone === undefined && checkEmpty">O campo telefone é obrigatório e deve ser composto apenas por números</label>
             </div>
         </div>
@@ -28,12 +28,13 @@
             <div class="col-md-6" style="width: 49.5%;">
                 <input type="text" placeholder="CPF*" id="inputCpf" [(ngModel)]="cpf" name="cpf" #inputCpf="ngModel" [class.errorInput]="(cpf === undefined && checkEmpty) || exists" required mask="000.000.000-00">
                 <label id="errorLabel" *ngIf="(cpf === undefined && checkEmpty)  || (cpf !== undefined && cpf.length < 11 && checkEmpty)">O campo CPF deve ser composto por 11 números e é obrigatório.</label>
-                <label id="errorLabel" *ngIf="exists">É possível que um cidadão com este CPF já exista.</label>
+                <!--<label id="errorLabel" *ngIf="exists">É possível que um cidadão com este CPF já exista, ou este CPF seja inválido.</label>-->
             </div>
             <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
                 <input type="text" placeholder="RG*" id="inputRg" [(ngModel)]="rg" name="rg" #inputRg="ngModel" [class.errorInput]="(rg === undefined && checkEmpty) || exists" mask="00000000000000" required>
                 <label id="errorLabel" *ngIf="rg === undefined && checkEmpty">O campo RG deve ser composto apenas por números e é obrigatório.</label>
-                <label id="errorLabel" *ngIf="exists">É possível que um cidadão com este RG já exista.</label>
+                <!--<label id="errorLabel" *ngIf="exists">É possível que um cidadão com este RG já exista, ou este RG seja inválido.</label>-->
+
             </div>
         </div>
         <div class='row' style="margin-left: -0.5%;">

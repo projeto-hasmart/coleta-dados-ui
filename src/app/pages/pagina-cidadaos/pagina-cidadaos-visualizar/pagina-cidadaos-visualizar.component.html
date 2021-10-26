@@ -1,11 +1,15 @@
+
 <section class="content-header" *ngIf="(cidadao$ | async)">
     <div id="divtitle">
-        <label id="labelNome">{{oNossoCidadao.nome}}</label>
-        <div id="divcpf"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{showingCpf}}</label></div>
-        <label id="labelVisualize">Visualize autorizações e dados de {{oNossoCidadao.nome}}, ou inicie processos de medição ou adicionar relatório</label>
+        <label id="labelNome" *ngIf="!hide">{{oNossoCidadao.nome}}</label>
+        <label id="labelNome" *ngIf="hide">{{oNossoCidadao.anonimoNome}}</label>
+        <div id="divcpf" *ngIf="!hide"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;{{showingCpf}}</label></div>
+        <div id="divcpf" *ngIf="hide"><label id="labelCpf"><img src="assets/dist/img/cpf_cadastrado.png">&nbsp;&nbsp;&nbsp;XXX.XXX.XXX-XX</label></div>
+        <label id="labelVisualize" *ngIf="!hide">Visualize autorizações e dados de {{oNossoCidadao.nome}}, ou inicie processos de medição ou adicionar relatório</label>
+        <label id="labelVisualize" *ngIf="hide">Visualize autorizações e dados de {{oNossoCidadao.anonimoNome}}, ou inicie processos de medição ou adicionar relatório</label>
+        <span style="margin-left:1%"><mat-icon matSuffix (click)="checkAnonymous()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></span>
     </div>
     <!-- <div id="searchboxtoggle" class="row">
-
         <mat-button-toggle-group id="cpfrgtoggle">
             <mat-button-toggle value="cpf" id="togglebutton">
                 CPF
@@ -41,12 +45,14 @@
                                     <label id="semMedicao" *ngIf="oNossoCidadao.medicoes[0] === undefined">O Cidadão não tem medições cadastradas</label>
                                 </div>
                                 <div class="row">
-                                    <label id="autorizacaoMedicao">O paciente está autorizado a realizar uma medição de pressão arterial neste período.</label>
+                                    <label id="autorizacaoMedicao">O paciente está autorizado a realizar medições de pressão arterial neste período.</label>
                                 </div>
                                 <a><button mat-button id="medicaoButton" class="pull-right" (click)="goToView()">
                 <label id="medicaoButtonLabel">REALIZAR MEDIÇÃO</label></button></a>
-                <a><button mat-button id="medicaoButton" class="pull-right" (click)="reportToView()">
-                <label id="medicaoButtonLabel">ADICIONAR RELATÓRIO</label></button></a>
+                <!--<a><button mat-button id="medicaoButton" class="pull-right" (click)="reportToView()">
+                <label id="medicaoButtonLabel">ADICIONAR RELATÓRIO</label></button></a>--> <!--relato-->
+                <button *ngIf="!possuiAnonimo" mat-button id="medicaoButton" class="pull-right" (click)="addAnonymous()">
+                <label id="medicaoButtonLabel">ANONIMIZAR CIDADÃO</label></button>
                 </div>
                         </div>
                     </mat-card>
@@ -66,7 +72,7 @@
                 </div>
             </div>
         </div>
-        <div class="box box-default" id="infoBox">
+        <div class="box box-default" id="infoBox" *ngIf="!hide">
             <div class="box-header with-border">
                 <h3 class="box-title" id="labelInformacoes">Informações
                 </h3>
@@ -102,7 +108,6 @@
                                     <!-- <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
                                         <label id="responsavelLabel">RESPONSÁVEL</label>
                                         <label id="responsavelResult">{{responsavel}}</label>
-
                                     </div> -->
                                 </div>
 
@@ -180,7 +185,6 @@
                                     <!-- <div class="col-md-6" style="margin-top: 2%; margin-bottom: 1%;">
                                         <label id="responsavelLabel">RESPONSÁVEL</label>
                                         <label id="responsavelResult">{{responsavel}}</label>
-
                                     </div> -->
                                 </div>
 

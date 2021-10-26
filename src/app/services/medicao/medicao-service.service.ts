@@ -45,7 +45,7 @@ export class MedicaoServiceService {
       for (const cidadao of this.cidadaos) {
         if (cidadao.cpf.includes(digitado) || cidadao.rg.includes(digitado)) {
           this.selecionadoId = cidadao.id;
-          this.router.navigate(['/medicao']);
+          this.router.navigate(['/medicao/' + this.selecionadoId]);
         } else {
         }
       }

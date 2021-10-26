@@ -1,3 +1,4 @@
+import { RelatoService } from './../../../services/relato/relato.service';
 import { RelatorioOpiniao } from './../../../models/relatorioOpiniao';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
@@ -35,7 +36,8 @@ export class PaginaCidadaoRelatorioComponent implements OnInit {
   valid = false;
   errorBye = false;
   relatorio: string;
-  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, apiService: ApiService, router: Router) {
+  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, apiService: ApiService, router: Router,
+              private rz: RelatoService) {
     this.cz = cz;
     this.mz = mz;
     this.apiService = apiService;
@@ -129,7 +131,7 @@ async CadastraRelatorio() {
   const r: RelatorioOpiniao = {
     relatorioCidadao: this.relatorio
   };
-  this.cz.createRelatorio(this.cz.selecionadoId, r).subscribe(
+  this.rz.createRelato(this.cz.selecionadoId, r).subscribe(
     res => {
       this.valid = true;
       this.goToView();

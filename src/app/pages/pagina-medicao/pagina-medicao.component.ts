@@ -194,7 +194,7 @@ selecionaCidadao(digitado: string, groupValue?: string) {
     this.cz.getAllCidadaos(digitado).subscribe(cidadao => {
       this.cz.cidadaos = cidadao as Cidadao[];
       this.cz.selecionadoId = cidadao[0].id;
-      this.router.navigate(['/cidadaos/visualizar']);
+      this.router.navigate(['/medicao/' + this.cz.selecionadoId + '/sucesso']);
     },
     err => {
       this.errorBye = true;
@@ -204,7 +204,7 @@ selecionaCidadao(digitado: string, groupValue?: string) {
     this.cz.getCidadaos(digitado).subscribe(cidadao => {
       this.cz.cidadaos = cidadao as Cidadao[];
       this.cz.selecionadoId = cidadao[0].id;
-      this.router.navigate(['/cidadaos/visualizar']);
+      this.router.navigate(['/medicao/' + this.cz.selecionadoId + '/sucesso']);
     }, err => {
       this.errorBye = true;
       console.log(err.error.errors.Cidadão[0]);
@@ -253,7 +253,7 @@ checkMedicao() {
   if (ELEMENT_DATA !== undefined && ELEMENTS_DATA !== undefined && this.peso > 30 && this.peso < 400) {
     for ( const data of ELEMENT_DATA ) {
       if ((data.sistolica > data.diastolica) && (data.diastolica > 1 && data.diastolica < 300)
-      && (data.sistolica > 1 && data.sistolica < 300)) {
+      && (data.sistolica > 1 && data.sistolica < 300) && (data.sistolica > 0 && data.diastolica > 0)) {
         this.direitoOK = true;
       } else {
         this.direitoOK = false;
@@ -261,7 +261,7 @@ checkMedicao() {
     }
     for ( const datum of ELEMENTS_DATA ) {
       if ((datum.sistolica > datum.diastolica) && (datum.diastolica > 1 && datum.diastolica < 300)
-      && (datum.sistolica > 1 && datum.sistolica < 300)) {
+      && (datum.sistolica > 1 && datum.sistolica < 300) && (datum.sistolica > 0 && datum.diastolica > 0)) {
         this.esquerdoOK = true;
       } else {
         this.esquerdoOK = false;
@@ -352,6 +352,6 @@ novaMedicao() {
   };
 
   this.mz.createMedicao(this.medido, this.oNossoCidadao.id).subscribe();
+  this.goToView();
 }
-
 }

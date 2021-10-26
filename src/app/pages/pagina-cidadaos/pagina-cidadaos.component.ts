@@ -1,3 +1,4 @@
+import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
 import { Router } from '@angular/router';
 import { CidadaoServiceService } from './../../services/cidadao/cidadao-service.service';
 import { Cidadao } from './../../models/cidadao';
@@ -8,24 +9,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
 import { Global } from 'src/app/models/globalConstants';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+let ELEMENT_DATA: any[] = [
 ];
 
 @Component({
@@ -37,12 +22,15 @@ export class PaginaCidadaosComponent implements OnInit {
   apiService: ApiService;
   cidadaoService: CidadaoServiceService;
   buscado: string;
-  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
+  buscadoNome: string;
+  displayedColumns: string[] = ['nome', 'nomeanonimo', 'detalhes']; // 'medicoes',
+  dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
   selection = new SelectionModel<Cidadao>(true, []);
   router: Router;
   errorBye = false;
   mask: string;
-  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, router: Router) {
+  cidadaos: Cidadao[];
+  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, private mz: MedicaoServiceService, router: Router) {
     this.apiService = apiService;
     this.cidadaoService = cidadaoService;
     this.router = router;
@@ -50,7 +38,7 @@ export class PaginaCidadaosComponent implements OnInit {
 
   ngOnInit() {
     // tslint:disable-next-line: radix
-    if (parseInt(localStorage.getItem('citizen')) !== undefined) {
+    if (localStorage.getItem('citizen') !== undefined) {
       // tslint:disable-next-line: radix
       this.cidadaoService.jaTemosCidadao(localStorage.getItem('citizen'));
     }
@@ -63,15 +51,13 @@ export class PaginaCidadaosComponent implements OnInit {
         this.mask = '00000000000';
       }
     }
-    goToView(groupValue: string) {
-      this.selecionaCidadao(this.buscado, groupValue);
-    }
+
     selecionaCidadao(digitado: string, groupValue?: string) {
       if (groupValue === 'cpf') {
         this.cidadaoService.getAllCidadaos(this.buscado).subscribe(cidadao => {
         this.cidadaoService.cidadaos = cidadao as Cidadao[];
         this.cidadaoService.selecionadoId = cidadao[0].id;
-        this.router.navigate(['/cidadaos/visualizar']);
+        this.router.navigate(['/cidadaos/visualizar/' + cidadao[0].id]);
       },
       err => {
         if (err.error.status === 404) {
@@ -82,16 +68,52 @@ export class PaginaCidadaosComponent implements OnInit {
       this.cidadaoService.getCidadaos(digitado).subscribe(cidadao => {
         this.cidadaoService.cidadaos = cidadao as Cidadao[];
         this.cidadaoService.selecionadoId = cidadao[0].id;
-        this.router.navigate(['/cidadaos/visualizar']);
+        this.router.navigate(['/cidadaos/visualizar/' + cidadao[0].id]);
       }, err => {
         if (err.error.status === 404) {
           this.errorBye = true;
         }
       });
-    }
-
-
+    } else if (groupValue === 'nome') {
+      this.cidadaoService.getCidadaoByNome(digitado).subscribe(cidadao => {
+        this.cidadaoService.cidadaos = cidadao as Cidadao[];
+        this.cidadaos = cidadao as Cidadao[];
+        this.getCidadaos();
+      }, err => {
+        if (err.error.status === 404) {
+          this.errorBye = true;
+        }
+      });
+  } else if (groupValue === 'nomeano') {
+    this.cidadaoService.getCidadaoByNomeAnonimo(digitado).subscribe(cidadao => {
+      this.cidadaoService.cidadaos = cidadao as Cidadao[];
+      this.cidadaos = cidadao as Cidadao[];
+      this.getCidadaos();
+    }, err => {
+      if (err.error.status === 404) {
+        this.errorBye = true;
+      }
+    });
   }
+}
+goToView(cpf: string) {
+  this.cidadaoService.getAllCidadaos(cpf).subscribe(cidadao => {
+    this.cidadaoService.cidadaos = cidadao as Cidadao[];
+    this.cidadaoService.selecionadoId = cidadao[0].id;
+    this.router.navigate(['/cidadaos/visualizar/' + this.cidadaoService.selecionadoId]);
+  });
+}
+
+getCidadaos() {
+  ELEMENT_DATA = [];
+  for (const cit of this.cidadaos) {
+    ELEMENT_DATA.push(cit);
+  }
+
+  this.dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+}
+
+
   newCitizen(groupValue: string) {
     if (groupValue === 'cpf') {
       localStorage.setItem('newCpf', this.buscado);

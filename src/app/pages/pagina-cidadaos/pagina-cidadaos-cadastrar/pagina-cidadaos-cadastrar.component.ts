@@ -178,6 +178,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
       err => {
         if (err.status === 400) {
           this.exists = true;
+          this.goToView();
         } else {
           this.unknownError = true;
         }

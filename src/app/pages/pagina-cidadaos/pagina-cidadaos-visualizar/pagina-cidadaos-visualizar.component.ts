@@ -36,6 +36,8 @@ const MEDICAO: Medicao[] = [];
   styleUrls: ['./pagina-cidadaos-visualizar.component.scss']
 })
 export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit {
+  hide = false;
+  possuiAnonimo = true;
   checked = false;
   disabled = false;
   dispensacao = 1234567;
@@ -66,14 +68,15 @@ export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit 
     this.apiService = apiService;
     this.router = router;
    }
-  displayedColumns: string[] = ['dataHora', 'servico', 'responsavel', 'info'];
-  displayedColumnsAfer: string[] = ['sistolica', 'diastolica'];
-  displayedColumnsRel: string[] = ['dataRelatorio', 'servico', 'info'];
+   displayedColumns: string[] = ['dataHora', 'servico', 'responsavel', 'info'];
+   displayedColumnsAfer: string[] = ['sistolica', 'diastolica'];
+   displayedColumnsRel: string[] = ['dataRelatorio', 'servico', 'info'];
 
-  dataSource;
-  dataSourceMedi;
-  dataSourceRel;
-  selection = new SelectionModel<any>(true, []);
+   dataSource;
+   dataSourceMedi;
+   dataSourceRel;
+   selection = new SelectionModel<any>(true, []);
+
   /* declarando um nome pro property binding do nome dinâmico */
 
   color = 'green';
@@ -171,6 +174,10 @@ export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit 
       if ((localStorage.getItem('citizen')) !== undefined) {
       this.apiService.getCidadaoById(this.cz.selecionadoId).subscribe(cidadao => {
       this.oNossoCidadao = cidadao as Cidadao;
+      if (this.oNossoCidadao.anonimoNome !== undefined && this.oNossoCidadao.anonimoNome !== '' &&
+          this.oNossoCidadao.anonimoNome !== null) {
+        this.hide = true;
+      }
       this.cidadao$ = this.apiService.getCidadaoById(this.cz.selecionadoId);
       this.getMedicoes();
       this.genero = this.oNossoCidadao.dadosPessoais.genero;
@@ -187,6 +194,22 @@ ngAfterViewInit() {
   this.dataSourceMedi = new MatTableDataSource<any>(ELEMENTS_DATA);
   this.dataSourceRel = new MatTableDataSource<RelatorioOpiniao>(ELEMENTZ_DATA);
 }
+checkAnonymous() {
+  if (this.oNossoCidadao.anonimoNome !== undefined && this.oNossoCidadao.anonimoNome !== '' &&
+  this.oNossoCidadao.anonimoNome !== null) {
+    this.possuiAnonimo = true;
+    this.hide = !this.hide;
+  } else {
+    this.possuiAnonimo = false;
+  }
+}
+
+addAnonymous() {
+  this.cz.postAnonimoToCidadao(this.oNossoCidadao.id).subscribe(res => {
+    window.location.reload();
+  });
+}
+
 verificaCep(cep: string) {
   if (cep.length === 8) {
     this.cz.pegaremosCep(cep).subscribe(data => {
@@ -195,14 +218,13 @@ verificaCep(cep: string) {
       this.oNossoCidadao.dadosPessoais.endereco.estado = data.uf;
     });
   }
-
 }
 verTelefone() {
-  if (this.oNossoCidadao.dadosPessoais.telefone.includes('(') && this.oNossoCidadao.dadosPessoais.telefone.includes(')') ) {
-    this.showingPhone = this.oNossoCidadao.dadosPessoais.telefone;
+if (this.oNossoCidadao.dadosPessoais.telefone.includes('(') && this.oNossoCidadao.dadosPessoais.telefone.includes(')') ) {
+  this.showingPhone = this.oNossoCidadao.dadosPessoais.telefone;
   } else {
-    this.i = 0;
-    while (this.i < 11) {
+  this.i = 0;
+  while (this.i < 11) {
     if (this.i === 0) {
       this.showingPhone = '(' + this.oNossoCidadao.dadosPessoais.telefone.charAt(this.i);
       this.i++;
@@ -218,6 +240,7 @@ verTelefone() {
     }
   }
 }
+
 }
 verCep() {
   this.i = 0;
