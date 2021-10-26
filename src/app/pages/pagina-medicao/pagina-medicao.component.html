@@ -9,7 +9,7 @@
     <div class="container">
 
         <a class="pull-right">
-            <button mat-button id="retornoCidadaoButton" class="pull-right" (click)="goToView()"><label id="retornoCidadaoButtonLabel">RETORNAR AO PERFIL DO CIDADÃO</label></button></a>
+            <button mat-button id="retornoCidadaoButton" class="pull-right" (click)="goBackToView()"><label id="retornoCidadaoButtonLabel">RETORNAR AO PERFIL DO CIDADÃO</label></button></a>
         <div class="box box-default" id="infoBox" *ngIf="cidadao$ | async">
             <div class="box-header with-border">
                 <h3 class="box-title" id="labelInformacoes">Informações Pessoais</h3>
