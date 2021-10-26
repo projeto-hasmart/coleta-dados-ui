@@ -217,6 +217,7 @@ selecionaCidadao(digitado: string, groupValue?: string) {
       this.cz.cidadaos = cidadao as Cidadao[];
       this.cz.selecionadoId = cidadao[0].id;
       this.router.navigate(['/cidadao/visualizar/' + this.cz.selecionadoId]);
+
     }, err => {
       this.errorBye = true;
       console.log(err.error.errors.Cidadão[0]);
