@@ -12,7 +12,6 @@ import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensa
 import { Medicao } from 'src/app/models/medicao';
 import { DatePipe } from '@angular/common';
 import { CidadaoEdit } from 'src/app/models/cidadaoEdit';
-import { RelatorioOpiniao } from 'src/app/models/relatorioOpiniao';
 
 
 interface Diabetes {
