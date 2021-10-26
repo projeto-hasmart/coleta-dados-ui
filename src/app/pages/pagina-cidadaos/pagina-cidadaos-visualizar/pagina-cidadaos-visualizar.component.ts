@@ -1,3 +1,4 @@
+import { RelatorioOpiniao } from './../../../models/relatorioOpiniao';
 import { MedicaoServiceService } from './../../../services/medicao/medicao-service.service';
 import { Observable } from 'rxjs';
 import { ApiService } from './../../../services/api.service';
@@ -76,6 +77,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit 
    dataSourceMedi;
    dataSourceRel;
    selection = new SelectionModel<any>(true, []);
+
   /* declarando um nome pro property binding do nome dinâmico */
 
   color = 'green';
@@ -209,6 +211,7 @@ addAnonymous() {
     window.location.reload();
   });
 }
+
 verificaCep(cep: string) {
   if (cep.length === 8) {
     this.cz.pegaremosCep(cep).subscribe(data => {

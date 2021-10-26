@@ -34,6 +34,7 @@
                 <input type="text" placeholder="RG*" id="inputRg" [(ngModel)]="rg" name="rg" #inputRg="ngModel" [class.errorInput]="(rg === undefined && checkEmpty) || exists" mask="00000000000000" required>
                 <label id="errorLabel" *ngIf="rg === undefined && checkEmpty">O campo RG deve ser composto apenas por números e é obrigatório.</label>
                 <!--<label id="errorLabel" *ngIf="exists">É possível que um cidadão com este RG já exista, ou este RG seja inválido.</label>-->
+
             </div>
         </div>
         <div class='row' style="margin-left: -0.5%;">
