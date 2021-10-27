@@ -1,0 +1,285 @@
+<section class="content-header">
+  <div id="divtitle">
+    <label id="labelNome">Registro de Relatos</label>
+    <label id="labelVisualize"
+      >Pesquise com o código do paciente para consultar registros ou cadastrar
+      um novo registro</label
+    >
+  </div>
+</section>
+
+<section class="content-body">
+  <label style="position: relative; bottom: 43px; right: 46px; font-size: 21px"
+    >Consulta de Relatos</label
+  >
+  
+    <div id="searchboxtoggleNome" style="margin-left:30.5%" class="row ">
+        <!-- [(ngModel)]="modelName" multiple vertical="false"-->
+
+        
+        <div class="search-bar shadow p-3 mb-5 bg-white rounded">
+            <input type="text" class="searchTermNome" placeholder="Buscar cidadão por  nome anônimo..." (keydown.enter)="selecionaCidadao(buscadoNome)" id="searchBoxNome" [(ngModel)]="buscadoNome" required>
+            <button type="submit" class="searchButtonNome" id="searchButton" placeholder="" (click)="selecionaCidadao(buscadoNome)">
+<i class="fa fa-search"></i> </button>
+        </div>
+        
+    </div>
+    <div class="icons" style="float: right; padding: 15px">
+      <mat-icon>edit</mat-icon>
+      <mat-icon>delete</mat-icon>
+    </div>
+  <div class="tableReg">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+      style="width: 100%"
+    >
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select" style="width: 16.667%">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            (change)="$event ? masterToggle() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Relator Column -->
+       <!--<ng-container matColumnDef="relator" style="width: 16.667%">
+        <th mat-header-cell *matHeaderCellDef>Relator</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon
+            style="max-width: 40px; max-height: 40px"
+            *ngIf="
+              buscado == element.tipoRelato ||
+              buscado == element.relator ||
+              buscado == element.anomizado
+            "
+            >account_circle</mat-icon
+          >
+        </td>
+      </ng-container>-->
+
+      <!-- Tipo Relato Column -->
+      <ng-container matColumnDef="tipoContato" style="width: 16.667%">
+        <th mat-header-cell *matHeaderCellDef>Tipo de Contato</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon *ngIf="element.tipoContato == 1"> chat_bubble_outline</mat-icon>
+          <mat-icon *ngIf="element.tipoContato == 2"> phone</mat-icon>
+          <mat-icon *ngIf="element.tipoContato == 3"> message</mat-icon>
+          <mat-icon *ngIf="element.tipoContato == 4"> place</mat-icon>
+          <mat-icon *ngIf="element.tipoContato == 5"> email</mat-icon>
+          <mat-icon *ngIf="element.tipoContato == 6 || element.tipoContato == 0"> record_voice_over</mat-icon>
+        </td>
+      </ng-container>
+
+      <!-- Anomizado Column -->
+      <ng-container matColumnDef="anomizado" style="width: 16.667%">
+        <th mat-header-cell *matHeaderCellDef>Anomizado</th>
+        <td mat-cell *matCellDef="let element">
+          <p>
+            {{ element.nomeAnonimizado }}
+          </p>
+        </td>
+      </ng-container>
+
+      <!-- Data Column -->
+      <ng-container matColumnDef="time" style="width: 16.667%">
+        <th mat-header-cell *matHeaderCellDef>Data</th>
+        <td mat-cell *matCellDef="let element">
+          <p>
+            {{ element.dataRelatorio }}
+          </p>
+        </td>
+      </ng-container>
+
+      <!-- Relato Column -->
+      <ng-container matColumnDef="relato" style="width: 16.667%">
+        <th mat-header-cell *matHeaderCellDef>Relato</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            data-toggle="modal"
+            data-target="#exampleModal"
+            (click)="relatorioDe(element.id)"
+          >
+            <mat-icon aria-hidden="false">expand_more</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="selection.toggle(row)"
+      ></tr>
+    </table>
+  </div>
+
+ 
+  
+  <div class="modal fade" id="okcidadao" *ngIf="valid && !errorBye">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id="titleModal">Sucesso!</h4>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <label id="modalText"
+            >Cidadão com CPF {{ showingCpf }} teve um relatório
+            adicionado!</label
+          >
+          <button
+            mat-button
+            id="okbutton"
+            data-dismiss="modal"
+            (click)="goToView()"
+          >
+            <label id="oklabel">OK</label>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div
+        class="modal-content"
+        style="
+          width: 167%;
+          padding: -17%;
+          /* margin: -20%; */
+          margin-left: -25%;
+        "
+      >
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="content-header">
+    <label id="labelNome">Informações do Relato</label>
+    <label id="labelVisualize">* Campos obrigatórios</label>
+  </div>
+
+       <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-12" style="width: 98.5%;">
+                                        <input type="text" class="input-control" placeholder="Nome anônimo" id="inputNome" [(ngModel)]="anonimoNome"> <!--[(ngModel)]-->
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-6" style="width: 49%;">
+                                        <input type="date" class="input-control" placeholder="Data do relato*" id="inputNascimento" >
+                                    </div>
+                                    <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
+                                        <label
+        style="
+          position: relative;
+          float: left;
+          margin-top: -24%;
+          margin-left: 210%;
+          width: 94%;
+        "
+        >O contato foi um sucesso<mat-slide-toggle></mat-slide-toggle
+      ></label>
+                                    </div>
+        </div>
+      
+      <div class="tipoRelato" style="margin-top: 14%;">
+       <mat-radio-group id="contatoRadio" [(ngModel)]="tipoContato" name="tipoContato" #contatoRadio="ngModel" required>
+        <mat-radio-button class="example-radio-button" *ngFor="let cont of contatos" [value]="cont">{{cont}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    <div class="box box-default" id="medicaoBox">
+      <div>
+        <label id="medicaoTitleLabel">Relatório </label>
+      </div>
+      <div id="tabela">
+        <p>
+          <mat-form-field
+            mat-form-field
+            style="margin-left: 3%; width: 94%"
+            class="example-full-width"
+          >
+            <textarea
+              matInput
+              style="width: 100%"
+              rows="15"
+              [(ngModel)]="relatorio"
+              placeholder="Relato"
+            ></textarea>
+          </mat-form-field>
+        </p>
+      </div>
+      <button
+        mat-button
+        id="finalizarButton"
+        data-toggle="modal"
+        data-target="#okcidadao"
+        (click)="CadastraRelatorio()"
+        *ngIf="relatorio"
+        style="
+          margin-left: 46%;
+          margin-top: 0%;
+          /* padding: 2%; */
+          position: relative;
+        "
+      >
+        <label id="retornoCidadaoButtonLabel">FINALIZAR RELATÓRIO</label>
+      </button>
+      <button
+        mat-button
+        id="finalizarButtonBlocked"
+        *ngIf="!relatorio"
+        style="
+          margin-left: 46%;
+          margin-top: 0%;
+          /* padding: 2%; */
+          position: relative;
+        "
+      >
+        <label id="retornoCidadaoButtonLabel">FINALIZAR RELATÓRIO</label>
+      </button>
+    </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
