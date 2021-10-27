@@ -1,9 +1,10 @@
+import { element } from 'protractor';
 import { RelatorioOpiniao } from './../../../models/relatorioOpiniao';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
-import { Router } from '@angular/router';
+import { MatTableDataSource, MatYearView } from '@angular/material';
+import { Router, RouterLinkWithHref } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Cidadao } from 'src/app/models/cidadao';
 import { CidadaoEdit } from 'src/app/models/cidadaoEdit';
@@ -11,13 +12,36 @@ import { ApiService } from 'src/app/services/api.service';
 import { CidadaoServiceService } from 'src/app/services/cidadao/cidadao-service.service';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
 import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
+import { isDate } from 'util';
+import { Input } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+
+export interface PeriodicElement {
+  relator: string;
+  tipoRelato: string;
+  anomizado: string;
+  time: Date;
+  relato: boolean;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {relator:'img', tipoRelato: 'cel.icon', anomizado: 'paciente 1', time: new Date(), relato: true},
+  {relator: 'img', tipoRelato: 'cel.icon', anomizado: 'paciente 2', time: new Date(), relato: true},
+  {relator: 'img', tipoRelato: 'cel.icon', anomizado: 'paciente 3', time: new Date(), relato: true},
+  {relator: 'img', tipoRelato: 'cel.icon', anomizado: 'paciente 4', time: new Date(), relato: true},
+  {relator: 'img', tipoRelato: 'cel.icon', anomizado: 'paciente 5', time: new Date(), relato: true},
+  {relator: 'img', tipoRelato: 'cel.icon', anomizado: 'paciente 6', time: new Date(), relato: true},
+
+];
 
 @Component({
-  selector: 'app-pagina-cidadao-relatorio',
-  templateUrl: './pagina-cidadao-relatorio.component.html',
-  styleUrls: ['./pagina-cidadao-relatorio.component.scss']
+  selector: 'app-pagina-registro',
+  templateUrl: './pagina-registro.component.html',
+  styleUrls: ['./pagina-registro.component.scss']
 })
-export class PaginaCidadaoRelatorioComponent implements OnInit {
+
+export class PaginaRegistroComponent implements OnInit {
+  buscado: string;
   checked = false;
   disabled = false;
   isCollapsed = true;
@@ -35,12 +59,54 @@ export class PaginaCidadaoRelatorioComponent implements OnInit {
   valid = false;
   errorBye = false;
   relatorio: string;
+  //Table
+  displayedColumns: string[] = ['select', 'relator', 'tipoRelato', 'anomizado', 'time', 'relato'];
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  selectionT = new SelectionModel<PeriodicElement>(true, []);
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selectionT.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    if (this.isAllSelected()) {
+      this.selectionT.clear();
+      return;
+    }
+
+    this.selectionT.select(...this.dataSource.data);
+  }
+
+  /** The label for the checkbox on the passed row */
+  // checkboxLabel(row?: PeriodicElement): string {
+  //   if (!row) {
+  //     return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+  //   }
+  //   return `${this.selectionT.isSelected(row) ? 'deselect' : 'select'} row ${row.relator + 1}`;
+  // }
+
+  onKeyUp(event: KeyboardEvent){
+    const eventValue = (<HTMLInputElement>event.target).value;
+    this.buscado = eventValue;
+  }
+
+  onSubmit(){
+    if(this.buscado){
+      console.log(this.buscado)
+    }
+  }
+
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, apiService: ApiService, router: Router) {
     this.cz = cz;
     this.mz = mz;
     this.apiService = apiService;
     this.router = router;
    }
+
   selection = new SelectionModel<any>(true, []);
   /* declarando um nome pro property binding do nome dinâmico */
 

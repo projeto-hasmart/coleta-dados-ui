@@ -1,3 +1,5 @@
+import { InfoRelatoComponent } from './pagina-registro/info-relato/info-relato.component';
+import { PaginaRegistroComponent } from './pagina-registro/pagina-registro/pagina-registro.component';
 import {NgModule, Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
@@ -35,7 +37,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
 import { PaginaMedicVisualizacaoComponent } from './pagina-medic/pagina-medic-visualizacao/pagina-medic-visualizacao.component';
 import { PaginaMedicMainComponent } from './pagina-medic/pagina-medic-main/pagina-medic-main.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { PaginaCidadaoRelatorioComponent } from './pagina-cidadaos/pagina-cidadao-relatorio/pagina-cidadao-relatorio.component';
+//import { PaginaCidadaoRelatorioComponent } from './pagina-cidadaos/pagina-cidadao-relatorio/pagina-cidadao-relatorio.component';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 
@@ -55,7 +57,8 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     PaginaMedicComponent,
     PaginaMedicVisualizacaoComponent,
     PaginaMedicMainComponent,
-    PaginaCidadaoRelatorioComponent
+    PaginaRegistroComponent,
+    InfoRelatoComponent
     ],
   imports: [
     CommonModule,
@@ -80,7 +83,7 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     DeviceDetectorModule.forRoot(),
     MatTabsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [
     Global

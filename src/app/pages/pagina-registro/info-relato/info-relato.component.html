@@ -1,0 +1,168 @@
+<section class="infAdjust" style="margin-left: 2%; width: 140%">
+  <div class="content-header">
+    <label id="labelNome">Informações do Relato</label>
+    <label id="labelVisualize">* Campos obrigatórios</label>
+  </div>
+
+  <section class="content-info" style="margin-top: 2%; width: 68%">
+    <form style="width: 20%">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Relator"
+        style="margin-left: 20%"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Data/Hora"
+        style="
+          position: relative;
+          float: left;
+          margin-top: -20%;
+          margin-left: 209%;
+        "
+      />
+      <mat-icon
+        style="
+          position: relative;
+          float: left;
+          margin-top: -18%;
+          margin-left: 312%;
+        "
+        >calendar_today</mat-icon
+      >
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Nome anonimizado"
+        style="margin-top: 23%; margin-left: 20%"
+      />
+      <label
+        style="
+          position: relative;
+          float: left;
+          margin-top: -24%;
+          margin-left: 210%;
+          width: 94%;
+        "
+        >O contato foi um sucesso! <mat-slide-toggle></mat-slide-toggle
+      ></label>
+      <div class="tipoRelato" style="margin-top: 14%;">
+        <label style="margin-left: -46%;
+        margin-top: 14%;">Tipo de Relato*</label>
+        <mat-checkbox
+          class="example-margin"
+          style="
+            float: left;
+            position: relative;
+            margin-top: 33%;
+            margin-left: 27%;
+          "
+          >Ligação
+        </mat-checkbox>
+        <mat-checkbox
+          class="example-margin"
+          style="
+            float: left;
+            position: relative;
+            margin-top: -16%;
+            margin-left: 77%;
+          "
+          >Whatsapp Voz</mat-checkbox
+        >
+        <mat-checkbox
+          class="example-margin"
+          style="
+            float: left;
+            position: relative;
+            margin-top: -16%;
+            margin-left: 148%;
+          "
+          >Whatsapp Texto</mat-checkbox
+        >
+        <mat-checkbox
+          class="example-margin"
+          style="
+            float: left;
+            position: relative;
+            margin-top: -17%;
+            margin-left: 222%;
+          "
+          >Martha</mat-checkbox
+        >
+        <mat-checkbox
+          class="example-margin"
+          style="
+            float: left;
+            position: relative;
+            margin-top: -17%;
+            margin-left: 265%;
+          "
+          >E-mail</mat-checkbox
+        >
+        <mat-checkbox
+          class="example-margin"
+          style="
+            float: left;
+            position: relative;
+            margin-top: -16%;
+            margin-left: 309%;
+          "
+          >Presencial</mat-checkbox
+        >
+      </div>
+    </form>
+    <div class="box box-default" id="medicaoBox">
+      <div>
+        <label id="medicaoTitleLabel">Relatório </label>
+      </div>
+      <div id="tabela">
+        <p>
+          <mat-form-field
+            mat-form-field
+            style="margin-left: 3%; width: 94%"
+            class="example-full-width"
+          >
+            <textarea
+              matInput
+              style="width: 100%"
+              rows="15"
+              [(ngModel)]="relatorio"
+              placeholder="Relato"
+            ></textarea>
+          </mat-form-field>
+        </p>
+      </div>
+      <button
+        mat-button
+        id="finalizarButton"
+        data-toggle="modal"
+        data-target="#okcidadao"
+        (click)="CadastraRelatorio()"
+        *ngIf="relatorio"
+        style="
+          margin-left: 46%;
+          margin-top: 0%;
+          /* padding: 2%; */
+          position: relative;
+        "
+      >
+        <label id="retornoCidadaoButtonLabel">FINALIZAR RELATÓRIO</label>
+      </button>
+      <button
+        mat-button
+        id="finalizarButtonBlocked"
+        *ngIf="!relatorio"
+        style="
+          margin-left: 46%;
+          margin-top: 0%;
+          /* padding: 2%; */
+          position: relative;
+        "
+      >
+        <label id="retornoCidadaoButtonLabel">FINALIZAR RELATÓRIO</label>
+      </button>
+    </div>
+  </section>
+</section>
