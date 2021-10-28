@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { RelatorioOpiniao } from 'src/app/models/relatorioOpiniao';
+import { RelatorioOpiniaoPP } from 'src/app/models/relatorioOpiniaoPostPut';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -20,7 +21,7 @@ export class RelatoService {
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
     'Access-Control-Allow-Origin': '*' })
   };
-  public createRelato(cidadaoId: string, relatorio: RelatorioOpiniao): Observable<RelatorioOpiniao> {
+  public createRelato(cidadaoId: string, relatorio: RelatorioOpiniaoPP): Observable<RelatorioOpiniao> {
     // tslint:disable-next-line: max-line-length
     return this.httpClient.post<RelatorioOpiniao>((environment.rest.host + '/hasmart/api/Relato/' + cidadaoId), relatorio, this.httpOptions)
     .pipe(
@@ -29,7 +30,7 @@ export class RelatoService {
 
   public getRelatoParaCidadao(cidadaoId: string, relatorioId: string): Observable<RelatorioOpiniao> {
     // tslint:disable-next-line: max-line-length
-    return this.httpClient.get<RelatorioOpiniao>((environment.rest.host + '/hasmart/api/Relato/' + cidadaoId + relatorioId), this.httpOptions)
+    return this.httpClient.get<RelatorioOpiniao>((environment.rest.host + '/hasmart/api/Relato/' + cidadaoId + '/' + relatorioId), this.httpOptions)
     .pipe(
       catchError(this.handleError));
   }
@@ -40,17 +41,22 @@ export class RelatoService {
     .pipe(
       catchError(this.handleError));
   }
-
+  public getRelatosParaCidadaosAnonimos(anonimoName: string): Observable<RelatorioOpiniao[]> {
+    // tslint:disable-next-line: max-line-length
+    return this.httpClient.get<RelatorioOpiniao[]>((environment.rest.host + '/hasmart/api/Relato/' + anonimoName + '/anonimo'), this.httpOptions)
+    .pipe(
+      catchError(this.handleError));
+  }
   public deleteRelatoParaCidadao(cidadaoId: string, relatorioId: string): Observable<RelatorioOpiniao> {
     // tslint:disable-next-line: max-line-length
-    return this.httpClient.delete<RelatorioOpiniao>((environment.rest.host + '/hasmart/api/Relato/' + cidadaoId + relatorioId), this.httpOptions)
+    return this.httpClient.delete<RelatorioOpiniao>((environment.rest.host + '/hasmart/api/Relato/' + cidadaoId + '/' + relatorioId), this.httpOptions)
     .pipe(
       catchError(this.handleError));
   }
 
-  public updateRelatoParaCidadao(cidadaoId: string, relatorioId: string): Observable<RelatorioOpiniao> {
+  public updateRelatoParaCidadao(cidadaoId: string, relatorioId: string, relato: RelatorioOpiniaoPP): Observable<RelatorioOpiniao> {
     // tslint:disable-next-line: max-line-length
-    return this.httpClient.put<RelatorioOpiniao>((environment.rest.host + '/hasmart/api/Relato/' + cidadaoId + relatorioId), this.httpOptions)
+    return this.httpClient.put<RelatorioOpiniao>((environment.rest.host + '/hasmart/api/Relato/' + cidadaoId + '/' + relatorioId), relato, this.httpOptions)
     .pipe(
       catchError(this.handleError));
   }

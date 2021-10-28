@@ -24,6 +24,49 @@
     border: none;
 }
 
+#novoCidadaoButton {
+    position: absolute;
+    display: flex;
+    padding: 10px 16px;
+    width: 143px;
+    height: 34px;
+    right: 2.5%;
+    margin-top: -45px;
+    /* 700 */
+    background: #245E33;
+    /* Button Shadow */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+#novoCidadaoImg {
+    position: relative;
+    bottom: 11px;
+    /* Inside Auto Layout */
+    margin: 8px 0px;
+}
+
+#novoCidadaoLabel {
+    position: relative;
+    width: 87px;
+    height: 14px;
+    left: 8px;
+    bottom: 11px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+    margin: 8px 0px;
+}
+
 //cpfrgtoggle
 #cpfrgtoggle {
     border: 1px solid #dfdfdf;
@@ -553,20 +596,17 @@ table {
 }
 
 #medicaoBox {
-    display: flex;
-    flex-direction: column;
     padding: 10px;
     width: 99%;
     min-height: 235px;
     height: wrap-content;
-    top: 100px;
+    margin-top: 1%;
     background: #F5F5F5;
     border-radius: 4px;
     /* Inside Auto Layout */
 }
 
 #medicaoTitleLabel {
-    position: static;
     width: 100%;
     height: 30px;
     top: 10px;
@@ -576,13 +616,8 @@ table {
     font-size: 20px;
     line-height: 30px;
     /* identical to box height */
-    display: flex;
-    align-items: center;
     color: #000000;
     /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    align-self: flex-start;
     margin: 0px 10px;
 }
 
@@ -889,30 +924,31 @@ input {
 // #editarCidadao {
 //   background: red($color: #000000);
 // }
-// .modal-content {
-//   background-color: #F5F5F5;
-// }
-// #titleModal {
-//   font-family: Poppins;
-//   font-style: normal;
-//   font-weight: 600;
-//   font-size: 20px;
-//   line-height: 30px;
-//   margin-left: 1%;
-//   /* identical to box height */
-//   text-transform: uppercase;
-//   font-feature-settings: 'case' on;
-//   color: #000000;
-// }
-// #secondTitleModal {
-//   font-family: Roboto;
-//   font-style: normal;
-//   font-weight: normal;
-//   font-size: 16px;
-//   line-height: 19px;
-//   /* identical to box height */
-//   color: rgba(0, 0, 0, 0.7);
-// }
+.modal-content {
+    background-color: #F5F5F5;
+}
+
+#titleModal {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    margin-left: 1%;
+    /* identical to box height */
+    color: #000000;
+}
+
+#secondTitleModal {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    color: rgba(0, 0, 0, 0.7);
+}
+
 #dropdownMenuTop {
     float: right;
     margin-right: 10px;
@@ -982,7 +1018,7 @@ input {
     flex-wrap: wrap;
 }
 
-#servicoLabel {
+#label {
     height: 14px;
     font-family: Roboto;
     font-style: normal;
@@ -999,7 +1035,7 @@ input {
     flex-flow: column wrap;
 }
 
-#servicoResult {
+#result {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -1007,10 +1043,10 @@ input {
     line-height: 19px;
     /* identical to box height */
     color: #000000;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    flex-flow: column wrap;
+    // display: flex;
+    // flex-direction: column;
+    // flex-wrap: wrap;
+    // flex-flow: column wrap;
 }
 
 #responsavelLabel {
@@ -1239,12 +1275,14 @@ input {
     order: 0;
 }
 
-// #buttons-modal {
-//   margin-left: 82%;
-//   @media (max-width: 1500px) {
-//       margin-left: 72%;
-//   }
-// }
+#buttons-modal {
+    margin-top: -4.7%;
+    margin-left: 82%;
+    @media (max-width: 1500px) {
+        margin-left: 72%;
+    }
+}
+
  ::ng-deep .cdk-overlay-container {
     z-index: 9999;
 }
@@ -1403,23 +1441,6 @@ input {
     order: 0;
 }
 
-// #titleModal {
-//   font-family: Poppins;
-//   font-style: normal;
-//   font-weight: 600;
-//   font-size: 20px;
-//   line-height: 30px;
-//   /* identical to box height */
-//   color: #000000;
-// }
-#errorLabel {
-    font-size: 12px;
-    margin-left: 2%;
-    height: 13px;
-    color: red;
-    font-family: 'Roboto';
-}
-
 #labelBackground {
     margin-top: 1%;
     background: #FFFFFF;
@@ -1523,9 +1544,8 @@ input {
     padding: 10px 16px;
     width: 155px;
     height: 34px;
-    position: absolute;
     right: 2.5%;
-    margin-top: 100px;
+    margin: 0 auto;
     /* 700 */
     background: #245E33;
     /* Button Shadow */
@@ -1539,9 +1559,8 @@ input {
     padding: 10px 16px;
     width: 155px;
     height: 34px;
-    position: absolute;
     right: 2.5%;
-    margin-top: 100px;
+    margin: 0 auto;
     /* 700 */
     background: #E0E0E0;
     /* Button Shadow */
@@ -1686,43 +1705,6 @@ input {
     border: none;
 }
 
-#medicaoTitleLabel {
-    position: static;
-    width: 100%;
-    height: 30px;
-    top: 10px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    align-self: flex-start;
-    margin: 0px 10px;
-}
-
-#finalizarButton {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 16px;
-    width: 155px;
-    height: 34px;
-    position: absolute;
-    right: 2.5%;
-    margin-top: 100px;
-    /* 700 */
-    background: #245E33;
-    /* Button Shadow */
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
-}
-
 #retornoCidadaoButtonLabel {
     position: absolute;
     width: 118px;
@@ -1742,22 +1724,6 @@ input {
     order: 0;
     align-self: center;
     margin: 10px 0px;
-}
-
-#finalizarButtonBlocked {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 16px;
-    width: 155px;
-    height: 34px;
-    position: absolute;
-    right: 2.5%;
-    margin-top: 100px;
-    /* 700 */
-    background: #E0E0E0;
-    /* Button Shadow */
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
 }
 
 .search-bar {
@@ -1812,4 +1778,8 @@ input {
     height: 50px;
     margin-top: 1px;
     margin-left: -40px;
+}
+
+.mat-radio-outer-circle {
+    border-radius: 0%;
 }

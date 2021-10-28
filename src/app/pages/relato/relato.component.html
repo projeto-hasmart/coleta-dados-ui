@@ -9,24 +9,21 @@
 </section>
 
 <section class="content-body">
-  <label style="position: relative; bottom: 43px; right: 46px; font-size: 21px"
-    >Consulta de Relatos</label
-  >
-  
     <div id="searchboxtoggleNome" style="margin-left:30.5%" class="row ">
-        <!-- [(ngModel)]="modelName" multiple vertical="false"-->
-
-        
         <div class="search-bar shadow p-3 mb-5 bg-white rounded">
-            <input type="text" class="searchTermNome" placeholder="Buscar cidadão por  nome anônimo..." (keydown.enter)="selecionaCidadao(buscadoNome)" id="searchBoxNome" [(ngModel)]="buscadoNome" required>
+            <input type="text" class="searchTermNome" placeholder="Busque cidadãos por nome anônimo..." (keydown.enter)="selecionaCidadao(buscadoNome)" [class.errorInput]="(buscadoNome !== undefined && errorBye && notFound)"  id="searchBoxNome" [(ngModel)]="buscadoNome" required>
+            <label id="errorLabel" *ngIf="(buscadoNome !== undefined && errorBye && notFound)">Não foi possível encontrar cidadãos com este parâmetro.</label>
+
             <button type="submit" class="searchButtonNome" id="searchButton" placeholder="" (click)="selecionaCidadao(buscadoNome)">
 <i class="fa fa-search"></i> </button>
         </div>
-        
     </div>
+    <button mat-button id="novoCidadaoButton" (click)="relatorioDe('')" data-toggle="modal" data-target="#exampleModal" class="pull-right">
+      <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
+      <label id="novoCidadaoLabel">NOVO REGISTRO</label>
+    </button>
     <div class="icons" style="float: right; padding: 15px">
-      <mat-icon>edit</mat-icon>
-      <mat-icon>delete</mat-icon>
+      <mat-icon (click)="deleteSelected()">delete</mat-icon>
     </div>
   <div class="tableReg">
     <table
@@ -140,15 +137,18 @@
 
         <!-- Modal body -->
         <div class="modal-body">
-          <label id="modalText"
-            >Cidadão com CPF {{ showingCpf }} teve um relatório
+          <label id="modalText" *ngIf="editing"
+            >Cidadão {{relatoAtual.nomeAnonimizado}} teve um relato
+            atualizado!</label
+          >
+          <label id="modalText" *ngIf="!editing"
+            >Cidadão teve um relato
             adicionado!</label
           >
           <button
             mat-button
             id="okbutton"
             data-dismiss="modal"
-            (click)="goToView()"
           >
             <label id="oklabel">OK</label>
           </button>
@@ -166,64 +166,51 @@
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog" role="document">
-      <div
-        class="modal-content"
-        style="
-          width: 167%;
-          padding: -17%;
-          /* margin: -20%; */
-          margin-left: -25%;
-        "
-      >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"></h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="content-header">
-    <label id="labelNome">Informações do Relato</label>
-    <label id="labelVisualize">* Campos obrigatórios</label>
-  </div>
+         <h4 class="modal-title" id="titleModal">Informações do Relato<button type="button" #closeModalBtn class="close pull-right" (click)="closedModal()" data-dismiss="modal" style="top: 15px; right: 5px">&times;</button></h4>
+    <label id="labelVisualize" style="margin-left:0.5%">* Campos obrigatórios</label>
 
-       <div class="row" style="margin-left: 0.5%;">
-                                    <div class="col-md-12" style="width: 98.5%;">
-                                        <input type="text" class="input-control" placeholder="Nome anônimo" id="inputNome" [(ngModel)]="anonimoNome"> <!--[(ngModel)]-->
+        </div>
+        <div class="modal-body" style="margin-top: -1.5%" *ngIf="relatoAtual || !editing">
+
+       <div class="row" style="margin-left: 0.5%; border-radius: 4px;" >
+                                    <div class="col-md-6" style="width: 49%;">
+                                        <input type="text" class="input-control" placeholder="Relator" id="result" [(ngModel)]="relator"> <!--[(ngModel)]-->
+                                    </div>
+                                    <div class="col-md-6" style="width: 49%; margin-left: 0.5%;">
+                                        <input type="text" class="input-control" placeholder="CPF*" id="result" *ngIf="!editing" [class.errorInput]="(cpf === undefined && !editing && checked) 
+                                        ||  (cpf !== undefined && cpf.length < 11  && !editing && checked) 
+                                        || (cpf !== undefined && cpf.length === 11 && !valid  && !editing && checked)" [(ngModel)]="cpf" mask="000.000.000-00" required> <!--[(ngModel)]-->
+                                        <label id="errorLabel" *ngIf="(cpf === undefined && !editing && checked)  || (cpf !== undefined && cpf.length < 11 && !editing && checked)">O campo CPF deve ser composto por 11 números e é obrigatório.</label>
+                                        <label id="errorLabel" *ngIf="(cpf !== undefined && cpf.length === 11 && !valid  && !editing && checked)">Por favor verifique se este CPF está correto.</label>
+                                    </div>
+                                     <div class="col-md-6" style="width: 49%; margin-left: 0.5%;">
+                                        <input type="text" class="input-control" placeholder="Nome anônimo" id="result" *ngIf="editing" [(ngModel)]="anonimoNome" disabled> <!--[(ngModel)]-->
                                     </div>
                                 </div>
                                 <div class="row" style="margin-left: 0.5%;">
                                     <div class="col-md-6" style="width: 49%;">
-                                        <input type="date" class="input-control" placeholder="Data do relato*" id="inputNascimento" >
+                                        <input type="text" class="input-control" placeholder="Data do relato*" id="inputNascimento" [class.errorInput]="(dataRelatorio === undefined && checked) 
+                                        ||  (dataRelatorio !== undefined && dataRelatorio.length < 8  && checked) 
+                                        || (dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid   && checked)" [(ngModel)]="dataRelatorio" mask="00/00/0000" required>
+                                    <label id="errorLabel" *ngIf="(dataRelatorio === undefined && checked)  || (dataRelatorio !== undefined && dataRelatorio.length < 8 && checked)">Verifique que a data está no formato DD/MM/AAAA.</label>
+                                        <label id="errorLabel" *ngIf="(dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid  && checked)">Verifique que a data está no formato DD/MM/AAAA e é válida.</label>
                                     </div>
-                                    <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
-                                        <label
-        style="
-          position: relative;
-          float: left;
-          margin-top: -24%;
-          margin-left: 210%;
-          width: 94%;
-        "
-        >O contato foi um sucesso<mat-slide-toggle></mat-slide-toggle
-      ></label>
+                                    <div class="col-md-6" style="width: 49%;margin-left: 0.5%;margin-top:3%;box-sizing: border-box;">
+                                        <div style="width:100%;display:inline-block;background-color:white;heigth:56px"><label id="result">O contato foi um sucesso</label><mat-slide-toggle style="margin-left:0.5%" [(ngModel)]="success"></mat-slide-toggle></div>
                                     </div>
         </div>
       
-      <div class="tipoRelato" style="margin-top: 14%;">
-       <mat-radio-group id="contatoRadio" [(ngModel)]="tipoContato" name="tipoContato" #contatoRadio="ngModel" required>
-        <mat-radio-button class="example-radio-button" *ngFor="let cont of contatos" [value]="cont">{{cont}}</mat-radio-button>
+      <div class="tipoRelato" style="margin-top: 1%; width: 97%; margin-left:1.5%">
+        <label id="informacoesPessoais" style="font-size: 16px;">Tipo de Relato</label>
+       <mat-radio-group id="contatoRadio" [(ngModel)]="tipoContato" name="tipoContatoRadio" required>
+        <mat-radio-button class="example-radio-button" *ngFor="let cont of contatos"  name="tipoContatoRadio"[value]="cont" style="margin-left:5%">{{cont}}</mat-radio-button>
         </mat-radio-group>
       </div>
-    <div class="box box-default" id="medicaoBox">
-      <div>
-        <label id="medicaoTitleLabel">Relatório </label>
+      <div style="width: 97%; margin-left:1.5%">
+        <label id="informacoesPessoais" style="font-size: 16px;">Relato</label>
       </div>
       <div id="tabela">
         <p>
@@ -235,51 +222,33 @@
             <textarea
               matInput
               style="width: 100%"
-              rows="15"
+              rows="8"
               [(ngModel)]="relatorio"
               placeholder="Relato"
             ></textarea>
           </mat-form-field>
         </p>
       </div>
-      <button
+     
+    </div>
+        </div>
+        <div id="buttons-modal">
+         <button
         mat-button
         id="finalizarButton"
-        data-toggle="modal"
-        data-target="#okcidadao"
-        (click)="CadastraRelatorio()"
+        (click)="cadastraOuAtualizaRelato()"
         *ngIf="relatorio"
-        style="
-          margin-left: 46%;
-          margin-top: 0%;
-          /* padding: 2%; */
-          position: relative;
-        "
       >
-        <label id="retornoCidadaoButtonLabel">FINALIZAR RELATÓRIO</label>
+        <label id="retornoCidadaoButtonLabel">SALVAR REGISTRO</label>
       </button>
       <button
         mat-button
         id="finalizarButtonBlocked"
         *ngIf="!relatorio"
-        style="
-          margin-left: 46%;
-          margin-top: 0%;
-          /* padding: 2%; */
-          position: relative;
-        "
       >
-        <label id="retornoCidadaoButtonLabel">FINALIZAR RELATÓRIO</label>
+        <label id="retornoCidadaoButtonLabel">SALVAR REGISTRO</label>
       </button>
-    </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
   </div>
 </section>
