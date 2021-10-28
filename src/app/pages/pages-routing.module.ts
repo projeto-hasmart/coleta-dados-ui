@@ -1,3 +1,4 @@
+import { RelatoComponent } from './relato/relato.component';
 import { PaginaMedicMainComponent } from './pagina-medic/pagina-medic-main/pagina-medic-main.component';
 import { PaginaMedicVisualizacaoComponent } from './pagina-medic/pagina-medic-visualizacao/pagina-medic-visualizacao.component';
 import { PaginaMedicComponent } from './pagina-medic/pagina-medic.component';
@@ -24,7 +25,7 @@ const routes: Routes = [
       { path: 'cidadaos', component: PaginaCidadaosComponent},
         {path: 'cidadaos/cadastrar', component: PaginaCidadaosCadastrarComponent},
         {path: 'cidadaos/visualizar/:id', component: PaginaCidadaosVisualizarComponent},
-        {path: 'cidadaos/visualizar/:id/relatorio', component: PaginaCidadaoRelatorioComponent},
+      {path: 'relato', component: RelatoComponent},
       { path: 'medicao/:id', component: PaginaMedicaoComponent},
       {path: 'medicao/:id/sucesso', component: PaginaMedicaoSucessoComponent},
       {path: 'admin/farmacia', component: PaginaFarmaciaComponent},

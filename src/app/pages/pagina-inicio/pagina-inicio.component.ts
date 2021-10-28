@@ -92,7 +92,6 @@ export class PaginaInicio implements OnInit {
     this.user = JSON.parse(localStorage.getItem('currentUser')) as Medico;
   }
   checkIt(groupValue: string) {
-    console.log(groupValue);
     if (groupValue === 'cpf') {
       this.mask = '000.000.000-00';
     } else {

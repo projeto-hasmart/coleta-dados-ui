@@ -1,0 +1,84 @@
+  <div class="content-header">
+    <label id="labelNome">Informações do Relato</label>
+    <label id="labelVisualize">* Campos obrigatórios</label>
+  </div>
+
+       <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-12" style="width: 98.5%;">
+                                        <input type="text" class="input-control" placeholder="Nome anônimo" id="inputNome" > <!--[(ngModel)]-->
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left: 0.5%;">
+                                    <div class="col-md-6" style="width: 49%;">
+                                        <input type="date" class="input-control" placeholder="Data do relato*" id="inputNascimento" >
+                                    </div>
+                                    <div class="col-md-6" style="width: 49%;margin-left: 0.5%;">
+                                        <label
+        style="
+          position: relative;
+          float: left;
+          margin-top: -24%;
+          margin-left: 210%;
+          width: 94%;
+        "
+        >O contato foi um sucesso<mat-slide-toggle></mat-slide-toggle
+      ></label>
+                                    </div>
+        </div>
+      
+      <div class="tipoRelato" style="margin-top: 14%;">
+       <mat-radio-group id="contatoRadio" [(ngModel)]="tipoContato" name="tipoContato" #contatoRadio="ngModel" required>
+        <mat-radio-button class="example-radio-button" *ngFor="let cont of contatos" [value]="cont">{{cont}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    <div class="box box-default" id="medicaoBox">
+      <div>
+        <label id="medicaoTitleLabel">Relatório </label>
+      </div>
+      <div id="tabela">
+        <p>
+          <mat-form-field
+            mat-form-field
+            style="margin-left: 3%; width: 94%"
+            class="example-full-width"
+          >
+            <textarea
+              matInput
+              style="width: 100%"
+              rows="15"
+              [(ngModel)]="relatorio"
+              placeholder="Relato"
+            ></textarea>
+          </mat-form-field>
+        </p>
+      </div>
+      <button
+        mat-button
+        id="finalizarButton"
+        data-toggle="modal"
+        data-target="#okcidadao"
+        (click)="CadastraRelatorio()"
+        *ngIf="relatorio"
+        style="
+          margin-left: 46%;
+          margin-top: 0%;
+          /* padding: 2%; */
+          position: relative;
+        "
+      >
+        <label id="retornoCidadaoButtonLabel">FINALIZAR RELATÓRIO</label>
+      </button>
+      <button
+        mat-button
+        id="finalizarButtonBlocked"
+        *ngIf="!relatorio"
+        style="
+          margin-left: 46%;
+          margin-top: 0%;
+          /* padding: 2%; */
+          position: relative;
+        "
+      >
+        <label id="retornoCidadaoButtonLabel">FINALIZAR RELATÓRIO</label>
+      </button>
+    </div>

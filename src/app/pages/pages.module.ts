@@ -37,7 +37,9 @@ import { PaginaMedicMainComponent } from './pagina-medic/pagina-medic-main/pagin
 import {MatTabsModule} from '@angular/material/tabs';
 import { PaginaCidadaoRelatorioComponent } from './pagina-cidadaos/pagina-cidadao-relatorio/pagina-cidadao-relatorio.component';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
-
+import { RelatoComponent } from './relato/relato.component';
+import { InfoRelatoComponent } from './relato/info-relato/info-relato.component';
+import { DatePipe } from '@angular/common';
 
 // npm install mdbootstrap
 @NgModule({
@@ -55,7 +57,9 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     PaginaMedicComponent,
     PaginaMedicVisualizacaoComponent,
     PaginaMedicMainComponent,
-    PaginaCidadaoRelatorioComponent
+    PaginaCidadaoRelatorioComponent,
+    RelatoComponent,
+    InfoRelatoComponent
     ],
   imports: [
     CommonModule,
@@ -83,7 +87,8 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     MatInputModule
   ],
   providers: [
-    Global
+    Global,
+    DatePipe
   ]
 })
 export class PagesModule {
