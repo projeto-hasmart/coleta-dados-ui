@@ -160,10 +160,6 @@ export class PaginaMedicaoComponent implements OnInit {
   });
    }
 
-//  updateCz(cidadaoEditado: Cidadao) {
-//   this.apiService.updateCidadao(cidadaoEditado);
-// }
-
 ngOnInit() {
   if (this.cz.selecionadoId === undefined) {
     this.router.navigate(['/inicio']);
