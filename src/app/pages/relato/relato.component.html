@@ -52,21 +52,7 @@
         </td>
       </ng-container>
 
-      <!-- Relator Column -->
-       <!--<ng-container matColumnDef="relator" style="width: 16.667%">
-        <th mat-header-cell *matHeaderCellDef>Relator</th>
-        <td mat-cell *matCellDef="let element">
-          <mat-icon
-            style="max-width: 40px; max-height: 40px"
-            *ngIf="
-              buscado == element.tipoRelato ||
-              buscado == element.relator ||
-              buscado == element.anomizado
-            "
-            >account_circle</mat-icon
-          >
-        </td>
-      </ng-container>-->
+      
 
       <!-- Tipo Relato Column -->
       <ng-container matColumnDef="tipoContato" style="width: 16.667%">
@@ -78,6 +64,14 @@
           <mat-icon *ngIf="element.tipoContato == 4"> place</mat-icon>
           <mat-icon *ngIf="element.tipoContato == 5"> email</mat-icon>
           <mat-icon *ngIf="element.tipoContato == 6 || element.tipoContato == 0"> record_voice_over</mat-icon>
+        </td>
+      </ng-container>
+
+      <!-- Relator Column -->
+       <ng-container matColumnDef="relator" style="width: 16.667%">
+        <th mat-header-cell *matHeaderCellDef>Relator</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.relatorNome.slice(0,1)}}
         </td>
       </ng-container>
 
