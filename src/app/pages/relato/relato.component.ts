@@ -45,7 +45,7 @@ export class RelatoComponent implements OnInit {
   cidId;
   relatoAtual: RelatorioOpiniao;
   relatoAtualizadoCriado: RelatorioOpiniaoPP;
-  displayedColumns: string[] = ['select', 'tipoContato', 'anomizado', 'time', 'relato'];
+  displayedColumns: string[] = ['select', 'tipoContato', 'relator', 'anomizado', 'time', 'relato'];
   dataSource = new MatTableDataSource<RelatorioOpiniao>(ELEMENT_DATA);
   relatos: RelatorioOpiniao[];
   cidadaos: Cidadao[];
