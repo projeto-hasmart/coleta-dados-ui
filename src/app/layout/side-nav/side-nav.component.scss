@@ -22,6 +22,15 @@ li {
     color: #BBD3C1;
 }
 
+.sidebar-menu{
+  @media (min-width:812px) and (max-width:822px) and (orientation:landscape){
+    margin-top: -30%;
+  }
+  @media (min-width:823px) and (orientation:landscape){
+    margin-top: -23%;
+  }
+}
+
 li :hover,
 span :hover,
 .main-sidebar li :hover {

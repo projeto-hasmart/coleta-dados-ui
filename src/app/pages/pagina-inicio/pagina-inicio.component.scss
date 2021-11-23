@@ -1,511 +1,727 @@
 body {
-    background-color: white;
-    color: white;
+  background-color: white;
+  color: white;
 }
 
 .content,
 .content-header {
-    margin-left: 2%;
+  margin-left: 2%;
+}
+
+.adjust-header {
+  @media (max-width: 450px) and (orientation: portrait) {
+    margin-top: 35%;
+  }
+}
+
+.adjust-header h3 {
+  @media (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+    margin-top: -8%;
+  }
+  @media (min-width: 667px) and (orientation: landscape) {
+    margin-top: -5%;
+  }
+  @media (min-width: 1500px) {
+    margin-top: -2%;
+  }
+}
+
+.adjust-header label {
+  @media (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+    margin-top: -10%;
+  }
+  @media (min-width: 667px) and (orientation: landscape) {
+    margin-top: -7%;
+  }
+  @media (min-width: 1500px) {
+    margin-top: -3%;
+  }
 }
 
 #novoCidadaoButton {
-    position: absolute;
-    display: flex;
-    padding: 10px 16px;
-    width: 143px;
-    height: 34px;
-    right: 2.5%;
-    margin-top: -45px;
-    /* 700 */
-    background: #245E33;
-    /* Button Shadow */
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
+  @media (min-width: 100px) and (max-width: 319px) {
+    margin-top: 5%;
+    margin-right: 40%;
+    margin-left: 0%;
+  }
+  @media (min-width: 320px) and (max-width: 359px) and (orientation: portrait) {
+    margin-top: 5%;
+    margin-right: 47%;
+    margin-left: 0%;
+  }
+  @media (min-width: 360px) and (max-width: 360px) {
+    margin-top: 5%;
+    margin-right: 52%;
+    margin-left: 0%;
+  }
+  @media (min-width: 361px) and (max-width: 374px) {
+    margin-top: 5%;
+    margin-right: 58%;
+    margin-left: 0%;
+  }
+  @media (min-width: 375px) and (max-width: 400px) and (orientation: portrait) {
+    margin-top: 5%;
+    margin-right: 54%;
+    margin-left: 0%;
+  }
+  @media (min-width: 400px) and (max-width: 450px) {
+    margin-top: 5%;
+    margin-right: 58%;
+    margin-left: 0%;
+  }
+  @media (min-width: 451px) and (orientation: portrait) {
+    margin-top: 5%;
+    margin-right: 61%;
+    margin-left: 0%;
+  }
+  @media (min-width: 451px) and (max-width: 559px) and (orientation: landscape) {
+    margin-top: 5%;
+    margin-right: 72%;
+    margin-left: 0%;
+  }
+  @media (min-width: 540px) and (max-width: 559px) {
+    margin-top: 5%;
+    margin-right: 65%;
+    margin-left: 0%;
+  }
+  @media (min-width: 560px) and (max-width: 666px) and (orientation: landscape) {
+    margin-top: 5%;
+    margin-right: 68%;
+    margin-left: 0%;
+  }
+  @media (min-width: 667px) and (max-width: 822px) and (orientation: landscape) {
+    margin-top: 5%;
+    margin-right: 73%;
+    margin-left: 0%;
+  }
+  @media (min-width: 768px) and (max-width: 811px) {
+    margin-top: 5%;
+    margin-right: 47%;
+    margin-left: 0%;
+  }
+  @media (min-width: 812px) and (max-width: 822px) and (orientation: landscape) {
+    margin-top: 5%;
+    margin-right: 50%;
+    margin-left: 0%;
+  }
+  @media (min-width: 823px) and (max-width: 1023px) and (orientation: landscape) {
+    margin-top: 5%;
+    margin-right: 50%;
+    margin-left: 0%;
+  }
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    margin-top: 5%;
+    margin-right: 59%;
+    margin-left: 0%;
+  }
+  @media (min-width: 1280px) {
+    margin-top: -3%;
+    margin-right: 10%;
+    margin-left: 0%;
+  }
+  position: absolute;
+  display: flex;
+  padding: 10px 16px;
+  width: 143px;
+  height: 34px;
+  right: 2.5%;
+  margin-top: -45px;
+  margin-right: 17%;
+  /* 700 */
+  background: #245e33;
+  /* Button Shadow */
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+
+#importaCsvButton {
+  @media (max-width: 360px) {
+    margin-top: 22%;
+    margin-right: 52%;
+    margin-left: 0%;
+  }
+  @media (min-width: 361px) and (max-width: 450px) {
+    margin-top: 22%;
+    margin-right: 58%;
+    margin-left: 0%;
+  }
+  @media (min-width: 451px) and (max-width: 767px) and (orientation: portrait) {
+    margin-top: 17%;
+    margin-left: 2%;
+  }
+  @media (min-width: 451px) and (max-width: 559px) and (orientation: landscape) {
+    margin-top: 5%;
+    margin-left: 25%;
+  }
+  @media (min-width: 560px) and (max-width: 822px) and (orientation: landscape) {
+    margin-top: 5%;
+    margin-left: 28%;
+  }
+  @media (min-width: 768px) and (max-width: 811px) {
+    margin-top: 15%;
+    margin-left: 0%;
+  }
+  @media (min-width: 812px) and (max-width: 822px) and (orientation: landscape) {
+    margin-top: 5%;
+    margin-left: 19%;
+  }
+  @media (min-width: 823px) and (max-width: 1279px) and (orientation: landscape) {
+    margin-top: 5%;
+    margin-left: 20%;
+  }
+  @media (min-width: 823px) and (max-width: 1279px) and (orientation: portrait) {
+    margin-top: 11%;
+    margin-left: 0%;
+  }
+  @media (min-width: 1280px) {
+    margin-top: -3%;
+    margin-left: 48%;
+  }
+
+  position: absolute;
+  display: flex;
+  padding: 10px 16px;
+  width: 143px;
+  height: 34px;
+  margin-top: -45px;
+  margin-left: 46.5%;
+  /* 700 */
+  background: #245e33;
+  /* Button Shadow */
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
 }
 
 #novoCidadaoImg {
-    position: relative;
-    bottom: 11px;
-    /* Inside Auto Layout */
-    margin: 8px 0px;
+  position: relative;
+  bottom: 11px;
+  /* Inside Auto Layout */
+  margin: 8px 0px;
 }
 
 #novoCidadaoLabel {
-    position: relative;
-    width: 87px;
-    height: 14px;
-    left: 8px;
-    bottom: 11px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    text-transform: uppercase;
-    color: #FFFFFF;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 1;
-    align-self: center;
-    margin: 8px 0px;
+  position: relative;
+  width: 87px;
+  height: 14px;
+  left: 8px;
+  bottom: 11px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+  text-transform: uppercase;
+  color: #ffffff;
+  /* Inside Auto Layout */
+  flex: none;
+  order: 1;
+  align-self: center;
+  margin: 8px 0px;
 }
 
 //cpfrgtoggle
 #cpfrgtoggle {
-    border: 1px solid #dfdfdf;
-    width: 96px;
-    margin-right: 16px;
-    display: inline-block;
-    top: 20px;
+  border: 1px solid #dfdfdf;
+  width: 96px;
+  margin-right: 16px;
+  display: inline-block;
+  top: 20px;
 }
 
 #togglebutton {
-    // background-color: green;
-    // color: black;
-    display: inline-block;
+  // background-color: green;
+  // color: black;
+  display: inline-block;
 }
 
 .mat-button-toggle-checked {
-    color: #009728;
-    // background-color: pink;
+  color: #009728;
+  // background-color: pink;
 }
 
 .search-bar {
-    display: inline-block;
+  @media (max-width: 450px) {
+    margin-top: 7%;
+  }
+  @media (min-width: 451px) {
+    margin-top: 7%;
+  }
+  display: inline-block;
 }
 
 // search bar
 #searchBox {
-    background: #ffffff;
-    border: 1px solid #DFDFDF;
-    box-sizing: border-box;
-    border-radius: 3px;
-    height: 50px;
-    width: 328px;
-    font-family: "Roboto";
-    display: inline-block;
-    color: rgba(0, 0, 0, 0.6);
+  @media (min-width: 280px) and (max-width: 359px) {
+    width: 243px;
+    font-size: 75%;
+  }
+  @media (min-width: 360px) and (max-width: 400px) {
+    width: 270px;
+    font-size: 85%;
+  }
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  box-sizing: border-box;
+  border-radius: 3px;
+  height: 50px;
+  width: 328px;
+  font-family: "Roboto";
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 #searchboxtoggle {
-    @media (max-width: 768px) {
-        margin-left: 5%;
-        margin-top: 18%;
-    }
-    @media (max-width: 1050px) {
-        margin-left: 15%;
-        margin-top: 22%;
-    }
-    @media (max-width: 1300px) {
-        margin-left: 15%;
-        margin-top: 12%;
-    }
-    @media (max-width: 1500px) {
-        margin-left: 25%;
-        margin-top: 12%;
-    }
-    margin-left: 35%;
-    margin-top: 8%;
+  @media (max-width: 450px) {
+    margin-left: -1%;
+    margin-top: 13%;
+  }
+  @media (min-width: 451px) and (max-width: 767px) and (orientation: landscape) {
+    margin-left: -1%;
+    margin-top: 19%;
+  }
+  @media (min-width: 451px) and (max-width: 767px) and (orientation: portrait) {
+    margin-left: -1%;
+    margin-top: 36%;
+  }
+  @media (min-width: 568px) and (max-width: 767px) and (orientation: landscape) {
+    margin-left: -1%;
+    margin-top: 14%;
+  }
+  @media (min-width: 768px) and (max-width: 811px) {
+    margin-left: -2%;
+    margin-top: 28%;
+  }
+  @media (min-width: 812px) and (max-width: 1023px) and (orientation: landscape) {
+    margin-left: -2%;
+    margin-top: 17%;
+  }
+  @media (min-width: 1024px) and (max-width: 1049px) {
+    // margin-left: -2%;
+    // margin-top: 18%;
+    margin-left: -2%;
+    margin-top: 15%;
+  }
+  @media (min-width: 1050px) and (max-width: 1299px) {
+    // margin-left: 15%;
+    // margin-top: 22%;
+    margin-left: 25%;
+    margin-top: 3%;
+  }
+  @media (min-width: 1280px) and (max-width: 1299px) {
+    margin-left: 25%;
+    margin-top: -4%;
+  }
+
+  @media (min-width: 1300px) and (max-width: 1499px) {
+    // margin-left: 25%;
+    // margin-top: 3%;
+    margin-left: 26%;
+    margin-top: -4%;
+  }
+  @media (min-width: 1500px) {
+    margin-left: 28%;
+    margin-top: -2%;
+  }
+  margin-left: 35%;
+  margin-top: 8%;
 }
 
 .searchTerm {
-    width: 100%;
-    border-right: none;
-    padding: 5px;
-    height: 20px;
-    color: #9dbfaf;
+  width: 100%;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  color: #9dbfaf;
 }
 
 .searchTerm :focus {
-    border: 1px solid #828282;
+  border: 1px solid #828282;
 }
 
 .searchButton {
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-style: none;
-    background: none;
-    text-align: center;
-    color: grey;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-size: 20px;
-    box-sizing: border-box;
-    border-radius: 3px;
-    height: 50px;
-    margin-top: 1px;
-    margin-left: -40px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-style: none;
+  background: none;
+  text-align: center;
+  color: grey;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  height: 50px;
+  margin-top: 1px;
+  margin-left: -40px;
 }
-
 
 /*bem-vindo*/
 
 #labelBemvindo {
-    position: absolute;
-    width: 315px;
-    height: 60px;
-    top: 77px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 40px;
-    line-height: 60px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
+  position: absolute;
+  width: 315px;
+  height: 60px;
+  top: 77px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 60px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: #000000;
 }
 
 #labelBemvindoo {
-    position: absolute;
-    width: 218px;
-    height: 19px;
-    top: 150px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  width: 218px;
+  height: 19px;
+  top: 150px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.6);
 }
-
 
 /*estatisticas e cards dos menus*/
 
 #estatisticas {
-    position: relative;
-    width: 115px;
-    height: 30px;
-    top: 67px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
-    /* identical to box height */
-    display: flex;
-    color: #000000;
+  position: relative;
+  width: 115px;
+  height: 30px;
+  top: 67px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+  display: flex;
+  color: #000000;
 }
 
 mat-card {
-    display: inline-block;
+  display: inline-block;
 }
 
 #mdc-card1 {
-    width: 90%;
-    height: 119px;
-    top: 97px;
-    /* a700 */
-    display: inline-block;
-    background: #009728;
-    box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
-    border-radius: 10px;
-    @media (max-width: 768px) {
-        margin-top: 30px;
-    }
+  width: 90%;
+  height: 119px;
+  top: 97px;
+  /* a700 */
+  display: inline-block;
+  background: #009728;
+  box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
 }
 
 #mdc-card1number {
-    position: absolute;
-    width: 57px;
-    height: 72px;
-    left: 10px;
-    top: 10px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 72px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #ffffff;
+  position: absolute;
+  width: 57px;
+  height: 72px;
+  left: 10px;
+  top: 10px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 72px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
 }
 
 #mdc-card1name {
-    position: absolute;
-    width: 198px;
-    height: 27px;
-    left: 10px;
-    top: 82px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 27px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  width: 198px;
+  height: 27px;
+  left: 10px;
+  top: 82px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 #mdc-card1img {
-    position: absolute;
-    right: 20px;
-    top: 20px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 
 #mdc-card2 {
-    width: 90%;
-    height: 119px;
-    top: 97px;
-    /* a700 */
-    display: inline-block;
-    background: #009728;
-    box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
-    border-radius: 10px;
-    @media (max-width: 768px) {
-        margin-top: 30px;
-    }
+  width: 90%;
+  height: 119px;
+  top: 97px;
+  /* a700 */
+  display: inline-block;
+  background: #009728;
+  box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
 }
 
 #mdc-card2number {
-    position: absolute;
-    width: 48px;
-    height: 72px;
-    left: 14px;
-    top: 10px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 72px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #ffffff;
+  position: absolute;
+  width: 48px;
+  height: 72px;
+  left: 14px;
+  top: 10px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 72px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
 }
 
 #mdc-card2name {
-    position: absolute;
-    width: 87px;
-    height: 27px;
-    left: 10px;
-    top: 82px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 27px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  width: 87px;
+  height: 27px;
+  left: 10px;
+  top: 82px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 #mdc-card2img {
-    position: absolute;
-    right: 20px;
-    top: 20px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 
 #mdc-card3 {
-    width: 90%;
-    height: 119px;
-    top: 97px;
-    /* a700 */
-    display: inline-block;
-    background: #009728;
-    box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
-    border-radius: 10px;
-    @media (max-width: 768px) {
-        margin-top: 30px;
-    }
+  width: 90%;
+  height: 119px;
+  top: 97px;
+  /* a700 */
+  display: inline-block;
+  background: #009728;
+  box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
 }
 
 #mdc-card3number {
-    position: absolute;
-    width: 25px;
-    height: 72px;
-    left: 26px;
-    top: 10px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 72px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #ffffff;
+  position: absolute;
+  width: 25px;
+  height: 72px;
+  left: 26px;
+  top: 10px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 72px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
 }
 
 #mdc-card3name {
-    position: absolute;
-    width: 127px;
-    height: 27px;
-    left: 10px;
-    top: 82px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 27px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  width: 127px;
+  height: 27px;
+  left: 10px;
+  top: 82px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 #mdc-card3img {
-    position: absolute;
-    right: 20px;
-    top: 20px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 
 #mdc-card4 {
-    width: 90%;
-    height: 119px;
-    top: 97px;
-    /* a700 */
-    display: inline-block;
-    background: #009728;
-    box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
-    border-radius: 10px;
-    @media (max-width: 768px) {
-        margin-top: 30px;
-    }
+  width: 90%;
+  height: 119px;
+  top: 97px;
+  /* a700 */
+  display: inline-block;
+  background: #009728;
+  box-shadow: 0px 6px 10px rgba(55, 128, 75, 0.14);
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
 }
 
 #mdc-card4number {
-    position: absolute;
-    width: 55px;
-    height: 72px;
-    left: 11px;
-    top: 10px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 72px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #ffffff;
+  position: absolute;
+  width: 55px;
+  height: 72px;
+  left: 11px;
+  top: 10px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 72px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
 }
 
 #mdc-card4name {
-    position: absolute;
-    width: 127px;
-    height: 27px;
-    left: 10px;
-    top: 82px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 27px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  width: 127px;
+  height: 27px;
+  left: 10px;
+  top: 82px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 #mdc-card4img {
-    position: absolute;
-    right: 20px;
-    top: 20px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 
 #autorizacoesProximas {
-    position: relative;
-    width: 229px;
-    height: 30px;
-    top: 140px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
-    /* identical to box height */
-    display: flex;
-    align-items: center;
-    color: #000000;
+  position: relative;
+  width: 229px;
+  height: 30px;
+  top: 140px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: #000000;
 }
 
 table {
-    width: 98%;
+  width: 98%;
 }
 
 #tabela {
-    left: 69px;
-    padding-top: 160px;
+  left: 69px;
+  padding-top: 160px;
 }
 
 .container {
-    width: 100%;
-    margin: 0 auto;
+  width: 100%;
+  margin: 0 auto;
 }
 
 #cidadaoNaoEncontrado {
-    background-color: #F5F5F5;
-    width: 98%;
-    margin-top: 2%;
+  background-color: #f5f5f5;
+  width: 98%;
+  margin-top: 2%;
 }
 
 #naoEncontradoTitulo {
-    width: 50%;
-    height: 72px;
-    margin-left: 25%;
-    top: 20px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 48px;
-    line-height: 72px;
-    text-align: center;
-    /* identical to box height */
-    color: #000000;
-    @media (max-width: 1534px) {
-        font-size: 42px;
-    }
-    @media (max-width: 1374px) {
-        font-size: 38px;
-    }
+  width: 50%;
+  height: 72px;
+  margin-left: 25%;
+  top: 20px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 72px;
+  text-align: center;
+  /* identical to box height */
+  color: #000000;
+  @media (max-width: 1534px) {
+    font-size: 42px;
+  }
+  @media (max-width: 1374px) {
+    font-size: 38px;
+  }
 }
 
 #tenteNovamente {
-    width: 50%;
-    height: 23px;
-    margin-left: 25%;
-    top: 92px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 23px;
-    text-align: center;
-    color: #000000;
-    opacity: 0.6;
-    // @media (max-width: 1534px) {
-    //     width: 60%;
-    //     margin-left: 20%;
-    // }
-    // @media (min-width: 1594px) {
-    //     width: 60%;
-    //     margin-left: 24%;
-    // }
+  width: 50%;
+  height: 23px;
+  margin-left: 25%;
+  top: 92px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  color: #000000;
+  opacity: 0.6;
+  // @media (max-width: 1534px) {
+  //     width: 60%;
+  //     margin-left: 20%;
+  // }
+  // @media (min-width: 1594px) {
+  //     width: 60%;
+  //     margin-left: 24%;
+  // }
 }
 
 #novoCidadaoButtonError {
-    align-self: center;
-    margin-left: 47%;
-    padding: 10px 16px;
-    width: 143px;
-    height: 34px;
-    right: 2.5%;
-    /* 700 */
-    background: #245E33;
-    /* Button Shadow */
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
+  align-self: center;
+  margin-left: 47%;
+  padding: 10px 16px;
+  width: 143px;
+  height: 34px;
+  right: 2.5%;
+  /* 700 */
+  background: #245e33;
+  /* Button Shadow */
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
 }

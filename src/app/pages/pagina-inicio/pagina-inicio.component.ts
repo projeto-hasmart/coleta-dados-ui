@@ -12,6 +12,7 @@ import { Global } from 'src/app/models/globalConstants';
 import { Router } from '@angular/router';
 import { HostListener } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 export interface PeriodicElement {
   name: string;
@@ -40,6 +41,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 // tslint:disable-next-line: component-class-suffix
 export class PaginaInicio implements OnInit {
+  isMobile;
+  deviceInfo = null;
+  innerWidth;
+  innerHeight;
   cidadaos: Cidadao[];
   apiService: ApiService;
   buscado: string;
@@ -59,6 +64,7 @@ export class PaginaInicio implements OnInit {
   countOfUploaded = 0;
   uploadError;
   searchError;
+  ativo = true;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -81,16 +87,30 @@ export class PaginaInicio implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
-  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, idk: Global, router: Router) {
+  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, idk: Global, router: Router, private deviceService: DeviceDetectorService) {
     this.apiService = apiService;
     this.cidadaoService = cidadaoService;
     this.idk = idk;
     this.router = router;
+    this.epicFunction();
   }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser')) as Medico;
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
+  }
+  epicFunction() {
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    const isMobile = this.deviceService.isMobile();
+    this.isMobile = isMobile;
+    const isDesktopDevice = this.deviceService.isDesktop();
+  }
+
   checkIt(groupValue: string) {
     if (groupValue === 'cpf') {
       this.mask = '000.000.000-00';
@@ -136,6 +156,9 @@ export class PaginaInicio implements OnInit {
     } else if (groupValue === 'rg') {
       localStorage.setItem('newRg', this.buscado);
     }
+  }
+  removeCitizen() {
+    localStorage.removeItem('citizen');
   }
   // At the drag drop area
   // (drop)="onDropFile($event)"
