@@ -13,6 +13,7 @@ import { CidadaoServiceService } from 'src/app/services/cidadao/cidadao-service.
 })
 export class InfoRelatoComponent implements OnInit {
   relatorio: string;
+  tipoContato;
   cidadao$: Observable<Cidadao>;
   value = 'Relato';
   oNossoCidadao: Cidadao;

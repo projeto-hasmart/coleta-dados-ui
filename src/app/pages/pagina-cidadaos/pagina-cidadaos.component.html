@@ -3,14 +3,246 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
-<section class="content-header">
-    <div>
-        <h3 id="labelCidadaos">Cidadãos</h3>
-        <label id="labelVisualize">Visualize e busque cidadãos cadastrados no sistema</label>
+<section class="content-header" style="margin-top: -5%;" *ngIf="!isMobile">
+  <div class="adjustHeader">
+      <h3 id="labelCidadaos">Cidadãos</h3>
+      <label id="labelVisualize">Visualize e busque cidadãos cadastrados no sistema</label>
+  </div>
+</section>
+
+<section class="content-header" *ngIf="isMobile && (innerWidth > innerHeight)">
+    <div class="adjustHeader" style="margin-top: 11%;">
+        <h3 id="labelCidadaos" style="margin-top: -10%;">Cidadãos</h3>
+        <label id="labelVisualize" style="margin-top: -13%;">Visualize e busque cidadãos cadastrados no sistema</label>
     </div>
 
 </section>
-<section class="content">
+
+<section class="content-header" *ngIf="isMobile && (innerWidth < innerHeight)">
+  <div class="adjustHeader" >
+      <h3 id="labelCidadaos" style="margin-top: -14%;">Cidadãos</h3>
+      <label id="labelVisualize" style="margin-top: -9%;">Visualize e busque cidadãos cadastrados no sistema</label>
+  </div>
+
+</section>
+
+<!-- <section class="content" style="margin-top: 45%;" *ngIf="isMobile && (innerWidth < innerHeight)">
+  <!-- [(ngModel)]="modelName" multiple vertical="false"--
+  <!-- <div id="searchboxtoggle" class="row " style="margin-left: -1%;"> -
+      <!-- [(ngModel)]="modelName" multiple vertical="false"
+
+      <mat-button-toggle-group id="cpfrgtoggle" class="shadow p-3 mb-5 bg-white rounded" #group="matButtonToggleGroup">
+          <mat-button-toggle value="cpf" id="togglebutton">
+              CPF
+          </mat-button-toggle>
+          <mat-button-toggle value="rg" id="togglebutton">
+              RG
+          </mat-button-toggle>
+      </mat-button-toggle-group>
+      <div class="search-bar shadow p-3 mb-5 bg-white rounded" style="margin-top: 7%;">
+          <input type="text" class="searchTerm" placeholder="Buscar cidadão por CPF ou RG(selecione)..." (keydown.enter)="selecionaCidadao(buscado, group.value)" id="searchBox" [(ngModel)]="buscado" required [mask]="mask" (keyup)="checkIt(group.value)">
+          <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="selecionaCidadao(buscado, group.value)">
+<i class="fa fa-search"></i> </button>
+      </div>
+      <a routerLink="/cidadaos/cadastrar" *ngIf="!errorBye">
+          <button mat-button id="novoCidadaoButton" class="pull-right" style="margin-top:2%;">
+
+      <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
+      <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
+
+    </button>
+      </a>
+  </div>
+  <div id="searchboxtoggleNome" style="margin-left:-2.5%" class="row ">
+      <!-- [(ngModel)]="modelName" multiple vertical="false"
+
+      <mat-button-toggle-group id="nomenatoggle" class="shadow p-3 mb-5 bg-white rounded" #groupNome="matButtonToggleGroup">
+          <mat-button-toggle value="nome" id="togglebutton">
+              Nome
+          </mat-button-toggle>
+          <mat-button-toggle value="nomeano" id="togglebutton">
+              Anonimizado
+          </mat-button-toggle>
+      </mat-button-toggle-group>
+      <div class="search-bar shadow p-3 mb-5 bg-white rounded" style="margin-top: 7%;">
+          <input type="text" class="searchTermNome" placeholder="Buscar cidadão por nome ou nome anônimo..." (keydown.enter)="selecionaCidadao(buscadoNome, groupNome.value)" id="searchBoxNome" [(ngModel)]="buscadoNome" required>
+          <button type="submit" class="searchButtonNome" id="searchButton" placeholder="" (click)="selecionaCidadao(buscadoNome, groupNome.value)">
+<i class="fa fa-search"></i> </button>
+      </div>
+
+  </div>
+  <div id="cidadaoNaoEncontrado" *ngIf="errorBye">
+      <div>
+          <label id="naoEncontradoTitulo">
+      Cidadão não cadastrado
+    </label>
+          <label id="tenteNovamente">
+      Tente novamente ou cadastre um novo cidadão com esta identidade
+    </label>
+          <a routerLink="/cidadaos/cadastrar">
+              <button mat-button id="novoCidadaoButtonError" (click)="newCitizen(group.value)">
+
+  <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
+  <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
+
+</button>
+          </a>
+      </div>
+  </div>
+  <div id="tabela" style="margin-left:-5%;">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+          <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                  <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                  </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                  </mat-checkbox>
+              </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nome">
+              <th mat-header-cell *matHeaderCellDef> Nome </th>
+              <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nomeanonimo">
+              <th mat-header-cell *matHeaderCellDef> Nome anônimo </th>
+              <td mat-cell *matCellDef="let element"> {{element.anonimoNome}} </td>
+          </ng-container>
+
+          <!--<ng-container matColumnDef="medicoes">
+              <th mat-header-cell *matHeaderCellDef> Quantidade de medições </th>
+              <td mat-cell *matCellDef="let element"> {{element.medicoes.afericoes.length}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="detalhes" stickyEnd>
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                        <button data-toggle="modal" data-target="#verRelatorio" id="infoButton" (click)="goToView(element.cpf)"><mat-icon>info</mat-icon></button>
+                        <!--*ngIf='element.name === ""'
+                        <!-- <button *ngIf='element.name === "Helium"' data-toggle="modal" data-target="#verDispensacao" id="infoButton"><mat-icon>info</mat-icon></button>
+                    </td>
+                </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+          </tr>
+      </table>
+  </div>
+</section> -->
+
+<!-- <section class="content" style="margin-top: 8%;" *ngIf="isMobile && (innerWidth > innerHeight)">
+  <!-- [(ngModel)]="modelName" multiple vertical="false"
+  <div id="searchboxtoggle" class="row " style="margin-left: -2%;">
+      <!-- [(ngModel)]="modelName" multiple vertical="false"
+
+      <mat-button-toggle-group id="cpfrgtoggle" class="shadow p-3 mb-5 bg-white rounded" #group="matButtonToggleGroup">
+          <mat-button-toggle value="cpf" id="togglebutton">
+              CPF
+          </mat-button-toggle>
+          <mat-button-toggle value="rg" id="togglebutton">
+              RG
+          </mat-button-toggle>
+      </mat-button-toggle-group>
+      <div class="search-bar shadow p-3 mb-5 bg-white rounded" style="font-size: 71%;">
+          <input type="text" class="searchTerm"  style="width: 248px;" placeholder="Buscar cidadão por CPF ou RG(selecione)..." (keydown.enter)="selecionaCidadao(buscado, group.value)" id="searchBox" [(ngModel)]="buscado" required [mask]="mask" (keyup)="checkIt(group.value)">
+          <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="selecionaCidadao(buscado, group.value)">
+<i class="fa fa-search"></i> </button>
+      </div>
+      <a routerLink="/cidadaos/cadastrar" *ngIf="!errorBye">
+          <button mat-button id="novoCidadaoButton" class="pull-right" style="margin-right: 39%; margin-top: 1%;">
+
+      <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
+      <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
+
+    </button>
+      </a>
+  </div>
+  <div id="searchboxtoggleNome" style="margin-left: -2%; margin-top: 6%;" class="row ">
+      <!-- [(ngModel)]="modelName" multiple vertical="false"
+
+      <mat-button-toggle-group id="nomenatoggle" class="shadow p-3 mb-5 bg-white rounded" #groupNome="matButtonToggleGroup">
+          <mat-button-toggle value="nome" id="togglebutton">
+              Nome
+          </mat-button-toggle>
+          <mat-button-toggle value="nomeano" id="togglebutton">
+              Anonimizado
+          </mat-button-toggle>
+      </mat-button-toggle-group>
+      <div class="search-bar shadow p-3 mb-5 bg-white rounded" style="font-size: 52%;">
+          <input type="text" class="searchTermNome" style="width: 186px;" placeholder="Buscar cidadão por nome ou nome anônimo..." (keydown.enter)="selecionaCidadao(buscadoNome, groupNome.value)" id="searchBoxNome" [(ngModel)]="buscadoNome" required>
+          <button type="submit" class="searchButtonNome" id="searchButton" placeholder="" (click)="selecionaCidadao(buscadoNome, groupNome.value)">
+<i class="fa fa-search"></i> </button>
+      </div>
+
+  </div>
+  <div id="cidadaoNaoEncontrado" *ngIf="errorBye">
+      <div>
+          <label id="naoEncontradoTitulo">
+      Cidadão não cadastrado
+    </label>
+          <label id="tenteNovamente">
+      Tente novamente ou cadastre um novo cidadão com esta identidade
+    </label>
+          <a routerLink="/cidadaos/cadastrar">
+              <button mat-button id="novoCidadaoButtonError" (click)="newCitizen(group.value)">
+
+  <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
+  <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
+
+</button>
+          </a>
+      </div>
+  </div>
+  <div id="tabela" style="margin-left: -2%; width: 63%;">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+          <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                  <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                  </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                  </mat-checkbox>
+              </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nome">
+              <th mat-header-cell *matHeaderCellDef> Nome </th>
+              <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nomeanonimo">
+              <th mat-header-cell *matHeaderCellDef> Nome anônimo </th>
+              <td mat-cell *matCellDef="let element"> {{element.anonimoNome}} </td>
+          </ng-container>
+
+          <!--<ng-container matColumnDef="medicoes">
+              <th mat-header-cell *matHeaderCellDef> Quantidade de medições </th>
+              <td mat-cell *matCellDef="let element"> {{element.medicoes.afericoes.length}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="detalhes" stickyEnd>
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                        <button data-toggle="modal" data-target="#verRelatorio" id="infoButton" (click)="goToView(element.cpf)"><mat-icon>info</mat-icon></button>
+                        <!--*ngIf='element.name === ""' --
+                        <!-- <button *ngIf='element.name === "Helium"' data-toggle="modal" data-target="#verDispensacao" id="infoButton"><mat-icon>info</mat-icon></button> --
+                    </td>
+                </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+          </tr>
+      </table>
+  </div>
+</section> -->
+
+<section class="content" >
     <!-- [(ngModel)]="modelName" multiple vertical="false"-->
     <div id="searchboxtoggle" class="row ">
         <!-- [(ngModel)]="modelName" multiple vertical="false"-->
@@ -23,7 +255,7 @@
                 RG
             </mat-button-toggle>
         </mat-button-toggle-group>
-        <div class="search-bar shadow p-3 mb-5 bg-white rounded">
+        <div class="search-bar shadow p-3 mb-5 bg-white rounded" id="search-cpf-rg">
             <input type="text" class="searchTerm" placeholder="Buscar cidadão por CPF ou RG(selecione)..." (keydown.enter)="selecionaCidadao(buscado, group.value)" id="searchBox" [(ngModel)]="buscado" required [mask]="mask" (keyup)="checkIt(group.value)">
             <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="selecionaCidadao(buscado, group.value)">
 <i class="fa fa-search"></i> </button>
@@ -48,12 +280,12 @@
                 Anonimizado
             </mat-button-toggle>
         </mat-button-toggle-group>
-        <div class="search-bar shadow p-3 mb-5 bg-white rounded">
+        <div class="search-bar shadow p-3 mb-5 bg-white rounded" id="search-nome">
             <input type="text" class="searchTermNome" placeholder="Buscar cidadão por nome ou nome anônimo..." (keydown.enter)="selecionaCidadao(buscadoNome, groupNome.value)" id="searchBoxNome" [(ngModel)]="buscadoNome" required>
             <button type="submit" class="searchButtonNome" id="searchButton" placeholder="" (click)="selecionaCidadao(buscadoNome, groupNome.value)">
 <i class="fa fa-search"></i> </button>
         </div>
-        
+
     </div>
     <div id="cidadaoNaoEncontrado" *ngIf="errorBye">
         <div>
@@ -115,5 +347,5 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
             </tr>
         </table>
-    </div> 
+    </div>
 </section>

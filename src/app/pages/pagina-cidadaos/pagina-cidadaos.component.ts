@@ -1,14 +1,16 @@
+import { async } from '@angular/core/testing';
 import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
 import { Router } from '@angular/router';
 import { CidadaoServiceService } from './../../services/cidadao/cidadao-service.service';
 import { Cidadao } from './../../models/cidadao';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
 import { Global } from 'src/app/models/globalConstants';
-
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { PeriodicElement } from '../pagina-dispensacao/pagina-dispensacao.component';
 
 let ELEMENT_DATA: any[] = [
 ];
@@ -19,6 +21,11 @@ let ELEMENT_DATA: any[] = [
   styleUrls: ['./pagina-cidadaos.component.scss']
 })
 export class PaginaCidadaosComponent implements OnInit {
+  isMobile;
+  deviceInfo = null;
+  innerWidth;
+  innerHeight;
+  ativo = true;
   apiService: ApiService;
   cidadaoService: CidadaoServiceService;
   buscado: string;
@@ -30,10 +37,11 @@ export class PaginaCidadaosComponent implements OnInit {
   errorBye = false;
   mask: string;
   cidadaos: Cidadao[];
-  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, private mz: MedicaoServiceService, router: Router) {
+  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, private mz: MedicaoServiceService, router: Router, private deviceService: DeviceDetectorService) {
     this.apiService = apiService;
     this.cidadaoService = cidadaoService;
     this.router = router;
+    this.epicFunction();
   }
 
   ngOnInit() {
@@ -44,12 +52,47 @@ export class PaginaCidadaosComponent implements OnInit {
     }
     }
 
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+      this.innerWidth = window.innerWidth;
+      this.innerHeight = window.innerHeight;
+    }
+    epicFunction() {
+      this.deviceInfo = this.deviceService.getDeviceInfo();
+      const isMobile = this.deviceService.isMobile();
+      this.isMobile = isMobile;
+      const isDesktopDevice = this.deviceService.isDesktop();
+    }
+
+    removeCitizen() {
+      localStorage.removeItem('citizen');
+    }
+
     checkIt(groupValue: string) {
       if (groupValue === 'cpf') {
         this.mask = '000.000.000-00';
       } else {
         this.mask = '00000000000';
       }
+    }
+
+    isAllSelected() {
+      const numSelected = this.selection.selected.length;
+      const numRows = this.dataSource.data.length;
+      return numSelected === numRows;
+    }
+
+    masterToggle() {
+      this.isAllSelected() ?
+          this.selection.clear() :
+          this.dataSource.data.forEach(row => this.selection.select(row));
+    }
+
+    checkboxLabel(row?: PeriodicElement): string {
+      if (!row) {
+        return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+      }
+      // return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
     }
 
     selecionaCidadao(digitado: string, groupValue?: string) {

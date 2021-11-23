@@ -1,7 +1,7 @@
 import { Medicamento } from './../../models/medicamento';
 import { Medicao } from './../../models/medicao';
 import { Afericao } from './../../models/afericao';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Cidadao } from 'src/app/models/cidadao';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
 import { FormControl } from '@angular/forms';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 interface Diabetes {
   value: number;
@@ -30,6 +31,10 @@ let ELEMENTS_DATA: Afericao[] = [];
   styleUrls: ['./pagina-medicao.component.scss']
 })
 export class PaginaMedicaoComponent implements OnInit {
+  isMobile;
+  deviceInfo = null;
+  innerWidth;
+  innerHeight;
   oNossoCidadao: Cidadao;
   apiService: ApiService;
   finalData: Afericao[] = [];
@@ -137,6 +142,18 @@ export class PaginaMedicaoComponent implements OnInit {
   //   this.peso += event.target.value;
   // }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
+  }
+  epicFunction() {
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    const isMobile = this.deviceService.isMobile();
+    this.isMobile = isMobile;
+    const isDesktopDevice = this.deviceService.isDesktop();
+  }
+
   excluirAfericao(row) {
     const index = this.dataSource.data.indexOf(row);
     this.dataSource.data.splice(index, 1);
@@ -148,8 +165,9 @@ export class PaginaMedicaoComponent implements OnInit {
     this.dataSourcem._updateChangeSubscription();
   }
   constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService,
-              router: Router) {
+              router: Router, private deviceService: DeviceDetectorService) {
     this.cz = cz;
+    this.epicFunction();
     this.mz = mz;
     this.dz = dz;
     this.router = router;
