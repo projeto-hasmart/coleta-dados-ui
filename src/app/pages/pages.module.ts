@@ -40,6 +40,8 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { RelatoComponent } from './relato/relato.component';
 import { InfoRelatoComponent } from './relato/info-relato/info-relato.component';
 import { DatePipe } from '@angular/common';
+import { MenuMobileComponent } from './menu-mobile/menu-mobile.component';
+
 
 // npm install mdbootstrap
 @NgModule({
@@ -59,7 +61,8 @@ import { DatePipe } from '@angular/common';
     PaginaMedicMainComponent,
     PaginaCidadaoRelatorioComponent,
     RelatoComponent,
-    InfoRelatoComponent
+    InfoRelatoComponent,
+    MenuMobileComponent
     ],
   imports: [
     CommonModule,

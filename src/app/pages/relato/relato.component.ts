@@ -3,13 +3,14 @@ import { CidadaoServiceService } from './../../services/cidadao/cidadao-service.
 import { RelatorioOpiniao } from './../../models/relatorioOpiniao';
 import { RelatoService } from './../../services/relato/relato.service';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { Cidadao } from 'src/app/models/cidadao';
 import { ApiService } from 'src/app/services/api.service';
 import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
 import { DatePipe } from '@angular/common';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 let ELEMENT_DATA: RelatorioOpiniao[] = [
 ];
@@ -23,8 +24,13 @@ export class RelatoComponent implements OnInit {
 // tslint:disable-next-line: no-output-native
 @Output() close = new EventEmitter<boolean>();
 @ViewChild('closeModalBtn', {static: false}) closeModalBtn: ElementRef;
+
   constructor(private cz: CidadaoServiceService, private mz: MedicaoServiceService, private apiService: ApiService,
-              private router: Router, private rz: RelatoService, private datePipe: DatePipe) {
+    private router: Router,
+    private rz: RelatoService,
+    private datePipe: DatePipe,
+    private deviceService: DeviceDetectorService) {
+      this.epicFunction();
    }
   buscadoNome: string;
   editing = false;
@@ -58,6 +64,21 @@ export class RelatoComponent implements OnInit {
     'E-mail',
     'Martha'
   ];
+  isMobile;
+  deviceInfo = null;
+  innerWidth;
+  innerHeight;
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+  this.innerWidth = window.innerWidth;
+  this.innerHeight = window.innerHeight;
+}
+  epicFunction() {
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    const isMobile = this.deviceService.isMobile();
+    this.isMobile = isMobile;
+    const isDesktopDevice = this.deviceService.isDesktop();
+  }
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;

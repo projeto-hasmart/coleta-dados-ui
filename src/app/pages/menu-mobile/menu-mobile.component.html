@@ -1,0 +1,45 @@
+<button mat-button [matMenuTriggerFor]="menu" style="margin-top: 2%;" >
+  <img src="assets/dist/img/logo.png" *ngIf="isMobile"/>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <a
+      routerLink="/inicio"
+      routerLinkActive="active-list-item"
+      style="width: 230px"
+      *ngIf="ativo"
+    >
+      <img src="assets/dist/img/home.svg" />
+      <span>Início</span>
+    </a>
+  </button>
+  <button mat-menu-item>
+    <a
+      routerLink="/cidadaos"
+      routerLinkActive="active-list-item"
+      style="width: 230px"
+      *ngIf="ativo"
+      (click)="removeCitizen()"
+    >
+      <img src="assets/dist/img/available_user.png" />
+      <span style="width: 230px">Cidadãos</span>
+    </a>
+  </button>
+  <button mat-menu-item>
+    <a
+      routerLink="/relato"
+      routerLinkActive="active-list-item"
+      style="width: 230px"
+      *ngIf="ativo"
+    >
+      <img src="assets/dist/img/available_user.png" />
+      <span style="width: 230px">Registro</span>
+    </a>
+  </button>
+  <button mat-menu-item>
+    <a routerLinkActive="active-list-item" style="width: 230px" *ngIf="ativo">
+      <img src="assets/dist/img/available_heart.png" />
+      <span style="width: 230px">Medição</span>
+    </a>
+  </button>
+</mat-menu>

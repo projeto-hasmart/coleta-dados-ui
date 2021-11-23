@@ -5,13 +5,14 @@ import { ApiService } from './../../../services/api.service';
 import { Cidadao } from './../../../models/cidadao';
 import { CidadaoServiceService } from './../../../services/cidadao/cidadao-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
 import { Medicao } from 'src/app/models/medicao';
 import { DatePipe } from '@angular/common';
 import { CidadaoEdit } from 'src/app/models/cidadaoEdit';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 
 interface Diabetes {
@@ -36,6 +37,10 @@ const MEDICAO: Medicao[] = [];
   styleUrls: ['./pagina-cidadaos-visualizar.component.scss']
 })
 export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit {
+  isMobile;
+  deviceInfo = null;
+  innerWidth;
+  innerHeight;
   hide = false;
   possuiAnonimo = true;
   checked = false;
@@ -61,13 +66,27 @@ export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit 
   sendingCpf: string;
   weight;
   relatorioCidadao: string;
-  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router) {
+  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router,private deviceService: DeviceDetectorService) {
     this.cz = cz;
     this.mz = mz;
     this.dz = dz;
     this.apiService = apiService;
     this.router = router;
+    this.epicFunction();
    }
+
+   @HostListener('window:resize', ['$event'])
+    onResize(event) {
+      this.innerWidth = window.innerWidth;
+      this.innerHeight = window.innerHeight;
+    }
+    epicFunction() {
+      this.deviceInfo = this.deviceService.getDeviceInfo();
+      const isMobile = this.deviceService.isMobile();
+      this.isMobile = isMobile;
+      const isDesktopDevice = this.deviceService.isDesktop();
+    }
+
    displayedColumns: string[] = ['dataHora', 'servico', 'responsavel', 'info'];
    displayedColumnsAfer: string[] = ['sistolica', 'diastolica'];
    displayedColumnsRel: string[] = ['dataRelatorio', 'servico', 'info'];
