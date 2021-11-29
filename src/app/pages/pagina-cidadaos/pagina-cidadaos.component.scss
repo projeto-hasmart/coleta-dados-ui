@@ -15,6 +15,9 @@
 }
 
 #labelVisualize {
+  @media (max-width:280px){
+    margin-top: 5%;
+  }
     position: absolute;
     width: 706px;
     height: 19px;
@@ -31,6 +34,44 @@
 }
 
 #novoCidadaoButton {
+    @media (max-width: 319px){
+      margin-top: 4%;
+      margin-right: 39%;
+    }
+    @media (min-width:320px) and (max-width:359px) and (orientation: portrait){
+      margin-top: 3%;
+      margin-right: 47%;
+    }
+    @media (min-width:360px) and (max-width:410px) and (orientation: portrait){
+      margin-right: 52%;
+      margin-top: 3%;
+    }
+    @media (min-width:411px) and (max-width:413px) and (orientation: portrait){
+      margin-top: 3%;
+      margin-right: 55%;
+    }
+    @media (min-width:414px) and (max-width:539px) and (orientation: portrait){
+      margin-top: 4%;
+      margin-right: 58%;
+    }
+    @media (min-width:540px) and (max-width:767px) and (orientation: portrait){
+      margin-top: 3%;
+      margin-right: 66%;
+    }
+    @media (min-width:768px) and (max-width:768px) and (orientation: portrait){
+      margin-top: 2%;
+      margin-right: 46%;
+    }
+    @media (min-width:568px) and (max-width:568px) and (orientation: landscape){
+      margin-right: -12%;
+    }
+    @media (min-width:812px) and (max-width:822px) and (orientation: landscape){
+      margin-right: -8%;
+    }
+    @media (min-width:823px) and (max-width:1023px) and (orientation: landscape){
+      margin-right: -6%;
+    }
+
     position: absolute;
     display: flex;
     padding: 10px 16px;
@@ -73,6 +114,15 @@
     margin: 8px 0px;
 }
 
+.content{
+  @media (min-width:360px) and (max-width:360px) and (orientation: portrait){
+    margin-top: 45%;
+  }
+  @media (min-width:640px) and (orientation: landscape){
+    margin-left: -49%;
+  }
+}
+
 .content,
 .content-header {
     margin-left: 2%;
@@ -84,11 +134,44 @@
 
 //cpfrgtoggle
 #cpfrgtoggle {
+    @media (min-width:360px) and (max-width:360px) and (orientation: portrait){
+      margin-top: 25%;
+    }
     border: 1px solid #dfdfdf;
     width: 96px;
     margin-right: 16px;
     display: inline-block;
     top: 20px;
+}
+
+#search-cpf-rg{
+  @media (min-width:320px) and (max-width:359px) and (orientation: portrait){
+    margin-top: 10%;
+  }
+  @media (min-width:360px) and (max-width:410px) and (orientation: portrait){
+    margin-top: 7%;
+  }
+  @media (min-width:411px) and (max-width:413px) and (orientation: portrait){
+    margin-top: 9%;
+  }
+  @media (min-width:414px) and (max-width:414px) and (orientation: portrait){
+    margin-top: 6%;
+  }
+}
+
+#search-nome{
+  @media (min-width:320px) and (max-width:359px) and (orientation: portrait){
+    margin-top: 10%;
+  }
+  @media (min-width:360px) and (max-width:410px) and (orientation: portrait){
+    margin-top: 7%;
+  }
+  @media (min-width:411px) and (max-width:413px) and (orientation: portrait){
+    margin-top: 8%;
+  }
+  @media (min-width:414px) and (max-width:414px) and (orientation: portrait){
+    margin-top: 8%;
+  }
 }
 
 #nomenatoggle {
@@ -110,11 +193,18 @@
 }
 
 .search-bar {
+    @media (max-width:280px){
+      margin-top: 8%;
+      font-size: 80%;
+    }
     display: inline-block;
 }
 
 // search bar
 #searchBox {
+    @media (max-width:280px){
+      width: 288px;
+    }
     background: #ffffff;
     border: 1px solid #DFDFDF;
     box-sizing: border-box;
@@ -139,14 +229,86 @@
 }
 
 #searchboxtoggle {
-    @media (max-width: 1400px) {
+    @media (max-width:280px){
+      margin-top: 53%;
+      margin-left: 0%;
+    }
+    @media (min-width:320px) and (max-width:359px) and (orientation: portrait){
+      margin-top: 34%;
+      margin-left: -1%;
+    }
+    @media (min-width:360px) and (max-width:374px) and (orientation: portrait){
+      margin-left: -1%;
+    }
+    @media (min-width:375px) and (max-width:410px) and (orientation: portrait){
+      margin-top: 26%;
+      margin-left: 1%;
+    }
+    @media (min-width:411px) and (max-width:413px) and (orientation: portrait){
+      margin-top: 17%;
+      margin-left: 1%;
+    }
+    @media (min-width:414px) and (max-width:539px) and (orientation: portrait){
+      margin-top: 17%;
+      margin-left: -1%;
+    }
+    @media (min-width:540px) and (max-width:767px) and (orientation: portrait){
+      margin-top: 11%;
+      margin-left: 0%;
+    }
+    @media (min-width:768px) and (max-width:1023px) and (orientation: portrait){
+      margin-top: 20%;
+      margin-left: -1%;
+    }
+    @media (min-width:1024px) and (max-width:1024px) and (orientation: portrait){
+      margin-top: 12%;
+      margin-left: 0%;
+    }
+    @media (min-width:568px) and (orientation: landscape){
+      margin-left: 0%;
+    }
+    @media (min-width: 1400px) {
         margin-top: 5%;
     }
     margin-left: 35%;
 }
 
 #searchboxtoggleNome {
-    @media (max-width: 1400px) {
+    @media (max-width:319px){
+      margin-left: 0.5% !important;
+      margin-top: 20% !important;
+    }
+    @media (min-width:320px) and (max-width:359px) and (orientation: portrait){
+      margin-left: -1% !important;
+      margin-top: 17% !important;
+    }
+    @media (min-width:360px) and (max-width:410px) and (orientation: portrait){
+      margin-top: 15% !important;
+      margin-left: -1% !important;
+    }
+    @media (min-width:411px) and (max-width:413px) and (orientation: portrait){
+      margin-top: 17% !important;
+      margin-left: 1% !important;
+    }
+    @media (min-width:414px) and (max-width:539px) and (orientation: portrait){
+      margin-left: -1.5% !important;
+      margin-top: 16% !important;
+    }
+    @media (min-width:540px) and (max-width:767px) and (orientation: portrait){
+      margin-left: -0.5% !important;
+      margin-top: 12% !important;
+    }
+    @media (min-width:768px) and (max-width:768px) and (orientation: portrait){
+      margin-left: -0.5% !important;
+    margin-top: 11% !important;
+    }
+    @media (min-width:1024px) and (max-width:1024px) and (orientation: portrait){
+      margin-left: -1% !important;
+    }
+    @media (min-width:568px) and (orientation: landscape){
+      margin-left: 0% !important;
+    }
+    @media (min-width: 1400px) {
         margin-top: 2%;
     }
     margin-left: 35%;
@@ -217,6 +379,9 @@ table {
 }
 
 #tabela {
+  @media (min-width:568px) and (orientation: landscape){
+    margin-left: 0%;
+  }
     left: 322px;
     margin-top: 20px;
 }

@@ -1,72 +1,131 @@
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link
+    href="https://fonts.googleapis.com/css?family=Poppins|Roboto&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  />
 </head>
-<section class="content-header">
-    <div>
-        <h3 id="labelBemvindo">Olá, {{user.nome}}!</h3>
-        <label id="labelBemvindoo">Bem-vindo de volta ao sistema</label>
-    </div>
 
+<section class="content-header">
+  <div class="adjust-header">
+    <h3 id="labelBemvindo">Olá, {{ user.nome }}!</h3>
+    <label id="labelBemvindoo">Bem-vindo de volta ao sistema</label>
+  </div>
 </section>
+
 <!-- Main content -->
 <section class="content">
-    <div id="searchboxtoggle" class="row">
-        <!-- [(ngModel)]="modelName" multiple vertical="false"-->
+  <div id="searchboxtoggle" class="row">
+    <!-- [(ngModel)]="modelName" multiple vertical="false"-->
 
-        <mat-button-toggle-group id="cpfrgtoggle" class="shadow p-3 mb-5 bg-white rounded" #group="matButtonToggleGroup">
-            <mat-button-toggle value="cpf" id="togglebutton">
-                CPF
-            </mat-button-toggle>
-            <mat-button-toggle value="rg" id="togglebutton">
-                RG
-            </mat-button-toggle>
-        </mat-button-toggle-group>
-        <div class="search-bar shadow p-3 mb-5 bg-white rounded">
-            <input type="text" class="searchTerm" placeholder="Buscar cidadão por CPF ou RG(selecione)..." (keydown.enter)="goToView(group.value)" id="searchBox" [(ngModel)]="buscado" required [mask]="mask" (keyup)="checkIt(group.value)">
-            <button type="submit" class="searchButton" id="searchButton" placeholder="" (click)="goToView(group.value)">
-<i class="fa fa-search"></i> </button>
-        </div>
-        <a routerLink="/cidadaos/cadastrar">
-            <button mat-button id="novoCidadaoButton" class="pull-right">
-
-      <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
-      <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
-
-    </button>
-        </a>
-        <div>
-        <button mat-button id="novoCidadaoButton" style="margin-top:1%" class="pull-right" (click)="fileInput.click()"><mat-icon aria-hidden="false" aria-label="Example home icon" id="novoCidadaoImg" style="color:white">attachment</mat-icon>
-      <label id="novoCidadaoLabel">IMPORTAR CSV</label></button>
-        <input hidden type="file" #fileInput (change)="selectFile($event)" accept=".csv" style="display:none">
-        <div style="margin-top:8%" class="pull-right">
-        <label style="font-family:Roboto;font-size:14px;color:#000000" *ngIf="uploading">Realizando upload do arquivo...</label>
-            <label style="font-family:Roboto;font-size:14px;color:#000000" *ngIf="uploadCompleted">Upload concluído!</label>
-            <label style="font-family:Roboto;font-size:14px;color:#000000" *ngIf="uploadCompleted"> Foram alterados/adicionados cidadãos {{countOfUploaded}} vezes</label>
-            <label style="font-family:Roboto;font-size:14px;color:red" *ngIf="uploadError && errorBye">{{uploadError}}</label>
-        </div>
-            
-        </div>
+    <mat-button-toggle-group
+      id="cpfrgtoggle"
+      class="shadow p-3 mb-5 bg-white rounded"
+      #group="matButtonToggleGroup"
+    >
+      <mat-button-toggle value="cpf" id="togglebutton"> CPF </mat-button-toggle>
+      <mat-button-toggle value="rg" id="togglebutton"> RG </mat-button-toggle>
+    </mat-button-toggle-group>
+    <div class="search-bar shadow p-3 mb-5 bg-white rounded">
+      <input
+        type="text"
+        class="searchTerm"
+        placeholder="Buscar cidadão por CPF ou RG(selecione)..."
+        (keydown.enter)="goToView(group.value)"
+        id="searchBox"
+        [(ngModel)]="buscado"
+        required
+        [mask]="mask"
+        (keyup)="checkIt(group.value)"
+      />
+      <button
+        type="submit"
+        class="searchButton"
+        id="searchButton"
+        placeholder=""
+        (click)="goToView(group.value)"
+      >
+        <i class="fa fa-search"></i>
+      </button>
     </div>
-    <div id="cidadaoNaoEncontrado" *ngIf="errorBye && searchError">
-        <div>
-            <label id="naoEncontradoTitulo">
-      Cidadão não cadastrado
-    </label>
-            <label id="tenteNovamente">
-      Tente novamente ou cadastre um novo cidadão com esta identidade
-    </label>
-            <a routerLink="/cidadaos/cadastrar">
-                <button mat-button id="novoCidadaoButtonError" (click)="newCitizen(group.value)">
-
-  <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
-  <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
-
-</button>
-            </a>
-        </div>
+    <a routerLink="/cidadaos/cadastrar">
+      <button mat-button id="novoCidadaoButton" class="pull-right">
+        <img src="assets/dist/img/novocidadaologo.png" id="novoCidadaoImg" />
+        <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
+      </button>
+    </a>
+    <div>
+      <button
+        mat-button
+        id="importaCsvButton"
+        class="pull-right"
+        (click)="fileInput.click()"
+      >
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          id="novoCidadaoImg"
+          style="color: white"
+          >attachment</mat-icon
+        >
+        <label id="novoCidadaoLabel">IMPORTAR CSV</label>
+      </button>
+      <input
+        hidden
+        type="file"
+        #fileInput
+        (change)="selectFile($event)"
+        accept=".csv"
+        style="display: none"
+      />
+      <div style="margin-top: 8%" class="pull-right">
+        <label
+          style="font-family: Roboto; font-size: 14px; color: #000000"
+          *ngIf="uploading"
+          >Realizando upload do arquivo...</label
+        >
+        <label
+          style="font-family: Roboto; font-size: 14px; color: #000000"
+          *ngIf="uploadCompleted"
+          >Upload concluído!</label
+        >
+        <label
+          style="font-family: Roboto; font-size: 14px; color: #000000"
+          *ngIf="uploadCompleted"
+        >
+          Foram alterados/adicionados cidadãos
+          {{ countOfUploaded }} vezes</label
+        >
+        <label
+          style="font-family: Roboto; font-size: 14px; color: red"
+          *ngIf="uploadError && errorBye"
+          >{{ uploadError }}</label
+        >
+      </div>
     </div>
-    <!-- <div>
+  </div>
+  <div id="cidadaoNaoEncontrado" *ngIf="errorBye && searchError">
+    <div>
+      <label id="naoEncontradoTitulo"> Cidadão não cadastrado </label>
+      <label id="tenteNovamente">
+        Tente novamente ou cadastre um novo cidadão com esta identidade
+      </label>
+      <a routerLink="/cidadaos/cadastrar">
+        <button
+          mat-button
+          id="novoCidadaoButtonError"
+          (click)="newCitizen(group.value)"
+        >
+          <img src="assets/dist/img/novocidadaologo.png" id="novoCidadaoImg" />
+          <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
+        </button>
+      </a>
+    </div>
+  </div>
+  <!-- <div>
         <div id='estatisticas'>Estatísticas</div>
         <div class="row">
             <div class="col-sm-3">

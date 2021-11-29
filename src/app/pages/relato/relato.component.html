@@ -1,12 +1,500 @@
-<section class="content-header">
+<section class="content-header"  *ngIf="isMobile">
   <div id="divtitle">
-    <label id="labelNome">Registro de Relatos</label>
-    <label id="labelVisualize"
-      >Pesquise com o código do paciente para consultar registros ou cadastrar
-      um novo registro</label
+    <label id="labelNome" style="font-size: 187%;">Registro de Relatos</label>
+    <label id="labelVisualize" style="font-size: 98%;"
+      >Pesquise com o código do paciente para
+      consultar registros ou cadastrar um novo registro</label
     >
   </div>
 </section>
+
+<section class="content-header" *ngIf="!isMobile">
+  <div id="divtitle">
+    <label id="labelNome">Registro de Relatos</label>
+    <label id="labelVisualize"
+      >Pesquise com o código do paciente para consultar registros ou cadastrar um novo registro</label
+    >
+  </div>
+</section>
+
+<!-- Para quando celular estiver na vertical -->
+<!-- <section class="content-body" *ngIf="isMobile && (innerWidth < innerHeight) && 2">
+  <div id="searchboxtoggleNome" class="row " style="margin-left: -23%; margin-top: -25%;">
+      <div class="search-bar shadow p-3 mb-5 bg-white rounded">
+          <input type="text" class="searchTermNome" placeholder="Busque cidadãos por nome anônimo..." (keydown.enter)="selecionaCidadao(buscadoNome)" [class.errorInput]="(buscadoNome !== undefined && errorBye && notFound)"  id="searchBoxNome" [(ngModel)]="buscadoNome" required>
+          <label id="errorLabel" *ngIf="(buscadoNome !== undefined && errorBye && notFound)">Não foi possível encontrar cidadãos com este parâmetro.</label>
+
+          <button type="submit" class="searchButtonNome" id="searchButton" placeholder="" (click)="selecionaCidadao(buscadoNome)">
+<i class="fa fa-search"></i> </button>
+      </div>
+  </div>
+  <button mat-button id="novoCidadaoButton" style="margin-right: 52%; margin-top: 4%;" (click)="relatorioDe('')" data-toggle="modal" data-target="#exampleModal" class="pull-right">
+    <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
+    <label id="novoCidadaoLabel">NOVO REGISTRO</label>
+  </button>
+  <div class="icons" id="trashIcon" style="float: right; padding: 15px; margin-top: 2%; margin-right: 41%;">
+    <mat-icon (click)="deleteSelected()">delete</mat-icon>
+  </div>
+<div class="tableReg" style="width: 155%; margin-top: -11%;">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+    style="margin-top: 39%; margin-left: -15%;"
+  >
+
+    <ng-container matColumnDef="select" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+        >
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+        >
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+
+
+
+    <ng-container matColumnDef="tipoContato" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>Tipo de Contato</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon *ngIf="element.tipoContato == 1"> chat_bubble_outline</mat-icon>
+        <mat-icon *ngIf="element.tipoContato == 2"> phone</mat-icon>
+        <mat-icon *ngIf="element.tipoContato == 3"> message</mat-icon>
+        <mat-icon *ngIf="element.tipoContato == 4"> place</mat-icon>
+        <mat-icon *ngIf="element.tipoContato == 5"> email</mat-icon>
+        <mat-icon *ngIf="element.tipoContato == 6 || element.tipoContato == 0"> record_voice_over</mat-icon>
+      </td>
+    </ng-container>
+
+
+     <ng-container matColumnDef="relator" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>Relator</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.relatorNome.slice(0,1)}}
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="anomizado" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>Anomizado</th>
+      <td mat-cell *matCellDef="let element">
+        <p>
+          {{ element.nomeAnonimizado }}
+        </p>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="time" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>Data</th>
+      <td mat-cell *matCellDef="let element">
+        <p>
+          {{ element.dataRelatorio }}
+        </p>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="relato" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>Relato</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          data-toggle="modal"
+          data-target="#exampleModal"
+          (click)="relatorioDe(element.id)"
+        >
+          <mat-icon aria-hidden="false">expand_more</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="selection.toggle(row)"
+    ></tr>
+  </table>
+</div>
+
+
+
+<div class="modal fade" id="okcidadao" *ngIf="valid && !errorBye">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="titleModal">Sucesso!</h4>
+      </div>
+
+
+      <div class="modal-body">
+        <label id="modalText" *ngIf="editing"
+          >Cidadão {{relatoAtual.nomeAnonimizado}} teve um relato
+          atualizado!</label
+        >
+        <label id="modalText" *ngIf="!editing"
+          >Cidadão teve um relato
+          adicionado!</label
+        >
+        <button
+          mat-button
+          id="okbutton"
+          data-dismiss="modal"
+        >
+          <label id="oklabel">OK</label>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+       <h4 class="modal-title" id="titleModal">Informações do Relato<button type="button" #closeModalBtn class="close pull-right" (click)="closedModal()" data-dismiss="modal" style="top: 15px; right: 5px">&times;</button></h4>
+  <label id="labelVisualize" style="margin-left:0.5%">* Campos obrigatórios</label>
+
+      </div>
+      <div class="modal-body" style="margin-top: -1.5%" *ngIf="relatoAtual || !editing">
+
+     <div class="row" style="margin-left: 0.5%; border-radius: 4px;" >
+                                  <div class="col-md-6" style="width: 49%;">
+                                      <input type="text" class="input-control" placeholder="Relator" id="result" [(ngModel)]="relator"> [(ngModel)]
+                                   </div>
+                                  <div class="col-md-6" style="width: 49%; margin-left: 0.5%;">
+                                      <input type="text" class="input-control" placeholder="CPF*" id="result" *ngIf="!editing" [class.errorInput]="(cpf === undefined && !editing && checked)
+                                      ||  (cpf !== undefined && cpf.length < 11  && !editing && checked)
+                                      || (cpf !== undefined && cpf.length === 11 && !valid  && !editing && checked)" [(ngModel)]="cpf" mask="000.000.000-00" required> [(ngModel)]
+                                      <label id="errorLabel" *ngIf="(cpf === undefined && !editing && checked)  || (cpf !== undefined && cpf.length < 11 && !editing && checked)">O campo CPF deve ser composto por 11 números e é obrigatório.</label>
+                                      <label id="errorLabel" *ngIf="(cpf !== undefined && cpf.length === 11 && !valid  && !editing && checked)">Por favor verifique se este CPF está correto.</label>
+                                  </div>
+                                   <div class="col-md-6" style="width: 49%; margin-left: 0.5%;">
+                                      <input type="text" class="input-control" placeholder="Nome anônimo" id="result" *ngIf="editing" [(ngModel)]="anonimoNome" disabled> [(ngModel)]
+                                  </div>
+                              </div>
+                              <div class="row" style="margin-left: 0.5%;">
+                                  <div class="col-md-6" style="width: 49%;">
+                                      <input type="text" class="input-control" placeholder="Data do relato*" id="inputNascimento" [class.errorInput]="(dataRelatorio === undefined && checked)
+                                      ||  (dataRelatorio !== undefined && dataRelatorio.length < 8  && checked)
+                                      || (dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid   && checked)" [(ngModel)]="dataRelatorio" mask="00/00/0000" required>
+                                  <label id="errorLabel" *ngIf="(dataRelatorio === undefined && checked)  || (dataRelatorio !== undefined && dataRelatorio.length < 8 && checked)">Verifique que a data está no formato DD/MM/AAAA.</label>
+                                      <label id="errorLabel" *ngIf="(dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid  && checked)">Verifique que a data está no formato DD/MM/AAAA e é válida.</label>
+                                  </div>
+                                  <div class="col-md-6" style="width: 49%;margin-left: 0.5%;margin-top:3%;box-sizing: border-box;">
+                                      <div style="width:100%;display:inline-block;background-color:white; heigth:56px;"><label id="result">O contato foi um sucesso</label><mat-slide-toggle style="margin-left:0.5%" [(ngModel)]="success"></mat-slide-toggle></div>
+                                  </div>
+      </div>
+
+    <div class="tipoRelato" style="margin-top: 1%; width: 97%; margin-left:1.5%">
+      <label id="informacoesPessoais" style="font-size: 16px;">Tipo de Relato</label>
+     <mat-radio-group id="contatoRadio" [(ngModel)]="tipoContato" name="tipoContatoRadio" required>
+      <mat-radio-button class="example-radio-button" *ngFor="let cont of contatos"  name="tipoContatoRadio"[value]="cont" style="margin-left:5%">{{cont}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div style="width: 97%; margin-left:1.5%">
+      <label id="informacoesPessoais" style="font-size: 16px;">Relato</label>
+    </div>
+    <div id="tabela">
+      <p>
+        <mat-form-field
+          mat-form-field
+          style="margin-left: 3%; width: 94%"
+          class="example-full-width"
+        >
+          <textarea
+            matInput
+            style="width: 100%"
+            rows="8"
+            [(ngModel)]="relatorio"
+            placeholder="Relato"
+          ></textarea>
+        </mat-form-field>
+      </p>
+    </div>
+
+  </div>
+      </div>
+      <div id="buttons-modal">
+       <button
+      mat-button
+      id="finalizarButton"
+      (click)="cadastraOuAtualizaRelato()"
+      *ngIf="relatorio"
+    >
+      <label id="retornoCidadaoButtonLabel">SALVAR REGISTRO</label>
+    </button>
+    <button
+      mat-button
+      id="finalizarButtonBlocked"
+      *ngIf="!relatorio"
+    >
+      <label id="retornoCidadaoButtonLabel">SALVAR REGISTRO</label>
+    </button>
+      </div>
+  </div>
+</div>
+</section> -->
+
+<!-- Para quando celular estiver na horizontal -->
+<!-- <section class="content-body" *ngIf="isMobile && (innerWidth > innerHeight)">
+  <div id="searchboxtoggleNome" class="row " style="margin-left: -10.5%; margin-top: -15%;">
+      <div class="search-bar shadow p-3 mb-5 bg-white rounded">
+          <input type="text" class="searchTermNome" placeholder="Busque cidadãos por nome anônimo..." (keydown.enter)="selecionaCidadao(buscadoNome)" [class.errorInput]="(buscadoNome !== undefined && errorBye && notFound)"  id="searchBoxNome" [(ngModel)]="buscadoNome" required>
+          <label id="errorLabel" *ngIf="(buscadoNome !== undefined && errorBye && notFound)">Não foi possível encontrar cidadãos com este parâmetro.</label>
+
+          <button type="submit" class="searchButtonNome" id="searchButton" placeholder="" (click)="selecionaCidadao(buscadoNome)">
+<i class="fa fa-search"></i> </button>
+      </div>
+  </div>
+  <button mat-button id="novoCidadaoButton" style="margin-right: 71%; margin-top: 4%;" (click)="relatorioDe('')" data-toggle="modal" data-target="#exampleModal" class="pull-right">
+    <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
+    <label id="novoCidadaoLabel">NOVO REGISTRO</label>
+  </button>
+  <div class="icons" style="float: right; padding: 15px; margin-top: 2.5%; margin-right: 71%;">
+    <mat-icon (click)="deleteSelected()">delete</mat-icon>
+  </div>
+<div class="tableReg">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+    style="width: 156%; margin-top: 39%; margin-left: -30%;"
+  >
+    <!-- Checkbox Column
+    <ng-container matColumnDef="select" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+        >
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+        >
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+
+
+     Tipo Relato Column
+    <ng-container matColumnDef="tipoContato" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>Tipo de Contato</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon *ngIf="element.tipoContato == 1"> chat_bubble_outline</mat-icon>
+        <mat-icon *ngIf="element.tipoContato == 2"> phone</mat-icon>
+        <mat-icon *ngIf="element.tipoContato == 3"> message</mat-icon>
+        <mat-icon *ngIf="element.tipoContato == 4"> place</mat-icon>
+        <mat-icon *ngIf="element.tipoContato == 5"> email</mat-icon>
+        <mat-icon *ngIf="element.tipoContato == 6 || element.tipoContato == 0"> record_voice_over</mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- Relator Column
+    <ng-container matColumnDef="relator" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>Relator</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.relatorNome.slice(0,1)}}
+      </td>
+    </ng-container>
+
+    <!-- Anomizado Column
+    <ng-container matColumnDef="anomizado" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>Anomizado</th>
+      <td mat-cell *matCellDef="let element">
+        <p>
+          {{ element.nomeAnonimizado }}
+        </p>
+      </td>
+    </ng-container>
+
+    <!-- Data Column
+     <ng-container matColumnDef="time" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>Data</th>
+      <td mat-cell *matCellDef="let element">
+        <p>
+          {{ element.dataRelatorio }}
+        </p>
+      </td>
+    </ng-container>
+
+    <!-- Relato Column
+     <ng-container matColumnDef="relato" style="width: 16.667%">
+      <th mat-header-cell *matHeaderCellDef>Relato</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          data-toggle="modal"
+          data-target="#exampleModal"
+          (click)="relatorioDe(element.id)"
+        >
+          <mat-icon aria-hidden="false">expand_more</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="selection.toggle(row)"
+    ></tr>
+  </table>
+</div>
+
+
+
+<div class="modal fade" id="okcidadao" *ngIf="valid && !errorBye">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <!-- Modal Header
+      <div class="modal-header">
+        <h4 class="modal-title" id="titleModal">Sucesso!</h4>
+      </div>
+
+      <!-- Modal body
+      <div class="modal-body">
+        <label id="modalText" *ngIf="editing"
+          >Cidadão {{relatoAtual.nomeAnonimizado}} teve um relato
+          atualizado!</label
+        >
+        <label id="modalText" *ngIf="!editing"
+          >Cidadão teve um relato
+          adicionado!</label
+        >
+        <button
+          mat-button
+          id="okbutton"
+          data-dismiss="modal"
+        >
+          <label id="oklabel">OK</label>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+       <h4 class="modal-title" id="titleModal">Informações do Relato<button type="button" #closeModalBtn class="close pull-right" (click)="closedModal()" data-dismiss="modal" style="top: 15px; right: 5px">&times;</button></h4>
+  <label id="labelVisualize" style="margin-left:0.5%">* Campos obrigatórios</label>
+
+      </div>
+      <div class="modal-body" style="margin-top: -1.5%" *ngIf="relatoAtual || !editing">
+
+     <div class="row" style="margin-left: 0.5%; border-radius: 4px;" >
+                                  <div class="col-md-6" style="width: 49%;">
+                                      <input type="text" class="input-control" placeholder="Relator" id="result" [(ngModel)]="relator"> <!--[(ngModel)]
+                                  </div>
+                                  <div class="col-md-6" style="width: 49%; margin-left: 0.5%;">
+                                      <input type="text" class="input-control" placeholder="CPF*" id="result" *ngIf="!editing" [class.errorInput]="(cpf === undefined && !editing && checked)
+                                      ||  (cpf !== undefined && cpf.length < 11  && !editing && checked)
+                                      || (cpf !== undefined && cpf.length === 11 && !valid  && !editing && checked)" [(ngModel)]="cpf" mask="000.000.000-00" required> <!--[(ngModel)]
+                                      <label id="errorLabel" *ngIf="(cpf === undefined && !editing && checked)  || (cpf !== undefined && cpf.length < 11 && !editing && checked)">O campo CPF deve ser composto por 11 números e é obrigatório.</label>
+                                      <label id="errorLabel" *ngIf="(cpf !== undefined && cpf.length === 11 && !valid  && !editing && checked)">Por favor verifique se este CPF está correto.</label>
+                                  </div>
+                                   <div class="col-md-6" style="width: 49%; margin-left: 0.5%;">
+                                      <input type="text" class="input-control" placeholder="Nome anônimo" id="result" *ngIf="editing" [(ngModel)]="anonimoNome" disabled> <!--[(ngModel)]
+                                  </div>
+                              </div>
+                              <div class="row" style="margin-left: 0.5%;">
+                                  <div class="col-md-6" style="width: 49%;">
+                                      <input type="text" class="input-control" placeholder="Data do relato*" id="inputNascimento" [class.errorInput]="(dataRelatorio === undefined && checked)
+                                      ||  (dataRelatorio !== undefined && dataRelatorio.length < 8  && checked)
+                                      || (dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid   && checked)" [(ngModel)]="dataRelatorio" mask="00/00/0000" required>
+                                  <label id="errorLabel" *ngIf="(dataRelatorio === undefined && checked)  || (dataRelatorio !== undefined && dataRelatorio.length < 8 && checked)">Verifique que a data está no formato DD/MM/AAAA.</label>
+                                      <label id="errorLabel" *ngIf="(dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid  && checked)">Verifique que a data está no formato DD/MM/AAAA e é válida.</label>
+                                  </div>
+                                  <div class="col-md-6" style="width: 49%;margin-left: 0.5%;margin-top:3%;box-sizing: border-box;">
+                                      <div style="width:100%;display:inline-block;background-color:white; heigth:56px;"><label id="result">O contato foi um sucesso</label><mat-slide-toggle style="margin-left:0.5%" [(ngModel)]="success"></mat-slide-toggle></div>
+                                  </div>
+      </div>
+
+    <div class="tipoRelato" style="margin-top: 1%; width: 97%; margin-left:1.5%">
+      <label id="informacoesPessoais" style="font-size: 16px;">Tipo de Relato</label>
+     <mat-radio-group id="contatoRadio" [(ngModel)]="tipoContato" name="tipoContatoRadio" required>
+      <mat-radio-button class="example-radio-button" *ngFor="let cont of contatos"  name="tipoContatoRadio"[value]="cont" style="margin-left:5%">{{cont}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div style="width: 97%; margin-left:1.5%">
+      <label id="informacoesPessoais" style="font-size: 16px;">Relato</label>
+    </div>
+    <div id="tabela">
+      <p>
+        <mat-form-field
+          mat-form-field
+          style="margin-left: 3%; width: 94%"
+          class="example-full-width"
+        >
+          <textarea
+            matInput
+            style="width: 100%"
+            rows="8"
+            [(ngModel)]="relatorio"
+            placeholder="Relato"
+          ></textarea>
+        </mat-form-field>
+      </p>
+    </div>
+
+  </div>
+      </div>
+      <div id="buttons-modal">
+       <button
+      mat-button
+      id="finalizarButton"
+      (click)="cadastraOuAtualizaRelato()"
+      *ngIf="relatorio"
+    >
+      <label id="retornoCidadaoButtonLabel">SALVAR REGISTRO</label>
+    </button>
+    <button
+      mat-button
+      id="finalizarButtonBlocked"
+      *ngIf="!relatorio"
+    >
+      <label id="retornoCidadaoButtonLabel">SALVAR REGISTRO</label>
+    </button>
+      </div>
+  </div>
+</div>
+</section> -->
 
 <section class="content-body">
     <div id="searchboxtoggleNome" style="margin-left:30.5%" class="row ">
@@ -22,7 +510,7 @@
       <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
       <label id="novoCidadaoLabel">NOVO REGISTRO</label>
     </button>
-    <div class="icons" style="float: right; padding: 15px">
+    <div class="icons" id="trashIcon" style="float: right; padding: 15px">
       <mat-icon (click)="deleteSelected()">delete</mat-icon>
     </div>
   <div class="tableReg">
@@ -118,8 +606,8 @@
     </table>
   </div>
 
- 
-  
+
+
   <div class="modal fade" id="okcidadao" *ngIf="valid && !errorBye">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
@@ -173,8 +661,8 @@
                                         <input type="text" class="input-control" placeholder="Relator" id="result" [(ngModel)]="relator"> <!--[(ngModel)]-->
                                     </div>
                                     <div class="col-md-6" style="width: 49%; margin-left: 0.5%;">
-                                        <input type="text" class="input-control" placeholder="CPF*" id="result" *ngIf="!editing" [class.errorInput]="(cpf === undefined && !editing && checked) 
-                                        ||  (cpf !== undefined && cpf.length < 11  && !editing && checked) 
+                                        <input type="text" class="input-control" placeholder="CPF*" id="result" *ngIf="!editing" [class.errorInput]="(cpf === undefined && !editing && checked)
+                                        ||  (cpf !== undefined && cpf.length < 11  && !editing && checked)
                                         || (cpf !== undefined && cpf.length === 11 && !valid  && !editing && checked)" [(ngModel)]="cpf" mask="000.000.000-00" required> <!--[(ngModel)]-->
                                         <label id="errorLabel" *ngIf="(cpf === undefined && !editing && checked)  || (cpf !== undefined && cpf.length < 11 && !editing && checked)">O campo CPF deve ser composto por 11 números e é obrigatório.</label>
                                         <label id="errorLabel" *ngIf="(cpf !== undefined && cpf.length === 11 && !valid  && !editing && checked)">Por favor verifique se este CPF está correto.</label>
@@ -185,8 +673,8 @@
                                 </div>
                                 <div class="row" style="margin-left: 0.5%;">
                                     <div class="col-md-6" style="width: 49%;">
-                                        <input type="text" class="input-control" placeholder="Data do relato*" id="inputNascimento" [class.errorInput]="(dataRelatorio === undefined && checked) 
-                                        ||  (dataRelatorio !== undefined && dataRelatorio.length < 8  && checked) 
+                                        <input type="text" class="input-control" placeholder="Data do relato*" id="inputNascimento" [class.errorInput]="(dataRelatorio === undefined && checked)
+                                        ||  (dataRelatorio !== undefined && dataRelatorio.length < 8  && checked)
                                         || (dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid   && checked)" [(ngModel)]="dataRelatorio" mask="00/00/0000" required>
                                     <label id="errorLabel" *ngIf="(dataRelatorio === undefined && checked)  || (dataRelatorio !== undefined && dataRelatorio.length < 8 && checked)">Verifique que a data está no formato DD/MM/AAAA.</label>
                                         <label id="errorLabel" *ngIf="(dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid  && checked)">Verifique que a data está no formato DD/MM/AAAA e é válida.</label>
@@ -195,7 +683,7 @@
                                         <div style="width:100%;display:inline-block;background-color:white;heigth:56px"><label id="result">O contato foi um sucesso</label><mat-slide-toggle style="margin-left:0.5%" [(ngModel)]="success"></mat-slide-toggle></div>
                                     </div>
         </div>
-      
+
       <div class="tipoRelato" style="margin-top: 1%; width: 97%; margin-left:1.5%">
         <label id="informacoesPessoais" style="font-size: 16px;">Tipo de Relato</label>
        <mat-radio-group id="contatoRadio" [(ngModel)]="tipoContato" name="tipoContatoRadio" required>
@@ -222,7 +710,7 @@
           </mat-form-field>
         </p>
       </div>
-     
+
     </div>
         </div>
         <div id="buttons-modal">
@@ -245,3 +733,5 @@
     </div>
   </div>
 </section>
+
+
