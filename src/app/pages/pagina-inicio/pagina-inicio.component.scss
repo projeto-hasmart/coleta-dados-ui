@@ -12,6 +12,9 @@ body {
   @media (max-width: 450px) and (orientation: portrait) {
     margin-top: 35%;
   }
+  @media (max-height: 400px){
+    margin-top: 31%;
+  }
 }
 
 .adjust-header h3 {
