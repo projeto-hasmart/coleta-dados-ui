@@ -57,6 +57,10 @@
       margin-right: 58% !important;
       margin-top: 4% !important;
     }
+    @media (min-width:360px) and (max-width:600px) and (orientation:landscape){
+      margin-top: 2%;
+      margin-right: 47%;
+    }
     @media (min-width:1024px) and (max-width:1024px) and (orientation:landscape){
       margin-right: 58%;
       margin-top: 2%;
@@ -1900,6 +1904,9 @@ input {
     @media (min-width:1024px) and (max-width:1024px) and (orientation:landscape){
       margin-left: -7.5% !important;
       margin-top: -10% !important;
+    }
+    @media (min-width:360px)  and (max-width:600px) and (orientation:landscape){
+      margin-left: -16.5% !important;
     }
     @media (min-width:568px) and (max-width:1023px) and (orientation:landscape){
       margin-left: 2.5% !important;

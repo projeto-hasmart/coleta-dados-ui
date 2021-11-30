@@ -62,6 +62,10 @@
       margin-top: 2%;
       margin-right: 46%;
     }
+    @media (min-width:360px) and (max-width:600px) and (orientation:landscape){
+      margin-top: 3%;
+      margin-right: 51%;
+    }
     @media (min-width:568px) and (max-width:568px) and (orientation: landscape){
       margin-right: -12%;
     }
@@ -121,6 +125,9 @@
   @media (min-width:640px) and (orientation: landscape){
     margin-left: -49%;
   }
+  @media (min-width:360px) and (max-width:600px) and (orientation:landscape){
+    margin-top: 29% !important;
+  }
 }
 
 .content,
@@ -128,8 +135,8 @@
     margin-left: 2%;
 }
 
-.content {
-    margin-top: 8%;
+.content{
+  margin-top: 8%;
 }
 
 //cpfrgtoggle
@@ -157,6 +164,9 @@
   @media (min-width:414px) and (max-width:414px) and (orientation: portrait){
     margin-top: 6%;
   }
+  @media (min-width:360px) and (max-width:600px) and (orientation:landscape){
+    margin-top: 7%;
+  }
 }
 
 #search-nome{
@@ -170,6 +180,9 @@
     margin-top: 8%;
   }
   @media (min-width:414px) and (max-width:414px) and (orientation: portrait){
+    margin-top: 8%;
+  }
+  @media (min-width:360px) and (max-width:600px) and (orientation:landscape){
     margin-top: 8%;
   }
 }
@@ -264,7 +277,7 @@
       margin-top: 12%;
       margin-left: 0%;
     }
-    @media (min-width:568px) and (orientation: landscape){
+    @media (min-width:360px) and (max-width:600px) and (orientation:landscape){
       margin-left: 0%;
     }
     @media (min-width: 1400px) {
@@ -305,8 +318,9 @@
     @media (min-width:1024px) and (max-width:1024px) and (orientation: portrait){
       margin-left: -1% !important;
     }
-    @media (min-width:568px) and (orientation: landscape){
+    @media (min-width:360px) and (max-width:600px) and (orientation:landscape){
       margin-left: 0% !important;
+      margin-top: 14%;
     }
     @media (min-width: 1400px) {
         margin-top: 2%;
