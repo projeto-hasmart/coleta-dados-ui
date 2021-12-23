@@ -1,3 +1,4 @@
+import { AuthGuard } from './../guard/auth.guard';
 import {NgModule, Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
@@ -41,7 +42,7 @@ import { RelatoComponent } from './relato/relato.component';
 import { InfoRelatoComponent } from './relato/info-relato/info-relato.component';
 import { DatePipe } from '@angular/common';
 import { MenuMobileComponent } from './menu-mobile/menu-mobile.component';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 // npm install mdbootstrap
 @NgModule({
@@ -51,7 +52,7 @@ import { MenuMobileComponent } from './menu-mobile/menu-mobile.component';
     PaginaCidadaosComponent,
     PaginaMedicaoComponent,
     PaginaDispensacaoComponent,
-    PaginaCidadaosCadastrarComponent,
+      ,
     PaginaCidadaosVisualizarComponent,
     PaginaMedicaoSucessoComponent,
     PaginaMedicamentosComponent,
@@ -87,11 +88,13 @@ import { MenuMobileComponent } from './menu-mobile/menu-mobile.component';
     DeviceDetectorModule.forRoot(),
     MatTabsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSidenavModule,
   ],
   providers: [
     Global,
-    DatePipe
+    DatePipe,
+    AuthGuard
   ]
 })
 export class PagesModule {
