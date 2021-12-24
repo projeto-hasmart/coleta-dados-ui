@@ -1,7 +1,6 @@
-import { AuthGuard } from './../guard/auth.guard';
+//import { AuthGuard } from './../guard/auth.guard';
 import {NgModule, Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
 import {PagesRoutingModule} from './pages-routing.module';
 import {PagesComponent} from './pages/pages.component';
 import {PaginaInicio} from './pagina-inicio/pagina-inicio.component';
