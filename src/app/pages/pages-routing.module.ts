@@ -14,25 +14,24 @@ import { PaginaCidadaosCadastrarComponent } from './pagina-cidadaos/pagina-cidad
 import { PaginaCidadaosVisualizarComponent } from './pagina-cidadaos/pagina-cidadaos-visualizar/pagina-cidadaos-visualizar.component';
 import { PaginaMedicaoSucessoComponent } from './pagina-medicao/pagina-medicao-sucesso/pagina-medicao-sucesso.component';
 import { PaginaMedicamentosComponent } from './pagina-medicamentos/pagina-medicamentos.component';
-import { AuthGuard } from '../auth/auth.guard';
 import { PaginaCidadaoRelatorioComponent } from './pagina-cidadaos/pagina-cidadao-relatorio/pagina-cidadao-relatorio.component';
 
 
 const routes: Routes = [
   {
     path: '', component: PagesComponent,  children: [
-      { path: 'inicio', component:  PaginaInicio },
+      { path: 'inicio', component:  PaginaInicio},
       { path: 'cidadaos', component: PaginaCidadaosComponent},
         {path: 'cidadaos/cadastrar', component: PaginaCidadaosCadastrarComponent},
         {path: 'cidadaos/visualizar/:id', component: PaginaCidadaosVisualizarComponent},
       {path: 'relato', component: RelatoComponent},
       { path: 'medicao/:id', component: PaginaMedicaoComponent},
       {path: 'medicao/:id/sucesso', component: PaginaMedicaoSucessoComponent},
-      {path: 'admin/farmacia', component: PaginaFarmaciaComponent},
+      {path: 'admin/farmacia', component: PaginaFarmaciaComponent}
     ]
   },
   {
-    path: 'medico', component: PaginaMedicComponent, canActivate: [AuthGuard], children: [
+    path: 'medico', component: PaginaMedicComponent, children: [
       {path: 'visualizar', component: PaginaMedicMainComponent},
       {path: 'visualizar/cidadao', component: PaginaMedicVisualizacaoComponent}
     ]

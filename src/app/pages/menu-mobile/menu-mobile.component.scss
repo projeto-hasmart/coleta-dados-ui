@@ -1,0 +1,17 @@
+#menuMobile{
+  margin-left: -406%;
+  @media (min-width:768px) {
+    display: none;
+  }
+}
+
+#userName:after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 154%;
+  height: 5px;
+  background: #37804B;
+  margin-left: -60%;
+  margin-top: 8%;
+}

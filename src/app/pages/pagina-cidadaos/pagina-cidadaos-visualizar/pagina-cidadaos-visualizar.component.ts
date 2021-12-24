@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from './../../../services/api.service';
 import { Cidadao } from './../../../models/cidadao';
 import { CidadaoServiceService } from './../../../services/cidadao/cidadao-service.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -184,6 +184,7 @@ export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit 
   }
 
   ngOnInit() {
+    localStorage.removeItem('changePag');
     if (this.cz.selecionadoId === undefined) {
       this.router.navigate(['/cidadaos']);
     } else {

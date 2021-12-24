@@ -3,6 +3,57 @@ body {
   color: white;
 }
 
+.modalOptin {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #333;
+  min-width: 320px;
+  position: fixed;
+  left: 50%;
+  padding: 24px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 811;
+}
+
+.overlay {
+  background: #000;
+  height: 100vh;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 810;
+}
+
+#optinButton{
+  padding: 0px 17px;
+  position: relative;
+  width: 21%;
+  height: 34px;
+  right: 5px;
+  top: 20px;
+  background: #245E33;
+  /* Button Shadow */
+  border-radius: 4px;
+  /* Inside Auto Layout */
+  outline: none;
+  border: none;
+  flex: none;
+  order: 0;
+  align-self: center;
+  margin: 0px 10px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
 .content,
 .content-header {
   margin-left: 2%;
@@ -14,6 +65,9 @@ body {
   }
   @media (max-height: 400px){
     margin-top: 31%;
+  }
+  @media (min-width:640px) and (max-width:1024px) and (orientation: landscape){
+    margin-top: -4%;
   }
 }
 
@@ -44,17 +98,17 @@ body {
 #novoCidadaoButton {
   @media (min-width: 100px) and (max-width: 319px) {
     margin-top: 5%;
-    margin-right: 40%;
+    margin-right: 68%;
     margin-left: 0%;
   }
   @media (min-width: 320px) and (max-width: 359px) and (orientation: portrait) {
     margin-top: 5%;
-    margin-right: 47%;
+    margin-right: 72%;
     margin-left: 0%;
   }
   @media (min-width: 360px) and (max-width: 360px) {
     margin-top: 5%;
-    margin-right: 52%;
+    margin-right: 75%;
     margin-left: 0%;
   }
   @media (min-width: 361px) and (max-width: 374px) {
@@ -64,12 +118,12 @@ body {
   }
   @media (min-width: 375px) and (max-width: 400px) and (orientation: portrait) {
     margin-top: 5%;
-    margin-right: 54%;
+    margin-right: 75%;
     margin-left: 0%;
   }
   @media (min-width: 400px) and (max-width: 450px) {
     margin-top: 5%;
-    margin-right: 58%;
+    margin-right: 77%;
     margin-left: 0%;
   }
   @media (min-width: 451px) and (orientation: portrait) {
@@ -84,12 +138,17 @@ body {
   }
   @media (min-width: 540px) and (max-width: 559px) {
     margin-top: 5%;
-    margin-right: 65%;
+    margin-right: 82%;
     margin-left: 0%;
   }
   @media (min-width: 560px) and (max-width: 666px) and (orientation: landscape) {
     margin-top: 5%;
     margin-right: 68%;
+    margin-left: 0%;
+  }
+  @media (min-width:640px) and (max-width:666px) and (orientation: landscape){
+    margin-top: 5%;
+    margin-right: 84%;
     margin-left: 0%;
   }
   @media (min-width: 667px) and (max-width: 822px) and (orientation: landscape) {
@@ -99,7 +158,7 @@ body {
   }
   @media (min-width: 768px) and (max-width: 811px) {
     margin-top: 5%;
-    margin-right: 47%;
+    margin-right: 56%;
     margin-left: 0%;
   }
   @media (min-width: 812px) and (max-width: 822px) and (orientation: landscape) {
@@ -113,19 +172,19 @@ body {
     margin-left: 0%;
   }
   @media (min-width: 1024px) and (max-width: 1279px) {
-    margin-top: 5%;
-    margin-right: 59%;
+    margin-top: -4%;
+    margin-right: 20%;
     margin-left: 0%;
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1280px) and (max-width:1280px) {
     margin-top: -3%;
-    margin-right: 10%;
+    margin-right: 22%;
     margin-left: 0%;
   }
   position: absolute;
   display: flex;
-  padding: 10px 16px;
-  width: 143px;
+  padding: 10px 22px;
+  width: 62px;
   height: 34px;
   right: 2.5%;
   margin-top: -45px;
@@ -263,6 +322,9 @@ body {
     width: 270px;
     font-size: 85%;
   }
+  @media (min-width:640px) and (orientation: landscape){
+    margin-top: 11%;
+  }
   background: #ffffff;
   border: 1px solid #dfdfdf;
   box-sizing: border-box;
@@ -376,6 +438,12 @@ body {
   display: flex;
   align-items: center;
   color: #000000;
+  @media (min-width:640px) and (max-width:1024px) and (orientation: landscape){
+    top: 116px;
+  }
+  @media (min-width:1280px) {
+    top: 146px;
+  }
 }
 
 #labelBemvindoo {
@@ -392,6 +460,54 @@ body {
   display: flex;
   align-items: center;
   color: rgba(0, 0, 0, 0.6);
+  @media (min-width:640px) and (max-width:1024px) and (orientation: landscape){
+    top: 179px;
+  }
+  @media (min-width:1280px) {
+    top: 210px;
+  }
+}
+
+#labeCidadaoCadastrados{
+  @media (min-width:280px) and  (max-width:280px) and (orientation: portrait) {
+    position: absolute;
+    margin-top: -14% !important;
+  }
+  @media (max-width:410px) and (orientation: portrait) {
+    position: absolute;
+    margin-top: -16%;
+  }
+  @media (min-width:410px) and (max-width:539px) and (orientation: portrait) {
+    position: absolute;
+    margin-top: -18%;
+  }
+  @media (min-width:540px) and (orientation: portrait) {
+    position: absolute;
+    margin-top: 11%;
+  }
+  @media (min-width:640px) and (max-width:1024px) and  (orientation: landscape){
+    position: absolute;
+    margin-top: 7%;
+  }
+}
+
+#labelBuscaCidadao{
+  position: absolute;
+  width: 576px;
+  height: 60px;
+  top: -4%;
+  font-style: normal;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  @media (min-width:640px) and (max-width:1024px) and (orientation: landscape){
+    margin-top: -6%;
+    top: 173%;
+  }
 }
 
 /*estatisticas e cards dos menus*/
@@ -666,12 +782,19 @@ table {
 }
 
 #cidadaoNaoEncontrado {
+  @media (max-width:767px) and (orientation:portrait){
+    margin-top: 35%;
+  }
   background-color: #f5f5f5;
   width: 98%;
   margin-top: 2%;
 }
 
 #naoEncontradoTitulo {
+  @media (max-width:767px) and (orientation:portrait){
+    width: 80%;
+    margin-left: 10%;
+  }
   width: 50%;
   height: 72px;
   margin-left: 25%;
@@ -693,6 +816,9 @@ table {
 }
 
 #tenteNovamente {
+  @media (max-width:767px) and (orientation:portrait){
+    margin-top: 5%;
+  }
   width: 50%;
   height: 23px;
   margin-left: 25%;
@@ -716,6 +842,10 @@ table {
 }
 
 #novoCidadaoButtonError {
+  @media (max-width:767px) and (orientation:portrait){
+    margin-left: 30%;
+    margin-top: 7%;
+  }
   align-self: center;
   margin-left: 47%;
   padding: 10px 16px;

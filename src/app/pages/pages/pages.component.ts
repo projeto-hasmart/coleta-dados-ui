@@ -1,3 +1,5 @@
+import { PaginaCidadaosCadastrarComponent } from './../pagina-cidadaos/pagina-cidadaos-cadastrar/pagina-cidadaos-cadastrar.component';
+import { NavigationStart, Router } from '@angular/router';
 import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
@@ -10,7 +12,7 @@ declare var $;
 })
 export class PagesComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef, @Inject(DOCUMENT) private doc) {
+  constructor(private elementRef: ElementRef, @Inject(DOCUMENT) private doc, private router: Router) {
   }
 
   ngOnInit() {
@@ -38,5 +40,16 @@ export class PagesComponent implements OnInit {
     window.dispatchEvent(new Event('resize'));
     $('body').addClass('hold-transition skin-blue sidebar-mini');
   }
-
+  // changePag(){
+  //   if( localStorage.getItem('changePag') == 'yes'){
+  //     this.router.events.subscribe(event => {
+  //       if(event instanceof NavigationStart){
+  //         confirm('Deseja realmente trocar de página?');
+  //       }
+  //     });
+  //     }
+  // }
+  ngOnDestroy(){
+    // this.changePag();
+  }
 }

@@ -43,6 +43,7 @@ import { InfoRelatoComponent } from './relato/info-relato/info-relato.component'
 import { DatePipe } from '@angular/common';
 import { MenuMobileComponent } from './menu-mobile/menu-mobile.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { AuthGuard } from '../auth/auth.guard';
 
 // npm install mdbootstrap
 @NgModule({

@@ -1,45 +1,148 @@
 <button mat-button [matMenuTriggerFor]="menu" style="margin-top: 2%;" >
-  <img src="assets/dist/img/logo.png" *ngIf="isMobile"/>
+  <mat-icon style="color: #245e33;" *ngIf="isMobile">menu</mat-icon>
+</button>
+<button mat-button [matMenuTriggerFor]="menu" style="margin-top: 2%;" >
+  <mat-icon style="color: #245e33;" id="menuMobile" *ngIf="!isMobile">menu</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
   <button mat-menu-item>
+  <img src="assets/dist/img/user.png">
+  <span id="userName" style="margin-left: 5%;">{{User.nome}}</span>
+  </button>
+
+  <button mat-menu-item *ngIf="button_color!='inicio'">
     <a
       routerLink="/inicio"
       routerLinkActive="active-list-item"
       style="width: 230px"
-      *ngIf="ativo"
+      (click) = "buttonInicioColor()"
     >
       <img src="assets/dist/img/home.svg" />
-      <span>Início</span>
+      <span style="margin-left: 5%; color: gray;">Início</span>
+    </a>
+
+  </button>
+  <button mat-menu-item *ngIf="button_color=='inicio'">
+  <a
+      routerLink="/inicio"
+      routerLinkActive="active-list-item"
+      style="width: 230px"
+    >
+      <img src="assets/dist/img/home.svg" />
+      <span style="margin-left: 5%; color: #37804B;">Início</span>
     </a>
   </button>
   <button mat-menu-item>
-    <a
+    <a *ngIf="button_color!='cidadao'"
       routerLink="/cidadaos"
       routerLinkActive="active-list-item"
       style="width: 230px"
-      *ngIf="ativo"
+      (click)="removeCitizen(); buttonCidadaoColor()"
+      id="cidadaoButton"
+    >
+      <img src="assets/dist/img/available_user.png" />
+      <span style="width: 230px; margin-left: 5%; color: gray;">Cidadãos</span>
+    </a>
+    <a *ngIf="button_color=='cidadao'"
+      routerLink="/cidadaos"
+      routerLinkActive="active-list-item"
+      style="width: 230px"
       (click)="removeCitizen()"
     >
       <img src="assets/dist/img/available_user.png" />
-      <span style="width: 230px">Cidadãos</span>
+      <span style="width: 230px; margin-left: 5%; color: #37804B;">Cidadãos</span>
     </a>
   </button>
   <button mat-menu-item>
-    <a
+    <a *ngIf="button_color!='registro'"
       routerLink="/relato"
       routerLinkActive="active-list-item"
       style="width: 230px"
-      *ngIf="ativo"
+      (click)="buttonRegistroColor()"
     >
       <img src="assets/dist/img/available_user.png" />
-      <span style="width: 230px">Registro</span>
+      <span style="width: 230px; margin-left: 5%; color: gray;">Registro</span>
+    </a>
+    <a *ngIf="button_color=='registro'"
+      routerLink="/relato"
+      routerLinkActive="active-list-item"
+      style="width: 230px"
+    >
+      <img src="assets/dist/img/available_user.png" />
+      <span style="width: 230px; margin-left: 5%; color: #37804B;">Registro</span>
     </a>
   </button>
   <button mat-menu-item>
-    <a routerLinkActive="active-list-item" style="width: 230px" *ngIf="ativo">
+    <div>
+      <a *ngIf="button_color!='importar'" class="pull-right" (click)="fileInput.click(); buttonImportarColor()">
+        <mat-icon aria-hidden="false" style="color: #245e33;">attachment</mat-icon>
+        <span style="width: 230px; right: 12%; color: gray;">Importar CSV</span>
+      </a>
+      <a *ngIf="button_color=='importar'" class="pull-right" (click)="fileInput.click()">
+        <mat-icon aria-hidden="false" style="color: #245e33;">attachment</mat-icon>
+        <span style="width: 230px; right: 12%; color: #37804B;">Importar CSV</span>
+      </a>
+      <input hidden type="file" #fileInput (change)="selectFile($event)" accept=".csv" style="display: none"/>
+      <div style="margin-top: 8%" class="pull-right">
+        <label
+          style="font-family: Roboto; font-size: 14px; color: #000000"
+          *ngIf="uploading"
+          >Realizando upload do arquivo...</label
+        >
+        <label
+          style="font-family: Roboto; font-size: 14px; color: #000000"
+          *ngIf="uploadCompleted"
+          >Upload concluído!</label
+        >
+        <label
+          style="font-family: Roboto; font-size: 14px; color: #000000"
+          *ngIf="uploadCompleted"
+        >
+          Foram alterados/adicionados cidadãos
+          {{ countOfUploaded }} vezes</label
+        >
+        <label
+          style="font-family: Roboto; font-size: 14px; color: red"
+          *ngIf="uploadError && errorBye"
+          >{{ uploadError }}</label
+        >
+      </div>
+    </div>
+  </button>
+  <button mat-menu-item>
+    <a routerLinkActive="active-list-item" style="width: 230px">
       <img src="assets/dist/img/available_heart.png" />
-      <span style="width: 230px">Medição</span>
+      <span style="width: 230px; margin-left: 5%; color: gray;">Medição</span>
     </a>
   </button>
+
+  <button mat-menu-item>
+    <a data-toggle="modal" data-target="#logoutmodal" style="width: 230px;" *ngIf="ativo">
+      <mat-icon>exit_to_app</mat-icon>
+      <span style="width: 230px; color: gray;">  Sair </span>
+      </a>
+  </button>
 </mat-menu>
+
+<!-- Modal Sair -->
+<div class="modal fade" id="logoutmodal">
+  <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title" id="titleModal">Fazer Logout</h4>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+              <label id="modalText">Deseja sair do sistema?</label>
+
+          </div>
+          <div class="modal-footer">
+              <button mat-button id="naobutton" data-dismiss="modal"><label id="naolabel">NÃO</label></button>
+              <button mat-button id="simbutton" routerLink="/" data-dismiss="modal"><label id="simlabel">SIM</label></button>
+          </div>
+      </div>
+  </div>
+</div>
