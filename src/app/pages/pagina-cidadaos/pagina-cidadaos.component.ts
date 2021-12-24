@@ -1,8 +1,8 @@
+import { Cidadao } from 'src/app/models/cidadao';
 import { async } from '@angular/core/testing';
 import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
 import { Router } from '@angular/router';
 import { CidadaoServiceService } from './../../services/cidadao/cidadao-service.service';
-import { Cidadao } from './../../models/cidadao';
 import { Component, HostListener, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -26,6 +26,7 @@ export class PaginaCidadaosComponent implements OnInit {
   innerWidth;
   innerHeight;
   ativo = true;
+  clicked = false;
   apiService: ApiService;
   cidadaoService: CidadaoServiceService;
   buscado: string;
@@ -37,6 +38,7 @@ export class PaginaCidadaosComponent implements OnInit {
   errorBye = false;
   mask: string;
   cidadaos: Cidadao[];
+
   constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, private mz: MedicaoServiceService, router: Router, private deviceService: DeviceDetectorService) {
     this.apiService = apiService;
     this.cidadaoService = cidadaoService;
@@ -45,6 +47,7 @@ export class PaginaCidadaosComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.removeItem('changePag');
     // tslint:disable-next-line: radix
     if (localStorage.getItem('citizen') !== undefined) {
       // tslint:disable-next-line: radix
@@ -66,6 +69,10 @@ export class PaginaCidadaosComponent implements OnInit {
 
     removeCitizen() {
       localStorage.removeItem('citizen');
+    }
+
+    noClick(){
+      this.clicked = true;
     }
 
     checkIt(groupValue: string) {

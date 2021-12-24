@@ -32,8 +32,15 @@ cidadaos: Array<Cidadao>;
 
 
 // API: GET /cidadaos
-getAllCidadaos(): Observable<Cidadao[]> {
+getCidadaosAsync(): Observable<Cidadao[]> {
   return this.httpClient.get<Cidadao[]>(environment.rest.host + '/hasmart/api/Cidadaos', this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError));
+}
+
+getCidadaos(): Observable<Cidadao[]> {
+  return this.httpClient.get<Cidadao[]>(environment.rest.host + '/hasmart/api/Cidadaos/GetAll', this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError));
@@ -102,7 +109,7 @@ handleError(error: HttpErrorResponse) {
   this.statusCode = error.status;
   return throwError(error);
 }
-login(usernameForLogin: string, passwordForLogin: string) {
+login(usernameForLogin: string, passwordForLogin: string, emailForLogin:string) {
   // if (usernameForLogin === 'admin') {
   //   this.authenticate(usernameForLogin).subscribe(date => {
   //     this.user = {
@@ -120,11 +127,12 @@ login(usernameForLogin: string, passwordForLogin: string) {
   // }
     const op: Medico = {
       nome: usernameForLogin,
-      senha: passwordForLogin
+      senha: passwordForLogin,
+      email: emailForLogin
     };
     this.authenticate(op).subscribe(res => {
       this.user = {
-        username: usernameForLogin,
+        username: usernameForLogin || emailForLogin,
         id: res.id,
         password: passwordForLogin,
         role: Role.User,

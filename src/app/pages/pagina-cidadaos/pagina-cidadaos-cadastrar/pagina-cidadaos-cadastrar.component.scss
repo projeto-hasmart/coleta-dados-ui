@@ -83,7 +83,7 @@
 }
 
 #genero {
-    margin-left: 0%;
+    margin-top: 0%;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -91,6 +91,11 @@
     line-height: 19px;
     /* identical to box height */
     color: #000000;
+    @media(min-width: 1360px){
+      margin-top: -10.5% !important;
+      width: 100% !important;
+      margin-left: 51.5% !important;
+    }
 }
 
 .example-radio-button {
@@ -163,6 +168,16 @@
     font-family: 'Roboto';
 }
 
+.adjustCol{
+  margin-top: 2%;
+}
+
+.adjustCheckBox{
+  @media (max-width:767px){
+  margin-left: -2%;
+  }
+}
+
 #inputComplemento {
     right: 0%;
     margin-top: 1.5%;
@@ -198,6 +213,11 @@
     box-sizing: border-box;
     height: 56px;
     font-family: 'Roboto';
+    @media (min-width:1360px){
+      margin-top: -9%;
+      position: absolute;
+      width: 95%;
+    }
 }
 
 #inputCep {
@@ -243,10 +263,13 @@
     margin-top: 10px;
     margin-left: 2%;
     top: 55px;
-    width: 98%;
+    width: 100%;
     height: 56px;
     font-size: 14px;
     font-family: Roboto;
+    @media (min-width:768px) {
+      margin-left: 0.5%;
+    }
 }
 
 #diabetesDrop {
@@ -330,6 +353,20 @@
     border-radius: 4px;
 }
 
+#cancelButton{
+  display: flex;
+      flex-direction: column;
+      padding: 10px 16px;
+      margin-left: 1%;
+      width: 155px;
+      height: 34px;
+      position: absolute;
+      margin-top: 15px;
+      background: #245E33;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+      border-radius: 4px;
+}
+
 #cadastraButtonLabel {
     position: absolute;
     width: 123px;
@@ -369,6 +406,30 @@ form input:focus {
 .errorInput {
     border: 1px solid red;
     outline: none;
+}
+
+.modalOptin {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #333;
+  min-width: 320px;
+  position: fixed;
+  left: 50%;
+  padding: 24px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 811;
+}
+
+.overlay {
+  background: #000;
+  height: 100vh;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 810;
 }
 
 #modalText {

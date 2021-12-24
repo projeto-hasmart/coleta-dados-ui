@@ -3,11 +3,27 @@
 </head>
 
 <div class='content'>
+  <div class="container-apresentation">
+    <div class="elementsA">
+      <div class="logoA" style="margin-left: 85%;width: 200%;">
+      <img src="assets/dist/img/logo.png" >
+      <label >Hasmart</label>
+      </div>
+      <p style="width: 200%; margin-top: 15%;"> Projeto que tem como objetivo definir uma metodologia de coleta e análise de dados da população cearense hipertensa para um estudo do comportamento e das necessidades dos pacientes para adesão ao tratamento. </p>
+    </div>
+  </div>
+  <!-- <div class="container">
+    <div class="row">
+      <img src="assets/dist/img/logo.png" >
+      <label >Hasmart</label>
+      <p class="col-md-6"> Projeto que tem como objetivo definir uma metodologia de coleta e análise de dados da população cearense hipertensa para um estudo do comportamento e das necessidades dos pacientes para adesão ao tratamento. </p>
+    </div>
+  </div> -->
     <!-- /.login-logo -->
     <mat-card id="material-card">
         <mat-card-content>
             <div class="form-group has-feedback">
-                <input class="form-control" placeholder="Nome" type="email" id="emailLabel" [(ngModel)]="user" (keyup.enter)="createRole()">
+                <input class="form-control" placeholder="Usuário" type="email" id="emailLabel" [(ngModel)]="user" [(ngModel)]="email" (keyup.enter)="createRole()">
                 <!-- <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
             </div>
             <div class="form-group has-feedback">
@@ -21,15 +37,16 @@
             <!-- /.col -->
             <!--[routerLink]="'/inicio'"-->
             <button class="mat-button" id="loginButton" (click)="createRole()">ENTRAR</button>
+            <!-- <button class="mat-button" id="recoverButton" routerLink='recuperar-senha'><label id="recoverLabel">Recuperar Senha</label></button> -->
             <!-- /.col -->
         </mat-card-content>
 
-<!--
+
         <mat-card-footer>
-            
-            <a href="#" id="forgotPassword">Esqueceu sua senha?</a><br>
-        </mat-card-footer>-->
-    </mat-card> 
+
+            <a href="#" routerLink='recuperar-senha' id="forgotPassword">Esqueceu sua senha?</a><br>
+        </mat-card-footer>
+    </mat-card>
 
     <!-- /.login-box-body -->
 

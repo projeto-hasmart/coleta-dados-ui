@@ -11,42 +11,51 @@
 
 <section class="content-header">
   <div class="adjust-header">
+    <h3 id="labelBuscaCidadao">Busca de Cidadaos</h3>
     <h3 id="labelBemvindo">Olá, {{ user.nome }}!</h3>
     <label id="labelBemvindoo">Bem-vindo de volta ao sistema</label>
+    <label id="labeCidadaoCadastrados" *ngIf="(cidadao$ | async)">Atualmente existem : {{getCidadao}} cidadões cadastrados</label>
   </div>
 </section>
 
 <!-- Main content -->
 <section class="content">
-  <div id="searchboxtoggle" class="row">
+  <div class="modalOptin" *ngIf="hideModal!='sim'">
+    <h1>Termos de condição</h1>
+  <p>
+   Você aceita aceita todos os termo de condição para o uso de dados?
+  </p>
+  <button (click)="onAccept('accept','sim');" class="btn-primario" id="optinButton">Sim</button>
+  <button class="btn-secundario" routerLink='/' id="optinButton">Não</button>
+  </div>
+  <div class="overlay" *ngIf="hideModal!='sim'"></div>
+ <div id="searchboxtoggle" class="row">
     <!-- [(ngModel)]="modelName" multiple vertical="false"-->
 
-    <mat-button-toggle-group
+    <!-- <mat-button-toggle-group
       id="cpfrgtoggle"
       class="shadow p-3 mb-5 bg-white rounded"
       #group="matButtonToggleGroup"
     >
       <mat-button-toggle value="cpf" id="togglebutton"> CPF </mat-button-toggle>
       <mat-button-toggle value="rg" id="togglebutton"> RG </mat-button-toggle>
-    </mat-button-toggle-group>
+    </mat-button-toggle-group> -->
     <div class="search-bar shadow p-3 mb-5 bg-white rounded">
       <input
         type="text"
         class="searchTerm"
-        placeholder="Buscar cidadão por CPF ou RG(selecione)..."
-        (keydown.enter)="goToView(group.value)"
+        placeholder="Buscar cidadão"
         id="searchBox"
         [(ngModel)]="buscado"
         required
-        [mask]="mask"
-        (keyup)="checkIt(group.value)"
+
       />
       <button
         type="submit"
         class="searchButton"
         id="searchButton"
         placeholder=""
-        (click)="goToView(group.value)"
+        (click)="searchCidadao()"
       >
         <i class="fa fa-search"></i>
       </button>
@@ -54,10 +63,9 @@
     <a routerLink="/cidadaos/cadastrar">
       <button mat-button id="novoCidadaoButton" class="pull-right">
         <img src="assets/dist/img/novocidadaologo.png" id="novoCidadaoImg" />
-        <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
       </button>
     </a>
-    <div>
+    <!-- <div>
       <button
         mat-button
         id="importaCsvButton"
@@ -105,24 +113,45 @@
           >{{ uploadError }}</label
         >
       </div>
-    </div>
+    </div> -->
   </div>
-  <div id="cidadaoNaoEncontrado" *ngIf="errorBye && searchError">
-    <div>
-      <label id="naoEncontradoTitulo"> Cidadão não cadastrado </label>
+  <div class="container" id="cidadaoNaoEncontrado" *ngIf="errorBye && searchError">
+    <div *ngIf="clicked==false">
+      <div class="row">
+      <div class="col">
+      <label id="naoEncontradoTitulo"> Não encontrado </label></div>
+      <div class="col">
       <label id="tenteNovamente">
-        Tente novamente ou cadastre um novo cidadão com esta identidade
+        Deseja incluir?
       </label>
+    </div>
+    </div>
+      <div class="row">
+        <div class="col">
       <a routerLink="/cidadaos/cadastrar">
         <button
           mat-button
           id="novoCidadaoButtonError"
-          (click)="newCitizen(group.value)"
+
+
         >
-          <img src="assets/dist/img/novocidadaologo.png" id="novoCidadaoImg" />
-          <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
+          <label id="novoCidadaoLabel" style = "left:0px;">Sim</label>
         </button>
       </a>
+    </div>
+    <div class="col">
+      <a routerLink="/inicio">
+        <button
+          mat-button
+          id="novoCidadaoButtonError"
+          (click)="noClick()"
+        >
+          <label id="novoCidadaoLabel" style = "left:0px;">Não</label>
+        </button>
+      </a>
+    </div>
+    </div>
+
     </div>
   </div>
   <!-- <div>

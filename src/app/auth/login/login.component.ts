@@ -21,8 +21,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   apiService: ApiService;
   user: string;
   pw: string;
+  email:string;
   operador: Medico;
   notFound = false;
+  userAutenticado: boolean = false;
 
   constructor(apiService: ApiService, private router: Router) {
     this.apiService = apiService;
@@ -51,14 +53,20 @@ export class LoginComponent implements OnInit, OnDestroy {
   createRole() {
     this.operador = {
       nome: this.user,
+      email: this.email,
       senha: this.pw
     };
     this.apiService.authenticate(this.operador).subscribe(op => {
       this.operador = op as Medico;
+      this.userAutenticado = true;
       this.router.navigate(['/inicio']);
     }, err => {
       this.notFound = true;
     });
+  }
+
+  userAutenticadoOk(){
+    return this.userAutenticado;
   }
   // tryAuth() {
   //   // this.apiService.authenticate(this.username, this.password);
