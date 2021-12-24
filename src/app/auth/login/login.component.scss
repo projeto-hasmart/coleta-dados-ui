@@ -1,3 +1,65 @@
+body,html{
+  width: 100%;
+  height: 100%;
+  background-color: #F4F7F4;
+}
+
+.container-apresentation{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+}
+
+.elementsA{
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 2%;
+  left: 37%;
+  @media (min-width:280px) and (max-width: 280px) and (orientation: portrait){
+    top: 72%;
+    left: 50%;
+  }
+  @media (min-width:360px) and (max-width:767px) and (orientation : portrait){
+    top: 40%;
+    left: 44%;
+  }
+  @media (min-width:320px) and (max-width: 320px) and (orientation: portrait){
+    top: 53%;
+    left: 45%;
+  }
+  @media (min-width:540px) and (max-width: 540px) and (orientation: portrait){
+    top: 28%;
+    left: 33%;
+  }
+  @media (min-width:768px) and (max-width: 768px) and (orientation: portrait){
+    top: 17%;
+    left: 23%;
+  }
+  @media (min-width:1024px) and (max-width: 1024px) and (orientation: portrait){
+    top: 23%;
+    left: 31%;
+  }
+  @media (min-width:1024px) and (max-width: 1024px) and (orientation: landscape){
+    top: 3%;
+    left: 31%;
+  }
+  @media (min-width:1280px) and (max-width: 1280px) and (orientation: landscape){
+    left: 34%;
+  }
+  @media (max-width:900px) and (orientation:landscape){
+    display: none;
+  }
+  @media (min-width:1366px) and (max-width: 1366px) and (orientation: landscape){
+    top: 17%;
+    left: 35%;
+  }
+
+}
+
 #loginButton {
     display: flex;
     flex-direction: row;
@@ -52,6 +114,9 @@
     /* 9dp */
     box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.14);
     border-radius: 4px;
+    @media (min-width:1024px) and (max-width:1024px) and (orientation:landscape){
+      top: 58%;
+    }
 }
 
 #senhaLabel {
@@ -130,7 +195,7 @@ input.form-control:focus {
 }
 
 .content {
-    background-color: #F4F7F4;
+    // background-color: #F4F7F4;
     width: 100%;
     height: 100vh;
 }

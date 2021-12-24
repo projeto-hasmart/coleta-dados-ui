@@ -17,7 +17,7 @@ import {MatIconModule} from '@angular/material/icon';
   imports: [
     CommonModule,
     RouterModule,
-    MatIconModule
+    MatIconModule,
   ],
   exports: [
     HeaderComponent,

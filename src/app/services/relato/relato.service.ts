@@ -41,6 +41,12 @@ export class RelatoService {
     .pipe(
       catchError(this.handleError));
   }
+  public getAllRelatosParaCidadao(): Observable<RelatorioOpiniao[]> {
+    // tslint:disable-next-line: max-line-length
+    return this.httpClient.get<RelatorioOpiniao[]>((environment.rest.host + '/hasmart/api/relato/all'), this.httpOptions)
+    .pipe(
+      catchError(this.handleError));
+  }
   public getRelatosParaCidadaosAnonimos(anonimoName: string): Observable<RelatorioOpiniao[]> {
     // tslint:disable-next-line: max-line-length
     return this.httpClient.get<RelatorioOpiniao[]>((environment.rest.host + '/hasmart/api/Relato/' + anonimoName + '/anonimo'), this.httpOptions)

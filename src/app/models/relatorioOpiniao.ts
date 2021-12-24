@@ -9,4 +9,5 @@ export interface RelatorioOpiniao {
     success?: boolean;
     cidadaoId?: string;
     cidadao?: Cidadao;
+    horaRelatorio?: string;
 }

@@ -5,6 +5,7 @@ export interface Medico {
   id?: string;
   senha?: string;
   crm?: string;
+  email?:string;
   cidadaosAtuais?: Cidadao[];
   cidadaosAtendidos?: Cidadao[];
 }

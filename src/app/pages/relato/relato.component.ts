@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
 import { DatePipe } from '@angular/common';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { Observable } from 'rxjs';
 
 let ELEMENT_DATA: RelatorioOpiniao[] = [
 ];
@@ -62,12 +63,26 @@ export class RelatoComponent implements OnInit {
     'SMS',
     'Presencial',
     'E-mail',
-    'Martha'
+    'Martha',
+    'Outros'
   ];
   isMobile;
   deviceInfo = null;
   innerWidth;
   innerHeight;
+  valores = [];
+  valoresR = [...ELEMENT_DATA];
+  labelChange = true;
+  hour:string;
+  cidadao$: Observable<RelatorioOpiniao>;
+
+  onlabelChange(){
+    this.labelChange = false;
+  }
+  onlabelChange2(){
+    this.labelChange = true;
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
   this.innerWidth = window.innerWidth;
@@ -112,6 +127,8 @@ export class RelatoComponent implements OnInit {
   //   this.buscado = eventValue;
   // }
   ngOnInit() {
+    localStorage.removeItem('changePag');
+    this.definirRelatorios();
     if (localStorage.getItem('buscado') !== null && localStorage.getItem('buscado') !== undefined &&
         localStorage.getItem('buscado') !== ''  ) {
       this.selecionaCidadao(localStorage.getItem('buscado'));
@@ -152,6 +169,15 @@ getRelatos() {
   });
   this.dataSource = new MatTableDataSource<RelatorioOpiniao>(ELEMENT_DATA);
 }
+
+definirRelatorios(){
+    ELEMENT_DATA = [];
+    this.rz.getAllRelatosParaCidadao().subscribe(all => {
+      for (const x of all){
+        ELEMENT_DATA.push(x);
+      }
+    });
+  }
 
 closedModal() {
   this.relator = '';
@@ -198,6 +224,9 @@ cadastraOuAtualizaRelato() {
     case 'Martha': {
       this.relatoAtual.tipoContato = 6;
       break;
+    }
+    case 'Outro': {
+      this.relatoAtual.tipoContato = 7;
     }
     default: {
       this.relatoAtual.tipoContato = 0;
@@ -276,17 +305,19 @@ cadastraOuAtualizaRelato() {
 }
 
 relatorioDe(id: string) {
-  if (id === '' || id === undefined || id === null) {
-    this.selection.clear();
-    this.editing = false;
-    this.relatorio = '';
-    this.cpf = '';
-    this.dataRelatorio = '';
-    this.tipoContato = '';
-    this.success = false;
-  } else {
-    for (const rel of ELEMENT_DATA) {
-      if (rel.id === id) {
+      if (id === '' || id === undefined || id === null) {
+        this.selection.clear();
+        this.editing = false;
+        this.relatorio = '';
+        this.cpf = '';
+        this.dataRelatorio = '';
+        this.tipoContato = '';
+        this.hour = '';
+        this.success = false;
+      }
+      else {
+        for (const rel of ELEMENT_DATA) {
+        if (rel.id === id) {
         this.editing = true;
         this.relatoAtual = rel;
         this.dataRelatorio = rel.dataRelatorio;
@@ -318,6 +349,10 @@ relatorioDe(id: string) {
             this.tipoContato = 'Martha';
             break;
           }
+          case 7: {
+            this.tipoContato = 'Outro';
+            break;
+          }
           case 0: {
             this.tipoContato = 'Martha';
             break;
@@ -326,6 +361,7 @@ relatorioDe(id: string) {
         this.anonimoNome = rel.nomeAnonimizado;
       }
     }
+    }
+
   }
-}
 }

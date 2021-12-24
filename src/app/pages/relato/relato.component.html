@@ -1,6 +1,6 @@
 <section class="content-header"  *ngIf="isMobile">
   <div id="divtitle">
-    <label id="labelNome" style="font-size: 187%;">Registro de Relatos</label>
+    <label id="labelNome" style="font-size: 187%;">Cadastro de Relatos</label>
     <label id="labelVisualize" style="font-size: 98%;"
       >Pesquise com o código do paciente para
       consultar registros ou cadastrar um novo registro</label
@@ -10,7 +10,7 @@
 
 <section class="content-header" *ngIf="!isMobile">
   <div id="divtitle">
-    <label id="labelNome">Registro de Relatos</label>
+    <label id="labelNome">Cadastro de Relatos</label>
     <label id="labelVisualize"
       >Pesquise com o código do paciente para consultar registros ou cadastrar um novo registro</label
     >
@@ -506,12 +506,14 @@
 <i class="fa fa-search"></i> </button>
         </div>
     </div>
-    <button mat-button id="novoCidadaoButton" (click)="relatorioDe('')" data-toggle="modal" data-target="#exampleModal" class="pull-right">
+    <button mat-button id="novoCidadaoButton" (click)="relatorioDe(''); onlabelChange2()" data-toggle="modal" data-target="#exampleModal" class="pull-right">
       <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
       <label id="novoCidadaoLabel">NOVO REGISTRO</label>
     </button>
     <div class="icons" id="trashIcon" style="float: right; padding: 15px">
-      <mat-icon (click)="deleteSelected()">delete</mat-icon>
+      <button mat-button id="deleteCidadaoButton" (click)="deleteSelected()">
+      <mat-icon style="color: white;">delete</mat-icon>
+    </button>
     </div>
   <div class="tableReg">
     <table
@@ -552,6 +554,7 @@
           <mat-icon *ngIf="element.tipoContato == 4"> place</mat-icon>
           <mat-icon *ngIf="element.tipoContato == 5"> email</mat-icon>
           <mat-icon *ngIf="element.tipoContato == 6 || element.tipoContato == 0"> record_voice_over</mat-icon>
+          <mat-icon *ngIf="element.tipoContato == 7">devices_other</mat-icon>
         </td>
       </ng-container>
 
@@ -559,7 +562,7 @@
        <ng-container matColumnDef="relator" style="width: 16.667%">
         <th mat-header-cell *matHeaderCellDef>Relator</th>
         <td mat-cell *matCellDef="let element">
-          {{element.relatorNome.slice(0,1)}}
+          {{element.relatorNome}}
         </td>
       </ng-container>
 
@@ -592,6 +595,7 @@
             data-toggle="modal"
             data-target="#exampleModal"
             (click)="relatorioDe(element.id)"
+            (click) ='onlabelChange()'
           >
             <mat-icon aria-hidden="false">expand_more</mat-icon>
           </button>
@@ -659,7 +663,8 @@
 
        <div class="row" style="margin-left: 0.5%; border-radius: 4px;" >
                                     <div class="col-md-6" style="width: 49%;">
-                                        <input type="text" class="input-control" placeholder="Relator" id="result" [(ngModel)]="relator"> <!--[(ngModel)]-->
+                                        <input type="text" class="input-control" placeholder="Relator" *ngIf="labelChange" id="result" [(ngModel)]="relator">
+                                        <input type="text" class="input-control" placeholder="Relator" *ngIf="!labelChange" id="resultInfo" [(ngModel)]="relator" readonly> <!--[(ngModel)]-->
                                     </div>
                                     <div class="col-md-6" style="width: 49%; margin-left: 0.5%;">
                                         <input type="text" class="input-control" placeholder="CPF*" id="result" *ngIf="!editing" [class.errorInput]="(cpf === undefined && !editing && checked)
@@ -668,27 +673,34 @@
                                         <label id="errorLabel" *ngIf="(cpf === undefined && !editing && checked)  || (cpf !== undefined && cpf.length < 11 && !editing && checked)">O campo CPF deve ser composto por 11 números e é obrigatório.</label>
                                         <label id="errorLabel" *ngIf="(cpf !== undefined && cpf.length === 11 && !valid  && !editing && checked)">Por favor verifique se este CPF está correto.</label>
                                     </div>
+                                    <div class="col-md-6" style="width: 49%; margin-top: 2%;">
+                                      <input *ngIf="labelChange" type="time" placeholder="Hora" (keyup)="hour">
+                                      <input *ngIf="!labelChange" type="time" placeholder="Hora" value="{{hour}}" style="margin-top: 0%;" readonly>
+                                    </div>
                                      <div class="col-md-6" style="width: 49%; margin-left: 0.5%;">
-                                        <input type="text" class="input-control" placeholder="Nome anônimo" id="result" *ngIf="editing" [(ngModel)]="anonimoNome" disabled> <!--[(ngModel)]-->
+                                        <input type="text" class="input-control" placeholder="Nome anônimo" id="result" *ngIf="editing" [(ngModel)]="anonimoNome" readonly> <!--[(ngModel)]-->
                                     </div>
                                 </div>
                                 <div class="row" style="margin-left: 0.5%;">
                                     <div class="col-md-6" style="width: 49%;">
-                                        <input type="text" class="input-control" placeholder="Data do relato*" id="inputNascimento" [class.errorInput]="(dataRelatorio === undefined && checked)
+                                        <input *ngIf="labelChange" type="text" class="input-control" placeholder="Data do relato*" id="inputNascimento" [class.errorInput]="(dataRelatorio === undefined && checked)
                                         ||  (dataRelatorio !== undefined && dataRelatorio.length < 8  && checked)
-                                        || (dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid   && checked)" [(ngModel)]="dataRelatorio" mask="00/00/0000" required>
+                                        || (dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid   && checked)" [(ngModel)]="dataRelatorio" mask="00/00/0000 00:00" required>
+                                        <input *ngIf="!labelChange" type="text" class="input-control" placeholder="Data do relato*" id="inputNascimento" [class.errorInput]="(dataRelatorio === undefined && checked)
+                                        ||  (dataRelatorio !== undefined && dataRelatorio.length < 8  && checked)
+                                        || (dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid   && checked)" [(ngModel)]="dataRelatorio" mask="0000/00/00 00:00:00" required readonly>
                                     <label id="errorLabel" *ngIf="(dataRelatorio === undefined && checked)  || (dataRelatorio !== undefined && dataRelatorio.length < 8 && checked)">Verifique que a data está no formato DD/MM/AAAA.</label>
                                         <label id="errorLabel" *ngIf="(dataRelatorio !== undefined && dataRelatorio.length === 8 && !valid  && checked)">Verifique que a data está no formato DD/MM/AAAA e é válida.</label>
                                     </div>
                                     <div class="col-md-6" style="width: 49%;margin-left: 0.5%;margin-top:3%;box-sizing: border-box;">
-                                        <div style="width:100%;display:inline-block;background-color:white;heigth:56px"><label id="result">O contato foi um sucesso</label><mat-slide-toggle style="margin-left:0.5%" [(ngModel)]="success"></mat-slide-toggle></div>
+                                        <div style="width:100%;display:inline-block;background-color:white; heigth:56px;"><label id="result">O contato foi um sucesso</label><mat-slide-toggle style="margin-left:0.5%" [(ngModel)]="success"></mat-slide-toggle></div>
                                     </div>
         </div>
 
       <div class="tipoRelato" style="margin-top: 1%; width: 97%; margin-left:1.5%">
         <label id="informacoesPessoais" style="font-size: 16px;">Tipo de Relato</label>
        <mat-radio-group id="contatoRadio" [(ngModel)]="tipoContato" name="tipoContatoRadio" required>
-        <mat-radio-button class="example-radio-button" *ngFor="let cont of contatos"  name="tipoContatoRadio"[value]="cont" style="margin-left:5%">{{cont}}</mat-radio-button>
+        <mat-checkbox class="example-radio-button" *ngFor="let cont of contatos"  name="tipoContatoRadio"[value]="cont" style="margin-left:5%">{{cont}}</mat-checkbox>
         </mat-radio-group>
       </div>
       <div style="width: 97%; margin-left:1.5%">
@@ -723,12 +735,18 @@
       >
         <label id="retornoCidadaoButtonLabel">SALVAR REGISTRO</label>
       </button>
+      <button mat-button id="cancelButton" #closeModalBtn data-dismiss="modal" *ngIf="relatorio">
+        <label id="cadastraButtonLabel">Cancelar</label>
+      </button>
       <button
         mat-button
         id="finalizarButtonBlocked"
         *ngIf="!relatorio"
       >
         <label id="retornoCidadaoButtonLabel">SALVAR REGISTRO</label>
+      </button>
+      <button mat-button id="cancelButton" #closeModalBtn data-dismiss="modal" *ngIf="!relatorio">
+        <label id="cadastraButtonLabel">Cancelar</label>
       </button>
         </div>
     </div>

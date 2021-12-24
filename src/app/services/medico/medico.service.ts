@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { Role } from 'src/app/models/role';
+import { ValueTransformer } from '@angular/compiler/src/util';
 
 
 @Injectable({
@@ -50,6 +51,15 @@ public addCitizenToMedico(id: string, cpf: string): Observable<Medico> {
   return this.httpClient.post<Medico>((environment.rest.host + '/hasmart/api/Medico/' + id + '/Cidadaos'), cpfs, this.httpOptions)
   .pipe(
     catchError(this.handleError));
+}
+
+// API : PUT /hasmart/api/Medico/operador/atualizarsenha
+public modifyPassword (Nome: string, Crm: string, Senha:string, Email:string): Observable<Medico> {
+  var values:Medico = {nome: Nome, crm: Crm,senha: Senha,email: Email};
+  return this.httpClient.put<Medico>((environment.rest.host + '/hasmart/api/Medico/operador/atualizarsenha'), values,this.httpOptions)
+  .pipe(
+    catchError(this.handleError)
+  );
 }
 
 handleError(error: HttpErrorResponse) {

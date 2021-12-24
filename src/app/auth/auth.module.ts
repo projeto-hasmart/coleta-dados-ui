@@ -1,3 +1,4 @@
+import { RecoverPasswordComponent } from './login/recover-password/recover-password.component';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +16,7 @@ import { MedicloginComponent } from './mediclogin/mediclogin.component';
 
 
 @NgModule({
-  declarations: [AuthComponent, LoginComponent, RegisterComponent, MedicloginComponent],
+  declarations: [AuthComponent, LoginComponent, RegisterComponent, MedicloginComponent, RecoverPasswordComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
