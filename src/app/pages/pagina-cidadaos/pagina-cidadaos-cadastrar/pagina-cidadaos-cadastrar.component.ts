@@ -1,16 +1,18 @@
+import { SideNavComponent } from './../../../layout/side-nav/side-nav.component';
 import { MedicoService } from './../../../services/medico/medico.service';
 import { Medico } from 'src/app/models/medico';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { CidadaoServiceService } from 'src/app/services/cidadao/cidadao-service.service';
 import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.service';
 import { DispensacaoServiceService } from 'src/app/services/dispensacao/dispensacao-service.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router, RoutesRecognized } from '@angular/router';
 import { Cidadao } from 'src/app/models/cidadao';
 import { DatePipe } from '@angular/common';
-import { map } from 'rxjs/operators';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ViewChild, ElementRef} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import { fromEvent, interval, Observable } from 'rxjs';
 
 interface Diabetes {
   value: number;
@@ -68,13 +70,23 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   user: Medico;
   exists = false;
   unknownError = false;
+  toppings: FormGroup;
+  callModal = false;
+  change_pag:string;
 
-  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: MedicoService, apiService: ApiService,
-              private router: Router) {
+  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: MedicoService, apiService: ApiService, private router: Router, fb: FormBuilder) {
     this.cz = cz;
     this.mz = mz;
     this.dz = dz;
     this.apiService = apiService;
+    this.toppings = fb.group({
+      checkboxRenal: false,
+      checkboxIC: false,
+      checkboxInfarto: false,
+      checkboxAvc: false,
+      checkboxAop: false,
+      checkboxRH: false,
+    });
    }
   genero;
   generos: string[] = [
@@ -102,6 +114,77 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
     } else if (localStorage.getItem('newRg') !== null) {
       this.rg = localStorage.getItem('newRg');
       localStorage.removeItem('newRg');
+    };
+    localStorage.setItem('changePag', 'yes');
+    this.change_pag = localStorage.getItem('changePag');
+      this.router.events.subscribe(event => {
+        if(event instanceof NavigationStart){
+          if(localStorage.getItem('changePag') == 'yes'){
+          this.callModal = true;
+          confirm ('Deseja realmente sair da pagina?');
+          }
+        }
+      });
+}
+
+  onClickRenal(){
+    if(this.toppings.value.checkboxRenal == true){
+      console.log('true')
+      this.doencaRenal = 2;
+    }
+    if(this.toppings.value.checkboxRenal == false){
+      console.log('false')
+      this.doencaRenal = 1;
+    }
+  }
+  onClickIC(){
+    if(this.toppings.value.checkboxIC == true){
+      console.log('true')
+      this.insuficienciaCardiaca = 2;
+    }
+    if(this.toppings.value.checkboxIC == false){
+      console.log('false')
+      this.insuficienciaCardiaca = 1;
+    }
+  }
+  onClickInfarto(){
+    if(this.toppings.value.checkboxInfarto == true){
+      console.log('true')
+      this.infarto = 2;
+    }
+    if(this.toppings.value.checkboxInfarto == false){
+      console.log('false')
+      this.infarto = 1;
+    }
+  }
+  onClickAVC(){
+    if(this.toppings.value.checkboxAvc == true){
+      console.log('true')
+      this.historicoAvc = 2;
+    }
+    if(this.toppings.value.checkboxAvc == false){
+      console.log('false')
+      this.historicoAvc = 1;
+    }
+  }
+  onClickAOP(){
+    if(this.toppings.value.checkboxAop== true){
+      console.log('true')
+      this.doencaArterial = 2;
+    }
+    if(this.toppings.value.checkboxAop == false){
+      console.log('false')
+      this.doencaArterial = 1;
+    }
+  }
+  onClickRH(){
+    if(this.toppings.value.checkboxRH == true){
+      console.log('true')
+      this.retinopatia = 2;
+    }
+    if(this.toppings.value.checkboxRH== false){
+      console.log('false')
+      this.retinopatia = 1;
     }
   }
   checkDate() {
@@ -110,7 +193,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
   }
   checkEmpt() {
     this.checkDate();
-    if ((parseFloat(this.altura) < 2.7 && parseFloat(this.altura) > 0.5) || this.altura === undefined) {
+    if ((parseFloat(this.altura) < 270 && parseFloat(this.altura) > 500) || this.altura === undefined) {
     if (this.nome === undefined || this.dataReal === undefined || this.cpf === undefined || this.rg === undefined
       || this.cidade === undefined || this.estado === undefined || this.cep === undefined || this.rua === undefined
       || this.numero === undefined || this.email === undefined || this.telefone === undefined || this.altura === undefined) {
@@ -154,7 +237,7 @@ export class PaginaCidadaosCadastrarComponent implements OnInit {
         genero: this.genero
       },
       indicadorRiscoHAS: {
-        altura: parseFloat(this.altura),
+        altura: parseInt(this.altura),
         diabetico: this.diabetes,
         fumante: this.fumante,
         historicoAvc: this.historicoAvc,

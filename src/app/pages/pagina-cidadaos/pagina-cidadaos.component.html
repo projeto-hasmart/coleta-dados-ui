@@ -287,22 +287,35 @@
         </div>
 
     </div>
-    <div id="cidadaoNaoEncontrado" *ngIf="errorBye">
+    <div class="container" id="cidadaoNaoEncontrado" *ngIf="errorBye">
         <div>
             <label id="naoEncontradoTitulo">
-        Cidadão não cadastrado
+              Não encontrado.
       </label>
             <label id="tenteNovamente">
-        Tente novamente ou cadastre um novo cidadão com esta identidade
+              Deseja incluir?
       </label>
+      <div class="row">
+      <div class="col">
             <a routerLink="/cidadaos/cadastrar">
                 <button mat-button id="novoCidadaoButtonError" (click)="newCitizen(group.value)">
-
-    <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
-    <label id="novoCidadaoLabel">NOVO CIDADÃO</label>
+    <label id="novoCidadaoLabel" style = "left:0px;">Sim</label>
 
   </button>
             </a>
+          </div>
+            <div class="col">
+            <a routerLink="/inicio">
+              <button
+                mat-button
+                id="novoCidadaoButtonError"
+                (click)="noClick()"
+              >
+                <label id="novoCidadaoLabel" style = "left:0px;">Não</label>
+              </button>
+            </a>
+          </div>
+        </div>
         </div>
     </div>
     <div id="tabela">

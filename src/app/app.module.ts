@@ -13,20 +13,20 @@ import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     ApiService,
     CidadaoServiceService,
     DispensacaoServiceService,
-    MedicaoServiceService
+    MedicaoServiceService,
   ],
   bootstrap: [AppComponent]
 })

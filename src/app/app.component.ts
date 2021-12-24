@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Medico } from './models/medico';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'HASmart';
+
+  constructor(private router: Router){
+    window.addEventListener("beforeunload", (event) => {
+      event.preventDefault();
+      event.returnValue = "Unsaved modifications";
+      return event;
+  });
+}
 }

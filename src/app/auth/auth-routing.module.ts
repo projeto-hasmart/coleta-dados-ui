@@ -5,7 +5,7 @@ import {AuthComponent} from './auth/auth.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import { AuthGuard } from './auth.guard';
-
+import { RecoverPasswordComponent } from './login/recover-password/recover-password.component';
 
 const routes: Routes = [
   {
@@ -21,7 +21,8 @@ const routes: Routes = [
     },
 
     ]
-  }
+  },
+  {path:'recuperar-senha', component:RecoverPasswordComponent}
 ];
 
 @NgModule({

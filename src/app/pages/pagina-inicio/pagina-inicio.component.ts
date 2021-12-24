@@ -9,10 +9,11 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
 import { Global } from 'src/app/models/globalConstants';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { HostListener } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { Location } from '@angular/common';
 
 export interface PeriodicElement {
   name: string;
@@ -39,12 +40,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './pagina-inicio.component.html',
   styleUrls: ['./pagina-inicio.component.scss']
 })
+
 // tslint:disable-next-line: component-class-suffix
 export class PaginaInicio implements OnInit {
+  hideModal:string;
+  optinAccept:string;
   isMobile;
   deviceInfo = null;
   innerWidth;
   innerHeight;
+  clicked = false;
   cidadaos: Cidadao[];
   apiService: ApiService;
   buscado: string;
@@ -65,6 +70,8 @@ export class PaginaInicio implements OnInit {
   uploadError;
   searchError;
   ativo = true;
+  getCidadao = 0;
+  cidadao$: Observable<Cidadao[]>;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -87,17 +94,30 @@ export class PaginaInicio implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
-  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, idk: Global, router: Router, private deviceService: DeviceDetectorService) {
+  constructor(apiService: ApiService, cidadaoService: CidadaoServiceService, idk: Global, router: Router, private deviceService: DeviceDetectorService, private location: Location) {
     this.apiService = apiService;
     this.cidadaoService = cidadaoService;
     this.idk = idk;
     this.router = router;
     this.epicFunction();
+    this.optinAccept = localStorage.getItem('accept');
   }
 
   ngOnInit() {
+    localStorage.removeItem('changePag');
+    this.hideModal = localStorage.getItem('accept');
+    this.apiService.getCidadaos().subscribe(
+      res => {
+        this.getCidadao = res.length
+      }
+    )
+    this.cidadao$ = this.apiService.getCidadaos();
     this.user = JSON.parse(localStorage.getItem('currentUser')) as Medico;
+    if(this.user == null){
+      this.router.navigate(['/']);
+    }
   }
+
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -111,6 +131,19 @@ export class PaginaInicio implements OnInit {
     const isDesktopDevice = this.deviceService.isDesktop();
   }
 
+  noClick(){
+    this.clicked = true;
+  }
+
+  onAccept(key: string, value: any){
+    localStorage.setItem(key, value);
+    return this.hideModal = 'sim';
+  }
+
+  formatinput(){
+    this.mask = '00000000000'
+  }
+
   checkIt(groupValue: string) {
     if (groupValue === 'cpf') {
       this.mask = '000.000.000-00';
@@ -118,6 +151,20 @@ export class PaginaInicio implements OnInit {
       this.mask = '00000000000';
     }
   }
+
+  searchCidadao(){
+    this.cidadaoService.getAllCidadaos(this.buscado).subscribe(cidadao => {
+      this.cidadaoService.cidadaos = cidadao as Cidadao[];
+      this.cidadaoService.selecionadoId = cidadao[0].id;
+      this.router.navigate(['/cidadaos/visualizar/' + cidadao[0].id]);
+    })
+    this.cidadaoService.getCidadaoByNome(this.buscado).subscribe(cidadao => {
+      this.cidadaoService.cidadaos = cidadao as Cidadao[];
+      this.cidadaos = cidadao as Cidadao[];
+      this.cidadaoService.selecionadoId = cidadao[0].id;
+      this.router.navigate(['/cidadaos/visualizar/' + cidadao[0].id]);
+  })
+}
 
   goToView(groupValue: string) {
     this.selecionaCidadao(this.buscado, groupValue);

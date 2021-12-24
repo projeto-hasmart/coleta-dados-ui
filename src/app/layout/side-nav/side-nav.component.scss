@@ -100,6 +100,17 @@ li span {
     width: 150px;
 }
 
+#userName:after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 154%;
+    height: 1px;
+    background: #37804B;
+    margin-left: -60%;
+    margin-top: 8%;
+}
+
 .sidebar-toggle {
     width: 180px;
 }

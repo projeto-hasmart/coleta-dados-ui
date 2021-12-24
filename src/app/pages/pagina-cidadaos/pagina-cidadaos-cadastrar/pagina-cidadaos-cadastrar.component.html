@@ -5,6 +5,18 @@
     <label id="errorLabel" *ngIf="unknownError">Um erro desconhecido aconteceu ao cadastrar o cidadão...</label>
 </section>
 <section class="content">
+  <h1 *ngIf="callModal">MODAL CHAMADA</h1>
+  <div class="modalOptin" *ngIf="callModal">
+    <h1>Termos de condição</h1>
+  <p>
+   Você aceita aceita todos os termo de condição para o uso de dados?
+  </p>
+  <button class="btn-primario" id="optinButton">Sim</button>
+  <button class="btn-secundario"  id="optinButton">Não</button>
+  </div>
+  <div class="overlay" *ngIf="callModal">
+  </div>
+  <form method="post" onsubmit="setFormSubmitting()" id="some-form">
     <div class="box box-solid box-default" id="boxInformacoes">
         <!--class="box box-solid box-default" id="boxInformacoes"-->
         <label id="informacoesPessoais">Informações Pessoais</label>
@@ -15,14 +27,19 @@
             </div>
         </div>
         <div class='row' style="margin-left: -0.5%;">
-            <div class="col-md-6" style="width: 49.5%;"> <!--datetime-local-->
-                <input type="date" placeholder="Data de Nascimento*" id="inputNascimento" [(ngModel)]="nascimento" min="1900-01-01" max="2021-10-25" name="nascimento" #inputNascimento="ngModel" [class.errorInput]="nascimento === undefined && checkEmpty" required>
+            <div class="col-md-6" style = "width: 49.5%;" > <!--datetime-local-->
+                <input type="text" placeholder="00/00/0000" onfocus="(this.type='date')" onblur="(this.type='text')" id="inputNascimento" [(ngModel)]="nascimento" min="1900-01-01" max="2021-10-25" name="nascimento" #inputNascimento="ngModel" [class.errorInput]="nascimento === undefined && checkEmpty" required>
                 <label id="errorLabel" *ngIf="nascimento === undefined && checkEmpty">O cidadão deve ter pelo menos 18 anos de idade</label>
             </div>
             <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
                 <input type="text" placeholder="Telefone* (Ex.: (85)91234-0000)" id="inputTelefone" [(ngModel)]="telefone" name="telefone" #inputTelefone="ngModel" [class.errorInput]="telefone === undefined && checkEmpty" mask="(00)00000-0000" required>
                 <label id="errorLabel" *ngIf="telefone === undefined && checkEmpty">O campo telefone é obrigatório e deve ser composto apenas por números</label>
             </div>
+            <div class="col-sm-4" style="width: 49.5%; margin-left: -0.5%;">
+              <input type="number" class="form-control input-sm" placeholder="Altura* (cm)" id="inputAltura" [(ngModel)]="altura" name="altura" #inputAltura="ngModel" [class.errorInput]="altura === undefined && checkEmpty" required>
+              <label id="errorLabel" *ngIf="altura === undefined && checkEmpty || invalidAltura">O campo altura deve estar no intervalo entre 500 e 270 centimetros</label>
+
+          </div>
         </div>
         <div class='row' style="margin-left: -0.5%;">
             <div class="col-md-6" style="width: 49.5%;">
@@ -44,12 +61,12 @@
             </div>
             <div class="col-md-6" id="genero" style="margin-top: 1.5%;width: 49.5%;margin-left: 0.5%;">
                 <label>Gênero*</label>
-
-                <div class='row' id="genero" style="margin-top: 0.5%;">
-                    <mat-radio-group id="generoRadio" [(ngModel)]="genero" name="genero" #generoRadio="ngModel" required>
-                        <mat-radio-button class="example-radio-button" *ngFor="let gender of generos" [value]="gender">{{gender}}</mat-radio-button>
-                    </mat-radio-group>
-                </div>
+                <div class='row' id="generoButton" >
+                <button mat-button [matMenuTriggerFor]="menu" style="border-style: solid;border-radius: 14%;border-color: white; background-color: white;">Selecione <mat-icon>arrow_drop_down</mat-icon></button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item *ngFor="let gender of generos" [value]="gender">{{gender}}</button>
+                    </mat-menu>
+            </div>
             </div>
         </div>
 
@@ -60,30 +77,30 @@
         <label id="informacoesEstaticasLabel">Endereço</label>
         <div class='row' style="margin-left: -0.5%;">
 
-            <div class="col-md-3">
+            <div class="col-md-3 adjustCol">
                 <input type="text" placeholder="CEP*" id="inputCep" [(ngModel)]="cep" name="cep" #inputCep="ngModel" [class.errorInput]="(cep === undefined && checkEmpty)" required mask="00000-000" (keyup)="verificaCep(cep)">
                 <label id="errorLabel" *ngIf="(cep === undefined && checkEmpty)  || (cep !== undefined && cep.length < 8 && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
             </div>
-            <div class="col-md-7" style="width: 57.5%;">
+            <div class="col-md-7 adjustCol" style="width: 57.5%;">
                 <input type="text" placeholder="Logradouro*" id="inputRua" [(ngModel)]="rua" name="rua" #inputRua="ngModel" [class.errorInput]="(rua === undefined && checkEmpty) " required>
                 <label id="errorLabel" *ngIf="(rua === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 adjustCol">
                 <input type="text" placeholder="Número*" id="inputRua" [(ngModel)]="numero" name="numero" #inputRua="ngModel" [class.errorInput]="(numero === undefined && checkEmpty)" required>
                 <label id="errorLabel" *ngIf="(numero === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
             </div>
         </div>
 
         <div class="row" style="margin-left: -0.5%;">
-            <div class="col-md-12" style="width: 99.5%;">
+            <div class="col-md-12 adjustCol" style="width: 99.5%;">
                 <input type="text" placeholder="Complemento" id="inputComplemento" [(ngModel)]="complemento" name="complemento" #inputComplemento="ngModel">
             </div>
         </div>
         <div class="row" style="margin-left: -0.5%;">
-            <div class="col-md-6" style="width: 49.5%;">
+            <div class="col-md-6 adjustCol" style="width: 49.5%;">
                 <input type="text" placeholder="Cidade*" id="inputCidade" [(ngModel)]="cidade" name="cidade" [class.errorInput]="cidade === undefined && checkEmpty" #inputCidade="ngModel" required>
             </div>
-            <div class="col-md-6" style="width: 49.5%;margin-left: 0.5%;">
+            <div class="col-md-6 adjustCol" style="width: 49.5%;margin-left: 0.5%;">
                 <input type="text" placeholder="Estado*" id="inputEstado" [(ngModel)]="estado" name="estado" [class.errorInput]="estado === undefined && checkEmpty" #inputEstado="ngModel" required>
             </div>
             <label id="errorLabel" *ngIf="(estado === undefined && checkEmpty) || (cidade === undefined && checkEmpty)">Todos os campos do Endereço são obrigatórios</label>
@@ -94,16 +111,12 @@
 
     </div>
     <div class="box box-solid box-default" id="boxEstaticas">
-        <label id="informacoesEstaticasLabel">Informações de Hipertensão Arterial</label>
+        <label id="informacoesEstaticasLabel">Informações Adicionais</label>
         <div class='row'>
-            <div class="col-sm-4">
-                <input type="number" class="form-control input-sm" placeholder="Altura* (Ex.: 1.70)" id="inputAltura" [(ngModel)]="altura" name="altura" #inputAltura="ngModel" [class.errorInput]="altura === undefined && checkEmpty" required>
-                <label id="errorLabel" *ngIf="altura === undefined && checkEmpty || invalidAltura">O campo altura deve estar no intervalo entre 0.5 e 2.7 metros</label>
 
-            </div>
             <div class="col-sm-4">
                 <mat-form-field id="diabetesDrop">
-                    <mat-label style="width: 220%;">Diabetes</mat-label>
+                    <mat-label style="width: 220%;">Diabetes <mat-icon style="float: right;">arrow_drop_down</mat-icon></mat-label>
                     <mat-select style="width: 220%;" id="inputDiabetes" [(ngModel)]="diabetes" name="diabetes" #inputDiabetes="ngModel" required>
                         <mat-option *ngFor="let diabete of diabetess" [value]="diabete.value" style="width: 220%;">
                             {{diabete.viewValue}}
@@ -114,7 +127,7 @@
             </div>
             <div class='col-sm-4'>
                 <mat-form-field id="fumanteDrop">
-                    <mat-label style="width: 220%;">Fumante</mat-label>
+                    <mat-label style="width: 220%;">Fumante <mat-icon style="float: right;">arrow_drop_down</mat-icon></mat-label>
                     <mat-select style="width: 220%;" id="inputFumante" [(ngModel)]="fumante" name="fumante" #inputFumante="ngModel" required>
                         <mat-option *ngFor="let fumante of fumantes" [value]="fumante.value" style="width: 220%;">
                             {{fumante.viewValue}}
@@ -124,58 +137,77 @@
             </div>
         </div>
         <label id="informacoesEstaticasLabel">Comorbidades</label>
+        <div [formGroup]="toppings">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4 adjustCheckBox">
                 <label id='labelBackground' style="margin-left: 2%; width: 98%;">
-              <label id="text">Doença Renal Crônica*</label>
+                    <p><mat-checkbox formControlName="checkboxRenal" (click)="onClickRenal()">Doença Renal Crônica*</mat-checkbox></p>
+              <!-- <label id="text">Doença Renal Crônica*</label>
                 <button id="buttonNoCom" [class.selectedNo]="doencaRenal === 1" (click)="doencaRenal = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-                <button id="buttonYesCom" [class.selectedYes]="doencaRenal === 2" (click)="doencaRenal = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonYesCom" [class.selectedYes]="doencaRenal === 2" (click)="doencaRenal = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button> -->
                 </label>
             </div>
             <div class="col-sm-4">
                 <label id='labelBackground'>
-            <label id="text">Insuficiência Cardíaca*</label>
+                    <p><mat-checkbox formControlName="checkboxIC" (click)="onClickIC()">Insuficiência Cardíaca*</mat-checkbox></p>
+            <!-- <label id="text">Insuficiência Cardíaca*</label>
                 <button id="buttonNoCom" [class.selectedNo]="insuficienciaCardiaca === 1" (click)="insuficienciaCardiaca = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-                <button id="buttonYesCom" [class.selectedYes]="insuficienciaCardiaca === 2" (click)="insuficienciaCardiaca = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonYesCom" [class.selectedYes]="insuficienciaCardiaca === 2" (click)="insuficienciaCardiaca = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button> -->
                 </label>
             </div>
             <div class="col-sm-4">
                 <label id='labelBackground'>
-          <label id="text">Histórico de Infarto*</label>
+                    <p><mat-checkbox formControlName="checkboxInfarto" (click)="onClickInfarto()">Histórico de Infarto*</mat-checkbox></p>
+          <!-- <label id="text">Histórico de Infarto*</label>
                 <button id="buttonNoCom" [class.selectedNo]="infarto === 1" (click)="infarto = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-                <button id="buttonYesCom" [class.selectedYes]="infarto === 2" (click)="infarto = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonYesCom" [class.selectedYes]="infarto === 2" (click)="infarto = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button> -->
                 </label>
             </div>
         </div>
         <div class="row">
 
-            <div class="col-sm-4">
+            <div class="col-sm-4 adjustCheckBox">
                 <label id='labelBackground' style="margin-left: 2%; width: 98%;">
-              <label id="text">Histórico de AVC*</label>
+                  <p><mat-checkbox formControlName="checkboxAvc" (click)="onClickAVC()">Histórico de AVC*</mat-checkbox></p>
+              <!-- <label id="text">Histórico de AVC*</label>
                 <button id="buttonNoCom" [class.selectedNo]="historicoAvc === 1" (click)="historicoAvc = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-                <button id="buttonYesCom" [class.selectedYes]="historicoAvc === 2" (click)="historicoAvc = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonYesCom" [class.selectedYes]="historicoAvc === 2" (click)="historicoAvc = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button> -->
 
                 </label>
             </div>
             <div class="col-sm-4">
                 <label id='labelBackground'>
-                  <label id="text">Doença Arterial Obstrutiva Periférica</label>
+                  <p><mat-checkbox formControlName="checkboxAop" (click)="onClickAOP()">Doença Arterial Obstrutiva Periférica</mat-checkbox></p>
+                  <!-- <label id="text">Doença Arterial Obstrutiva Periférica</label>
                 <button id="buttonNoCom" [class.selectedNo]="doencaArterial === 1" (click)="doencaArterial = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-                <button id="buttonYesCom" [class.selectedYes]="doencaArterial === 2" (click)="doencaArterial = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonYesCom" [class.selectedYes]="doencaArterial === 2" (click)="doencaArterial = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button> -->
                 </label>
             </div>
             <div class="col-sm-4">
                 <label id='labelBackground'>
-                  <label id="text">Retinopatia Hipertensiva</label>
+                  <p><mat-checkbox formControlName="checkboxRH" (click)="onClickRH()">Retinopatia Hipertensiva</mat-checkbox></p>
+                  <!-- <label id="text">Retinopatia Hipertensiva</label>
                 <button id="buttonNoCom" [class.selectedNo]="retinopatia === 1" (click)="retinopatia = 1"><img src="/assets/dist/img/X.png"><label id="buttonNoComLabel">Não</label></button>
-                <button id="buttonYesCom" [class.selectedYes]="retinopatia === 2" (click)="retinopatia = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button>
+                <button id="buttonYesCom" [class.selectedYes]="retinopatia === 2" (click)="retinopatia = 2"><img src="/assets/dist/img/V.png"><label id="buttonYesComLabel">Sim</label></button> -->
                 </label>
             </div>
         </div>
+      </div>
     </div>
     <label id="errorLabel" *ngIf="unknownError">Um erro desconhecido aconteceu ao cadastrar o cidadão...</label>
+    <div class="row">
+      <div class="col">
+        <a routerLink="/inicio">
+          <button mat-button id="cancelButton" style="margin-left: 4%;">
+            <label id="cadastraButtonLabel">Cancelar</label>
+          </button>
+        </a>
+      </div>
+      <div class="col">
     <button mat-button id="cadastraButton" data-toggle="modal" data-target="#okcidadao" class="pull-right" (click)="checkEmpt()">
-        <label id="cadastraButtonLabel">CADASTRAR CIDADÃO</label></button>
+        <label id="cadastraButtonLabel">Salvar</label></button>
+      </div>
+      </div>
     <div class="modal fade" id="okcidadao" *ngIf="valid && !errorBye">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -193,5 +225,8 @@
             </div>
         </div>
     </div>
-    
+  </form>
+
 </section>
+
+
