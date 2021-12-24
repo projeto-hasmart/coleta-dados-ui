@@ -1,3 +1,4 @@
+import { AuthGuard } from './../guard/auth.guard';
 import {NgModule, Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
@@ -52,7 +53,7 @@ import { AuthGuard } from '../auth/auth.guard';
     PaginaCidadaosComponent,
     PaginaMedicaoComponent,
     PaginaDispensacaoComponent,
-    PaginaCidadaosCadastrarComponent,
+      ,
     PaginaCidadaosVisualizarComponent,
     PaginaMedicaoSucessoComponent,
     PaginaMedicamentosComponent,
