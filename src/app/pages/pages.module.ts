@@ -52,7 +52,7 @@ import { AuthGuard } from '../auth/auth.guard';
     PaginaCidadaosComponent,
     PaginaMedicaoComponent,
     PaginaDispensacaoComponent,
-      ,
+    PaginaCidadaosCadastrarComponent  ,
     PaginaCidadaosVisualizarComponent,
     PaginaMedicaoSucessoComponent,
     PaginaMedicamentosComponent,
