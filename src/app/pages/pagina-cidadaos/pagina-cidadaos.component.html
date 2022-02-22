@@ -10,7 +10,15 @@
   </div>
 </section>
 
-<section class="content-header" *ngIf="isMobile && (innerWidth > innerHeight)">
+<section class="content-header" *ngIf="isMobile">
+  <div class="adjustHeader" style="margin-top: 11%;">
+      <h3 id="labelCidadaos" style="margin-top: -10%;">Cidadãos</h3>
+      <label id="labelVisualize" style="margin-top: -13%;">Visualize e busque cidadãos cadastrados no sistema</label>
+  </div>
+
+</section>
+
+<!-- <section class="content-header" *ngIf="isMobile && (innerWidth > innerHeight)">
     <div class="adjustHeader" style="margin-top: 11%;">
         <h3 id="labelCidadaos" style="margin-top: -10%;">Cidadãos</h3>
         <label id="labelVisualize" style="margin-top: -13%;">Visualize e busque cidadãos cadastrados no sistema</label>
@@ -22,9 +30,9 @@
   <div class="adjustHeader" >
       <h3 id="labelCidadaos" style="margin-top: -14%;">Cidadãos</h3>
       <label id="labelVisualize" style="margin-top: -9%;">Visualize e busque cidadãos cadastrados no sistema</label>
-  </div>
+  </div> -->
 
-</section>
+<!-- </section> -->
 
 <!-- <section class="content" style="margin-top: 45%;" *ngIf="isMobile && (innerWidth < innerHeight)">
   <!-- [(ngModel)]="modelName" multiple vertical="false"--

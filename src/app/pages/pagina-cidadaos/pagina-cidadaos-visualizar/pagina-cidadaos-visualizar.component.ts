@@ -66,7 +66,8 @@ export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit 
   sendingCpf: string;
   weight;
   relatorioCidadao: string;
-  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router,private deviceService: DeviceDetectorService) {
+
+  constructor(cz: CidadaoServiceService, mz: MedicaoServiceService, dz: DispensacaoServiceService, apiService: ApiService, router: Router,private deviceService: DeviceDetectorService, private datePipe: DatePipe) {
     this.cz = cz;
     this.mz = mz;
     this.dz = dz;
@@ -147,6 +148,12 @@ export class PaginaCidadaosVisualizarComponent implements OnInit, AfterViewInit 
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+
+  date: string;
+  dateTransform(){
+    this.date = this.datePipe.transform(this.oNossoCidadao.dataUltimaMedicao, 'yyyy-MM-dd h:mm:ssZZZZZ');
+    return this.date;
   }
 
   updateCz() {

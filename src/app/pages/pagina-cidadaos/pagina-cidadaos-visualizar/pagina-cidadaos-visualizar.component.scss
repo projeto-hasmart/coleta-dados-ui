@@ -676,6 +676,12 @@ th.mat-header-cell {
     margin: 3px;
 }
 
+#divInputNome{
+  @media (max-width:768px){
+    width: 49% !important;
+  }
+}
+
 #inputNome {
     margin-top: 1.5%;
     bottom: 0%;
@@ -1357,4 +1363,11 @@ input {
 
 #buttonNoCom.selectedNo {
     background-color: #C32240;
+}
+
+.adjustWidth{
+  @media (max-width:991px) {
+    width: 56.5%;
+    margin-top: 2%;
+  }
 }

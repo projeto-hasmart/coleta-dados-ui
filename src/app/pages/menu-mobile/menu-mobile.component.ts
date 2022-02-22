@@ -37,6 +37,15 @@ export class MenuMobileComponent implements OnInit {
       console.log('aqui');
     }
   }
+
+  openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+
   @HostListener('window:resize', ['$event'])
 onResize(event) {
   this.innerWidth = window.innerWidth;
