@@ -96,7 +96,7 @@
                                     <mat-card-title id="cardTitle">Medição</mat-card-title>
                                 </div>
                                 <div class="row">
-                                    <label id="ultimaMedicao" *ngIf="oNossoCidadao.medicoes[0] !== undefined">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                                    <label id="ultimaMedicao" *ngIf="oNossoCidadao.medicoes[0] !== undefined">Última medição: {{dateTransform()}}</label>
                                     <label id="semMedicao" *ngIf="oNossoCidadao.medicoes[0] === undefined">O Cidadão não tem medições cadastradas</label>
                                 </div>
                                 <div class="row">
@@ -118,7 +118,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <mat-card-title id="cardTitleNao">Medição</mat-card-title>
-                                <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                                <label id="ultimaMedicaoNao">Última medição: {{dateTransform()}}</label>
                                 <label id="autorizacaoMedicaoNao">O paciente não está autorizado a realizar uma medição de pressão arterial neste período.</label>
                                 <label id="autorizacaoMedicaoNao">Próxima medição está autorizada para {{oNossoCidadao.dataProximaMedicao}}</label>
                             </div>
@@ -273,7 +273,7 @@
                             <label id="obrigatorio">* Campos obrigatórios</label>
                             <div class="row">
                                 <div class="row" style="margin-left: 0.5%;">
-                                    <div class="col-md-12" style="width: 98.5%;">
+                                    <div class="col-md-12" id="divInputNome" style="width: 98.5%;">
                                         <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="oNossoCidadao.nome">
                                     </div>
                                 </div>
@@ -312,12 +312,12 @@
                             <label id="informacoesEstaticasLabel">Endereço</label>
                             <div class="row" id='estaticas'>
                                 <div class="row" style="margin-left: 0.5%;">
-                                    <div class="col-md-3"> <input type="text" class="input-control" placeholder="CEP*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cep" mask="00000-000" (keyup)="verificaCep(oNossoCidadao.dadosPessoais.endereco.cep)">
+                                    <div class="col-md-3 adjustWidth"> <input type="text" class="input-control" placeholder="CEP*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cep" mask="00000-000" (keyup)="verificaCep(oNossoCidadao.dadosPessoais.endereco.cep)">
                                     </div>
                                     <div class="col-md-7" style="width: 56.5%;">
                                         <input type="text" placeholder="Logradouro*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.rua" name="rua" #inputRua="ngModel" required>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 adjustWidth">
                                         <input type="text" placeholder="Número*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.numero" name="numero" #inputRua="ngModel" required>
                                     </div>
 
@@ -662,6 +662,7 @@
 </section>
 
 <section class="content" *ngIf="(cidadao$ | async) && isMobile && (innerHeight<innerWidth)">
+  <!-- Horizontal -->
   <div class="container">
       <div class="box box-default" id="box">
           <label id="autorizacoesLabel">Autorizações</label>
@@ -677,7 +678,7 @@
                                   <mat-card-title id="cardTitle">Medição</mat-card-title>
                               </div>
                               <div class="row">
-                                  <label id="ultimaMedicao" *ngIf="oNossoCidadao.medicoes[0] !== undefined">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                                  <label id="ultimaMedicao" *ngIf="oNossoCidadao.medicoes[0] !== undefined">Última medição: {{dateTransform()}}</label>
                                   <label id="semMedicao" *ngIf="oNossoCidadao.medicoes[0] === undefined">O Cidadão não tem medições cadastradas</label>
                               </div>
                               <div class="row">
@@ -700,7 +701,7 @@
                           </div>
                           <div class="col-sm-9">
                               <mat-card-title id="cardTitleNao">Medição</mat-card-title>
-                              <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                              <label id="ultimaMedicaoNao">Última medição: {{dateTransform()}}</label>
                               <label id="autorizacaoMedicaoNao">O paciente não está autorizado a realizar uma medição de pressão arterial neste período.</label>
                               <label id="autorizacaoMedicaoNao">Próxima medição está autorizada para {{oNossoCidadao.dataProximaMedicao}}</label>
                           </div>
@@ -855,7 +856,7 @@
                           <label id="obrigatorio">* Campos obrigatórios</label>
                           <div class="row">
                               <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-12" style="width: 98.5%;">
+                                  <div class="col-md-12" id="divInputNome" style="width: 98.5%;">
                                       <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="oNossoCidadao.nome">
                                   </div>
                               </div>
@@ -894,18 +895,18 @@
                           <label id="informacoesEstaticasLabel">Endereço</label>
                           <div class="row" id='estaticas'>
                               <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-3"> <input type="text" class="input-control" placeholder="CEP*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cep" mask="00000-000" (keyup)="verificaCep(oNossoCidadao.dadosPessoais.endereco.cep)">
+                                  <div class="col-md-3 adjustWidth"> <input type="text" class="input-control" placeholder="CEP*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cep" mask="00000-000" (keyup)="verificaCep(oNossoCidadao.dadosPessoais.endereco.cep)">
                                   </div>
-                                  <div class="col-md-7" style="width: 56.5%;">
+                                  <div class="col-md-7" style="width: 56.5%; margin-top: 2%; margin-left: 2%;">
                                       <input type="text" placeholder="Logradouro*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.rua" name="rua" #inputRua="ngModel" required>
                                   </div>
-                                  <div class="col-md-2">
+                                  <div class="col-md-2 adjustWidth" style="margin-left: 2%;">
                                       <input type="text" placeholder="Número*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.numero" name="numero" #inputRua="ngModel" required>
                                   </div>
 
                               </div>
                               <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-12" style="width: 98.5%;">
+                                  <div class="col-md-12" style="width: 56.5%;">
                                       <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.complemento">
 
                                   </div>
@@ -916,7 +917,7 @@
                                       <input type="text" class="input-control" placeholder="Cidade*" id="inputCidade" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cidade">
 
                                   </div>
-                                  <div class="col-md-6" style="width: 48.75%;margin-left: 0.5%;">
+                                  <div class="col-md-6" style="width: 48.75%;margin-left: 2.5%;">
                                       <input type="text" class="input-control" placeholder="Estado*" id="inputEstado" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.estado">
 
                                   </div>
@@ -1249,7 +1250,7 @@
           <label id="autorizacoesLabel">Autorizações</label>
           <div class="row">
               <div class='col-md-12'>
-                  <mat-card id="medicaoCard" *ngIf="oNossoCidadao.podeRealizarMedicao">
+                  <mat-card id="medicaoCard" style="padding: 25px;" *ngIf="oNossoCidadao.podeRealizarMedicao">
                       <div class='row'>
                           <div class="col-md-2">
                               <img src="assets/dist/img/logo_maior.png" id="cardImg" style="width: 13%; margin-left: 79%; margin-top: -1%;">
@@ -1259,7 +1260,7 @@
                                   <mat-card-title id="cardTitle">Medição</mat-card-title>
                               </div>
                               <div class="row">
-                                  <label id="ultimaMedicao" *ngIf="oNossoCidadao.medicoes[0] !== undefined">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                                  <label id="ultimaMedicao" *ngIf="oNossoCidadao.medicoes[0] !== undefined">Última medição: {{dateTransform()}}</label>
                                   <label id="semMedicao" *ngIf="oNossoCidadao.medicoes[0] === undefined">O Cidadão não tem medições cadastradas</label>
                               </div>
                               <div class="row">
@@ -1282,7 +1283,7 @@
                           </div>
                           <div class="col-sm-9">
                               <mat-card-title id="cardTitleNao">Medição</mat-card-title>
-                              <label id="ultimaMedicaoNao">Última medição: {{oNossoCidadao.dataUltimaMedicao}}</label>
+                              <label id="ultimaMedicaoNao">Última medição: {{dateTransform()}}</label>
                               <label id="autorizacaoMedicaoNao">O paciente não está autorizado a realizar uma medição de pressão arterial neste período.</label>
                               <label id="autorizacaoMedicaoNao">Próxima medição está autorizada para {{oNossoCidadao.dataProximaMedicao}}</label>
                           </div>
@@ -1437,7 +1438,7 @@
                           <label id="obrigatorio">* Campos obrigatórios</label>
                           <div class="row">
                               <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-12" style="width: 98.5%;">
+                                  <div class="col-md-12" id="divInputNome" style="width: 98.5%;">
                                       <input type="text" class="input-control" placeholder="Nome Completo*" id="inputNome" [(ngModel)]="oNossoCidadao.nome">
                                   </div>
                               </div>
@@ -1475,19 +1476,19 @@
                           </div>
                           <label id="informacoesEstaticasLabel">Endereço</label>
                           <div class="row" id='estaticas'>
-                              <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-3"> <input type="text" class="input-control" placeholder="CEP*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cep" mask="00000-000" (keyup)="verificaCep(oNossoCidadao.dadosPessoais.endereco.cep)">
+                              <div class="row adjustWidth" style="margin-left: 2.5%;">
+                                  <div class="col-md-3" style="margin-left:-2%"> <input type="text" class="input-control" placeholder="CEP*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.cep" mask="00000-000" (keyup)="verificaCep(oNossoCidadao.dadosPessoais.endereco.cep)">
                                   </div>
-                                  <div class="col-md-7" style="width: 56.5%;">
+                                  <div class="col-md-7" style="width: 105%; margin-top: 2%;">
                                       <input type="text" placeholder="Logradouro*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.rua" name="rua" #inputRua="ngModel" required>
                                   </div>
-                                  <div class="col-md-2">
+                                  <div class="col-md-2" style="width: 105%; margin-top: 2%;">
                                       <input type="text" placeholder="Número*" id="inputRua" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.numero" name="numero" #inputRua="ngModel" required>
                                   </div>
 
                               </div>
                               <div class="row" style="margin-left: 0.5%;">
-                                  <div class="col-md-12" style="width: 98.5%;">
+                                  <div class="col-md-12" style="width: 56.5%;">
                                       <input type="text" class="input-control" placeholder="Complemento*" id="inputComplemento" [(ngModel)]="oNossoCidadao.dadosPessoais.endereco.complemento">
 
                                   </div>
@@ -1505,10 +1506,17 @@
                               </div>
 
                           </div>
-                          <label id="informacoesEstaticasLabel">Informações de Hipertensão Arterial</label>
+                          <label id="informacoesEstaticasLabel" style="margin-top: 5%;">Informações de Hipertensão Arterial</label>
                           <div class="row" id='estaticas'>
-                              <div class="col-sm-4">
-                                  <input type="text" class="form-control input-sm" placeholder="Altura" id="inputAltura" [(ngModel)]="oNossoCidadao.indicadorRiscoHAS.altura">
+                              <div class="col-sm-4" style="width: 10%;">
+                                  <input type="text" class="form-control input-sm" placeholder="Altura" style="margin-top: 10px;
+                                  margin-left: 2%;
+                                  top: 55px;
+                                  min-width: 300px;
+                                  width: 56.5%;
+                                  height: 56px;
+                                  font-size: 14px;
+                                  font-family: Roboto;" [(ngModel)]="oNossoCidadao.indicadorRiscoHAS.altura">
 
 
                               </div>
@@ -1585,8 +1593,18 @@
                               </div>
                           </div>
                           <div id="buttons-modal">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col">
                               <button mat-button id="cancel" data-dismiss="modal"><label id="cancellabel">CANCELAR</label></button>
-                              <button mat-button id="update" (click)="updateCz()" data-dismiss="modal"><label id="updatelabel">ATUALIZAR</label></button>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class = "col">
+                              <button mat-button id="update" (click)="updateCz()" data-dismiss="modal" style="margin-left: 4px;"><label id="updatelabel">ATUALIZAR</label></button>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                       </div>
                   </div>

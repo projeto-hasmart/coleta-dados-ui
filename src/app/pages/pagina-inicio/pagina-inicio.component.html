@@ -10,17 +10,56 @@
 </head>
 
 <section class="content-header">
+  <div class="container">
+  <div class="row">
   <div class="adjust-header">
-    <h3 id="labelBuscaCidadao">Busca de Cidadaos</h3>
-    <h3 id="labelBemvindo">Olá, {{ user.nome }}!</h3>
-    <label id="labelBemvindoo">Bem-vindo de volta ao sistema</label>
-    <label id="labeCidadaoCadastrados" *ngIf="(cidadao$ | async)">Atualmente existem : {{getCidadao}} cidadões cadastrados</label>
+    <div class="col"> <h3 id="labelBuscaCidadao">Busca de Cidadãos</h3></div>
+    <div class="col"><h3 id="labelBemvindo">Olá, {{ user.nome }}!</h3></div>
+    <div class="col"><label id="labelBemvindoo">Bem-vindo de volta ao sistema</label></div>
+    <div class="col"><label id="labeCidadaoCadastrados" *ngIf="(cidadao$ | async)">Atualmente existem : {{getCidadao}} cidadãos cadastrados</label></div>
   </div>
+  </div>
+</div>
 </section>
 
 <!-- Main content -->
 <section class="content">
-  <div class="modalOptin" *ngIf="hideModal!='sim'">
+
+  <!-- Modal Sair -->
+<!-- <div class="modal fade" id="logoutmodal">
+  <div class="modal-dialog modal-sm">
+      <div class="modal-content"> -->
+
+          <!-- Modal Header -->
+          <!-- <div class="modal-header">
+              <h4 class="modal-title" id="titleModal">Termos De Condição</h4>
+          </div> -->
+
+          <!-- Modal body -->
+          <!-- <div class="modal-body">
+              <label id="modalText">Você aceita aceita todos os termo de condição para o uso de dados?</label>
+
+          </div>
+          <div class="modal-footer">
+              <button mat-button id="naobutton" routerLink='/' id="optinButton"><label id="naolabel">NÃO</label></button>
+              <button mat-button id="simbutton" (click)="onAccept('accept','sim');" id="optinButton"><label id="simlabel">SIM</label></button>
+          </div>
+      </div>
+  </div>
+</div> -->
+
+ <!-- Modal termos de condição -->
+  <div class="modalOptin" *ngIf="hideModal!='sim' && isMobile">
+    <h1 style="font-family: Roboto;">Termos de condição</h1>
+  <p style="font-family: Roboto;">
+   Você aceita aceita todos os termo de condição para o uso de dados?
+  </p>
+  <button (click)="onAccept('accept','sim');" class="btn-primario" id="optinButton">Sim</button>
+  <button class="btn-secundario" routerLink='/' id="optinButton">Não</button>
+  </div>
+  <div class="overlay" *ngIf="hideModal!='sim' && isMobile"></div>
+
+  <div class="modalOptin" style="position: fixed;" *ngIf="hideModal!='sim' && !isMobile">
     <h1>Termos de condição</h1>
   <p>
    Você aceita aceita todos os termo de condição para o uso de dados?
@@ -28,8 +67,13 @@
   <button (click)="onAccept('accept','sim');" class="btn-primario" id="optinButton">Sim</button>
   <button class="btn-secundario" routerLink='/' id="optinButton">Não</button>
   </div>
-  <div class="overlay" *ngIf="hideModal!='sim'"></div>
+  <div class="overlay" *ngIf="hideModal!='sim' && !isMobile"></div>
+  <!-- end modal -->
+
  <div id="searchboxtoggle" class="row">
+
+
+
     <!-- [(ngModel)]="modelName" multiple vertical="false"-->
 
     <!-- <mat-button-toggle-group
@@ -44,7 +88,7 @@
       <input
         type="text"
         class="searchTerm"
-        placeholder="Buscar cidadão"
+        placeholder="Buscar cidadão (CPF, RG OU NOME)"
         id="searchBox"
         [(ngModel)]="buscado"
         required
