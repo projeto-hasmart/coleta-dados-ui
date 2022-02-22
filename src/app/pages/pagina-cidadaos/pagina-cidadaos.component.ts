@@ -49,7 +49,7 @@ export class PaginaCidadaosComponent implements OnInit {
   ngOnInit() {
     localStorage.removeItem('changePag');
     // tslint:disable-next-line: radix
-    if (localStorage.getItem('citizen') !== undefined) {
+    if (localStorage.getItem('citizen') !== undefined && localStorage.getItem('citizen') !== null) {
       // tslint:disable-next-line: radix
       this.cidadaoService.jaTemosCidadao(localStorage.getItem('citizen'));
     }

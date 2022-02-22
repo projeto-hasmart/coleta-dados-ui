@@ -3,15 +3,21 @@
 </head>
 
 <div class='content'>
-  <div class="container-apresentation">
+  <!-- <div class="container">
     <div class="elementsA">
       <div class="logoA" style="margin-left: 85%;width: 200%;">
       <img src="assets/dist/img/logo.png" >
       <label >Hasmart</label>
       </div>
-      <p style="width: 200%; margin-top: 15%;"> Projeto que tem como objetivo definir uma metodologia de coleta e análise de dados da população cearense hipertensa para um estudo do comportamento e das necessidades dos pacientes para adesão ao tratamento. </p>
+      <p style="width: 200%; margin-top: 15%;"> Sobre </p>
     </div>
-  </div>
+  </div> -->
+  <!-- <div class="container text-center">
+  <a href="index.html" class="navbar-brand">
+    <img src="assets/dist/img/logo.png" height="75">
+    <label >Hasmart</label>
+  </a>
+</div> -->
   <!-- <div class="container">
     <div class="row">
       <img src="assets/dist/img/logo.png" >
@@ -21,6 +27,12 @@
   </div> -->
     <!-- /.login-logo -->
     <mat-card id="material-card">
+      <mat-card-content>
+        <div class="container" style="margin-left: 30%;">
+        <img src="assets/dist/img/logo.png" >
+        <label >Hasmart</label>
+      </div>
+      </mat-card-content>
         <mat-card-content>
             <div class="form-group has-feedback">
                 <input class="form-control" placeholder="Usuário" type="email" id="emailLabel" [(ngModel)]="user" [(ngModel)]="email" (keyup.enter)="createRole()">
@@ -43,9 +55,11 @@
 
 
         <mat-card-footer>
-
             <a href="#" routerLink='recuperar-senha' id="forgotPassword">Esqueceu sua senha?</a><br>
         </mat-card-footer>
+        <mat-card-footer>
+          <a href="https://www.unifor.br/web/pesquisa-inovacao/hasmart" target="_blank" rel="noopener noreferrer" id="forgotPassword" style="margin-left: 10%; margin-top: 3%;"> <mat-icon>contact_support</mat-icon> Sobre nós</a><br>
+      </mat-card-footer>
     </mat-card>
 
     <!-- /.login-box-body -->
