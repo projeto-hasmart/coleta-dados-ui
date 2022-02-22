@@ -12,6 +12,7 @@ import { MedicaoServiceService } from 'src/app/services/medicao/medicao-service.
 import { DatePipe } from '@angular/common';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
 
 let ELEMENT_DATA: RelatorioOpiniao[] = [
 ];
@@ -21,16 +22,22 @@ let ELEMENT_DATA: RelatorioOpiniao[] = [
   templateUrl: './relato.component.html',
   styleUrls: ['./relato.component.scss']
 })
-export class RelatoComponent implements OnInit {
+export class RelatoComponent implements OnInit{
 // tslint:disable-next-line: no-output-native
 @Output() close = new EventEmitter<boolean>();
 @ViewChild('closeModalBtn', {static: false}) closeModalBtn: ElementRef;
+  date: Date;
 
   constructor(private cz: CidadaoServiceService, private mz: MedicaoServiceService, private apiService: ApiService,
     private router: Router,
     private rz: RelatoService,
     private datePipe: DatePipe,
     private deviceService: DeviceDetectorService) {
+      //this.definirRelatorios();
+      // if(localStorage.getItem('value') == 'ok'){
+      //   this.definirRelatorios();
+      // } else {this.definirRelatorios();}
+
       this.epicFunction();
    }
   buscadoNome: string;
@@ -128,7 +135,10 @@ export class RelatoComponent implements OnInit {
   // }
   ngOnInit() {
     localStorage.removeItem('changePag');
-    this.definirRelatorios();
+    localStorage.setItem('value','ok');
+    if(localStorage.getItem('value') == 'ok'){
+      this.definirRelatorios();
+    } else {this.definirRelatorios();}
     if (localStorage.getItem('buscado') !== null && localStorage.getItem('buscado') !== undefined &&
         localStorage.getItem('buscado') !== ''  ) {
       this.selecionaCidadao(localStorage.getItem('buscado'));
@@ -233,22 +243,17 @@ cadastraOuAtualizaRelato() {
       break;
     }
   }
-  this.relatoAtual.dataRelatorio = '';
-  // tslint:disable-next-line: prefer-for-of
-  if (this.dataRelatorio.length === 8) {
-    for (let i = 0; i < this.dataRelatorio.length; i++) {
-      if (i === 2 || i === 4) {
-        this.relatoAtual.dataRelatorio += ('/' + this.dataRelatorio[i]);
-      } else {
-        this.relatoAtual.dataRelatorio += this.dataRelatorio[i];
-      }
+
+    if(this.dataRelatorio !== undefined){
+      this.relatoAtual.dataRelatorio = this.datePipe.transform(this.dataRelatorio, 'yyyy-MM-dd h:mm:ssZZZZZ');
     }
-  } else {
-    this.checked = true;
-    this.dateIssue = true;
+    else{
     this.valid = false;
     this.errorBye = true;
-  }
+    this.checked = true;
+    this.dateIssue = true;
+    }
+
   if (this.relatoAtual.id !== undefined && this.relatoAtual.id  !== '' && this.relatoAtual.id  !== null) {
     this.relatoAtualizadoCriado =  {
       relatorioCidadao: this.relatorio,
@@ -320,10 +325,14 @@ relatorioDe(id: string) {
         if (rel.id === id) {
         this.editing = true;
         this.relatoAtual = rel;
-        this.dataRelatorio = rel.dataRelatorio;
+        this.date = new Date(this.dataRelatorio);
+        let timeZoneOffset = moment(this.dataRelatorio).format('Z');
+        let localTime = moment.utc(this.dataRelatorio).utcOffset(timeZoneOffset).format("LLLL");
+        localTime = rel.dataRelatorio;
         this.relatorio = rel.relatorioCidadao;
         this.success = rel.success;
         this.relator = rel.relatorNome;
+        this.hour = rel.horaRelatorio;
         switch (rel.tipoContato) {
           case 1: {
             this.tipoContato = 'WhatsApp';
