@@ -295,15 +295,25 @@
         </div>
 
     </div>
-    <div class="container" id="cidadaoNaoEncontrado" *ngIf="errorBye">
-        <div>
+    <div class="container" id="cidadaoNaoEncontrado" style="margin-left: -16%" *ngIf="errorBye && isMobile">
+        <div class="row">
+          <div class="col" style="padding: 10px;">
+            <label id="naoEncontradoTitulo" style="margin-left: 29%;">Não</label>
             <label id="naoEncontradoTitulo">
-              Não encontrado.
+              encontrado.
       </label>
+    </div>
+    <!-- <div class="col" style="margin-left: 4%">
             <label id="tenteNovamente">
               Deseja incluir?
       </label>
-      <div class="row">
+    </div> -->
+      <div class="row" style="margin-left: -19%; padding: 10px;">
+        <div class="col" style="text-align: center;">
+          <label id="tenteNovamente">
+            Deseja incluir?
+    </label>
+  </div>
       <div class="col">
             <a routerLink="/cidadaos/cadastrar">
                 <button mat-button id="novoCidadaoButtonError" (click)="newCitizen(group.value)">
@@ -326,6 +336,44 @@
         </div>
         </div>
     </div>
+
+    <div class="container" id="cidadaoNaoEncontrado" *ngIf="errorBye && !isMobile">
+      <div class="row">
+        <div class="col" >
+          <label id="naoEncontradoTitulo">Não</label>
+          <label id="naoEncontradoTitulo">
+            encontrado.
+    </label>
+  </div>
+  <div class="col">
+          <label id="tenteNovamente">
+            Deseja incluir?
+    </label>
+  </div>
+    <div class="row" >
+    <div class="col">
+          <a routerLink="/cidadaos/cadastrar">
+              <button mat-button id="novoCidadaoButtonError" (click)="newCitizen(group.value)">
+  <label id="novoCidadaoLabel" style = "left:0px;">Sim</label>
+
+</button>
+          </a>
+        </div>
+          <div class="col">
+          <a routerLink="/inicio">
+            <button
+              mat-button
+              id="novoCidadaoButtonError"
+              (click)="noClick()"
+            >
+              <label id="novoCidadaoLabel" style = "left:0px;">Não</label>
+            </button>
+          </a>
+        </div>
+      </div>
+      </div>
+  </div>
+
     <div id="tabela">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 

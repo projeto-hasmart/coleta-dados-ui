@@ -1,6 +1,6 @@
 <section class="content-header"  *ngIf="isMobile">
   <div id="divtitle">
-    <label id="labelNome" style="font-size: 187%;">Cadastro de Relatos</label>
+    <label id="labelNome" style="font-size: 187%;">Cadastro de Registros</label>
     <label id="labelVisualize" style="font-size: 98%;"
       >Pesquise com o código do paciente para
       consultar registros ou cadastrar um novo registro</label
@@ -10,7 +10,7 @@
 
 <section class="content-header" *ngIf="!isMobile">
   <div id="divtitle">
-    <label id="labelNome">Cadastro de Relatos</label>
+    <label id="labelNome">Cadastro de Registros</label>
     <label id="labelVisualize"
       >Pesquise com o código do paciente para consultar registros ou cadastrar um novo registro</label
     >
@@ -684,7 +684,7 @@
                                       <input *ngIf="labelChange" type="datetime-local" class="input-control" placeholder="Data e Hora*" id="inputNascimento" [class.errorInput]="(dataRelatorio === undefined && checked)
                                         ||  (dataRelatorio !== undefined   && checked)
                                         || (dataRelatorio !== undefined && !valid   && checked)" [(ngModel)]="dataRelatorio" required>
-                                        <input *ngIf="!labelChange" type="datetime-local" class="input-control" placeholder="Data do relato*" id="inputNascimento"  [(ngModel)]="dataRelatorio" required readonly>
+                                        <input *ngIf="!labelChange" type="datetime-local" class="input-control" placeholder="Data do relato*" id="inputNascimento"  [(ngModel)]="relatoAtual.dataRelatorio" required readonly>
                                     <label id="errorLabel" style="padding: 10px;" *ngIf="(dataRelatorio === undefined && checked)  || (dataRelatorio !== undefined &&  checked)">Verifique que a data está no formato DD/MM/AAAA Hrs:Min.</label>
                                         <!-- <label id="errorLabel" style="padding: 10px;" >Verifique que a data está no formato DD/MM/AAAA HH:MM. e é válida.</label> -->
                                     </div>
@@ -712,60 +712,57 @@
 
       <div class="tipoRelato" style="margin-top: 1%; width: 97%; margin-left:12.5%">
         <label id="informacoesPessoais" style="font-size: 16px; margin-left: -4%;">Tipo de Relato</label>
-       <mat-radio-group id="contatoRadio" *ngIf="!editing" [(ngModel)]="tipoContato" name="tipoContatoRadio" required>
-        <!-- <mat-checkbox class="example-radio-button" *ngFor="let cont of contatos"  name="tipoContatoRadio"[value]="cont" style="margin-left:5%">
-          <div class="row">
-          <div class="col-md-8">{{cont[0]}}</div></div>
-        </mat-checkbox> -->
+       <mat-radio-group id="contatoRadio" [(ngModel)]="tipoContato" name="tipoContatoRadio" required>
         <div class="row">
           <div class="col-sm-4">
-          <mat-checkbox class="example-radio-button" name="tipoContatoRadio" >
+          <mat-checkbox class="example-radio-button" name="tipoContatoRadio" [value]="contatos[0]">
           {{contatos[0]}}
         </mat-checkbox>
         </div>
         <div class="col-sm-4">
-        <mat-checkbox class="example-radio-button" name="tipoContatoRadio">
+        <mat-checkbox class="example-radio-button" name="tipoContatoRadio" [value]="contatos[1]">
         {{contatos[1]}}
       </mat-checkbox>
     </div>
     <div class="col-sm-4">
-      <mat-checkbox class="example-radio-button" name="tipoContatoRadio" >
+      <mat-checkbox class="example-radio-button" name="tipoContatoRadio" [value]="contatos[2]">
       {{contatos[2]}}
     </mat-checkbox>
   </div>
       </div>
       <div class="row">
     <div class="col-sm-4">
-      <mat-checkbox class="example-radio-button" name="tipoContatoRadio" >
+      <mat-checkbox class="example-radio-button" name="tipoContatoRadio" [value]="contatos[3]">
       {{contatos[3]}}
     </mat-checkbox>
   </div>
   <div class="col-sm-4">
-    <mat-checkbox class="example-radio-button" name="tipoContatoRadio" >
+    <mat-checkbox class="example-radio-button" name="tipoContatoRadio" [value]="contatos[4]">
     {{contatos[4]}}
   </mat-checkbox>
 </div>
 <div class="col-sm-4">
-  <mat-checkbox class="example-radio-button" name="tipoContatoRadio" >
+  <mat-checkbox class="example-radio-button" name="tipoContatoRadio" [value]="contatos[5]">
   {{contatos[5]}}
 </mat-checkbox>
 </div>
     </div>
     <div class="row">
     <div class="col-sm-4">
-      <mat-checkbox class="example-radio-button" name="tipoContatoRadio" >
+      <mat-checkbox class="example-radio-button" name="tipoContatoRadio" [value]="contatos[6]">
       {{contatos[6]}}
     </mat-checkbox>
+
   </div>
     </div>
         </mat-radio-group>
 
-        <mat-radio-group id="contatoRadio" *ngIf="editing" [(ngModel)]="tipoContato" name="tipoContatoRadio" required>
+        <!-- <mat-radio-group id="contatoRadio" *ngIf="editing" [(ngModel)]="tipoContato" name="tipoContatoRadio" required>
           <mat-checkbox class="example-radio-button" *ngFor="let cont of contatos"  name="tipoContatoRadio"[value]="cont" style="margin-left:5%">
             <div class="row">
-            <div class="col-md-8">{{cont}}</div></div>
+            <div class="col-sm-4">{{cont}}</div></div>
           </mat-checkbox>
-          </mat-radio-group>
+          </mat-radio-group> -->
       </div>
       <div style="width: 97%; margin-left:1.5%">
         <label id="informacoesPessoais" style="font-size: 16px;">Relato</label>
@@ -1007,12 +1004,12 @@
                                     <input *ngIf="labelChange" type="datetime-local" class="input-control" placeholder="Data e Hora*" id="inputNascimento" [class.errorInput]="(dataRelatorio === undefined && checked)
                                     ||  (dataRelatorio !== undefined   && checked)
                                     || (dataRelatorio !== undefined && !valid   && checked)" [(ngModel)]="dataRelatorio" required>
-                                    <input *ngIf="!labelChange" type="datetime-local" class="input-control" placeholder="Data do relato*" id="inputNascimento"  [(ngModel)]="dataRelatorio" required readonly>
+                                    <input *ngIf="!labelChange" type="datetime-local" class="input-control" placeholder="Data do relato*" id="inputNascimento"  [(ngModel)]="relatoAtual.dataRelatorio" required readonly>
                                 <label id="errorLabel" style="padding: 10px;" *ngIf="(dataRelatorio === undefined && checked)  || (dataRelatorio !== undefined &&  checked)">Verifique que a data está no formato DD/MM/AAAA Hrs:Min.</label>
                                     <!-- <label id="errorLabel" style="padding: 10px;" >Verifique que a data está no formato DD/MM/AAAA HH:MM. e é válida.</label> -->
                                   </div>
                                   <div class="col-md-6" style="width: 49%;margin-left: 0.5%;margin-top:3%;box-sizing: border-box;">
-                                      <div style="width:100%;display:inline-block;background-color:white; heigth:56px;"><label id="result">O contato foi um sucesso</label><mat-slide-toggle style="margin-left:0.5%" [(ngModel)]="success"></mat-slide-toggle></div>
+                                      <div style="width:100%;display:inline-block;background-color:white; height:56px;"><label id="result">O contato foi um sucesso</label><mat-slide-toggle style="margin-left:0.5%" [(ngModel)]="success"></mat-slide-toggle></div>
                                   </div>
       </div>
 
