@@ -13,10 +13,29 @@
   <div class="container">
   <div class="row">
   <div class="adjust-header">
-    <div class="col"> <h3 id="labelBuscaCidadao">Busca de Cidadãos</h3></div>
-    <div class="col"><h3 id="labelBemvindo">Olá, {{ user.nome }}!</h3></div>
-    <div class="col"><label id="labelBemvindoo">Bem-vindo de volta ao sistema</label></div>
-    <div class="col"><label id="labeCidadaoCadastrados" *ngIf="(cidadao$ | async)">Atualmente existem : {{getCidadao}} cidadãos cadastrados</label></div>
+    <div class="col-md-6"> <h3 id="labelBuscaCidadao">Busca de Cidadãos</h3> <label id="labeCidadaoCadastrados" style="margin-top: 7%;" *ngIf="(cidadao$ | async)">Atualmente existem : {{getCidadao}} cidadãos cadastrados</label></div>
+    <div class="col-md-6"><div id="searchboxtoggle">
+      <div class="search-bar shadow p-3 mb-5 bg-white rounded" style="margin-top: 0%;">
+        <input
+          type="text"
+          class="searchTerm"
+          placeholder="Buscar cidadão (CPF, RG OU NOME)"
+          id="searchBox"
+          [(ngModel)]="buscado"
+          required
+
+        />
+        <button
+          type="submit"
+          class="searchButton"
+          id="searchButton"
+          placeholder=""
+          (click)="searchCidadao()"
+        >
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+      </div></div>
   </div>
   </div>
 </div>
@@ -27,8 +46,6 @@
   <div class="row">
   <div class="adjust-header">
     <div class="col"> <h3 id="labelBuscaCidadao">Busca de Cidadãos</h3></div>
-    <div class="col"><h3 id="labelBemvindo">Olá, {{ user.nome }}!</h3></div>
-    <div class="col"><label id="labelBemvindoo">Bem-vindo de volta ao sistema</label></div>
     <div class="col"><label id="labeCidadaoCadastrados" *ngIf="(cidadao$ | async)">Atualmente existem : {{getCidadao}} cidadãos cadastrados</label></div>
   </div>
   </div>
@@ -81,11 +98,27 @@
   <button class="btn-secundario" routerLink='/' id="optinButton">Não</button>
   </div>
   <div class="overlay" *ngIf="hideModal!='sim' && !isMobile"></div>
+
+  <!-- Modal Bem vindo -->
+  <div class="modalOptin2" *ngIf="welcomeModal == true && isMobile">
+    <h1 style="font-family: Roboto;">Olá, {{user.nome}} </h1>
+  <p style="font-family: Roboto;">
+   Bem vindo de volta ao sistema!
+  </p>
+  <button (click)="onOK();" class="btn-primario" id="optinButton">OK</button>
+  </div>
+  <div class="overlay" *ngIf="welcomeModal == true && isMobile"></div>
+
+  <div class="modalOptin2" style="position: fixed;" *ngIf="welcomeModal == true && !isMobile">
+    <h1>Olá, {{user.nome}} </h1>
+  <p>
+   Bem vindo de volta ao sistema! </p>
+  <button (click)="onOK();" class="btn-primario" id="optinButton">OK</button>
+  </div>
+  <div class="overlay" *ngIf="welcomeModal == true && !isMobile"></div>
+
+
   <!-- end modal -->
-
- <div id="searchboxtoggle" class="row">
-
-
 
     <!-- [(ngModel)]="modelName" multiple vertical="false"-->
 
@@ -97,7 +130,9 @@
       <mat-button-toggle value="cpf" id="togglebutton"> CPF </mat-button-toggle>
       <mat-button-toggle value="rg" id="togglebutton"> RG </mat-button-toggle>
     </mat-button-toggle-group> -->
-    <div class="search-bar shadow p-3 mb-5 bg-white rounded">
+
+    <div id="searchboxtoggle" class="row" *ngIf="isMobile">
+    <div class="search-bar shadow p-3 mb-5 bg-white rounded" style="margin-top: -5%;">
       <input
         type="text"
         class="searchTerm"
@@ -117,11 +152,13 @@
         <i class="fa fa-search"></i>
       </button>
     </div>
-    <a routerLink="/cidadaos/cadastrar">
+    </div>
+
+    <!-- <a routerLink="/cidadaos/cadastrar">
       <button mat-button id="novoCidadaoButton" class="pull-right">
         <img src="assets/dist/img/novocidadaologo.png" id="novoCidadaoImg" />
       </button>
-    </a>
+    </a> -->
     <!-- <div>
       <button
         mat-button
@@ -171,7 +208,6 @@
         >
       </div>
     </div> -->
-  </div>
   <div class="container" id="cidadaoNaoEncontrado" *ngIf="errorBye && searchError">
     <div *ngIf="clicked==false">
       <div class="row">

@@ -1,0 +1,53 @@
+<section class="content-header">
+  <div class="container">
+  <div class="adjust-header">
+    <div class="row"> <h3 id="labelBuscaCidadao">Medição De Pressão Arterial</h3></div>
+    <div class="row" *ngIf="!isMobile"><div id="searchboxtoggle">
+      <div class="search-bar shadow p-3 mb-5 bg-white rounded" style="margin-top: 0%;">
+        <input
+          type="text"
+          class="searchTerm"
+          placeholder="Buscar cidadão (CPF, RG OU NOME)"
+          id="searchBox"
+          [(ngModel)]="buscado"
+          required
+
+        />
+        <button
+          type="submit"
+          class="searchButton"
+          id="searchButton"
+          placeholder=""
+          (click)="searchCidadao()"
+        >
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+      </div></div>
+
+      <div class="row" *ngIf="isMobile" style="margin-top: 20%;">
+        <div id="searchboxtoggle">
+        <div class="search-bar shadow p-3 mb-5 bg-white rounded" style="margin-top: 0%;">
+          <input
+            type="text"
+            class="searchTerm"
+            placeholder="Buscar cidadão (CPF, RG OU NOME)"
+            id="searchBox"
+            [(ngModel)]="buscado"
+            required
+
+          />
+          <button
+            type="submit"
+            class="searchButton"
+            id="searchButton"
+            placeholder=""
+            (click)="searchCidadao()"
+          >
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+        </div></div>
+  </div>
+  </div>
+</section>
