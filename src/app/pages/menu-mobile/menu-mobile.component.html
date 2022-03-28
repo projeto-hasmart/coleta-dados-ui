@@ -242,12 +242,17 @@
       >
     </div>
 
-    <a routerLinkActive="active-list-item" style="width: 230px">
+    <a routerLinkActive="active-list-item" style="width: 230px" routerLink="/medicao/" *ngIf="button_color !== 'medicao' " (click)="buttonMedicaoColor()">
       <img src="assets/dist/img/available_heart.png" />
       <span style="width: 230px; margin-left: 5%; color: gray;">Medição</span>
     </a>
 
-    <a data-toggle="modal" data-target="#logoutmodal" style="width: 230px;" *ngIf="ativo">
+    <a routerLinkActive="active-list-item" style="width: 230px" routerLink="/medicao/" *ngIf="button_color == 'medicao'">
+      <img src="assets/dist/img/available_heart.png" />
+      <span style="width: 230px; margin-left: 5%; color: #37804B;">Medição</span>
+    </a>
+
+    <a data-toggle="modal" data-target="#logoutmodal" style="width: 230px;" *ngIf="ativo" >
       <mat-icon style="margin-right: 3%;">exit_to_app</mat-icon>
       <span style="width: 230px; color: gray;">  Sair </span>
       </a>
