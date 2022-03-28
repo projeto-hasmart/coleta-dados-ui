@@ -44,6 +44,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 // tslint:disable-next-line: component-class-suffix
 export class PaginaInicio implements OnInit {
   hideModal:string;
+  welcomeModal = false;
   optinAccept:string;
   isMobile;
   deviceInfo = null;
@@ -137,7 +138,12 @@ export class PaginaInicio implements OnInit {
 
   onAccept(key: string, value: any){
     localStorage.setItem(key, value);
+    this.welcomeModal = true;
     return this.hideModal = 'sim';
+  }
+
+  onOK(){
+    this.welcomeModal = false;
   }
 
   formatinput(){

@@ -27,6 +27,7 @@ export class RelatoComponent implements OnInit{
 @Output() close = new EventEmitter<boolean>();
 @ViewChild('closeModalBtn', {static: false}) closeModalBtn: ElementRef;
   date: Date;
+  aux: string;
 
   constructor(private cz: CidadaoServiceService, private mz: MedicaoServiceService, private apiService: ApiService,
     private router: Router,
@@ -40,6 +41,7 @@ export class RelatoComponent implements OnInit{
 
       this.epicFunction();
    }
+  valuesTable = [];
   buscadoNome: string;
   editing = false;
   checked = false;
@@ -160,6 +162,7 @@ selecionaCidadao(digitado: string, groupValue?: string) {
     localStorage.removeItem('buscado');
   }
   this.relatos = [];
+
   this.rz.getRelatosParaCidadaosAnonimos(digitado).subscribe(cid => {
     for (const c of cid) {
       c.nomeAnonimizado = c.cidadao.anonimoNome;
@@ -170,7 +173,46 @@ selecionaCidadao(digitado: string, groupValue?: string) {
 }
 getRelatos() {
   ELEMENT_DATA = [];
+  this.valuesTable = [];
   for (const r of this.relatos) {
+    switch(r.tipoContato){
+      case 1: {
+        this.aux = String(r.tipoContato);
+        this.aux = this.contatos[0];
+        break;
+      }
+      case 2: {
+        this.aux = String(r.tipoContato);
+      this.aux = this.contatos[1];
+        break;
+      }
+      case 3: {
+        this.aux = String(r.tipoContato);
+      this.aux = this.contatos[2];
+        break;
+      }
+      case 4: {
+        this.aux = String(r.tipoContato);
+      this.aux = this.contatos[3];
+        break;
+      }
+      case 5: {
+        this.aux = String(r.tipoContato);
+      this.aux = this.contatos[4];
+        break;
+      }
+      case 6: {
+        this.aux = String(r.tipoContato);
+      this.aux = this.contatos[5];
+        break;
+      }
+      case 7: {
+        this.aux = String(r.tipoContato);
+        this.aux = this.contatos[6];
+        break;
+      }
+    }
+    this.valuesTable.push([r.relatorNome, r.nomeAnonimizado, this.aux,r.relatorioCidadao, r.dataRelatorio]);
     ELEMENT_DATA.push(r);
   }
   ELEMENT_DATA.sort((a, b) => {
@@ -181,6 +223,7 @@ getRelatos() {
 }
 
 definirRelatorios(){
+  console.log("entrou")
     ELEMENT_DATA = [];
     this.rz.getAllRelatosParaCidadao().subscribe(all => {
       for (const x of all){
