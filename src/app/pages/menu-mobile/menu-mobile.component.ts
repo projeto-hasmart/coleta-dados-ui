@@ -70,6 +70,9 @@ onResize(event) {
   buttonImportarColor(){
     this.button_color = 'importar';
   }
+  buttonMedicaoColor(){
+    this.button_color = 'medicao';
+  }
 
 
   removeCitizen() {

@@ -43,6 +43,7 @@ import { DatePipe } from '@angular/common';
 import { MenuMobileComponent } from './menu-mobile/menu-mobile.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { AuthGuard } from '../auth/auth.guard';
+import { PageMedicaoComponent } from './page-medicao/page-medicao.component';
 
 // npm install mdbootstrap
 @NgModule({
@@ -63,7 +64,8 @@ import { AuthGuard } from '../auth/auth.guard';
     PaginaCidadaoRelatorioComponent,
     RelatoComponent,
     InfoRelatoComponent,
-    MenuMobileComponent
+    MenuMobileComponent,
+    PageMedicaoComponent
     ],
   imports: [
     CommonModule,

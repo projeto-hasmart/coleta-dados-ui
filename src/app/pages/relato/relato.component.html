@@ -510,20 +510,41 @@
       <img src='assets/dist/img/novocidadaologo.png' id="novoCidadaoImg">
       <label id="novoCidadaoLabel">NOVO REGISTRO</label>
     </button>
-    <div class="icons" id="trashIcon" style="float: right; padding: 15px">
-      <button mat-button id="deleteCidadaoButton" (click)="deleteSelected()">
-      <mat-icon style="color: white;">delete</mat-icon>
-    </button>
+
+    <div class="container" style="display: flex; justify-content: center; align-items: center; background-color: #fafafa; margin-top: 34%;">
+      <div class="row">
+    <mat-card class="example-card" style="max-width: 400px; margin-top: 3%;" *ngFor="let n of  valuesTable">
+      <mat-card-header>
+        <mat-card-title >{{n[0]}} , {{n[1]}}</mat-card-title>
+        <mat-card-subtitle >{{n[2]}}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content style="display: flex; justify-content: center; align-items: center;">
+        <p>
+          {{n[3]}}
+        </p>
+      </mat-card-content>
+      <mat-card>{{n[4]}}</mat-card>
+      <mat-card-actions>
+        <div class="icons" style="padding: 15px">
+          <button mat-button id="deleteCidadaoButton" (click)="definirRelatorios()">
+          <mat-icon style="color: white;">delete</mat-icon>
+        </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
     </div>
-  <div class="tableReg">
+    </div>
+
+  <!-- <div class="tableReg">
     <table
       mat-table
       [dataSource]="dataSource"
       class="mat-elevation-z8"
       style="width: 100%"
-    >
+    > -->
       <!-- Checkbox Column -->
-      <ng-container matColumnDef="select" style="width: 16.667%">
+      <!-- <ng-container matColumnDef="select" style="width: 16.667%">
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox
             (change)="$event ? masterToggle() : null"
@@ -540,12 +561,10 @@
           >
           </mat-checkbox>
         </td>
-      </ng-container>
-
-
+      </ng-container> -->
 
       <!-- Tipo Relato Column -->
-      <ng-container matColumnDef="tipoContato" style="width: 16.667%">
+      <!-- <ng-container matColumnDef="tipoContato" style="width: 16.667%">
         <th mat-header-cell *matHeaderCellDef>Tipo de Contato</th>
         <td mat-cell *matCellDef="let element">
           <mat-icon *ngIf="element.tipoContato == 1"> chat_bubble_outline</mat-icon>
@@ -556,38 +575,38 @@
           <mat-icon *ngIf="element.tipoContato == 6 || element.tipoContato == 0"> record_voice_over</mat-icon>
           <mat-icon *ngIf="element.tipoContato == 7">devices_other</mat-icon>
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- Relator Column -->
-       <ng-container matColumnDef="relator" style="width: 16.667%">
+       <!-- <ng-container matColumnDef="relator" style="width: 16.667%">
         <th mat-header-cell *matHeaderCellDef>Relator</th>
         <td mat-cell *matCellDef="let element">
           {{element.relatorNome}}
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- Anomizado Column -->
-      <ng-container matColumnDef="anomizado" style="width: 16.667%">
+      <!-- <ng-container matColumnDef="anomizado" style="width: 16.667%">
         <th mat-header-cell *matHeaderCellDef>Anomizado</th>
         <td mat-cell *matCellDef="let element">
           <p>
             {{ element.nomeAnonimizado }}
           </p>
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- Data Column -->
-      <ng-container matColumnDef="time" style="width: 16.667%">
+      <!-- <ng-container matColumnDef="time" style="width: 16.667%">
         <th mat-header-cell *matHeaderCellDef>Data</th>
         <td mat-cell *matCellDef="let element">
           <p>
             {{ element.dataRelatorio }}
           </p>
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- Relato Column -->
-      <ng-container matColumnDef="relato" style="width: 16.667%">
+      <!-- <ng-container matColumnDef="relato" style="width: 16.667%">
         <th mat-header-cell *matHeaderCellDef>Relato</th>
         <td mat-cell *matCellDef="let element">
           <button
@@ -609,7 +628,7 @@
         (click)="selection.toggle(row)"
       ></tr>
     </table>
-  </div>
+  </div> -->
 
 
 
@@ -829,11 +848,11 @@
     <label id="novoCidadaoLabel">NOVO REGISTRO</label>
   </button>
   <div class="icons" id="trashIcon" style="float: right; padding: 15px">
-    <button mat-button id="deleteCidadaoButton" (click)="deleteSelected()">
+    <button mat-button id="deleteCidadaoButton" (click)="definirRelatorios()">
     <mat-icon style="color: white;">delete</mat-icon>
   </button>
   </div>
-<div class="tableReg">
+ <div class="tableReg">
   <table
     mat-table
     [dataSource]="dataSource"
@@ -859,7 +878,6 @@
         </mat-checkbox>
       </td>
     </ng-container>
-
 
 
     <!-- Tipo Relato Column -->
@@ -929,8 +947,6 @@
   </table>
 </div>
 
-
-
 <div class="modal fade" id="okcidadao" *ngIf="valid && !errorBye">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
@@ -959,7 +975,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Modal -->
 <div

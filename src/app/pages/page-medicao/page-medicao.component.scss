@@ -1,0 +1,62 @@
+#labelBuscaCidadao{
+  position: absolute;
+  width: 576px;
+  height: 60px;
+  top: -4%;
+  font-style: normal;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  @media (min-width:640px) and (max-width:1024px) and (orientation: landscape){
+    margin-top: -6%;
+    top: 173%;
+  }
+  @media (max-width:650px){
+    font-size: 28px;
+  }
+}
+
+#searchBox {
+  @media (min-width: 280px) and (max-width: 359px) {
+    width: 243px;
+    font-size: 75%;
+  }
+  @media (min-width: 360px) and (max-width: 400px) {
+    width: 270px;
+    font-size: 85%;
+  }
+  @media (min-width:640px) and (orientation: landscape){
+    margin-top: 11%;
+  }
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  box-sizing: border-box;
+  border-radius: 3px;
+  height: 50px;
+  width: 328px;
+  font-family: "Roboto";
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.searchButton {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-style: none;
+  background: none;
+  text-align: center;
+  color: grey;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  height: 50px;
+  margin-top: 1px;
+  margin-left: -40px;
+}
