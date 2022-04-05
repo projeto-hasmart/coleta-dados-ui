@@ -64,6 +64,14 @@ export class CidadaoServiceService {
         retry(2),
         catchError(this.handleError));
   }
+
+  public getMedicaoById(id: string){
+    return this.httpClient.get<number>(environment.rest.host + '/hasmart/api/Cidadaos/medicoes/total?id=' + id, this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  }
   public deleteCidadaoById(cidadaoId: string): Observable<Cidadao> {
     return this.httpClient.delete<Cidadao>(environment.rest.host + '/hasmart/api/Cidadaos/' + cidadaoId, this.httpOptions)
       .pipe(

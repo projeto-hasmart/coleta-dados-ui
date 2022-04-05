@@ -42,6 +42,7 @@ a :hover {
     background-color: transparent;
 }
 
+
 #suporteDiv {
     position: absolute;
     bottom: 25px;
@@ -87,14 +88,24 @@ a :hover {
     color: #000000 !important;
 }
 
-// a.active-list-item {
-//     pointer-events: none;
-//     cursor: default;
-// }
-// a.active-list-item :hover {
-//     background-color: #BEE3C8;
-//     color: #37804B;
-// }
+.active-list-item-csv span{
+    pointer-events: none;
+    cursor: default;
+}
+.active-list-item-csv :hover{
+    background-color: #BEE3C8;
+    color: #37804B;
+}
+
+.active-list-item-csv span:hover{
+    background-color: #BEE3C8;
+    color: #37804B;
+}
+
+.active-list-item-csv a:hover{
+    background-color: transparent;
+}
+
 li span {
     margin-left: 10%;
     width: 150px;

@@ -23,8 +23,10 @@
                     </a>
                 </li>
                 <li style="padding: 4% 38%; margin-top: 13%;">
-                  <img src="assets/dist/img/user.png" style="width: 81%; margin-left: 20%;">
-                  <span style="position: absolute; margin-top: 41%; margin-left: 0%;" id="userName">{{User.nome}}</span>
+                  <img *ngIf="ativo" src="assets/dist/img/user.png" style="width: 81%; margin-left: 20%; background-color: #F4F7F4 !important;">
+                  <img *ngIf="!ativo" src="assets/dist/img/user.png" style="display: none;">
+                  <span *ngIf="ativo" style="position: absolute; margin-top: 41%; margin-left: 0%; background-color: #F4F7F4 !important;" routerLinkActive="active-list-item-csv" id="userName">{{User.nome}}</span>
+                  <span *ngIf="!ativo" style="display: none;" id="userName">{{User.nome}}</span>
                 </li>
                 <li style="margin-top: 35%;">
                     <a routerLink="/inicio"  routerLinkActive="active-list-item" style="width: 230px;" *ngIf="ativo">
@@ -57,13 +59,13 @@
                     </a>
 
                 </li>
-                <li>
-                <div>
-                  <a class="pull-right"  (click)="fileInput.click()" style="width: 230px; margin-right: -8%;" *ngIf="ativo">
+                <li *ngIf="ativo">
+                
+                  <a class="pull-right" routerLinkActive="active-list-item-csv" (click)="fileInput.click()" style="width: 230px; margin-right: -8%;" *ngIf="ativo">
                     <mat-icon aria-hidden="false" style="color: #acecb5;">attachment</mat-icon>
                     <span >Importar CSV</span>
                   </a>
-                  <a class="pull-right" (click)="fileInput.click()" style="width: 230px; margin-right: -5%;" *ngIf="!ativo">
+                  <a class="pull-right" routerLinkActive="active-list-item" (click)="fileInput.click()" style="width: 230px; margin-right: -5%;" *ngIf="!ativo">
                     <mat-icon aria-hidden="false" style="color: #acecb5;">attachment</mat-icon>
                     <span >Importar CSV</span>
                   </a>
@@ -92,8 +94,45 @@
                       >{{ uploadError }}</label
                     >
                   </div>
-                </div>
+                
               </li>
+              <li *ngIf="!ativo" style="margin-left: -9%;">
+                
+                <a class="pull-right" routerLinkActive="active-list-item-csv" (click)="fileInput.click()" style="width: 230px; margin-right: -8%;" *ngIf="ativo">
+                  <mat-icon aria-hidden="false" style="color: #acecb5;">attachment</mat-icon>
+                  <span >Importar CSV</span>
+                </a>
+                <a class="pull-right" routerLinkActive="active-list-item" (click)="fileInput.click()" style="width: 230px; margin-right: -5%;" *ngIf="!ativo">
+                  <mat-icon aria-hidden="false" style="color: #acecb5;">attachment</mat-icon>
+                  <span >Importar CSV</span>
+                </a>
+                <input hidden type="file" #fileInput (change)="selectFile($event)" accept=".csv" style="display: none"/>
+                <div style="margin-top: 8%" class="pull-right">
+                  <label
+                    style="font-family: Roboto; font-size: 14px; color: #000000"
+                    *ngIf="uploading"
+                    >Realizando upload do arquivo...</label
+                  >
+                  <label
+                    style="font-family: Roboto; font-size: 14px; color: #000000"
+                    *ngIf="uploadCompleted"
+                    >Upload concluído!</label
+                  >
+                  <label
+                    style="font-family: Roboto; font-size: 14px; color: #000000"
+                    *ngIf="uploadCompleted"
+                  >
+                    Foram alterados/adicionados cidadãos
+                    {{ countOfUploaded }} vezes</label
+                  >
+                  <label
+                    style="font-family: Roboto; font-size: 14px; color: red"
+                    *ngIf="uploadError && errorBye"
+                    >{{ uploadError }}</label
+                  >
+                </div>
+              
+            </li>
                 <li>
                     <a routerLinkActive="active-list-item" routerLink="/medicao/" style="width: 230px;" *ngIf="ativo">
                         <img src="assets/dist/img/available_heart.png">
