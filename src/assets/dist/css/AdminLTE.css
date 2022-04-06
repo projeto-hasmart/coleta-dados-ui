@@ -366,7 +366,7 @@ a:focus {
     transition: width 0.3s ease-in-out;
     display: block;
     float: left;
-    height: 50px;
+    height: 22px;
     font-size: 20px;
     line-height: 50px;
     text-align: center;
@@ -398,9 +398,9 @@ a:focus {
     margin-left: -5px;
 }
 
-.main-header .logo .logo-mini {
+/* .main-header .logo .logo-mini {
     display: none;
-}
+} */
 
 .main-header .logo .logo-mini img {
     max-width: 50px;
