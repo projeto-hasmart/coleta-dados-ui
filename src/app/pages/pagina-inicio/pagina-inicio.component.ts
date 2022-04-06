@@ -73,6 +73,8 @@ export class PaginaInicio implements OnInit {
   ativo = true;
   getCidadao = 0;
   cidadao$: Observable<Cidadao[]>;
+  pacientes: string[] = [];
+  medicoes: number[] = [];
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -101,15 +103,16 @@ export class PaginaInicio implements OnInit {
     this.idk = idk;
     this.router = router;
     this.epicFunction();
-    this.optinAccept = localStorage.getItem('accept');
+    this.optinAccept = localStorage.getItem('accept');        
   }
 
   ngOnInit() {
+    this.ListaCidadaos();
     localStorage.removeItem('changePag');
     this.hideModal = localStorage.getItem('accept');
     this.apiService.getCidadaos().subscribe(
       res => {
-        this.getCidadao = res.length
+        this.getCidadao = res.length        
       }
     )
     this.cidadao$ = this.apiService.getCidadaos();
@@ -119,6 +122,42 @@ export class PaginaInicio implements OnInit {
     }
   }
 
+  ListaCidadaos(){
+    var i = 0;
+    var x = 0;
+    let message = "Paciente sem nome anonimo";
+    
+    this.apiService.getCidadaos().subscribe(
+      p => {
+        for(i; i<p.length; i++){
+          this.pacientes.push((p[i].anonimoNome));
+
+          if(this.pacientes[i] == null || undefined){
+            this.pacientes.pop()
+            this.pacientes.push(message);
+          }
+        }
+
+        for(x; x<p.length;x++){
+        this.cidadaoService.getMedicaoById(p[x].id).subscribe(
+          qm => {      
+            this.medicoes.push(qm);           
+          }
+        );
+        }
+          
+      }      
+    );    
+  }
+
+  onViewMed(){
+    var nome_ano = document.getElementById('n').innerHTML;
+    this.cidadaoService.getCidadaoByNomeAnonimo(nome_ano).subscribe( 
+      cidadao => {
+        this.router.navigate(['/cidadaos/visualizar/' + nome_ano]);
+      }
+     );
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {

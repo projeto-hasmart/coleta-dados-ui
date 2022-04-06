@@ -19,7 +19,7 @@
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 1031;
   top: 0;
   left: 0;
   background-color: #111;
@@ -56,4 +56,25 @@
 
 .sp::before{
   content: '';
+}
+
+.MessageText{
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: 13px;
+  margin-left: -27%;
+  margin-top: 13%;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.Message:hover .MessageText {
+  visibility: visible;
 }

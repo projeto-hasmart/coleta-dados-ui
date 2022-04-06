@@ -79,19 +79,29 @@
 </div> -->
 
  <!-- Modal termos de condição -->
-  <div class="modalOptin" *ngIf="hideModal!='sim' && isMobile">
-    <h1 style="font-family: Roboto;">Termos de condição</h1>
-  <p style="font-family: Roboto;">
+  <div class="modalOptinMobile content" *ngIf="hideModal!='sim' && isMobile">
+    <div class="row">
+    <h1 style="font-family: Roboto; margin: 0; padding: 10px;">Termos de condição</h1>
+  </div>
+  <div class="row">
+  <p style="font-family: Roboto; padding: 10px;">
    Você aceita aceita todos os termos de condições para o uso de dados?
   </p>
+</div>
+<div class="row" style="text-align: center;">
+<!-- <div class="col-md-6"> -->
   <button (click)="onAccept('accept','sim');" class="btn-primario" id="optinButton">Sim</button>
+<!-- </div> -->
+<!-- <div class="col-md-6"> -->
   <button class="btn-secundario" routerLink='/' id="optinButton">Não</button>
+<!-- </div> -->
+</div>
   </div>
   <div class="overlay" *ngIf="hideModal!='sim' && isMobile"></div>
 
   <div class="modalOptin" style="position: fixed;" *ngIf="hideModal!='sim' && !isMobile">
-    <h1>Termos de condição</h1>
-  <p>
+    <h1 style="font-family: Roboto;">Termos de condição</h1>
+  <p style="font-family: Roboto;">
    Você aceita aceita todos os termo de condição para o uso de dados?
   </p>
   <button (click)="onAccept('accept','sim');" class="btn-primario" id="optinButton">Sim</button>
@@ -101,8 +111,8 @@
 
   <!-- Modal Bem vindo -->
   <div class="modalOptin2" *ngIf="welcomeModal == true && isMobile">
-    <h1 style="font-family: Roboto;">Olá, {{user.nome}} </h1>
-  <p style="font-family: Roboto;">
+    <h1 style="font-family: Roboto; margin: 0 auto;">Olá, {{user.nome}} </h1>
+  <p style="font-family: Roboto; margin-top: 5%;">
    Bem vindo de volta ao sistema!
   </p>
   <button (click)="onOK();" class="btn-primario" id="optinButton">OK</button>
@@ -110,8 +120,8 @@
   <div class="overlay" *ngIf="welcomeModal == true && isMobile"></div>
 
   <div class="modalOptin2" style="position: fixed;" *ngIf="welcomeModal == true && !isMobile">
-    <h1>Olá, {{user.nome}} </h1>
-  <p>
+    <h1 style="font-family: Roboto; margin: 0 auto;">Olá, {{user.nome}} </h1>
+  <p style="font-family: Roboto; margin-top: 5%;">
    Bem vindo de volta ao sistema! </p>
   <button (click)="onOK();" class="btn-primario" id="optinButton">OK</button>
   </div>
@@ -247,6 +257,17 @@
 
     </div>
   </div>
+
+  <div class="container" id="TablePQ" style="text-align: center; margin-top: 5%; width: 100%;">
+    <div style="width: 50%; float: left;">
+      <h1 class="th" style="margin: 0 auto;">Pacientes anonimizados</h1>
+      <h2 *ngFor="let n of pacientes" id="n" class="td" style="margin: 0 auto; cursor: pointer;" (click)="onViewMed()">{{n}}</h2>
+    </div>
+    <div style="width: 50%; float: left;">
+      <h1 class="th" style="margin: 0 auto;">Quantidade De Medições</h1>
+      <h2 *ngFor="let m of medicoes" class="td" style="margin: 0 auto;">{{m}}</h2></div>
+  </div>     
+
   <!-- <div>
         <div id='estatisticas'>Estatísticas</div>
         <div class="row">
