@@ -5,6 +5,19 @@ body {
   color: white;
 }
 
+.modalOptinMobile {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #333;
+  min-width: 320px;
+  position: relative;
+  left: 50%;
+  // padding: 30px 10px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1032;
+}
+
 .modalOptin {
   background: #fff;
   border-radius: 8px;
@@ -28,7 +41,7 @@ body {
   padding: 30px 10px;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 811;
+  z-index: 1032;
 }
 
 .overlay {
@@ -890,4 +903,43 @@ table {
   /* Button Shadow */
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
+}
+
+.td{
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.th{
+  border: 1px solid #ddd;
+  padding: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 20px;
+  text-align: left;
+  background-color: #245E33;
+  color: white;
+}
+
+#TablePQ {
+  font-family: 'Roboto' !important;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#TablePQ td, #TablePQ th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#TablePQ tr:nth-child(even){background-color: #f2f2f2;}
+
+#TablePQ tr:hover {background-color: #ddd;}
+
+#TablePQ th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #245E33;
+  color: white;
 }
